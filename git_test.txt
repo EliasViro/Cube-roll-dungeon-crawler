@@ -4,3 +4,4 @@ Just a text file for testing git push & pull operations.
 Atte: Hi everyone! If you see this, it means that my commit & push worked.
 Atte: Succesful push. Now testing pull.
 Atte: Git seems to work using VSC terminal commands but not through the VSC interface.
+Atte: Push.

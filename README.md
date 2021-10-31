@@ -1,13 +1,13 @@
-# Project Name (replace here!)
+# Dungeon Crawler
 
 This is the template for the projects. Please copy the project description here. 
 You can use Markdown language to render it as formatted **HTML** file.
 
-# Group
-- Member 1
-- Member 2
-- Member 3
-- Member 4
+# Dungeon Crawler Group 3
+- Elias Viro 792130
+- Atte Aarnio 705509
+- Selin Taskin 943413
+- Nguyen Binh 887799
 
 # Repository organization
 Your project implementation should follow the skelaton organization in this repository.

@@ -43,12 +43,12 @@ class Item {
 
     void ReduceCoolDown(); //Reduces the cooldown by one, but not below zero.
 
-    virtual bool CanBeUsed(); //Overridden by subclasses. Returns true if the conditions for using the item apply.
+    virtual bool CanBeUsed() const; //Overridden by subclasses. Returns true if the conditions for using the item apply.
 
     virtual void Trigger(); //Overridden by subclasses. Triggers the item's specific effect, such as a health potion
     //restoring player health or a sword dealing damage to an enemy.
 
-    virtual const std::string& GetDescription(); //Overridden by subclasses. Returns the description of the item.
+    virtual const std::string& GetDescription() const; //Overridden by subclasses. Returns the description of the item.
 
     bool Use(); //Triggers the item's effect if its cooldown is zero and the conditions for using it apply. 
     //Sets the cooldown to max and reduces thedurability by one. If durability reaches zero calls the destructor.

@@ -25,6 +25,10 @@ Character* DungeonTile::GetCharacter() const {
     return character_;
 }
 
+void DungeonTile::PlaceItem(Item* item) {
+    item_ = item;
+}
+
 TileType DungeonTile::GetTileType() const {
     return tiletype_;
 }

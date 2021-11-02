@@ -32,7 +32,7 @@ bool InventorySlot::AddItem(Item* item) {
 }
 
 bool InventorySlot::DropItem() {
-    if (/*TODO: CHECK IF THE TILE BELOW THE PLAYER DOESN'T HAVE AN ITEM AND IS A FLOOR TILE*/) {
+    if (true/*TODO: CHECK IF THE TILE BELOW THE PLAYER DOESN'T HAVE AN ITEM AND IS A FLOOR TILE*/) {
         item_->Drop();
         //TODO: PLACE THE ITEM ON THE TILE THE PLAYER IS ON.
         item_ = nullptr;

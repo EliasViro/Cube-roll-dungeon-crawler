@@ -32,6 +32,8 @@ class DungeonTile {
 
     Character* GetCharacter() const; //Returns a pointer to the character standing on the tile.
 
+    void PlaceItem(Item* item); //Places an item on the tile.
+
     virtual bool SetCharacter(Character* character) = 0; //Overridden by subclasses.
     //Sets the character on the tile to the one given as a parameter.
     //Returns true if setting the character was successful, false if there already was a character on the tile.

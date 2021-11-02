@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "files.associations": {
         "array": "cpp",
         "atomic": "cpp",
@@ -45,4 +46,7 @@
         "streambuf": "cpp",
         "typeinfo": "cpp"
     }
+=======
+    "C_Cpp.errorSquiggles": "Disabled"
+>>>>>>> 8dbb5f0d9e2848ec6baacd9d2a0f0b568adc156f
 }

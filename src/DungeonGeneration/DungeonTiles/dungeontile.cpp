@@ -10,7 +10,7 @@
 
 
 DungeonTile::DungeonTile(bool ispassable, TileType tiletype) 
-    : ispassable_(ispassable), item_(nullptr), tiletype_(tiletype) {}
+    : ispassable_(ispassable), item_(nullptr), tiletype_(tiletype), character_(nullptr) {}
 
 
 bool DungeonTile::IsPassable() const {

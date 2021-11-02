@@ -1,4 +1,4 @@
-
+#include "src/DungeonGeneration/DungeonTiles/dungeontile.hpp"
 
 
 //Character is a class that all character-related classes inherit.
@@ -14,7 +14,7 @@ enum CharacterType {
 
 class Character {
     public:
-    Character(CharacterType charactertype, int healthpoints); //Constructs a new character.
+    Character(CharacterType charactertype, int healthpoints, DungeonTile* currenttile); //Constructs a new character.
 
     ~Character(); //Destructor that destroys the character if health points
     //are reduced to zero or below.
@@ -24,6 +24,8 @@ class Character {
     int GetHealthPoints() const; //Returns the healthpoints of the character.
 
     void TakeDamage(int damage); //Reduces healthpoints by the amount of damage minus defense points.
+
+    bool MoveToDirection(const char* direction); //Moves the character in the given direction. Returns true if movement was successful.
 
     virtual void TakeAction() = 0; //Overridden by Allied and Enemy subclasses.
     //Causes Allies and Enemies to take an action.
@@ -35,4 +37,5 @@ class Character {
     CharacterType charactertype_; //The type of the character.
     int healthpoints_; //The health points of the character.
     int defensepoints_; //The defense points of the character from using a shield. Blocks damage.
+    DungeonTile* currenttile_; //A pointer to the tile the character is standing on.
 };

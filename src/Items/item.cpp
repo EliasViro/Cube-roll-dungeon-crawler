@@ -16,3 +16,55 @@
 //Items on the ground can be picked up if the player has room in their
 //inventory, which will move the item from the ground to the first free
 //inventory slot and add one point to the item's cooldown status.
+
+Item::Item(std::string name, ItemType itemtype, unsigned int durability, unsigned int maxcooldown)
+    : name_(name), itemtype_(itemtype), durability_(durability), maxcooldown_(maxcooldown), cooldown_(1), isactive_(false) {}
+
+Item::~Item() {}
+
+const std::string& Item::GetName() const {
+    return name_;
+}
+
+const ItemType Item::GetItemType() const {
+    return itemtype_;
+}
+
+unsigned int Item::GetDurability() const {
+    return durability_;
+}
+
+unsigned int Item::GetMaxCoolDown() const {
+    return maxcooldown_;
+}
+
+unsigned int Item::GetCoolDown() const {
+    return cooldown_;
+}
+
+void Item::ReduceCoolDown() {
+    cooldown_ --;
+}
+
+bool Item::Use() {
+    if (GetCoolDown() == 0 && CanBeUsed()) {
+        Trigger();
+        durability_--;
+        cooldown_ = maxcooldown_;
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void Item::PickUp() {
+        isactive_ = true;
+}
+
+void Item::Drop() {
+    if (cooldown_ == 0) {
+            cooldown_++;
+        }
+    isactive_ = false;
+}

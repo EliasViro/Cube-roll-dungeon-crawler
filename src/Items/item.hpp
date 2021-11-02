@@ -1,4 +1,4 @@
-
+#include <string>
 
 
 //Item is a class that all item type classes will inherit.
@@ -16,3 +16,53 @@
 //Items on the ground can be picked up if the player has room in their
 //inventory, which will move the item from the ground to the first free
 //inventory slot and add one point to the item's cooldown status.
+
+enum ItemType {
+    MeleeWeapon,
+    RangedWeapon,
+    Shield,
+    Spell,
+    Potion
+};
+
+class Item {
+    public:
+    Item(std::string name, ItemType itemtype, unsigned int durability, unsigned int maxcooldown); //constructs a new item.
+
+    ~Item(); //deletes the item if the durability reaches zero.
+
+    const std::string& GetName() const; //Returns the name of the item.
+
+    const ItemType GetItemType() const; //Returns the type of the item.
+
+    unsigned int GetDurability() const; //Returns the durability of the item.
+
+    unsigned int GetMaxCoolDown() const; //Returns the max cooldown of the item.
+
+    unsigned int GetCoolDown() const; //Returns the current cooldown of the item.
+
+    void ReduceCoolDown(); //Reduces the cooldown by one, but not below zero.
+
+    virtual bool CanBeUsed(); //Overridden by subclasses. Returns true if the conditions for using the item apply.
+
+    virtual void Trigger(); //Overridden by subclasses. Triggers the item's specific effect, such as a health potion
+    //restoring player health or a sword dealing damage to an enemy.
+
+    virtual const std::string& GetDescription(); //Overridden by subclasses. Returns the description of the item.
+
+    bool Use(); //Triggers the item's effect if its cooldown is zero and the conditions for using it apply. 
+    //Sets the cooldown to max and reduces thedurability by one. If durability reaches zero calls the destructor.
+    //Returns true if using the item succeeded, false otherwise.
+
+    void PickUp(); //Sets the isactive status to true.
+
+    void Drop(); //Sets the isactive status to false and adds one point to the cooldown if the item isn't on cooldown.
+
+    protected:
+    std::string name_; //The name of the item.
+    ItemType itemtype_; //The type of the item.
+    unsigned int durability_; //The durability of the item.
+    unsigned int maxcooldown_; //The maximum cooldown of the item.
+    unsigned int cooldown_; //The current cooldown status of the item.
+    bool isactive_; //Status of the item. True when in player inventory, false otherwise.
+};

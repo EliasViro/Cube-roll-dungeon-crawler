@@ -8,11 +8,13 @@ class InventorySlot {
     
     ~InventorySlot(); //Destructor, used if the player character dies.
 
-    bool HasItem() const; //Returns true if the inventory slot is holding an item.
+    bool IsEmpty() const; //Returns true if the inventory slot is not holding an item.
 
-    void AddItem(); //Adds an item to the inventory slot.
+    Item* GetItem() const; //Returns a pointer to the item in the inventory slot.
 
-    void DropItem(); //Attempts the item in the inventory slot.
+    bool AddItem(Item* item); //Attempts to add an item to the inventory slot. Returns true if successful. If the slot already has an item, returns false.
+
+    bool DropItem(); //Attempts to drop the item in the inventory slot. Returns true if successful.
 
     void UseItem(); //Attempts to use the item held in the inventory slot.
     //Deletes the item from the slot if its durability reaches zero.

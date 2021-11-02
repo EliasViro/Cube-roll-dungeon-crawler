@@ -1,0 +1,2 @@
+#include inventoryslot.cpp
+

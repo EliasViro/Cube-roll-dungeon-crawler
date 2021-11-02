@@ -6,6 +6,7 @@ Atte: Succesful push. Now testing pull.
 Atte: Git seems to work using VSC terminal commands but not through the VSC interface.
 Atte: Push.
 Atte: Problem solved.
+Atte: Testing again.
 
 Elias: TESTTESTTEST
 Elias: Test2

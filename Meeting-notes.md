@@ -50,3 +50,40 @@ Short summary of current project status.
 ### TODOs
 1. Member 1: Write an action.
 2. ...
+
+
+
+
+
+# Meeting 30.10.2021 10::00
+
+**Participants**: 
+1. Elias
+2. Atte
+3. Binh
+4. Selin
+
+## Summary of works
+1. Elias: Finished the project plan and the game engine related diagrams, concept art and class structure.
+
+2. Atte: Studied SFML integration into the project and created a diagram of class relationships on the graphics side.
+
+3. Binh: Read through the project plan.
+
+4. Selin: Read through the project plan.
+
+## Challenges
+
+None at this point.
+
+## Actions
+1. Elias: Implement the character class and item base class, as well as the player cube character and start working on the player inventory and the main Game function.
+2. Atte: Research and tests with graphics and sound libraries, creating the necessary project files and folders (such as SoundStorage and GraphicsStorage)
+3. Binh: Implement a working dungeon generation algorithm that can create a single level randomly using the placeholder files in the RoomStorage folder. Note that it needs to have the capacity to randomly select a room file from there, even though currently each folder for different types of rooms only has one room file.
+4. Selin: Start working on implementing the base classes for items, enemies and their "middleman" subclasses such as MeleeWeapon and Potion.
+
+## Project status 
+The project is absolutely barebones, however the plan has been finished.
+
+### TODOs
+Project file structure and basically everything mentioned in the ##Actions.

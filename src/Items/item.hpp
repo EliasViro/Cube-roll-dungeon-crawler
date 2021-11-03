@@ -1,5 +1,5 @@
 #include <string>
-
+#include "src/Characters/character.hpp"
 
 //Item is a class that all item type classes will inherit.
 //Holds information about the durability, max cooldown and cooldown status
@@ -41,11 +41,13 @@ class Item {
 
     unsigned int GetCoolDown() const; //Returns the current cooldown of the item.
 
-    void ReduceCoolDown(); //Reduces the cooldown by one, but not below zero.
+    bool IsActive() const; //Returns the status of the item. True if in player inventory.
+
+    void ReduceCoolDown(); //Reduces the cooldown by one, but not below zero and only when the item is active.
 
     virtual bool CanBeUsed() const = 0; //Overridden by subclasses. Returns true if the conditions for using the item apply.
 
-    virtual void Trigger() = 0; //Overridden by subclasses. Triggers the item's specific effect, such as a health potion
+    virtual void Trigger(Character* targetcharacter) = 0; //Overridden by subclasses. Triggers the item's specific effect, such as a health potion
     //restoring player health or a sword dealing damage to an enemy.
 
     virtual std::string& GetDescription() const = 0; //Overridden by subclasses. Returns the description of the item.

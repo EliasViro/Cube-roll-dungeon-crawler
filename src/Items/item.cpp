@@ -42,8 +42,14 @@ unsigned int Item::GetCoolDown() const {
     return cooldown_;
 }
 
+bool Item::IsActive() const {
+    return isactive_;
+}
+
 void Item::ReduceCoolDown() {
-    cooldown_ --;
+    if (IsActive()) {
+        cooldown_ --;
+    }
 }
 
 bool Item::Use() {

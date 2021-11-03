@@ -10,12 +10,13 @@ enum TileType {
     DoorTile,
     Traptile,
     EnemyTile,
-    LevelExit
+    LevelExit,
+    LevelEntrance
 };
 
 class DungeonTile {
     public:
-    DungeonTile(bool ispassable, TileType tiletype); //Constructs a new tile.
+    DungeonTile(bool ispassable, TileType tiletype, unsigned int xcoord, unsigned int ycoord); //Constructs a new tile.
 
     ~DungeonTile(); //Destructor.
 
@@ -41,4 +42,6 @@ class DungeonTile {
     Item* item_; //The item on the tile.
     bool hascharacter_; //Tells if there is a Character on the tile or not.
     TileType tiletype_; //The type of the tile, e.g. FloorTile or WallTile.
+    unsigned int xcoord_; //The x-coordinate of the tile in a room.
+    unsigned int ycoord_; //The y-coordinate of the tile in a room.
 };

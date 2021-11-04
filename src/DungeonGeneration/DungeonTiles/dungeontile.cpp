@@ -20,6 +20,13 @@ bool DungeonTile::HasCharacter() const {
     return hascharacter_;
 }
 
+unsigned int GetXCoord() const {
+    return xcoord_;
+}
+
+unsigned int GetYCoord() const {
+    return ycoord_;
+}
 
 //WIP
 DungeonTile* DungeonTile::GetTileInDirection(const char direction) {

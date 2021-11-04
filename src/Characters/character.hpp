@@ -21,6 +21,8 @@ class Character {
 
     CharacterType GetCharacterType() const; //Returns the character type.
 
+    DungeonTile* GetCurrentTile() const; //Returns the tile the character is standing on.
+
     int GetHealthPoints() const; //Returns the healthpoints of the character.
 
     void TakeDamage(int damage); //Reduces healthpoints by the amount of damage minus defense points.

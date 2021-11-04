@@ -17,6 +17,10 @@ CharacterType Character::GetCharacterType() const {
     return charactertype_;
 }
 
+DungeonTile* Character::GetCurrentTile() const {
+    return currenttile_;
+}
+
 int Character::GetHealthPoints() const {
     return healthpoints_;
 }

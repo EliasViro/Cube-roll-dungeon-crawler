@@ -26,6 +26,10 @@ class DungeonTile {
 
     bool HasCharacter() const; //Returns true if there is a character standing on the tile.
 
+    unsigned int GetXCoord() const; //Returns the X-coordinate of the tile.
+
+    unsigned int GetYCoord() const; //Returns the Y-coordinate of the tile.
+
     DungeonTile* GetTileInDirection(const char direction); //Returns the tile in the given direction.
 
     virtual void PlaceItem(Item* item) = 0; //Overridden by subclasses. Places an item on the tile.

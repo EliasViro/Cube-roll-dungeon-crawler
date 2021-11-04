@@ -201,7 +201,7 @@ std::pair<std::vector<std::string>, DoorOrientation> RandomizeRoom(std::vector<s
 }
 
 std::vector<DungeonTile*> CreateTiles(std::vector<std::string> roomvector) {
-    std::vector<std::vector<Tile*>> tilevector;
+    std::vector<std::vector<DungeonTile*>> tilevector;
     for (int j = 0; j < 16; j++) {
         for (int i = 0; i < 16; i++) {
             if (roomvector[j][i] == '#') {

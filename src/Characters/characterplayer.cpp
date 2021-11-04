@@ -23,36 +23,36 @@ bool Player::MoveToDirection(const char* direction) {
         currenttile_ = currenttile_->GetTileInDirection(direction);
         std::vector<InventorySlot*> tempinventory = inventory_;
         if (direction == 'N') {
-            inventory_[0] = tempinventory[4]
-            inventory_[1] = tempinventory[0]
-            inventory_[2] = tempinventory[2]
-            inventory_[3] = tempinventory[3]
-            inventory_[4] = tempinventory[5]
-            inventory_[5] = tempinventory[1]
+            inventory_[0] = tempinventory[4];
+            inventory_[1] = tempinventory[0];
+            inventory_[2] = tempinventory[2];
+            inventory_[3] = tempinventory[3];
+            inventory_[4] = tempinventory[5];
+            inventory_[5] = tempinventory[1];
         }
         else if (direction == 'E') {
-            inventory_[0] = tempinventory[2]
-            inventory_[1] = tempinventory[1]
-            inventory_[2] = tempinventory[0]
-            inventory_[3] = tempinventory[5]
-            inventory_[4] = tempinventory[4]
-            inventory_[5] = tempinventory[3]
+            inventory_[0] = tempinventory[2];
+            inventory_[1] = tempinventory[1];
+            inventory_[2] = tempinventory[0];
+            inventory_[3] = tempinventory[5];
+            inventory_[4] = tempinventory[4];
+            inventory_[5] = tempinventory[3];
         }
         else if (direction == 'W') {
-            inventory_[0] = tempinventory[3]
-            inventory_[1] = tempinventory[4]
-            inventory_[2] = tempinventory[5]
-            inventory_[3] = tempinventory[0]
-            inventory_[4] = tempinventory[1]
-            inventory_[5] = tempinventory[2]
+            inventory_[0] = tempinventory[3];
+            inventory_[1] = tempinventory[4];
+            inventory_[2] = tempinventory[5];
+            inventory_[3] = tempinventory[0];
+            inventory_[4] = tempinventory[1];
+            inventory_[5] = tempinventory[2];
         }
         else {
-            inventory_[0] = tempinventory[1]
-            inventory_[1] = tempinventory[5]
-            inventory_[2] = tempinventory[2]
-            inventory_[3] = tempinventory[3]
-            inventory_[4] = tempinventory[0]
-            inventory_[5] = tempinventory[4]
+            inventory_[0] = tempinventory[1];
+            inventory_[1] = tempinventory[5];
+            inventory_[2] = tempinventory[2];
+            inventory_[3] = tempinventory[3];
+            inventory_[4] = tempinventory[0];
+            inventory_[5] = tempinventory[4];
         }
         inventory_[0].UseItem();
         return true;

@@ -32,6 +32,7 @@ void Character::TakeDamage(int damage) {
     }
 }
 
+/*
 bool MoveToDirection(const char* direction) {
     if (currenttile_->GetTileInDirection(direction).IsPassable()) {
         currenttile_->GetTileInDirection(direction).SetCharacter();
@@ -43,3 +44,4 @@ bool MoveToDirection(const char* direction) {
         return false;
     }
 }
+*/

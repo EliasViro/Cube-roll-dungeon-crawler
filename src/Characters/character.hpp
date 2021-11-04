@@ -7,9 +7,9 @@
 //the character (player, enemy, allied) and its health points.
 
 enum CharacterType {
-    Player,
-    Allied,
-    Enemy
+    PlayerCharacter,
+    AlliedCharacter,
+    EnemyCharacter
 };
 
 class Character {
@@ -27,7 +27,7 @@ class Character {
 
     void TakeDamage(int damage); //Reduces healthpoints by the amount of damage minus defense points.
 
-    bool MoveToDirection(const char* direction); //Moves the character in the given direction. Returns true if movement was successful.
+    virtual bool MoveToDirection(const char* direction); //Moves the character in the given direction. Returns true if movement was successful.
 
     virtual void TakeAction() = 0; //Overridden by Allied and Enemy subclasses.
     //Causes Allies and Enemies to take an action.

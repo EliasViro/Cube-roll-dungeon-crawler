@@ -52,9 +52,9 @@ void Item::ReduceCoolDown() {
     }
 }
 
-bool Item::Use() {
+bool Item::Use(Character* targetcharacter) {
     if (GetCoolDown() == 0 && CanBeUsed()) {
-        Trigger();
+        Trigger(targetcharacter);
         durability_--;
         cooldown_ = maxcooldown_;
         return true;

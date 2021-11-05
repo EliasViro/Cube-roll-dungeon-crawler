@@ -4,14 +4,14 @@
 //A class that is inherited by all tile types.
 
 enum TileType {
-    FloorTile,
-    WallTile,
-    PitTile,
-    DoorTile,
-    Traptile,
-    EnemyTile,
-    LevelExit,
-    LevelEntrance
+    Floor,
+    Wall,
+    Pit,
+    Door,
+    Trap,
+    Spawner,
+    Exit,
+    Entrance
 };
 
 class DungeonTile {

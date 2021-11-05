@@ -52,7 +52,7 @@ class Item {
 
     virtual std::string& GetDescription() const = 0; //Overridden by subclasses. Returns the description of the item.
 
-    bool Use(); //Triggers the item's effect if its cooldown is zero and the conditions for using it apply. 
+    bool Use(Character* targetcharacter); //Triggers the item's effect if its cooldown is zero and the conditions for using it apply. 
     //Sets the cooldown to max and reduces thedurability by one. If durability reaches zero calls the destructor.
     //Returns true if using the item succeeded, false otherwise.
 

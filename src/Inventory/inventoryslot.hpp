@@ -18,7 +18,7 @@ class InventorySlot {
 
     bool DropItem(); //Attempts to drop the item in the inventory slot. Returns true if successful.
 
-    void UseItem(); //Attempts to use the item held in the inventory slot.
+    void UseItem(Character* targetcharacter); //Attempts to use the item held in the inventory slot.
     //Deletes the item from the slot if its durability reaches zero.
 
     private:

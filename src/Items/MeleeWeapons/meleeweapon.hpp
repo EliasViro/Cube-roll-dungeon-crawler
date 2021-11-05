@@ -14,8 +14,9 @@
 
 class Meleeweapon: public Item {
 public:
-    Meleeweapon (const std::string& name, unsigned int durability, unsigned int maxcooldown, int range):Item(name,MeleeWeapon, durability, maxcooldown){
+    Meleeweapon (const std::string& name, unsigned int durability, unsigned int maxcooldown, int range,int damage):Item(name,MeleeWeapon, durability, maxcooldown){
         range_=range;
+        damage_=damage;
     }
     
     bool CanBeUsed() const;
@@ -25,6 +26,7 @@ public:
     std::string &GetDescription() const;
 protected:
     int range_;
+    int damage_;
     
 };
 

@@ -43,7 +43,7 @@ class DungeonRoom {
 
     void OpenDoors(); //Opens the doors of the room when all enemies have been defeated.
     
-    std::vector<DungeonRoom> Neighbors(); // return the room neighbors
+    std::vector<DungeonRoom> getNeighbors(){ return neighbors_; }; // return the room neighbors
     
     std::vector<DungeonRoom> addNeighbor(DungeonRoom room){ neighbors_.push_back(room); };
     

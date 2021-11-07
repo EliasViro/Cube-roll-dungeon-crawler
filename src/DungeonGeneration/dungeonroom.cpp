@@ -59,11 +59,6 @@ void DungeonRoom::OpenDoors() {
     SpawnLoot();
 } //Opens the doors of the room when all enemies have been defeated.
 
-std::vector<DungeonRoom> addNeighbor(DungeonRoom room){
-    neighbors
-} // add the neighbor
-
-
 //Randomizes the name of the file in order to allow reading a random room file.
 std::string RandomizeFileName(RoomType roomtype) {
     std::string filename = "src/DungeonGeneration/RoomStorage/";

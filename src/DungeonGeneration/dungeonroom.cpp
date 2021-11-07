@@ -10,7 +10,7 @@
 //Represents a room of a level.
 //A room consists of 256 tiles on a 16 x 16 grid.
 
-DungeonRoom::DungeonRoom(unsigned int indexinlevel, unsigned int depth, RoomType roomtype, DoorOrientation doororientation, unsigned int enemyamount, Item* loot, bool isplayerstartingroom)
+DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, unsigned int depth, RoomType roomtype, DoorOrientation doororientation, unsigned int enemyamount, Item* loot, bool isplayerstartingroom)
     : indexinlevel_(indexinlevel), depth_(depth), hasbeenexplored_(isplayerstartingroom), loot_(loot), enemyamount_(enemyamount) {
         srand(time(NULL));
         std::ifstream reader(RandomizeFileName(roomtype) + ".txt");
@@ -37,7 +37,7 @@ void DungeonRoom::SpawnEnemies() {
     }
 }
 
-void SpawnLoot() {
+void DungeonRoom::SpawnLoot() {
     if (loot_ != nullptr) {
         for (auto j : alltiles_) {
             for (auto i : j) {
@@ -49,17 +49,19 @@ void SpawnLoot() {
     }
 }
 
-void CloseDoors() {
+void DungeonRoom::CloseDoors() {
 
     hasbeenexplored_ = true;
 } //Closes the doors of the room until all enemies have been defeated.
 
-void OpenDoors() {
+void DungeonRoom::OpenDoors() {
 
     SpawnLoot();
 } //Opens the doors of the room when all enemies have been defeated.
 
-
+std::vector<DungeonRoom> addNeighbor(DungeonRoom room){
+    neighbors
+} // add the neighbor
 
 
 //Randomizes the name of the file in order to allow reading a random room file.

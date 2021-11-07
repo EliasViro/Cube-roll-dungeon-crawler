@@ -13,7 +13,6 @@ enum RoomType {
     2DoorRoomOpposite,
     3DoorRoom,
     4DoorRoom,
-    Omni
 };
 
 enum DoorOrientation {
@@ -27,8 +26,8 @@ enum DoorOrientation {
     NorthWest,
     Horizontal,
     Vertical,
-    
-}
+    Omni
+};
 
 
 class DungeonRoom {
@@ -43,17 +42,16 @@ class DungeonRoom {
 
     void OpenDoors(); //Opens the doors of the room when all enemies have been defeated.
     
-    std::vector<DungeonRoom> getNeighbors(){ return neighbors_; }; // return the room neighbors
+    std::vector<DungeonRoom*> GetNeighbors() const; // return the room neighbors
     
-    std::vector<DungeonRoom> addNeighbor(DungeonRoom room){ neighbors_.push_back(room); };
-    
+    std::vector<DungeonRoom*> AddNeighbor(DungeonRoom* room);
 
     private:
     unsigned int indexinlevel_; //The index of the room in the list of Rooms on a level.
-    unsigned int depth_; //The number of the level the player is on. Spawned enemies depend on this number.
+    unsigned int depth_; //The number of the level the player is on. The difficulty of generated rooms is scaled based on this number.
     bool hasbeenexplored_; //True if the room has already been explored.
     Item* loot_; //A pointer to the loot item.
     unsigned int enemyamount_; //The amount of enemies that will spawn when the player enters the room for the first time.
     std::vector<DungeonTile*> alltiles_; // A vector that stores all tiles in the room.
-    std::neighbors<DungeonRoom> neighbors_; // A Vector that stores the neighbors in the room 
+    std::neighbors<DungeonRoom*> neighbors_; // A Vector that stores the neighbors in the room 
 };

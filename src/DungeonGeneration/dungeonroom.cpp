@@ -55,9 +55,17 @@ void DungeonRoom::CloseDoors() {
 } //Closes the doors of the room until all enemies have been defeated.
 
 void DungeonRoom::OpenDoors() {
-
     SpawnLoot();
+
 } //Opens the doors of the room when all enemies have been defeated.
+
+std::vector<DungeonRoom> GetNeighbors() const {
+        return neighbors_;
+}
+
+std::vector<DungeonRoom*> AddNeighbor(DungeonRoom* room) {
+    neighbors_.push_back(room);
+}
 
 //Randomizes the name of the file in order to allow reading a random room file.
 std::string RandomizeFileName(RoomType roomtype) {

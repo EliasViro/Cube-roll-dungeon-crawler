@@ -10,7 +10,7 @@ int startCol = (std::rand() % lev) ; // Generate rand number between 1 to level 
 std::pair<int,int> startPos(startCol, startRow); // (col, row) due to graphics reason
 
 
-DungeonLevel::DungeonLevel(int level, unsigned int depth) : level_(level), depth_(depth){}; 
+DungeonLevel::DungeonLevel(int level, unsigned int depth) : level_(level), depth_(depth) {}; 
 
 // Define the boundary of the rooms
 std::vector<Direction> DungeonLevel::dirsAvailable(std::pair<int, int> room) {
@@ -83,7 +83,7 @@ std::pair<RoomType, DoorOrientation> roomOrient(std::vector<Direction> exits){
 };
 
 // Depth first search maze generator
-void DungeonLevel::generateRooms(){
+void DungeonLevel::generateRooms() {
     std::vector<std::pair<int,int>> roomsVisited; // vector to store
     int s = level_ // side length of the level
     int n = level_ * level_; // total rooms of the level

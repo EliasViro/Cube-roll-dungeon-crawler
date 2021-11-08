@@ -14,9 +14,6 @@ ENDMACRO()
 ############################
 
 
-
-cmake_minimum_required (VERSION 3.8)
-
 SUBDIRLIST(SUBDIRS .)
 
 FOREACH(subdir ${SUBDIRS})
@@ -24,4 +21,4 @@ FOREACH(subdir ${SUBDIRS})
 ENDFOREACH()
 
 # Add source to this project's executable.
-add_executable (DungeonCrawler "main.cpp")
+#add_executable (DungeonCrawler "main.cpp")

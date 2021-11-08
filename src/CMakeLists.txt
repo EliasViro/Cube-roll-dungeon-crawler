@@ -19,6 +19,3 @@ SUBDIRLIST(SUBDIRS .)
 FOREACH(subdir ${SUBDIRS})
   ADD_SUBDIRECTORY(${subdir})
 ENDFOREACH()
-
-# Add source to this project's executable.
-#add_executable (DungeonCrawler "main.cpp")

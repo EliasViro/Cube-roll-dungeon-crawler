@@ -87,3 +87,44 @@ The project is absolutely barebones, however the plan has been finished.
 
 ### TODOs
 Project file structure and basically everything mentioned in the ##Actions.
+
+
+
+# Meeting 5.11.2021 17::10
+
+**Participants**: 
+1. Elias
+2. Atte
+3. Binh
+4. Selin
+
+## Summary of works
+1. Elias: Implementing the file structure and some base classes, configured SFML.
+
+2. Atte: Got SFML working and configured.
+
+3. Binh: Took care of important matters.
+
+4. Selin: Started working on MeleeWeapon class and studied some of the main base classes.
+
+## Challenges
+
+-Configuring SFML.
+-Warnings not showing in the editor, and the code not having a compile button.
+
+## Actions
+1. Elias: Continue working on the WIP classes and fix errors with currently implemented classes.
+2. Atte: Get Cmake working and implement a way to open a simple graphics window.
+3. Binh: Start working on planning the implementation for the dungeon generation algorithm and read through the DungeonRoom class to get an understanding of what it does.
+4. Selin: Continue working on various Item type classes.
+
+## Project status 
+Some of the main base classes are mostly implemented, but will need more work.
+
+### TODOs
+-More classes
+-Getting the project to compile
+-Getting errors to show, and fixing those errors
+-Figuring out some class relationships
+-Getting a simple graphics window to show
+-Running tests on implemented classes

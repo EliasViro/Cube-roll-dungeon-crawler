@@ -9,6 +9,8 @@
 
 
 
+
+
 bool Meleeweapon::CanBeUsed() const{
     
     if((cooldown_==0 && isactive_)){

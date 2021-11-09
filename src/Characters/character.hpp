@@ -27,17 +27,21 @@ class Character {
 
     void TakeDamage(int damage); //Reduces healthpoints by the amount of damage minus defense points.
 
-    virtual bool MoveToDirection(const char* direction); //Moves the character in the given direction. Returns true if movement was successful.
+    void Stun(); //Stuns the character.
+
+    void UnStun(); //Removes stunned status.
+
+    void MoveToTile(DungeonTile* tile); //Moves the character onto the given tile.
+
+    virtual void MoveToTile(DungeonTile* tile, const char* direction) = 0; //Overridden by the player class.
 
     virtual void TakeAction() = 0; //Overridden by Allied and Enemy subclasses.
     //Causes Allies and Enemies to take an action.
-
-    virtual const char PathFind() = 0; //Overridden by Allied and Enemy subclasses.
-    //Returns the direction the character wants to move next as a character of "NEWS".
 
     protected:
     CharacterType charactertype_; //The type of the character.
     int healthpoints_; //The health points of the character.
     int defensepoints_; //The defense points of the character from using a shield. Blocks damage.
+    bool isstunned_; //Indicates if the character is stunned or not.
     DungeonTile* currenttile_; //A pointer to the tile the character is standing on.
 };

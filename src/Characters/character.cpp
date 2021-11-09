@@ -7,7 +7,7 @@
 //the character (player, enemy, allied) and its health points.
 
 Character::Character(CharacterType charactertype, int healthpoints, DungeonTile* currenttile)
-    : charactertype_(charactertype), healthpoints_(healthpoints), defensepoints_(0), currenttile_(currenttile) {
+    : charactertype_(charactertype), healthpoints_(healthpoints), defensepoints_(0), isstunned_(false), currenttile_(currenttile) {
         currenttile_->SetCharacter();
     }
 
@@ -32,16 +32,14 @@ void Character::TakeDamage(int damage) {
     }
 }
 
-/*
-bool MoveToDirection(const char* direction) {
-    if (currenttile_->GetTileInDirection(direction).IsPassable()) {
-        currenttile_->GetTileInDirection(direction).SetCharacter();
-        currenttile_->RemoveCharacter();
-        currenttile_ = currenttile_->GetTileInDirection(direction);
-        return true;
-    }
-    else {
-        return false;
-    }
+void Character::Stun() {
+    isstunned_ = true;
 }
-*/
+
+void Character::UnStun() {
+    isstunned_ = false;
+}
+
+void Character::MoveToTile(DungeonTile* tile) {
+    currenttile_ = tile;
+}

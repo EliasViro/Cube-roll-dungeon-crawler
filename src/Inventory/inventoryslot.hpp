@@ -1,6 +1,6 @@
-#include "src/Items/item.hpp"
-#include "src/Characters/characterplayer.hpp"
-#include "src/DungeonGeneration/DungeonTiles/dungeontile.hpp"
+#include "../Items/item.hpp"
+#include "../Characters/characterplayer.hpp"
+#include "DungeonGeneration/DungeonTiles/dungeontile.hpp"
 
 //A class that represents one of the six slots in the player inventory. Holds an Item.
 

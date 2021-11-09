@@ -1,4 +1,4 @@
-#include "src/Characters/characterplayer.hpp"
+#include "characterplayer.hpp"
 
 
 //The character that represents the player on the game board.

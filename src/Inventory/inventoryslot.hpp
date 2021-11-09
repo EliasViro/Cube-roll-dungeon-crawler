@@ -16,7 +16,7 @@ class InventorySlot {
 
     bool AddItem(Item* item); //Attempts to add an item to the inventory slot. Returns true if successful. If the slot already has an item, returns false.
 
-    bool DropItem(); //Attempts to drop the item in the inventory slot. Returns true if successful.
+    void DropItem(); //Drops the item in the inventory slot.
 
     void UseItem(Character* targetcharacter); //Attempts to use the item held in the inventory slot.
     //Deletes the item from the slot if its durability reaches zero.

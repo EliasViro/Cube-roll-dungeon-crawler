@@ -14,6 +14,11 @@ class Player : public Character {
 
     std::vector<InventorySlot*> GetInventory() const; //Returns the player inventory.
 
+    bool DropItemFromSlot(InventorySlot* inventoryslot); //Attempts to drop the item in the given inventory slot on the tile the player is standing on.
+    //Returns true if successful.
+
+    bool AddItemToSlot(Item* item); //Attempts to add the item to the first free inventory slot in the player inventory. Returns true if successful.
+
     bool MoveToDirection(const char* direction); //Moves the player to the given direction. Returns true if moving was successful.
 
     private:

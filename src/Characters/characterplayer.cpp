@@ -16,6 +16,29 @@ std::vector<InventorySlot*> Player::GetInventory() {
     return inventory_;
 }
 
+bool DropItemFromSlot(InventorySlot* inventoryslot) {
+    if (!inventoryslot.IsEmpty() && currenttile_->GetItem() == nullptr) {
+        currenttile_->PlaceItem(inventoryslot.GetItem());
+        inventoryslot->DropItem();
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool AddItemToSlot(Item* item) {
+    bool hasbeenadded = false;
+    int i = 0;
+    while (i < 6 && hasbeenadded = false) {
+        hasbeenadded = inventory_[i]->AddItem(item);
+        i++;
+    }
+    return hasbeenadded;
+}
+
+bool AddItemToSlot(Item* item); //Attempts to add the item to the first free inventory slot in the player inventory. Returns true if successful.
+
 bool Player::MoveToDirection(const char* direction) {
     if (currenttile_->GetTileInDirection(direction).IsPassable()) {
         currenttile_->GetTileInDirection(direction).SetCharacter();

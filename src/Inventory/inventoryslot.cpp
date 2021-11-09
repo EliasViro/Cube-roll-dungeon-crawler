@@ -22,7 +22,6 @@ Item* InventorySlot::GetItem() const {
 bool InventorySlot::AddItem(Item* item) {
     if (IsEmpty()) {
         item_ = item;
-        //TODO: REMOVE THE ITEM FROM THE TILE THE PLAYER IS ON.
         item_->PickUp();
         return true;
     }
@@ -31,16 +30,9 @@ bool InventorySlot::AddItem(Item* item) {
     }
 }
 
-bool InventorySlot::DropItem() {
-    if (true/*TODO: CHECK IF THE TILE BELOW THE PLAYER DOESN'T HAVE AN ITEM AND IS A FLOOR TILE*/) {
-        item_->Drop();
-        //TODO: PLACE THE ITEM ON THE TILE THE PLAYER IS ON.
-        item_ = nullptr;
-        return true;
-    }
-    else {
-        return false;
-    }
+void InventorySlot::DropItem() {
+    item_->Drop();
+    item_ = nullptr;
 }
 
 void InventorySlot::UseItem(Character* targetcharacter) {

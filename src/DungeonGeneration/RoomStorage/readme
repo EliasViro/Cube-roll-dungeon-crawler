@@ -18,6 +18,7 @@ All files MUST have:
 -A character signifying a level entrance
 -A character signifying a level exit
 -A character signifying a loot tile
+-At least five (5) characters signifying enemy tiles.
 
 '#' means a WallTile.
 '*' means a FloorTile.
@@ -37,10 +38,10 @@ Example of a room file stored in 2DoorRoomsCorner:
 ######*********#
 ######*****##**#
 ######***E*##**#
-######*********#
-######*D***L***#
+######E********#
+######*DE**L***#
 ######*********=
-######*U*******=
+######*UE******=
 ######****E****#
 ################
 ################

@@ -33,7 +33,7 @@ class DungeonRoom {
     public:
     DungeonRoom(std::pair<int,int> indexinlevel, unsigned int depth, RoomType roomtype, DoorOrientation doororientation, unsigned int enemyamount, Item* loot, bool isplayerstartingroom);
     
-    void SpawnEnemies(); //Spawns enemies on Enemy spawning tiles if the room hasn't been explored yet and the player enters the room.
+    void SpawnEnemies(std::vector <EnemyType> enemyvector); //Spawns enemies on Enemy spawning tiles if the room hasn't been explored yet and the player enters the room.
 
     void SpawnLoot(); //Randomizes and spawns loot on a loot tile if the room was given loot when it was created.
 
@@ -51,6 +51,7 @@ class DungeonRoom {
     bool hasbeenexplored_; //True if the room has already been explored.
     Item* loot_; //A pointer to the loot item.
     unsigned int enemyamount_; //The amount of enemies that will spawn when the player enters the room for the first time.
+    std::vector<Character*> enemyvector_;
     std::vector<DungeonTile*> alltiles_; // A vector that stores all tiles in the room.
     std::vector<DungeonRoom*> neighbors_; // A Vector that stores the neighbors in the room 
 };a

@@ -12,6 +12,7 @@
 
 DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, unsigned int depth, RoomType roomtype, DoorOrientation doororientation, unsigned int enemyamount, Item* loot, bool isplayerstartingroom)
     : indexinlevel_(indexinlevel), depth_(depth), hasbeenexplored_(isplayerstartingroom), loot_(loot), enemyamount_(enemyamount) {
+        enemyvector_ = std::vector<Character>;
         srand(time(NULL));
         std::ifstream reader(RandomizeFileName(roomtype) + ".txt");
         std::string readline;
@@ -21,15 +22,21 @@ DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, unsigned int depth, Ro
             roomvector += readline;
         }
         std::vector<std::string> randomizedroom = RandomizeRoom(roomvector, doororientation);
-        alltiles_ = CreateTiles(roomvector);
+        alltiles_ = CreateTiles(roomvector, isplayerstartingroom);
     }
 
-void DungeonRoom::SpawnEnemies() {
+void DungeonRoom::SpawnEnemies(std::vector<EnemyType> enemyvector) {
+    int spawnedenemies = 0;
     if (!hasbeenexplored_) {
         for (auto j : alltiles_) {
+            if (spawnedenemies >= enemyvector.size()) {
+                break;
+            }
             for (auto i : j) {
                 if (i->tiletype_ == Spawner) {
-                    //SPAWN AN ENEMY ON THE TILE
+                    i.SetCharacter();
+                    enemyvector_.push_back(new Enemy(enemyvector[spawnedenemies], i));
+                    spawnedenemies++;
                 }
             }
         }
@@ -49,14 +56,44 @@ void DungeonRoom::SpawnLoot() {
 }
 
 void DungeonRoom::CloseDoors() {
-
+    if (alltiles_[0][7]->GetTileType() == Door && alltiles_[0][8]->GetTileType() == Door) {
+        alltiles_[0][7]->Close();
+        alltiles_[0][8]->Close();
+    }
+    if (alltiles_[15][7]->GetTileType() == Door && alltiles_[15][8]->GetTileType() == Door) {
+        alltiles_[15][7]->Close();
+        alltiles_[15][8]->Close();
+    }
+    if (alltiles_[7][0]->GetTileType() == Door && alltiles_[8][0]->GetTileType() == Door) {
+        alltiles_[7][0]->Close();
+        alltiles_[8][0]->Close();
+    }
+    if (alltiles_[7][15]->GetTileType() == Door && alltiles_[8][15]->GetTileType() == Door) {
+        alltiles_[7][15]->Close();
+        alltiles_[8][15]->Close();
+    }
     hasbeenexplored_ = true;
-} //Closes the doors of the room until all enemies have been defeated.
+}
 
 void DungeonRoom::OpenDoors() {
     SpawnLoot();
-
-} //Opens the doors of the room when all enemies have been defeated.
+    if (alltiles_[0][7]->GetTileType() == Door && alltiles_[0][8]->GetTileType() == Door) {
+        alltiles_[0][7]->Open();
+        alltiles_[0][8]->Open();
+    }
+    if (alltiles_[15][7]->GetTileType() == Door && alltiles_[15][8]->GetTileType() == Door) {
+        alltiles_[15][7]->Open();
+        alltiles_[15][8]->Open();
+    }
+    if (alltiles_[7][0]->GetTileType() == Door && alltiles_[8][0]->GetTileType() == Door) {
+        alltiles_[7][0]->Open();
+        alltiles_[8][0]->Open();
+    }
+    if (alltiles_[7][15]->GetTileType() == Door && alltiles_[8][15]->GetTileType() == Door) {
+        alltiles_[7][15]->Open();
+        alltiles_[8][15]->Open();
+    }
+}
 
 std::vector<DungeonRoom> GetNeighbors() const {
         return neighbors_;
@@ -126,41 +163,8 @@ std::vector<std::string> RotateRoomClockwise(std::vector<std::string> roomvector
     return roomvector2;
 }
 
-
-DoorOrientation OrientClockwise(DoorOrientation doororientation) {
-    if (doororientation == Horizontal) {
-        return Vertical;
-    }
-    if (doororientation == Vertical) {
-        return Horizontal;
-    }
-    unsigned int index = 0;
-    if (doororientation == East || doororientation == SouthEast) {
-        index = 1;
-    }
-    if (doororientation == South || doororientation == SouthWest) {
-        index = 2;
-    }
-    if (doororientation == West || doororientation == NorthWest) {
-        index = 3;
-    }
-    if (doororientation == North || doororientation == East || doororientation == South || doororientation == West) {
-        std::vector<DoorOrientation> directions = {North, East, South, West};
-    }
-    else {
-        std::vector<DoorOrientation> directions = {NorthEast, SouthEast, SouthWest, NorthWest};
-    }
-    if (index == 3) {
-        index = 0;
-    }
-    else {
-        index++;
-    }
-    return directions[index];
-}
-
 std::pair<std::vector<std::string>, DoorOrientation> RandomizeRoom(std::vector<std::string> roomvector, DoorOrientation doororientation) {
-    if (doororientation == East || doororientation == SouthEast) {
+    if (doororientation == East || doororientation == SouthEast || doororientation == Horizontal) {
         roomvector = RotateRoomClockWise;
     }
     if (doororientation == South || doororientation == SouthWest) {
@@ -197,6 +201,9 @@ std::pair<std::vector<std::string>, DoorOrientation> RandomizeRoom(std::vector<s
             roomvector = RotateRoomClockwise(roomvector);
             roomvector = RotateRoomClockwise(roomvector);
         }
+        if (doororientation == NorthEast || doororientation == SouthWest) {
+            roomvector = RotateRoomClockwise(roomvector);
+        }
         if (doororientation == East || doororientation == West) {
             roomvector = RotateRoomClockwise(roomvector);
             roomvector = RotateRoomClockwise(roomvector);
@@ -205,7 +212,7 @@ std::pair<std::vector<std::string>, DoorOrientation> RandomizeRoom(std::vector<s
     return roomvector;
 }
 
-std::vector<DungeonTile*> CreateTiles(std::vector<std::string> roomvector) {
+std::vector<DungeonTile*> CreateTiles(std::vector<std::string> roomvector, bool isplayerstartingroom) {
     std::vector<std::vector<DungeonTile*>> tilevector;
     for (int j = 0; j < 16; j++) {
         for (int i = 0; i < 16; i++) {
@@ -228,7 +235,12 @@ std::vector<DungeonTile*> CreateTiles(std::vector<std::string> roomvector) {
                 tilevector[j][i] = new TrapTile(j, i);
             }
             else if (roomvector[j][i] == 'U') {
-                tilevector[j][i] = new LevelEntrance(j, i);
+                if (isplayerstartingroom) {
+                    tilevector[j][i] = new LevelEntrance(j, i);
+                }
+                else {
+                    tilevector[j][i] = new FloorTile(j, i);
+                }
             }
             else if (roomvector[j][i] == 'L') {
                 tilevector[j][i] = new LootTile(j, i);

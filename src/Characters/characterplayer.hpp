@@ -23,4 +23,4 @@ class Player : public Character {
 
     private:
     std::vector<InventorySlot*> inventory_; //A vector of InventorySlots that are stored in the following order: TOP, N, E, W, S, BOTTOM.
-}
+};

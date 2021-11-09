@@ -20,8 +20,7 @@ DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, unsigned int depth, Ro
             std::istringstream iss(readline);
             roomvector += readline;
         }
-        std::pair<std::vector<std::string>, DoorOrientation> randomizedroom = RandomizeRoom(roomvector, doororientation);
-        doororientation_ = randomizedroom->second;
+        std::vector<std::string> randomizedroom = RandomizeRoom(roomvector, doororientation);
         alltiles_ = CreateTiles(roomvector);
     }
 
@@ -161,46 +160,49 @@ DoorOrientation OrientClockwise(DoorOrientation doororientation) {
 }
 
 std::pair<std::vector<std::string>, DoorOrientation> RandomizeRoom(std::vector<std::string> roomvector, DoorOrientation doororientation) {
+    if (doororientation == East || doororientation == SouthEast) {
+        roomvector = RotateRoomClockWise;
+    }
+    if (doororientation == South || doororientation == SouthWest) {
+        roomvector = RotateRoomClockWise;
+        roomvector = RotateRoomClockWise;
+    }
+    if (doororientation == West || doororientation == NorthWest) {
+        roomvector = RotateRoomClockWise;
+        roomvector = RotateRoomClockWise;
+        roomvector = RotateRoomClockWise;
+    }
     unsigned int randomnumber = rand() % 2; //Random number that is either 1 or 0.
     if (randomnumber == 1) { //Mirror the room vertically with 50% probability.
         roomvector = MirrorRoomVertically(roomvector);
         if (doororientation == NorthEast || doororientation == SouthWest) {
-            doororientation = OrientClockWise(doororientation);
-            doororientation = OrientClockWise(doororientation);
-            doororientation = OrientClockWise(doororientation);
             roomvector = RotateRoomClockwise(roomvector);
             roomvector = RotateRoomClockwise(roomvector);
             roomvector = RotateRoomClockwise(roomvector);
         }
+        if (doororientation == SouthEast || doororientation == NorthWest) {
+            roomvector = RotateRoomClockwise(roomvector);
+        }
         if (doororientation == North || doororientation == South) {
-            doororientation = OrientClockWise(doororientation);
-            doororientation = OrientClockWise(doororientation);
             roomvector = RotateRoomClockwise(roomvector);
             roomvector = RotateRoomClockwise(roomvector);
         }
     }
+
     unsigned int randomnumber = rand() % 2; //Random number that is either 1 or 0.
     if (randomnumber == 1) { //Mirror the room horizontally with 50% probability.
         roomvector = MirrorRoomHorizontally(roomvector);
         if (doororientation == NorthWest || doororientation == SouthEast) {
-            doororientation = OrientClockWise(doororientation);
-            doororientation = OrientClockWise(doororientation);
-            doororientation = OrientClockWise(doororientation);
             roomvector = RotateRoomClockwise(roomvector);
             roomvector = RotateRoomClockwise(roomvector);
             roomvector = RotateRoomClockwise(roomvector);
         }
         if (doororientation == East || doororientation == West) {
-            doororientation = OrientClockWise(doororientation);
-            doororientation = OrientClockWise(doororientation);
             roomvector = RotateRoomClockwise(roomvector);
             roomvector = RotateRoomClockwise(roomvector);
         }
     }
-    std::pair<std::vector<std::string>, DoorOrientation> returnthis;
-    returnthis.first = roomvector;
-    returnthis.second = doororientation;
-    return returnthis;
+    return roomvector;
 }
 
 std::vector<DungeonTile*> CreateTiles(std::vector<std::string> roomvector) {

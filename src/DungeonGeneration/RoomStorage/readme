@@ -14,7 +14,7 @@ MUST BE CHANGED ACCORDING TO THE AMOUNT OF FILES IN EACH FOLDER.
 All files MUST have:
 -The correct number of doors in the middle on the sides of the room.
 -Walls on the sides of the room.
--16 rows and 16 columns.
+-12 rows and 12 columns.
 -A character signifying a level entrance
 -A character signifying a level exit
 -A character signifying a loot tile
@@ -33,19 +33,15 @@ All files MUST have:
 
 Example of a room file stored in 2DoorRoomsCorner:
 
-#######==#######
-######*********#
-######*********#
-######*****##**#
-######***E*##**#
-######E********#
-######*DE**L***#
-######*********=
-######*UE******=
-######****E****#
-################
-################
-################
-################
-################
-################
+#####==#####
+#####******#
+#####******#
+#####******#
+#####*L**E*#
+#####**E***#
+#####**D***#
+#####*E*E**=
+#####**U***=
+#####***E**#
+############
+############

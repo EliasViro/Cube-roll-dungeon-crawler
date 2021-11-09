@@ -1,6 +1,4 @@
 #include <string>
-class Character;
-#include "../Characters/character.hpp"
 
 //Item is a class that all item type classes will inherit.
 //Holds information about the durability, max cooldown and cooldown status

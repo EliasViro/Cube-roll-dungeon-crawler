@@ -1,4 +1,4 @@
-# Install script for directory: /home/atte/cpp_projects/DungeonCrawler/src
+# Install script for directory: /mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

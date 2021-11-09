@@ -28,26 +28,6 @@ unsigned int GetYCoord() const {
     return ycoord_;
 }
 
-//WIP
-DungeonTile* DungeonTile::GetTileInDirection(const char direction) {
-    if (direction == 'N') {
-        //Ask the Room class about the tile to the north.
-        return this;
-    }
-    else if (direction == 'E') {
-        //Ask the Room class about the tile to the east.
-        return this;
-    }
-    else if (direction == 'S') {
-        //Ask the Room class about the tile to the south.
-        return this;
-    }
-    else {
-        //Ask the Room class about the tile to the west.
-        return this;
-    }
-}
-
 bool DungeonTile::SetCharacter() {
     if (hascharacter_ == true) {
         return false;

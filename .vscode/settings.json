@@ -47,6 +47,6 @@
         "typeinfo": "cpp"
     }
 =======
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Enabled"
 >>>>>>> 8dbb5f0d9e2848ec6baacd9d2a0f0b568adc156f
 }

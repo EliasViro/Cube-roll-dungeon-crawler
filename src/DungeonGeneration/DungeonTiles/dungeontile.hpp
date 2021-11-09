@@ -11,7 +11,8 @@ enum TileType {
     Trap,
     Spawner,
     Exit,
-    Entrance
+    Entrance,
+    Loot
 };
 
 class DungeonTile {
@@ -29,8 +30,6 @@ class DungeonTile {
     unsigned int GetXCoord() const; //Returns the X-coordinate of the tile.
 
     unsigned int GetYCoord() const; //Returns the Y-coordinate of the tile.
-
-    DungeonTile* GetTileInDirection(const char direction); //Returns the tile in the given direction.
 
     virtual void PlaceItem(Item* item) = 0; //Overridden by subclasses. Places an item on the tile.
 

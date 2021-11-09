@@ -69,32 +69,30 @@ std::vector<DungeonRoom*> AddNeighbor(DungeonRoom* room) {
 
 //Randomizes the name of the file in order to allow reading a random room file.
 std::string RandomizeFileName(RoomType roomtype) {
-    std::string filename = "src/DungeonGeneration/RoomStorage/";
+    std::string filename = "RoomStorage/";
     unsigned int randomnumber = 0;
-    if (roomtype == 1DoorRoom) {
+    if (roomtype == _1DoorRoom) {
         filename += "1DoorRooms/";
         randomnumber = rand() % 20 + 1; //Random number between 1 and 20
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
-    else if (roomtype == 2DoorRoomCorner) {
+    else if (roomtype == _2DoorRoomCorner) {
         filename += "2DoorRoomsCorner/";
         randomnumber = rand() % 20 + 1; //Random number between 1 and 20
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
-    else if (roomtype == 2DoorRoomOpposite) {
+    else if (roomtype == _2DoorRoomOpposite) {
         filename += "2DoorRoomsOpposite/";
         randomnumber = rand() % 20 + 1; //Random number between 1 and 20
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
-    else if (roomtype == 3DoorRoom) {
+    else if (roomtype == _3DoorRoom) {
         filename += "3DoorRooms/";
         randomnumber = rand() % 20 + 1; //Random number between 1 and 20
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else {
-        filename += "4DoorRooms/";
-        randomnumber = rand() % 20 + 1; //Random number between 1 and 20
-        filename += std::to_string(randomnumber); //Attach the random number to the file name
+        filename += "4DoorRooms/1"; //There will be only one type of four door rooms.
     }
     return filename;
 }

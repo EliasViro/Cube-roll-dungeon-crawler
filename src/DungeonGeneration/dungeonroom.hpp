@@ -1,18 +1,17 @@
-#include "src/DungeonGeneration/DungeonTiles/dungeontile.hpp"
-#include "src/DungeonGeneration/RoomStorage"
-#include "src/Characters/character.hpp"
-#include "src/Items/item.hpp"
+#include "DungeonTiles/dungeontile.hpp"
+#include "../Characters/character.hpp"
+#include "../Items/item.hpp"
 #include <vector>
 
 //Represents a room of a level.
 //A room consists of 256 tiles on a 16 x 16 grid.
 
 enum RoomType {
-    1DoorRoom,
-    2DoorRoomCorner,
-    2DoorRoomOpposite,
-    3DoorRoom,
-    4DoorRoom,
+    _1DoorRoom,
+    _2DoorRoomCorner,
+    _2DoorRoomOpposite,
+    _3DoorRoom,
+    _4DoorRoom
 };
 
 enum DoorOrientation {
@@ -47,11 +46,11 @@ class DungeonRoom {
     std::vector<DungeonRoom*> AddNeighbor(DungeonRoom* room);
 
     private:
-    unsigned int indexinlevel_; //The index of the room in the list of Rooms on a level.
+    std::pair<int, int> indexinlevel_; //The index of the room in the list of Rooms on a level.
     unsigned int depth_; //The number of the level the player is on. The difficulty of generated rooms is scaled based on this number.
     bool hasbeenexplored_; //True if the room has already been explored.
     Item* loot_; //A pointer to the loot item.
     unsigned int enemyamount_; //The amount of enemies that will spawn when the player enters the room for the first time.
     std::vector<DungeonTile*> alltiles_; // A vector that stores all tiles in the room.
-    std::neighbors<DungeonRoom*> neighbors_; // A Vector that stores the neighbors in the room 
-};
+    std::vector<DungeonRoom*> neighbors_; // A Vector that stores the neighbors in the room 
+};a

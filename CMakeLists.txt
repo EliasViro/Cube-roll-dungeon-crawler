@@ -6,6 +6,6 @@ find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 
 add_subdirectory ("src")
 
-add_executable(DungeonCrawler "src/main.cpp")
+add_executable(DungeonCrawler "tests/dungeonleveltest.cpp")
 
 target_link_libraries(DungeonCrawler sfml-audio sfml-graphics)

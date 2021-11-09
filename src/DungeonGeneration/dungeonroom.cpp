@@ -29,7 +29,7 @@ void DungeonRoom::SpawnEnemies() {
     if (!hasbeenexplored_) {
         for (auto j : alltiles_) {
             for (auto i : j) {
-                if (i->tiletype_ == EnemyTile) {
+                if (i->tiletype_ == Spawner) {
                     //SPAWN AN ENEMY ON THE TILE
                 }
             }

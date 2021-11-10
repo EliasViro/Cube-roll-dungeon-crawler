@@ -12,20 +12,20 @@
 
 DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, unsigned int depth, RoomType roomtype, DoorOrientation doororientation, Item* loot, bool isplayerstartingroom)
     : indexinlevel_(indexinlevel), depth_(depth), hasbeenexplored_(isplayerstartingroom), loot_(loot) {
-        enemyvector_ = std::vector<Character*>;
         srand(time(NULL));
+        std::vector<DungeonRoom*> neighbors_;
         std::ifstream reader(RandomizeFileName(roomtype) + ".txt");
         std::string readline;
-        std::vector<std::string> roomvector;
+        std::vector<std::string&> roomvector;
         while (std::getline(reader, readline)) {
             std::istringstream iss(readline);
             roomvector.push_back(readline);
         }
-        std::vector<std::string> randomizedroom = RandomizeRoom(roomvector, doororientation);
+        roomvector = RandomizeRoom(roomvector, doororientation);
         alltiles_ = CreateTiles(roomvector, isplayerstartingroom);
     }
 
-void DungeonRoom::SpawnEnemies(std::vector<EnemyType> enemyvector) {
+void DungeonRoom::SpawnEnemies(std::vector<Character*> enemyvector) {
     int spawnedenemies = 0;
     if (!hasbeenexplored_) {
         for (auto j : alltiles_) {
@@ -33,9 +33,9 @@ void DungeonRoom::SpawnEnemies(std::vector<EnemyType> enemyvector) {
                 break;
             }
             for (auto i : j) {
-                if (i->tiletype_ == Spawner) {
-                    i.SetCharacter();
-                    enemyvector_.push_back(new Enemy(enemyvector[spawnedenemies], i));
+                if (i->GetTileType() == Spawner) {
+                    i->SetCharacter();
+                    enemyvector[spawnedenemies]->MoveToTile(i);
                     spawnedenemies++;
                 }
             }
@@ -47,7 +47,7 @@ void DungeonRoom::SpawnLoot() {
     if (loot_ != nullptr) {
         for (auto j : alltiles_) {
             for (auto i : j) {
-                if (i->tiletype_ == LootTile) {
+                if (i->GetTileType() == Loot) {
                     i->PlaceItem(loot_);
                 }
             }
@@ -56,50 +56,34 @@ void DungeonRoom::SpawnLoot() {
 }
 
 void DungeonRoom::CloseDoors() {
-    if (alltiles_[0][5].GetTileType() == Door && alltiles_[0][6].GetTileType() == Door) {
-        alltiles_[0][5].Close();
-        alltiles_[0][6].Close();
-    }
-    if (alltiles_[11][5].GetTileType() == Door && alltiles_[11][6].GetTileType() == Door) {
-        alltiles_[11][5].Close();
-        alltiles_[11][6].Close();
-    }
-    if (alltiles_[5][0].GetTileType() == Door && alltiles_[6][0].GetTileType() == Door) {
-        alltiles_[5][0].Close();
-        alltiles_[6][0].Close();
-    }
-    if (alltiles_[5][11].GetTileType() == Door && alltiles_[6][11].GetTileType() == Door) {
-        alltiles_[5][11].Close();
-        alltiles_[6][11].Close();
-    }
+    alltiles_[0][5]->Close();
+    alltiles_[0][6]->Close();
+    alltiles_[11][5]->Close();
+    alltiles_[11][6]->Close();
+    alltiles_[5][0]->Close();
+    alltiles_[6][0]->Close();
+    alltiles_[5][11]->Close();
+    alltiles_[6][11]->Close();
     hasbeenexplored_ = true;
 }
 
 void DungeonRoom::OpenDoors() {
     SpawnLoot();
-    if (alltiles_[0][5].GetTileType() == Door && alltiles_[0][6].GetTileType() == Door) {
-        alltiles_[0][5].Open();
-        alltiles_[0][6].Open();
-    }
-    if (alltiles_[11][5].GetTileType() == Door && alltiles_[11][6].GetTileType() == Door) {
-        alltiles_[11][5].Open();
-        alltiles_[11][6].Open();
-    }
-    if (alltiles_[5][0].GetTileType() == Door && alltiles_[6][0].GetTileType() == Door) {
-        alltiles_[5][0].Open();
-        alltiles_[6][0].Open();
-    }
-    if (alltiles_[5][11].GetTileType() == Door && alltiles_[6][11].GetTileType() == Door) {
-        alltiles_[5][11].Open();
-        alltiles_[6][11].Open();
-    }
+    alltiles_[0][5]->Open();
+    alltiles_[0][6]->Open();
+    alltiles_[11][5]->Open();
+    alltiles_[11][6]->Open();
+    alltiles_[5][0]->Open();
+    alltiles_[6][0]->Open();
+    alltiles_[5][11]->Open();
+    alltiles_[6][11]->Open();
 }
 
 std::vector<DungeonRoom*> DungeonRoom::GetNeighbors() const {
         return neighbors_;
 }
 
-std::vector<DungeonRoom*> AddNeighbor(DungeonRoom* room) {
+void DungeonRoom::AddNeighbor(DungeonRoom* room) {
     neighbors_.push_back(room);
 }
 
@@ -134,8 +118,8 @@ std::string RandomizeFileName(RoomType roomtype) {
 }
 
 //Mirrors the contents given as the parameter vertically.
-std::vector<std::string> MirrorRoomVertically(std::vector<std::string> roomvector) {
-    std::vector<std::string> roomvector2;
+std::vector<std::string&> MirrorRoomVertically(std::vector<std::string&> roomvector) {
+    std::vector<std::string&> roomvector2;
     for (int i = 11; i >= 0; i--) {
         roomvector2.push_back(roomvector[i]);
     }
@@ -143,7 +127,7 @@ std::vector<std::string> MirrorRoomVertically(std::vector<std::string> roomvecto
 }
 
 //Mirrors the contents given as the parameter horizontally.
-std::vector<std::string> MirrorRoomHorizontally(std::vector<std::string> roomvector) {
+std::vector<std::string&> MirrorRoomHorizontally(std::vector<std::string&> roomvector) {
     for (int j = 0; j < 12; j++) {
         for (int i = 0; i < 12 / 2; i++) {
             std::swap(roomvector[j][i], roomvector[j][15 - i]);
@@ -153,8 +137,8 @@ std::vector<std::string> MirrorRoomHorizontally(std::vector<std::string> roomvec
 }
 
 //Rotates the contents of the vector clockwise.
-std::vector<std::string> RotateRoomClockwise(std::vector<std::string> roomvector) {
-    std::vector<std::string> roomvector2 = roomvector;
+std::vector<std::string&> RotateRoomClockwise(std::vector<std::string&> roomvector) {
+    std::vector<std::string&> roomvector2 = roomvector;
     for (int j = 0; j < 12; j++) {
         for (int i = 15; i >= 0; i--) {
             roomvector2[j][11 - i] = roomvector[i][j];
@@ -163,18 +147,18 @@ std::vector<std::string> RotateRoomClockwise(std::vector<std::string> roomvector
     return roomvector2;
 }
 
-std::pair<std::vector<std::string>, DoorOrientation> RandomizeRoom(std::vector<std::string> roomvector, DoorOrientation doororientation) {
+std::vector<std::string&> RandomizeRoom(std::vector<std::string&> roomvector, DoorOrientation doororientation) {
     if (doororientation == East || doororientation == SouthEast || doororientation == Horizontal) {
-        roomvector = RotateRoomClockWise(roomvector);
+        roomvector = RotateRoomClockwise(roomvector);
     }
     if (doororientation == South || doororientation == SouthWest) {
-        roomvector = RotateRoomClockWise(roomvector);
-        roomvector = RotateRoomClockWise(roomvector);
+        roomvector = RotateRoomClockwise(roomvector);
+        roomvector = RotateRoomClockwise(roomvector);
     }
     if (doororientation == West || doororientation == NorthWest) {
-        roomvector = RotateRoomClockWise(roomvector);
-        roomvector = RotateRoomClockWise(roomvector);
-        roomvector = RotateRoomClockWise(roomvector);
+        roomvector = RotateRoomClockwise(roomvector);
+        roomvector = RotateRoomClockwise(roomvector);
+        roomvector = RotateRoomClockwise(roomvector);
     }
     unsigned int randomnumber = rand() % 2; //Random number that is either 1 or 0.
     if (randomnumber == 1) { //Mirror the room vertically with 50% probability.
@@ -212,42 +196,72 @@ std::pair<std::vector<std::string>, DoorOrientation> RandomizeRoom(std::vector<s
     return roomvector;
 }
 
-std::vector<DungeonTile*> CreateTiles(std::vector<std::string> roomvector, bool isplayerstartingroom) {
+std::vector<std::vector<DungeonTile*>> CreateTiles(std::vector<std::string&> roomvector, bool isplayerstartingroom) {
     std::vector<std::vector<DungeonTile*>> tilevector;
+    std::vector<DungeonTile*> neighborvector;
     for (int j = 0; j < 12; j++) {
         for (int i = 0; i < 12; i++) {
             if (roomvector[j][i] == '#') {
-                tilevector[j][i] = new WallTile(j, i);
+                tilevector[j][i] = new DungeonTile(Wall, j, i);
             }
             else if (roomvector[j][i] == '*') {
-                tilevector[j][i] = new FloorTile(j, i);
+                tilevector[j][i] = new DungeonTile(Floor, j, i);
             }
             else if (roomvector[j][i] == '+') {
-                tilevector[j][i] = new PitTile(j, i);
+                tilevector[j][i] = new DungeonTile(Pit, j, i);
             }
             else if (roomvector[j][i] == '=') {
-                tilevector[j][i] = new DoorTile(j, i);
+                tilevector[j][i] = new DungeonTile(Door, j, i);
             }
             else if (roomvector[j][i] == 'E') {
-                tilevector[j][i] = new EnemyTile(j, i);
+                tilevector[j][i] = new DungeonTile(Spawner, j, i);
             }
             else if (roomvector[j][i] == 'T') {
-                tilevector[j][i] = new TrapTile(j, i);
+                tilevector[j][i] = new DungeonTile(Trap, j, i);
             }
             else if (roomvector[j][i] == 'U') {
                 if (isplayerstartingroom) {
-                    tilevector[j][i] = new LevelEntrance(j, i);
+                    tilevector[j][i] = new DungeonTile(Entrance, j, i);
                 }
                 else {
-                    tilevector[j][i] = new FloorTile(j, i);
+                    tilevector[j][i] = new DungeonTile(Floor, j, i);
                 }
             }
             else if (roomvector[j][i] == 'L') {
-                tilevector[j][i] = new LootTile(j, i);
+                tilevector[j][i] = new DungeonTile(Loot, j, i);
             }
             else {
-                tilevector[j][i] = new LevelExit(j, i);
+                tilevector[j][i] = new DungeonTile(Exit, j, i);
             }
+            if (i - 1 >= 0) { //North neighbor
+                neighborvector.push_back(tilevector[j][i - 1]);
+            }
+            else {
+                neighborvector.push_back(nullptr);
+            }
+            if (j + 1 <= 11) { //East neighbor
+                neighborvector.push_back(tilevector[j + 1][i]);
+            }
+            else {
+                neighborvector.push_back(nullptr);
+            }
+            if (j - 1 >= 0) { //West neighbor
+                neighborvector.push_back(tilevector[j - 1][i]);
+            }
+            else {
+                neighborvector.push_back(nullptr);
+            }
+            if (i + 1 <= 11) { //South neighbor
+                neighborvector.push_back(tilevector[j][i + 1]);
+            }
+            else {
+                neighborvector.push_back(nullptr);
+            }
+            tilevector[j][i]->SetTileNeighbors(neighborvector);
+            neighborvector.pop_back();
+            neighborvector.pop_back();
+            neighborvector.pop_back();
+            neighborvector.pop_back();
         }
     }
     return tilevector;

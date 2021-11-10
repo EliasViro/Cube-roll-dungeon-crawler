@@ -4,8 +4,12 @@
 //A class that is inherited by all tile types.
 
 
-DungeonTile::DungeonTile(bool ispassable, TileType tiletype, unsigned int xcoord, unsigned int ycoord) 
-    : ispassable_(ispassable), item_(nullptr), tiletype_(tiletype), hascharacter_(false), xcoord_(xcoord), ycoord_(ycoord) {}
+DungeonTile::DungeonTile(TileType tiletype, unsigned int xcoord, unsigned int ycoord) 
+    : item_(nullptr), tiletype_(tiletype), hascharacter_(false), xcoord_(xcoord), ycoord_(ycoord) {
+
+
+
+}
 
 
 bool DungeonTile::IsPassable() const {

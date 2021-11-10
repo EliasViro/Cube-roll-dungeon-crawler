@@ -17,7 +17,7 @@ enum TileType {
 
 class DungeonTile {
     public:
-    DungeonTile(bool ispassable, TileType tiletype, unsigned int xcoord, unsigned int ycoord); //Constructs a new tile.
+    DungeonTile(TileType tiletype, unsigned int xcoord, unsigned int ycoord); //Constructs a new tile.
 
     ~DungeonTile(); //Destructor.
 

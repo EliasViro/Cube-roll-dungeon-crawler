@@ -6,19 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonroom.hpp
-src/DungeonGeneration/DungeonTiles/dungeontile.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/src/DungeonGeneration/DungeonTiles/dungeontile.hpp
-src/DungeonGeneration/RoomStorage
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/src/DungeonGeneration/RoomStorage
-src/Characters/character.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/src/Characters/character.hpp
-src/Items/item.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/src/Items/item.hpp
-vector
+/home/atte/cpp_projects/DungeonCrawler/tests/main.cpp
+SFML/Graphics.hpp
 -
-
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/tests/dungeonleveltest.cpp
-../src/DungeonGeneration/dungeonroom.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonroom.hpp
 

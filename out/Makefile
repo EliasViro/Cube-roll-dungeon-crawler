@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3"
+CMAKE_SOURCE_DIR = /home/atte/cpp_projects/DungeonCrawler
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out"
+CMAKE_BINARY_DIR = /home/atte/cpp_projects/DungeonCrawler/out
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles /home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,32 +123,32 @@ DungeonCrawler/fast:
 	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/build
 .PHONY : DungeonCrawler/fast
 
-tests/dungeonleveltest.o: tests/dungeonleveltest.cpp.o
+tests/main.o: tests/main.cpp.o
 
-.PHONY : tests/dungeonleveltest.o
+.PHONY : tests/main.o
 
 # target to build an object file
-tests/dungeonleveltest.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.o
-.PHONY : tests/dungeonleveltest.cpp.o
+tests/main.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/tests/main.cpp.o
+.PHONY : tests/main.cpp.o
 
-tests/dungeonleveltest.i: tests/dungeonleveltest.cpp.i
+tests/main.i: tests/main.cpp.i
 
-.PHONY : tests/dungeonleveltest.i
+.PHONY : tests/main.i
 
 # target to preprocess a source file
-tests/dungeonleveltest.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.i
-.PHONY : tests/dungeonleveltest.cpp.i
+tests/main.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/tests/main.cpp.i
+.PHONY : tests/main.cpp.i
 
-tests/dungeonleveltest.s: tests/dungeonleveltest.cpp.s
+tests/main.s: tests/main.cpp.s
 
-.PHONY : tests/dungeonleveltest.s
+.PHONY : tests/main.s
 
 # target to generate assembly for a file
-tests/dungeonleveltest.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.s
-.PHONY : tests/dungeonleveltest.cpp.s
+tests/main.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/tests/main.cpp.s
+.PHONY : tests/main.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... DungeonCrawler"
-	@echo "... tests/dungeonleveltest.o"
-	@echo "... tests/dungeonleveltest.i"
-	@echo "... tests/dungeonleveltest.s"
+	@echo "... tests/main.o"
+	@echo "... tests/main.i"
+	@echo "... tests/main.s"
 .PHONY : help
 
 

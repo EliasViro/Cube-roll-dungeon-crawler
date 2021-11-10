@@ -9,7 +9,7 @@
 
 Player::Player(DungeonTile* tile) 
     : Character(PlayerCharacter, 3, tile) {
-    inventory_ = {new InventorySlot(nullptr), new InventorySlot(new Shortsword), new InventorySlot(new Shortsword), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(Roundshield)}
+    inventory_ = {new InventorySlot(nullptr), new InventorySlot(new Shortsword), new InventorySlot(new Shortsword), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(Roundshield)};
 }
 
 std::vector<InventorySlot*> Player::GetInventory() {

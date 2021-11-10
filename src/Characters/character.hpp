@@ -1,4 +1,4 @@
-#include "../DungeonGeneration/DungeonTiles/dungeontile.hpp"
+#include "../DungeonGeneration/dungeontile.hpp"
 
 
 //Character is a class that all character-related classes inherit.

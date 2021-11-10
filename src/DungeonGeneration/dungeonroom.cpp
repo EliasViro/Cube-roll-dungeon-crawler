@@ -12,14 +12,14 @@
 
 DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, unsigned int depth, RoomType roomtype, DoorOrientation doororientation, Item* loot, bool isplayerstartingroom)
     : indexinlevel_(indexinlevel), depth_(depth), hasbeenexplored_(isplayerstartingroom), loot_(loot) {
-        enemyvector_ = std::vector<Character>;
+        enemyvector_ = std::vector<Character*>;
         srand(time(NULL));
         std::ifstream reader(RandomizeFileName(roomtype) + ".txt");
         std::string readline;
         std::vector<std::string> roomvector;
         while (std::getline(reader, readline)) {
             std::istringstream iss(readline);
-            roomvector += readline;
+            roomvector.push_back(readline);
         }
         std::vector<std::string> randomizedroom = RandomizeRoom(roomvector, doororientation);
         alltiles_ = CreateTiles(roomvector, isplayerstartingroom);
@@ -56,46 +56,46 @@ void DungeonRoom::SpawnLoot() {
 }
 
 void DungeonRoom::CloseDoors() {
-    if (alltiles_[0][5]->GetTileType() == Door && alltiles_[0][6]->GetTileType() == Door) {
-        alltiles_[0][5]->Close();
-        alltiles_[0][6]->Close();
+    if (alltiles_[0][5].GetTileType() == Door && alltiles_[0][6].GetTileType() == Door) {
+        alltiles_[0][5].Close();
+        alltiles_[0][6].Close();
     }
-    if (alltiles_[11][5]->GetTileType() == Door && alltiles_[11][6]->GetTileType() == Door) {
-        alltiles_[11][5]->Close();
-        alltiles_[11][6]->Close();
+    if (alltiles_[11][5].GetTileType() == Door && alltiles_[11][6].GetTileType() == Door) {
+        alltiles_[11][5].Close();
+        alltiles_[11][6].Close();
     }
-    if (alltiles_[5][0]->GetTileType() == Door && alltiles_[6][0]->GetTileType() == Door) {
-        alltiles_[5][0]->Close();
-        alltiles_[6][0]->Close();
+    if (alltiles_[5][0].GetTileType() == Door && alltiles_[6][0].GetTileType() == Door) {
+        alltiles_[5][0].Close();
+        alltiles_[6][0].Close();
     }
-    if (alltiles_[5][11]->GetTileType() == Door && alltiles_[6][11]->GetTileType() == Door) {
-        alltiles_[5][11]->Close();
-        alltiles_[6][11]->Close();
+    if (alltiles_[5][11].GetTileType() == Door && alltiles_[6][11].GetTileType() == Door) {
+        alltiles_[5][11].Close();
+        alltiles_[6][11].Close();
     }
     hasbeenexplored_ = true;
 }
 
 void DungeonRoom::OpenDoors() {
     SpawnLoot();
-    if (alltiles_[0][5]->GetTileType() == Door && alltiles_[0][6]->GetTileType() == Door) {
-        alltiles_[0][5]->Open();
-        alltiles_[0][6]->Open();
+    if (alltiles_[0][5].GetTileType() == Door && alltiles_[0][6].GetTileType() == Door) {
+        alltiles_[0][5].Open();
+        alltiles_[0][6].Open();
     }
-    if (alltiles_[11][5]->GetTileType() == Door && alltiles_[11][6]->GetTileType() == Door) {
-        alltiles_[11][5]->Open();
-        alltiles_[11][6]->Open();
+    if (alltiles_[11][5].GetTileType() == Door && alltiles_[11][6].GetTileType() == Door) {
+        alltiles_[11][5].Open();
+        alltiles_[11][6].Open();
     }
-    if (alltiles_[5][0]->GetTileType() == Door && alltiles_[6][0]->GetTileType() == Door) {
-        alltiles_[5][0]->Open();
-        alltiles_[6][0]->Open();
+    if (alltiles_[5][0].GetTileType() == Door && alltiles_[6][0].GetTileType() == Door) {
+        alltiles_[5][0].Open();
+        alltiles_[6][0].Open();
     }
-    if (alltiles_[5][11]->GetTileType() == Door && alltiles_[6][11]->GetTileType() == Door) {
-        alltiles_[5][11]->Open();
-        alltiles_[6][11]->Open();
+    if (alltiles_[5][11].GetTileType() == Door && alltiles_[6][11].GetTileType() == Door) {
+        alltiles_[5][11].Open();
+        alltiles_[6][11].Open();
     }
 }
 
-std::vector<DungeonRoom> GetNeighbors() const {
+std::vector<DungeonRoom*> DungeonRoom::GetNeighbors() const {
         return neighbors_;
 }
 
@@ -146,7 +146,7 @@ std::vector<std::string> MirrorRoomVertically(std::vector<std::string> roomvecto
 std::vector<std::string> MirrorRoomHorizontally(std::vector<std::string> roomvector) {
     for (int j = 0; j < 12; j++) {
         for (int i = 0; i < 12 / 2; i++) {
-            swap(roomvector[j][i], roomvector[j][15 - i]);
+            std::swap(roomvector[j][i], roomvector[j][15 - i]);
         }
     }
     return roomvector;
@@ -165,16 +165,16 @@ std::vector<std::string> RotateRoomClockwise(std::vector<std::string> roomvector
 
 std::pair<std::vector<std::string>, DoorOrientation> RandomizeRoom(std::vector<std::string> roomvector, DoorOrientation doororientation) {
     if (doororientation == East || doororientation == SouthEast || doororientation == Horizontal) {
-        roomvector = RotateRoomClockWise;
+        roomvector = RotateRoomClockWise(roomvector);
     }
     if (doororientation == South || doororientation == SouthWest) {
-        roomvector = RotateRoomClockWise;
-        roomvector = RotateRoomClockWise;
+        roomvector = RotateRoomClockWise(roomvector);
+        roomvector = RotateRoomClockWise(roomvector);
     }
     if (doororientation == West || doororientation == NorthWest) {
-        roomvector = RotateRoomClockWise;
-        roomvector = RotateRoomClockWise;
-        roomvector = RotateRoomClockWise;
+        roomvector = RotateRoomClockWise(roomvector);
+        roomvector = RotateRoomClockWise(roomvector);
+        roomvector = RotateRoomClockWise(roomvector);
     }
     unsigned int randomnumber = rand() % 2; //Random number that is either 1 or 0.
     if (randomnumber == 1) { //Mirror the room vertically with 50% probability.

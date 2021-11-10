@@ -1,16 +1,14 @@
+#include <stdio.h>
+#include "item.hpp"
 
+#ifndef meleeweapon_hpp
+#define meleeweapon_hpp
 
 
 //A class that all melee weapons inherit.
 //The conditions for using a melee weapon:
 //-An enemy is in range of the weapon
 //-The weapon isn't on cooldown.
-#include <stdio.h>
-#include "items.hpp"
-#ifndef meleeweapon_hpp
-#define meleeweapon_hpp
-
-
 
 class Meleeweapon: public Item {
 public:
@@ -25,13 +23,10 @@ public:
     
     void Trigger();
     
-    std::string GetDescription() const ;
+    std::string& GetDescription() const ;
     protected:
     int range_;
-    int damage_;
-    
-
-    
+    int damage_;    
 };
 
 

@@ -1,4 +1,4 @@
-
+#include "character.hpp"
 
 
 //Enemy is a class that all enemy type classes inherit. Holds information
@@ -7,3 +7,10 @@
 //its action pattern that the enemy will proceed through by one every time
 //it takes a turn. Enemies will randomize the step they are on in their
 //action pattern when they are created.
+
+
+enum EnemyType {
+    Slime,
+    Rat,
+    Skeleton
+};

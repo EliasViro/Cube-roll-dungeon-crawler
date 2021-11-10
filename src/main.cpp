@@ -1,14 +1,12 @@
 #include <iostream>
 #include <string>
-#include "Characters/Allies/ATTE_CMakeTest.hpp"
 #include <SFML/Graphics.hpp>
-#include "DungeonGeneration/DungeonTiles/dungeontile.hpp"
+#include "DungeonGeneration/dungeontile.hpp"
 
 int main() {
     DungeonTile joku = DungeonTile(true, Floor, 1, 1);
     std::out<<joku.IsPassable();
     std::cout << "Hello world!" << std::endl;
-    std::string str = dummyfunction();
     std::cout << str << std::endl;
 
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");

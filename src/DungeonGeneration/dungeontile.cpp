@@ -20,11 +20,11 @@ bool DungeonTile::HasCharacter() const {
     return hascharacter_;
 }
 
-unsigned int GetXCoord() const {
+unsigned int DungeonTile::GetXCoord() const {
     return xcoord_;
 }
 
-unsigned int GetYCoord() const {
+unsigned int DungeonTile::GetYCoord() const {
     return ycoord_;
 }
 

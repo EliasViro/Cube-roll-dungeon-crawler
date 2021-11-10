@@ -1,17 +1,18 @@
+#include "item.hpp"
+#include <stdio.h>
+#ifndef potion_hpp
+#define potion_hpp
+
 
 
 
 //A class that all potions inherit.
 //Potions have only one point of durability.
-#include "items.hpp"
-#ifndef potion_hpp
-#define potion_hpp
 
-#include <stdio.h>
 
-class Potions: public Item {
+class Potion: public Item {
 public:
-    Potions(const std::string& name );
+    Potion(const std::string& name );
    
 protected:
     bool used_;
@@ -24,14 +25,14 @@ protected:
 //immediately after drinking the potion.
 //Using condition: There are enemies in the same room as the player.
 
-class HastePotion:public Potions{
+class HastePotion:public Potion {
 public:
     HastePotion();
     bool CanBeUsed() const ;
     
     void Trigger();
     
-    std::string GetDescription() const;
+    std::string& GetDescription() const;
     
 };
 
@@ -39,14 +40,14 @@ public:
 //Restores one health point to the player.
 //Using condition: The player has missing health points.
 
-class HealthPotion:public Potions{
+class HealthPotion : public Potion {
 public:
     HealthPotion();
     bool CanBeUsed() const ;
     
     void Trigger();
     
-    std::string GetDescription() const;
+    std::string& GetDescription() const;
     
 };
 

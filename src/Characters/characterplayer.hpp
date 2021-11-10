@@ -1,5 +1,5 @@
 #include "character.hpp"
-#include "../Inventory/inventoryslot.hpp"
+#include "inventoryslot.hpp"
 #include <vector>
 
 //The character that represents the player on the game board.

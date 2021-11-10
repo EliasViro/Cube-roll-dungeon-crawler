@@ -1,4 +1,4 @@
-
+#include "item.hpp"
 
 
 //Spell is a class that all spells inherit.

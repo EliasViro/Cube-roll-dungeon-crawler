@@ -1,4 +1,4 @@
-
+#include "rangedweapons.hpp"
 
 
 //A class that all ranged weapons inherit.

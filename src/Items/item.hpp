@@ -19,9 +19,9 @@
 enum ItemType {
     MeleeWeapon,
     RangedWeapon,
-    Shield,
-    Spell,
-    Potion
+    ShieldItem,
+    SpellItem,
+    PotionItem
 };
 
 class Item {

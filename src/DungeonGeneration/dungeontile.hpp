@@ -1,4 +1,4 @@
-#include "../../Items/item.hpp"
+#include "../Items/item.hpp"
 
 
 //A class that is inherited by all tile types.

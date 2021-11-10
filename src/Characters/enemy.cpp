@@ -1,4 +1,4 @@
-
+#include "enemy.hpp"
 
 
 //Enemy is a class that all enemy type classes inherit. Holds information

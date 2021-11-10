@@ -123,32 +123,32 @@ DungeonCrawler/fast:
 	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/build
 .PHONY : DungeonCrawler/fast
 
-tests/main.o: tests/main.cpp.o
+src/main.o: src/main.cpp.o
 
-.PHONY : tests/main.o
+.PHONY : src/main.o
 
 # target to build an object file
-tests/main.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/tests/main.cpp.o
-.PHONY : tests/main.cpp.o
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-tests/main.i: tests/main.cpp.i
+src/main.i: src/main.cpp.i
 
-.PHONY : tests/main.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-tests/main.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/tests/main.cpp.i
-.PHONY : tests/main.cpp.i
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-tests/main.s: tests/main.cpp.s
+src/main.s: src/main.cpp.s
 
-.PHONY : tests/main.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-tests/main.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/tests/main.cpp.s
-.PHONY : tests/main.cpp.s
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... DungeonCrawler"
-	@echo "... tests/main.o"
-	@echo "... tests/main.i"
-	@echo "... tests/main.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

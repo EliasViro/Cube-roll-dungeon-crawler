@@ -57,27 +57,27 @@ include CMakeFiles/DungeonCrawler.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/DungeonCrawler.dir/flags.make
 
-CMakeFiles/DungeonCrawler.dir/tests/main.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
-CMakeFiles/DungeonCrawler.dir/tests/main.cpp.o: ../tests/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DungeonCrawler.dir/tests/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/tests/main.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/tests/main.cpp
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/main.cpp
 
-CMakeFiles/DungeonCrawler.dir/tests/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/tests/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/tests/main.cpp > CMakeFiles/DungeonCrawler.dir/tests/main.cpp.i
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/main.cpp > CMakeFiles/DungeonCrawler.dir/src/main.cpp.i
 
-CMakeFiles/DungeonCrawler.dir/tests/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/tests/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/tests/main.cpp -o CMakeFiles/DungeonCrawler.dir/tests/main.cpp.s
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/main.cpp -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.s
 
 # Object files for target DungeonCrawler
 DungeonCrawler_OBJECTS = \
-"CMakeFiles/DungeonCrawler.dir/tests/main.cpp.o"
+"CMakeFiles/DungeonCrawler.dir/src/main.cpp.o"
 
 # External object files for target DungeonCrawler
 DungeonCrawler_EXTERNAL_OBJECTS =
 
-DungeonCrawler: CMakeFiles/DungeonCrawler.dir/tests/main.cpp.o
+DungeonCrawler: CMakeFiles/DungeonCrawler.dir/src/main.cpp.o
 DungeonCrawler: CMakeFiles/DungeonCrawler.dir/build.make
 DungeonCrawler: /usr/lib/x86_64-linux-gnu/libsfml-audio.so.2.5.1
 DungeonCrawler: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1

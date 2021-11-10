@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/atte/cpp_projects/DungeonCrawler/tests/main.cpp
+/home/atte/cpp_projects/DungeonCrawler/src/main.cpp
 SFML/Graphics.hpp
 -
 

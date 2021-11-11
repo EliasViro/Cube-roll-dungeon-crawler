@@ -40,6 +40,18 @@ void Character::UnStun() {
     isstunned_ = false;
 }
 
+bool Character::MoveToDirection(const char* direction) {
+    if (currenttile_->GetTileNeighbor(direction)->IsPassable()) {
+        currenttile_->GetTileNeighbor(direction)->SetCharacter();
+        currenttile_->RemoveCharacter();
+        currenttile_ = currenttile_->GetTileNeighbor(direction);
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 void Character::MoveToTile(DungeonTile* tile) {
     currenttile_ = tile;
 }

@@ -17,8 +17,8 @@
 //inventory, which will move the item from the ground to the first free
 //inventory slot and add one point to the item's cooldown status.
 
-Item::Item(const std::string& name, ItemType itemtype, unsigned int durability, unsigned int maxcooldown)
-    : name_(name), itemtype_(itemtype), durability_(durability), maxcooldown_(maxcooldown), cooldown_(1), isactive_(false) {}
+Item::Item(const std::string& name, const std::string& description, ItemType itemtype, unsigned int durability, unsigned int maxcooldown)
+    : name_(name), description_(description), itemtype_(itemtype), durability_(durability), maxcooldown_(maxcooldown), cooldown_(1), isactive_(false) {}
 
 Item::~Item() {}
 
@@ -48,13 +48,12 @@ bool Item::IsActive() const {
 
 void Item::ReduceCoolDown() {
     if (IsActive()) {
-        cooldown_ --;
+        cooldown_--;
     }
 }
 
-bool Item::Use(Character* targetcharacter) {
+bool Item::Use() {
     if (GetCoolDown() == 0 && CanBeUsed()) {
-        Trigger(targetcharacter);
         durability_--;
         cooldown_ = maxcooldown_;
         return true;

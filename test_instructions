@@ -14,7 +14,7 @@ These instructions apply to linux systems (WSL).
     IMPORTANT: Please do not modify anything else except the specified line in the 'CMakeLists.txt'
     to prevent breaking the CMake configuration.
 
-3.  Oncen you have gone through the step 2, use terminal commands to navigate to the folder 'out'.
+3.  Once you have gone through the step 2, use terminal commands to navigate to the folder 'out'.
     Once you are in the 'out' folder, type the following command in the terminal:
     
     cmake -S .. -B .

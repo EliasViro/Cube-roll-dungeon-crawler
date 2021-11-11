@@ -25,6 +25,18 @@ DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, unsigned int depth, Ro
         alltiles_ = CreateTiles(roomvector, isplayerstartingroom);
     }
 
+std::pair<int,int> DungeonRoom::GetIndexInLevel() const {
+    return indexinlevel_;
+}
+
+DungeonTile* DungeonRoom::GetDungeonTile(int xcoord, int ycoord) const {
+    return alltiles_[xcoord][ycoord];
+}
+
+std::vector<std::vector<DungeonTile*>> DungeonRoom::GetAllTiles() const {
+    return alltiles_;
+}
+
 void DungeonRoom::SpawnEnemies(std::vector<Character*> enemyvector) {
     int spawnedenemies = 0;
     if (!hasbeenexplored_) {
@@ -233,31 +245,35 @@ std::vector<std::vector<DungeonTile*>> CreateTiles(std::vector<std::string&> roo
             else {
                 tilevector[j][i] = new DungeonTile(Exit, j, i);
             }
-            if (i - 1 >= 0) { //North neighbor
-                neighborvector.push_back(tilevector[j][i - 1]);
+        }
+    }
+    for (int a = 0; a < 12; a++) {
+        for (int b = 0; b < 12; b++) {
+            if (b - 1 >= 0) { //North neighbor
+                neighborvector.push_back(tilevector[a][b - 1]);
             }
             else {
                 neighborvector.push_back(nullptr);
             }
-            if (j + 1 <= 11) { //East neighbor
-                neighborvector.push_back(tilevector[j + 1][i]);
+            if (a + 1 <= 11) { //East neighbor
+                neighborvector.push_back(tilevector[a + 1][b]);
             }
             else {
                 neighborvector.push_back(nullptr);
             }
-            if (j - 1 >= 0) { //West neighbor
-                neighborvector.push_back(tilevector[j - 1][i]);
+            if (a - 1 >= 0) { //West neighbor
+                neighborvector.push_back(tilevector[a - 1][b]);
             }
             else {
                 neighborvector.push_back(nullptr);
             }
-            if (i + 1 <= 11) { //South neighbor
-                neighborvector.push_back(tilevector[j][i + 1]);
+            if (b + 1 <= 11) { //South neighbor
+                neighborvector.push_back(tilevector[a][b + 1]);
             }
             else {
                 neighborvector.push_back(nullptr);
             }
-            tilevector[j][i]->SetTileNeighbors(neighborvector);
+            tilevector[a][b]->SetTileNeighbors(neighborvector);
             neighborvector.pop_back();
             neighborvector.pop_back();
             neighborvector.pop_back();

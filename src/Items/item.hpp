@@ -26,7 +26,7 @@ enum ItemType {
 
 class Item {
     public:
-    Item(const std::string& name, ItemType itemtype, unsigned int durability, unsigned int maxcooldown); //constructs a new item.
+    Item(const std::string& name, const std::string& description, ItemType itemtype, unsigned int durability, unsigned int maxcooldown); //constructs a new item.
 
     ~Item(); //deletes the item if the durability reaches zero.
 
@@ -46,13 +46,12 @@ class Item {
 
     virtual bool CanBeUsed() const = 0; //Overridden by subclasses. Returns true if the conditions for using the item apply.
 
-    virtual void Trigger(Character* targetcharacter) = 0; //Overridden by subclasses. Triggers the item's specific effect, such as a health potion
-    //restoring player health or a sword dealing damage to an enemy.
+    std::string& GetDescription() const; //Returns the description of the item.
 
-    virtual std::string& GetDescription() const = 0; //Overridden by subclasses. Returns the description of the item.
+    virtual void Trigger(); //Overridden by subclasses. Triggers the item effect.
 
-    bool Use(Character* targetcharacter); //Triggers the item's effect if its cooldown is zero and the conditions for using it apply. 
-    //Sets the cooldown to max and reduces thedurability by one. If durability reaches zero calls the destructor.
+    bool Use(); //Triggers the item's effect if its cooldown is zero and the conditions for using it apply. 
+    //Sets the cooldown to max and reduces the durability by one. If durability reaches zero calls the destructor.
     //Returns true if using the item succeeded, false otherwise.
 
     void PickUp(); //Sets the isactive status to true.
@@ -61,6 +60,7 @@ class Item {
 
     protected:
     std::string name_; //The name of the item.
+    std::string description_;
     ItemType itemtype_; //The type of the item.
     unsigned int durability_; //The durability of the item.
     unsigned int maxcooldown_; //The maximum cooldown of the item.

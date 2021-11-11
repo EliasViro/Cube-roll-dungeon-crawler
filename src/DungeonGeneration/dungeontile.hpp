@@ -17,7 +17,7 @@ enum TileType {
 
 class DungeonTile {
     public:
-    DungeonTile(TileType tiletype, unsigned int xcoord, unsigned int ycoord); //Constructs a new tile.
+    DungeonTile(TileType tiletype, int xcoord, int ycoord); //Constructs a new tile.
 
     ~DungeonTile(); //Destructor.
 
@@ -27,9 +27,9 @@ class DungeonTile {
 
     bool HasCharacter() const; //Returns true if there is a character standing on the tile.
 
-    unsigned int GetXCoord() const; //Returns the X-coordinate of the tile.
+    int GetXCoord() const; //Returns the X-coordinate of the tile.
 
-    unsigned int GetYCoord() const; //Returns the Y-coordinate of the tile.
+    int GetYCoord() const; //Returns the Y-coordinate of the tile.
 
     void PlaceItem(Item* item); //Places an item on the tile.
 
@@ -56,7 +56,7 @@ class DungeonTile {
     Item* item_; //The item on the tile.
     bool hascharacter_; //Tells if there is a Character on the tile or not.
     TileType tiletype_; //The type of the tile, e.g. FloorTile or WallTile.
-    unsigned int xcoord_; //The x-coordinate of the tile in a room.
-    unsigned int ycoord_; //The y-coordinate of the tile in a room.
+    int xcoord_; //The x-coordinate of the tile in a room.
+    int ycoord_; //The y-coordinate of the tile in a room.
     std::vector<DungeonTile*> tileneighbors_; //Neighboring tiles of the tile stored as NEWS.
 };

@@ -36,9 +36,15 @@ class DungeonRoom {
     public:
     DungeonRoom(std::pair<int,int> indexinlevel, unsigned int depth, RoomType roomtype, DoorOrientation doororientation, Item* loot, bool isplayerstartingroom);
 
+    std::pair<int,int> GetIndexInLevel() const; //Returns the index of the room in a level.
+
+    DungeonTile* GetDungeonTile(int xcoord, int ycoord) const; //Returns a pointer to the dungeon tile in the given coordinates.
+
+    std::vector<std::vector<DungeonTile*>> GetAllTiles() const; //Returns a vector of all tiles in the room.
+
     void SpawnEnemies(std::vector<Character*> enemyvector); //Spawns enemies on Enemy spawning tiles if the room hasn't been explored yet and the player enters the room.
 
-    void SpawnLoot(); //Randomizes and spawns loot on a loot tile if the room was given loot when it was created.
+    void SpawnLoot(); //Spawns loot on a loot tile if the room was given loot when it was created.
 
     void CloseDoors(); //Closes the doors of the room until all enemies have been defeated.
 

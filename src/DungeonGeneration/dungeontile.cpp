@@ -4,9 +4,8 @@
 //A class that is inherited by all tile types.
 
 
-DungeonTile::DungeonTile(TileType tiletype, unsigned int xcoord, unsigned int ycoord) 
+DungeonTile::DungeonTile(TileType tiletype, int xcoord, int ycoord) 
     : item_(nullptr), tiletype_(tiletype), hascharacter_(false), xcoord_(xcoord), ycoord_(ycoord) {
-
     if (tiletype == Wall) {
         ispassable_ = false;
         isopen_ = false;
@@ -44,7 +43,6 @@ DungeonTile::DungeonTile(TileType tiletype, unsigned int xcoord, unsigned int yc
         isopen_ = false;
     }
     
-
     std::vector<DungeonTile*> tileneighbors_;
 }
 
@@ -61,11 +59,11 @@ bool DungeonTile::HasCharacter() const {
     return hascharacter_;
 }
 
-unsigned int DungeonTile::GetXCoord() const {
+int DungeonTile::GetXCoord() const {
     return xcoord_;
 }
 
-unsigned int DungeonTile::GetYCoord() const {
+int DungeonTile::GetYCoord() const {
     return ycoord_;
 }
 
@@ -86,6 +84,24 @@ bool DungeonTile::SetCharacter() {
 
 void DungeonTile::RemoveCharacter() {
     hascharacter_ = false;
+    if (tiletype_ == Floor) {
+        ispassable_ = true;
+    }
+    if (tiletype_ == Door) {
+        ispassable_ = true;
+    }
+    if (tiletype_ == Spawner) {
+        ispassable_ = true;
+    }
+    if (tiletype_ == Trap) {
+        ispassable_ = true;
+    }
+    if (tiletype_ == Entrance) {
+        ispassable_ = true;
+    }
+    if (tiletype_ == Loot) {
+        ispassable_ = true;
+    }
 }
 
 TileType DungeonTile::GetTileType() const {

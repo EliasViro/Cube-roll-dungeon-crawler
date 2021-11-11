@@ -1,54 +1,43 @@
 #include "item.hpp"
-#include <stdio.h>
-#ifndef potion_hpp
-#define potion_hpp
-
-
 
 
 //A class that all potions inherit.
 //Potions have only one point of durability.
 
 
-class Potion: public Item {
-public:
-    Potion(const std::string& name );
-   
-protected:
-    bool used_;
-    std::string name_;
+class Potion : public Item {
+    public:
+    Potion(const std::string& name, const std::string& description, int effect);
+    
+    bool CanBeUsed() const;
+    
+    int Use();
+
+    virtual int GetEffect() const = 0;
+
+    protected:
+    int effect_;
 };
 
-
-
-//A potion that allows the player to take two turns instead of one
-//immediately after drinking the potion.
-//Using condition: There are enemies in the same room as the player.
-
-class HastePotion:public Potion {
-public:
-    HastePotion();
-    bool CanBeUsed() const ;
-    
-    void Trigger();
-    
-    std::string& GetDescription() const;
-    
-};
 
 
 //Restores one health point to the player.
 //Using condition: The player has missing health points.
 
 class HealthPotion : public Potion {
-public:
+    public:
     HealthPotion();
-    bool CanBeUsed() const ;
     
-    void Trigger();
-    
-    std::string& GetDescription() const;
-    
+    int GetEffect() const;
 };
 
-#endif /* potion_hpp */
+
+//Restores all item cooldowns.
+//Using condition: The player is in combat and has at least one item on cooldown.
+
+class StaminaPotion : public Potion {
+    public:
+    StaminaPotion();
+    
+    int GetEffect() const;
+};

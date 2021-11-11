@@ -6,7 +6,6 @@ enum ItemType {
     MeleeWeaponItem,
     RangedWeaponItem,
     ShieldItem,
-    SpellItem,
     PotionItem
 };
 

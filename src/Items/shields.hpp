@@ -14,3 +14,50 @@
 //negate all attacks that deal one damage. If an attack that deals two
 //damage hits the shield, it will absorb one damage and allow the remaining
 //point of damage to get through and damage the player.
+
+
+class Shield : public Item {
+    public:
+    Shield(const std::string& name, const std::string& description, int durability, int maxcooldown, int defense);
+    
+    bool CanBeUsed() const;
+    
+    int Use();
+
+    virtual int GetDefense() const = 0;
+
+    protected:
+    int defense_;
+};
+
+
+class RoundShield : public Shield {
+    public:
+    RoundShield();
+
+    int GetDefense() const;
+};
+
+
+class HeaterShield : public Shield {
+    public:
+    HeaterShield();
+
+    int GetDefense() const;
+};
+
+
+class KiteShield : public Shield {
+    public:
+    KiteShield();
+
+    int GetDefense() const;
+};
+
+
+class TowerShield : public Shield {
+    public:
+    TowerShield();
+
+    int GetDefense() const;
+};

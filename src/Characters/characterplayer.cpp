@@ -121,8 +121,8 @@ void InventorySlot::DropItem() {
     item_ = nullptr;
 }
 
-void InventorySlot::UseItem(Character* targetcharacter) {
-    if (item_->Use(targetcharacter)) {
+void InventorySlot::UseItem() {
+    if (item_->Use()) {
         if (item_->GetDurability() == 0) {
             delete(item_);
             item_ = nullptr;

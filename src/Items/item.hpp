@@ -1,24 +1,10 @@
 #include <string>
 
 //Item is a class that all item type classes will inherit.
-//Holds information about the durability, max cooldown and cooldown status
-//of the item and its state - if it is on the ground or in the player 
-//inventory. Items that are laying on the floor will not have their 
-//cooldown reduced every turn, unlike items in the player inventory.
-//Items that are in the top inventory slot of the player after movement
-//will be called by the CharacterPlayer class and will attempt to activate
-//their Use function, which will check if the requirements for using the item
-//are met and the item is not on cooldown. If both of these apply, the item
-//will be used and will receive cooldown status for the duration specified
-//in that item's class, and its durability will be decreased by 1. If the
-//durability of an item reaches zero, the item will be deleted.
-//Items on the ground can be picked up if the player has room in their
-//inventory, which will move the item from the ground to the first free
-//inventory slot and add one point to the item's cooldown status.
 
 enum ItemType {
-    MeleeWeapon,
-    RangedWeapon,
+    MeleeWeaponItem,
+    RangedWeaponItem,
     ShieldItem,
     SpellItem,
     PotionItem
@@ -44,15 +30,14 @@ class Item {
 
     void ReduceCoolDown(); //Reduces the cooldown by one, but not below zero and only when the item is active.
 
-    virtual bool CanBeUsed() const = 0; //Overridden by subclasses. Returns true if the conditions for using the item apply.
+    std::string GetDescription() const; //Returns the description of the item.
 
-    std::string& GetDescription() const; //Returns the description of the item.
-
-    virtual void Trigger(); //Overridden by subclasses. Triggers the item effect.
-
-    bool Use(); //Triggers the item's effect if its cooldown is zero and the conditions for using it apply. 
-    //Sets the cooldown to max and reduces the durability by one. If durability reaches zero calls the destructor.
-    //Returns true if using the item succeeded, false otherwise.
+    virtual int Use() = 0; //Overridden by subclasses. Triggers the item effect and returns the value. 
+    //For MeleeWeapons this value is the damage, if 0 the item was not used.
+    //For RangedWeapons this value is the damage, if 0 the item was not used.
+    //For Shields this value is the added defense power, if 0 the item was not used.
+    //For Spells this value signifies the effect. If 0 the item was not used. If 1 the spell swaps the character's location with another character's location. Etc.
+    //For Potions this value signifies the effect. If 0 the item was not used. If 1 the potion heals the player by 1. Etc.
 
     void PickUp(); //Sets the isactive status to true.
 

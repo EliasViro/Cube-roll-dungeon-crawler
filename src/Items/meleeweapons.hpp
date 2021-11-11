@@ -1,84 +1,100 @@
-#include <stdio.h>
 #include "item.hpp"
-
-#ifndef meleeweapon_hpp
-#define meleeweapon_hpp
-
 
 //A class that all melee weapons inherit.
 //The conditions for using a melee weapon:
 //-An enemy is in range of the weapon
 //-The weapon isn't on cooldown.
 
-class Meleeweapon: public Item {
-public:
-    Meleeweapon (const std::string& name, unsigned int durability, unsigned int maxcooldown,int damage):Item(name,MeleeWeapon, durability, maxcooldown){
-        range_=1;
-        damage_=damage;
-        
-    }
-    
+class MeleeWeapon : public Item {
+    public:
+    MeleeWeapon(const std::string& name, const std::string& description, int durability, int maxcooldown, int damage, int range, bool isstunning, bool targetseveralenemies);
     
     bool CanBeUsed() const;
     
-    void Trigger();
-    
-    std::string& GetDescription() const ;
+    int Use();
+
+    int GetDamage() const;
+
+    int GetRange() const;
+
+    virtual bool IsStunning() const = 0;
+
+    virtual bool TargetSeveralEnemies() const = 0;
+
     protected:
     int range_;
-    int damage_;    
+    int damage_;
+    bool isstunning_;
+    bool targetseveralenemies_;
 };
 
 
 
-//A melee weapon.
-//Range - 1, damage - 2, max cooldown - 6, durability - 999
-
-class Axe : public Meleeweapon {
+class ShortSword : public MeleeWeapon {
     public:
-    Axe();
+    ShortSword();
 
+    bool IsStunning() const;
+
+    bool TargetSeveralEemies() const;
 };
 
 
-//A basic melee weapon with improved attack speed.
-//Range - 1, damage - 1, max cooldown - 3, durability - 999
-
-#include <stdio.h>
-class Dagger : public Meleeweapon {
-    public:
-    Dagger ();
-};
-
-
-
-//A powerful melee weapon that hits all enemies in the attack range.
-//Range - 1, damage - 2, max cooldown - 6, durability - 999
-
-class GreatSword:public Meleeweapon {
-    public:
-    GreatSword();
-    
-};
-
-
-
-//A melee weapon.
-//Range - 1, damage - 2, max cooldown - 5, durability - 999
-
-class LongSword : public Meleeweapon {
+class LongSword : public MeleeWeapon {
     public:
     LongSword();
-    
+
+    bool IsStunning() const;
+
+    bool TargetSeveralEemies() const;
 };
 
-//A basic melee weapon.
-//Range - 1, damage - 1, max cooldown - 4, durability - 999
 
-class Shortsword : public Meleeweapon {
+class GreatSword : public MeleeWeapon {
     public:
-    Shortsword();
+    GreatSword();
+
+    bool IsStunning() const;
+
+    bool TargetSeveralEemies() const;
 };
 
 
-#endif /* meleeweapon_hpp */
+class HandAxe : public MeleeWeapon {
+    public:
+    HandAxe();
+
+    bool IsStunning() const;
+
+    bool TargetSeveralEemies() const;
+};
+
+
+class BattleAxe : public MeleeWeapon {
+    public:
+    BattleAxe();
+
+    bool IsStunning() const;
+
+    bool TargetSeveralEemies() const;
+};
+
+
+class Mace : public MeleeWeapon {
+    public:
+    Mace();
+
+    bool IsStunning() const;
+
+    bool TargetSeveralEemies() const;
+};
+
+
+class WarHammer : public MeleeWeapon {
+    public:
+    WarHammer();
+
+    bool IsStunning() const;
+
+    bool TargetSeveralEemies() const;
+};

@@ -6,73 +6,66 @@
 //-An enemy is in range of the weapon
 //-The weapon isn't on cooldown.
 
+MeleeWeapon::MeleeWeapon(const std::string& name, const std::string& description, int durability, int maxcooldown, int damage, int range, bool isstunning, bool targetseveralenemies)
+    : Item(name, description, MeleeWeaponItem, durability, maxcooldown), damage_(damage), range_(range), isstunning_(isstunning), targetseveralenemies_(targetseveralenemies) {}
 
-bool Meleeweapon::CanBeUsed() const{
-    
-    if((cooldown_==0 && isactive_)){
+bool MeleeWeapon::CanBeUsed() const {
+    if ((cooldown_ == 0 && isactive_)) {
         return true;
     }
-     
-    return false;
-     
+    else {
+        return false;
+    }
 }
 
-void Meleeweapon::Trigger(){};
-
-std::string& Meleeweapon::GetDescription() const {
-    std::string a= "It is a(n) "+name_+". It has a ranger of 1. It's maximum cooldown is "+std::to_string(maxcooldown_)+". It damages "+ std::to_string(damage_)+ " points. It's  current durability is "+ std::to_string(durability_)+". It's current cooldown is "+std::to_string(cooldown_)+".";
-    return a ;
-   
+int MeleeWeapon::Use() {
+    cooldown_ = maxcooldown_;
+    durability_--;
+    return damage_;
 }
 
+int MeleeWeapon::GetDamage() const {
+    return damage_;
+}
 
-
-//A melee weapon.
-//Range - 1, damage - 2, max cooldown - 6, durability - 999
-
-Axe::Axe():Meleeweapon("Axe",999, 6,2){
-    cooldown_=0;
-    isactive_=false;
-    
-};
-
-
-
-//A basic melee weapon with improved attack speed.
-//Range - 1, damage - 1, max cooldown - 3, durability - 999
-
-Dagger::Dagger ():Meleeweapon("Dagger", 999,3, 1){
-    cooldown_=0;
-    isactive_=false;
-};
-
-
-
-//A powerful melee weapon that hits all enemies in the attack range.
-//Range - 1, damage - 2, max cooldown - 6, durability - 999
-
-GreatSword::GreatSword () : Meleeweapon("Greatsword", 999,6, 2) {
-    cooldown_=0;
-    isactive_=false;
-};
-
-
-
-
-//A melee weapon.
-//Range - 1, damage - 2, max cooldown - 5, durability - 999
-
-LongSword::LongSword():Meleeweapon("Longsword", 999, 5, 2){
-    cooldown_=0;
-    isactive_=false;
+int MeleeWeapon::GetRange() const {
+    return range_;
 }
 
 
 
-//A basic melee weapon.
-//Range - 1, damage - 1, max cooldown - 4, durability - 999
+//Cooldown 3, Damage 1.
+ShortSword::ShortSword() : MeleeWeapon("Shortsword", "A short and sturdy bladed weapon with a comfortable grip.", 999, 3, 1, 1, false, false) {}
+bool ShortSword::IsStunning() const { return isstunning_; }
+bool ShortSword::TargetSeveralEemies() const { return targetseveralenemies_; }
 
-Shortsword::Shortsword():Meleeweapon("Shortsword", 999, 4, 1){
-    isactive_=false;
-    cooldown_=0;
-}
+//Cooldown 5, Damage 1. Hits several enemies.
+LongSword::LongSword() : MeleeWeapon("Longsword", "A long and sharp bladed weapon that can cut down several enemies with a single swing.", 999, 5, 1, 1, false, true) {}
+bool LongSword::IsStunning() const { return isstunning_; }
+bool LongSword::TargetSeveralEemies() const { return targetseveralenemies_; }
+
+//Cooldown 6, Damage 2. Hits several enemies.
+GreatSword::GreatSword() : MeleeWeapon("Greatsword", "A massive sword that can cut down multiple enemies with a single wide swing.", 999, 6, 2, 1, false, true) {}
+bool GreatSword::IsStunning() const { return isstunning_; }
+bool GreatSword::TargetSeveralEemies() const { return targetseveralenemies_; }
+
+//Cooldown 5, Damage 2.
+HandAxe::HandAxe() : MeleeWeapon("Handaxe", "A simple one-handed axe. Quite hefty.", 999, 5, 2, 1, false, false) {}
+bool HandAxe::IsStunning() const { return isstunning_; }
+bool HandAxe::TargetSeveralEemies() const { return targetseveralenemies_; }
+
+//Cooldown 6, Damage 3.
+BattleAxe::BattleAxe() : MeleeWeapon("Battleaxe", "A large axe with a massive head and a long handle. Cuts through almost anything.", 999, 6, 3, 1, false, false) {}
+bool BattleAxe::IsStunning() const { return isstunning_; }
+bool BattleAxe::TargetSeveralEemies() const { return targetseveralenemies_; }
+
+//Cooldown 5, Damage 1. Stuns targets.
+Mace::Mace() : MeleeWeapon("Mace", "A simple mace with a metallic weight at the end of a wooden handle. Stuns enemies.", 999, 5, 1, 1, true, false) {}
+bool Mace::IsStunning() const { return isstunning_; }
+bool Mace::TargetSeveralEemies() const { return targetseveralenemies_; }
+
+//Cooldown 6, Damage 2. Stuns targets.
+WarHammer::WarHammer() : MeleeWeapon("Warhammer", "A hammer specifically designed for cracking skulls on the battlefield. Stuns enemies.", 999, 6, 2, 1, true, false) {}
+bool WarHammer::IsStunning() const { return isstunning_; }
+bool WarHammer::TargetSeveralEemies() const { return targetseveralenemies_; }
+

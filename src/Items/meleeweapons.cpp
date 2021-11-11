@@ -40,14 +40,14 @@ bool ShortSword::IsStunning() const { return isstunning_; }
 bool ShortSword::TargetSeveralEemies() const { return targetseveralenemies_; }
 
 //Cooldown 5, Damage 1. Hits several enemies.
-LongSword::LongSword() : MeleeWeapon("Longsword", "A long and sharp bladed weapon that can cut down several enemies with a single swing.", 999, 5, 1, 1, false, true) {}
-bool LongSword::IsStunning() const { return isstunning_; }
-bool LongSword::TargetSeveralEemies() const { return targetseveralenemies_; }
+ArmingSword::ArmingSword() : MeleeWeapon("Arming sword", "A medium sized single-handed sword that can cut down several enemies with a single swing.", 999, 5, 1, 1, false, true) {}
+bool ArmingSword::IsStunning() const { return isstunning_; }
+bool ArmingSword::TargetSeveralEemies() const { return targetseveralenemies_; }
 
 //Cooldown 6, Damage 2. Hits several enemies.
-GreatSword::GreatSword() : MeleeWeapon("Greatsword", "A massive sword that can cut down multiple enemies with a single wide swing.", 999, 6, 2, 1, false, true) {}
-bool GreatSword::IsStunning() const { return isstunning_; }
-bool GreatSword::TargetSeveralEemies() const { return targetseveralenemies_; }
+LongSword::LongSword() : MeleeWeapon("Longsword", "A large two-handed sword that can cut down multiple enemies with a single wide swing.", 999, 6, 2, 1, false, true) {}
+bool LongSword::IsStunning() const { return isstunning_; }
+bool LongSword::TargetSeveralEemies() const { return targetseveralenemies_; }
 
 //Cooldown 5, Damage 2.
 HandAxe::HandAxe() : MeleeWeapon("Handaxe", "A simple one-handed axe. Quite hefty.", 999, 5, 2, 1, false, false) {}

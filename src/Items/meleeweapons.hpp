@@ -40,9 +40,9 @@ class ShortSword : public MeleeWeapon {
 };
 
 
-class LongSword : public MeleeWeapon {
+class ArmingSword : public MeleeWeapon {
     public:
-    LongSword();
+    ArmingSword();
 
     bool IsStunning() const;
 
@@ -50,9 +50,9 @@ class LongSword : public MeleeWeapon {
 };
 
 
-class GreatSword : public MeleeWeapon {
+class LongSword : public MeleeWeapon {
     public:
-    GreatSword();
+    LongSword();
 
     bool IsStunning() const;
 

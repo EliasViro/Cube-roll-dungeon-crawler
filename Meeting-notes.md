@@ -128,3 +128,43 @@ Some of the main base classes are mostly implemented, but will need more work.
 -Figuring out some class relationships
 -Getting a simple graphics window to show
 -Running tests on implemented classes
+
+
+
+# Meeting 12.11.2021 17::10
+
+**Participants**: 
+1. Elias
+2. Binh
+3. Selin
+
+## Summary of works
+1. Elias: Implemented some Item classes, finished Character and Player classes, fixed tons of errors, created sprites for the game.
+
+2. Atte: Worked on SFML and other graphics related stuff.
+
+3. Binh: Implemented the basis for the DungeonLevel class.
+
+4. Selin: Implemented the basis for some Item classes.
+
+## Challenges
+
+-Errors in DungeonRoom class
+-Lack of time to program
+-Errors in DungeonLevel class
+-Git hiccups
+
+## Actions
+1. Elias: Start implementing the game engine, help Binh to refactor the DungeonLevel class, create more graphics, find sound effects.
+2. Atte: Get a graphics window showing properly, implement a main menu with interactive buttons.
+3. Binh: Refactor the DungeonLevel class to generate DungeonRoom objects.
+4. Selin: Continue working on various Item type classes.
+
+## Project status 
+Process has been swift and most classes have been implemented, except the main game engine.
+
+### TODOs
+-Pathfinding for enemies
+-Refactoring DungeonLevel
+-Fixing errors in DungeonLevel & DungeonRoom.
+-Implementing a working game window, accepting input and creating the game engine.

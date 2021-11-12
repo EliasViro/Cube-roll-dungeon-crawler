@@ -1,5 +1,5 @@
 #include "../DungeonGeneration/dungeontile.hpp"
-
+#include <string>
 
 //Character is a class that all character-related classes inherit.
 //A character represents an active entity in a room, such as the player, 
@@ -25,13 +25,19 @@ class Character {
 
     int GetHealthPoints() const; //Returns the healthpoints of the character.
 
-    void TakeDamage(int damage); //Reduces healthpoints by the amount of damage minus defense points.
+    int GetDefensePoints() const; //Returns the defense points of the character.
+
+    void AddDefensePoints(int defense); //Adds the amount of defense points given in the parameter.
+
+    void RemoveDefensePoints(); //Sets the defense points to zero.
+
+    virtual void TakeDamage(int damage) = 0; //Reduces healthpoints by the amount of damage minus defense points.
 
     void Stun(); //Stuns the character.
 
     void UnStun(); //Removes stunned status.
 
-    bool MoveToDirection(const char* direction); //Moves the character on the neighboring tile in the given direction. Returns true if successful.
+    bool MoveToDirection(const char* direction); //Attempts to move the character on the neighboring tile in the given direction. Returns true if successful.
 
     void MoveToTile(DungeonTile* tile); //Moves the character onto the given tile.
 

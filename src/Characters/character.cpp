@@ -25,11 +25,16 @@ int Character::GetHealthPoints() const {
     return healthpoints_;
 }
 
-void Character::TakeDamage(int damage) {
-    healthpoints_ = healthpoints_ - (damage - defensepoints_);
-    if (healthpoints_ <= 0) {
-        delete(this);
-    }
+int Character::GetDefensePoints() const {
+    return defensepoints_;
+}
+
+void Character::AddDefensePoints(int defense) {
+    defensepoints_ += defense;
+}
+
+void Character::RemoveDefensePoints() {
+    defensepoints_ = 0;
 }
 
 void Character::Stun() {

@@ -37,6 +37,10 @@ std::vector<std::vector<DungeonTile*>> DungeonRoom::GetAllTiles() const {
     return alltiles_;
 }
 
+bool DungeonRoom::IsExplored() const {
+    return hasbeenexplored_;
+}
+
 void DungeonRoom::SpawnEnemies(std::vector<Character*> enemyvector) {
     int spawnedenemies = 0;
     if (!hasbeenexplored_) {
@@ -52,6 +56,7 @@ void DungeonRoom::SpawnEnemies(std::vector<Character*> enemyvector) {
                 }
             }
         }
+        CloseDoors();
     }
 }
 

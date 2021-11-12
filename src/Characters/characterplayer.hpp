@@ -20,6 +20,8 @@ class Player : public Character {
 
     bool MoveToDirection(DungeonTile* tile, const char* direction); //Moves the player to the given direction. Returns true if moving was successful.
 
+    void TakeDamage(int damage); //Deals damage to the player.
+
     private:
     std::vector<InventorySlot> inventory_; //A vector of InventorySlots that are stored in the following order: TOP, N, E, W, S, BOTTOM.
 };
@@ -40,7 +42,7 @@ class InventorySlot {
 
     void DropItem(); //Drops the item in the inventory slot.
 
-    void UseItem(); //Attempts to use the item held in the inventory slot.
+    int UseItem(); //Attempts to use the item held in the inventory slot and returns a value from the item that signifies what it did.
     //Deletes the item from the slot if its durability reaches zero.
 
     private:

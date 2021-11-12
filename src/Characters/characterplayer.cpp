@@ -38,6 +38,7 @@ bool Player::AddItemToSlot(Item* item) {
 } //Attempts to add the item to the first free inventory slot in the player inventory. Returns true if successful.
 
 bool Player::MoveToDirection(DungeonTile* tile, const char* direction) {
+    RemoveDefensePoints();
     if (tile->IsPassable()) {
         tile->SetCharacter();
         currenttile_->RemoveCharacter();
@@ -83,7 +84,15 @@ bool Player::MoveToDirection(DungeonTile* tile, const char* direction) {
     }
 }
 
-
+void Player::TakeDamage(int damage) {
+    if (inventory_[0].GetItem()->GetItemType() == ShieldItem) {
+        AddDefensePoints(inventory_[0].UseItem());
+    }
+    healthpoints_ = healthpoints_ - (damage - defensepoints_);
+    if (healthpoints_ <= 0) {
+        delete(this);
+    }
+}
 
 
 //A class that represents one of the six slots in the player inventory. Holds an Item.
@@ -121,7 +130,7 @@ void InventorySlot::DropItem() {
     item_ = nullptr;
 }
 
-void InventorySlot::UseItem() {
+int InventorySlot::UseItem() {
     if (item_->Use()) {
         if (item_->GetDurability() == 0) {
             delete(item_);

@@ -2,11 +2,10 @@
 #include "../Characters/character.hpp"
 #include "../Characters/characterplayer.hpp"
 #include "../Characters/enemy.hpp"
-#include "../Characters/ally.hpp"
 #include "../Items/item.hpp"
 #include <vector>
 
-//Represents a room of a level.
+//Represents a room on a level.
 //A room consists of 144 tiles on a 12 x 12 grid.
 
 enum RoomType {
@@ -41,6 +40,8 @@ class DungeonRoom {
     DungeonTile* GetDungeonTile(int xcoord, int ycoord) const; //Returns a pointer to the dungeon tile in the given coordinates.
 
     std::vector<std::vector<DungeonTile*>> GetAllTiles() const; //Returns a vector of all tiles in the room.
+
+    bool IsExplored() const; //Returns true if the room has been explored already.
 
     void SpawnEnemies(std::vector<Character*> enemyvector); //Spawns enemies on Enemy spawning tiles if the room hasn't been explored yet and the player enters the room.
 

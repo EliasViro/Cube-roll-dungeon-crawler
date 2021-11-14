@@ -110,22 +110,22 @@ std::string RandomizeFileName(RoomType roomtype) {
     unsigned int randomnumber = 0;
     if (roomtype == _1DoorRoom) {
         filename += "1DoorRooms/";
-        randomnumber = rand() % 20 + 1; //Random number between 1 and 20
+        randomnumber = rand() % 3 + 1; //Random number between 1 and 20
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else if (roomtype == _2DoorRoomCorner) {
         filename += "2DoorRoomsCorner/";
-        randomnumber = rand() % 20 + 1; //Random number between 1 and 20
+        randomnumber = rand() % 3 + 1; //Random number between 1 and 20
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else if (roomtype == _2DoorRoomOpposite) {
         filename += "2DoorRoomsOpposite/";
-        randomnumber = rand() % 20 + 1; //Random number between 1 and 20
+        randomnumber = rand() % 3 + 1; //Random number between 1 and 20
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else if (roomtype == _3DoorRoom) {
         filename += "3DoorRooms/";
-        randomnumber = rand() % 20 + 1; //Random number between 1 and 20
+        randomnumber = rand() % 3 + 1; //Random number between 1 and 20
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else {

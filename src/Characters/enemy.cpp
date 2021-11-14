@@ -143,19 +143,19 @@ void Enemy::TakeDamage(int damage) {
 
 
 bool AttackCanHitTarget(Character* targetcharacter) {
-    //CHECK IF A PROJECTILE THAT IS SPAWNED IN THE SAME TILE AS THE SHOOTER CAN WALK INTO THE SAME TILE AS THE TARGET IN 3 MOVES. PROJECTILES PASS THROUGH CHARACTERS AND PITS, BUT NOT WALLS.
+    // CHECK IF A PROJECTILE THAT IS SPAWNED IN THE SAME TILE AS THE SHOOTER CAN WALK INTO THE SAME TILE AS THE TARGET IN 3 MOVES. PROJECTILES PASS THROUGH CHARACTERS AND PITS, BUT NOT WALLS.
 }
 
 
 
 Slime::Slime(DungeonTile* tile) : Enemy("Slime", "A blindly wandering blob of acidic jelly that tries to eat anything near it.", tile, Random, {Melee_1, Empty}) {}
-std:: string Slime::GetDescription() const { return description_; }
+std::string Slime::GetDescription() const { return description_; }
 
 LargeSlime::LargeSlime(DungeonTile* tile) : Enemy("Large slime", "A blindly wandering large blob of acidic jelly that tries to eat anything near it.", tile, Random, {Melee_2, Empty}) {}
-std:: string LargeSlime::GetDescription() const { return description_; }
+std::string LargeSlime::GetDescription() const { return description_; }
 
 HugeSlime::HugeSlime(DungeonTile* tile) : Enemy("Huge slime", "A blindly wandering enormous blob of acidic jelly that tries to eat anything near it.", tile, Random, {Melee_3, Empty}) {}
-std:: string HugeSlime::GetDescription() const { return description_; }
+std::string HugeSlime::GetDescription() const { return description_; }
 
 Rat::Rat(DungeonTile* tile) : Enemy("Giant rat", "A terrifyingly oversized rat. Its eyes have a ravenous glaze.", tile, Aggressive, {Melee_1, Empty}) {}
-std:: string Rat::GetDescription() const { return description_; }
+std::string Rat::GetDescription() const { return description_; }

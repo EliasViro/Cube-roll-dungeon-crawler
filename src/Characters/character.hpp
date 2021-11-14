@@ -23,6 +23,10 @@ class Character {
 
     DungeonTile* GetCurrentTile() const; //Returns the tile the character is standing on.
 
+    int GetXCoordinate() const; //Returns the X-coordinate of the character.
+
+    int GetYCoordinate() const; //Returns the X-coordinate of the character.
+
     int GetHealthPoints() const; //Returns the healthpoints of the character.
 
     int GetDefensePoints() const; //Returns the defense points of the character.

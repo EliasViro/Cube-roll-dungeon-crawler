@@ -33,9 +33,24 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
 }
 
 int Enemy::DistanceToCharacter(Character* targetcharacter) const {
-    int ydifference = abs(currenttile_->GetYCoord() - targetcharacter->GetCurrentTile()->GetYCoord());
-    int xdifference = abs(currenttile_->GetXCoord() - targetcharacter->GetCurrentTile()->GetXCoord());
-    return ydifference + xdifference;
+    std::pair<int, int> measurer = std::make_pair(GetXCoordinate(), GetYCoordinate());
+    int distance = 0;
+    int ydifference = abs(GetYCoordinate() - targetcharacter->GetYCoordinate());
+    int xdifference = abs(GetYCoordinate() - targetcharacter->GetYCoordinate());
+    while (measurer.first != targetcharacter->GetXCoordinate() && measurer.second != targetcharacter->GetYCoordinate()) {
+        if (xdifference > ydifference) {
+            //Implemententation still underway
+        }
+        else if (ydifference > xdifference) {
+
+        }
+        else {
+
+        }
+        xdifference = abs(measurer.first - targetcharacter->GetYCoordinate());
+        ydifference = abs(measurer.second - targetcharacter->GetXCoordinate());
+    }
+    return distance;
 }
 
 void Enemy::TakeAction(Character* targetcharacter) {
@@ -113,19 +128,13 @@ void Enemy::TakeAction(Character* targetcharacter) {
             }
         }
         if (actionvector_[indexinactionvector_] == Ranged_1 && DistanceToCharacter(targetcharacter) <= 3) {
-            if (AttackCanHitTarget(targetcharacter)) {
-                targetcharacter->TakeDamage(1);
-            }
+            targetcharacter->TakeDamage(1);
         }
         if (actionvector_[indexinactionvector_] == Ranged_2 && DistanceToCharacter(targetcharacter) <= 3) {
-            if (AttackCanHitTarget(targetcharacter)) {
-                targetcharacter->TakeDamage(1);
-            }
+            targetcharacter->TakeDamage(1);
         }
         if (actionvector_[indexinactionvector_] == Ranged_3 && DistanceToCharacter(targetcharacter) <= 3) {
-            if (AttackCanHitTarget(targetcharacter)) {
-                targetcharacter->TakeDamage(1);
-            }
+            targetcharacter->TakeDamage(1);
         }
     }
     else {
@@ -140,12 +149,6 @@ void Enemy::TakeDamage(int damage) {
         delete(this);
     }
 }
-
-
-bool AttackCanHitTarget(Character* targetcharacter) {
-    //CHECK IF A PROJECTILE THAT IS SPAWNED IN THE SAME TILE AS THE SHOOTER CAN WALK INTO THE SAME TILE AS THE TARGET IN 3 MOVES. PROJECTILES PASS THROUGH CHARACTERS AND PITS, BUT NOT WALLS.
-}
-
 
 
 Slime::Slime(DungeonTile* tile) : Enemy("Slime", "A blindly wandering blob of acidic jelly that tries to eat anything near it.", tile, Random, {Melee_1, Empty}) {}

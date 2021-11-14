@@ -21,6 +21,14 @@ DungeonTile* Character::GetCurrentTile() const {
     return currenttile_;
 }
 
+int Character::GetXCoordinate() const {
+    return currenttile_->GetXCoord();
+}
+
+int Character::GetYCoordinate() const {
+    return currenttile_->GetYCoord();
+}
+
 int Character::GetHealthPoints() const {
     return healthpoints_;
 }

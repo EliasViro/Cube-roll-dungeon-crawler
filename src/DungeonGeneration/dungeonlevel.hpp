@@ -13,21 +13,15 @@ enum Direction { Up , Down , Left , Right };
 class DungeonLevel {
     public:
     DungeonLevel(int sidelength, unsigned int depth); 
-
-    void generateRooms();
-
-    std::vector<Direction> dirsAvailable(std::pair<int, int> room);
-
-    std::pair<int, int> RoomInDirection(std::pair<int, int> room, Direction direction);
-
-    Direction opposite(Direction direction);
-
-    std::pair<RoomType, DoorOrientation> roomOrient(std::vector<Direction> exits);
     
-    int getLevel() const { return level_; }
+    int GetLevel() const;
+    int GetDepth() const;
+    std::pair<int,int> GetStartPos() const;
+    std::vector<std::vector<DungeonRoom>> GetRooms() const;
     
     private:
     int sidelength_; // side length of the map
     unsigned int depth_; // difficulty of the map
+    std::pair<int,int> startPos_; // starting room
     std::vector<std::vector<DungeonRoom>> rooms_; // Two dimensional vector that stores the rooms.
 };

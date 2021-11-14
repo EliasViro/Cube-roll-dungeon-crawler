@@ -219,36 +219,37 @@ std::vector<std::vector<DungeonTile*>> CreateTiles(std::vector<std::string&> roo
     for (int j = 0; j < 12; j++) {
         for (int i = 0; i < 12; i++) {
             if (roomvector[j][i] == '#') {
-                tilevector[j][i] = new DungeonTile(Wall, j, i);
+                tilevector[j][i] = new DungeonTile(TileType::Wall, j, i);
+                // DungeonTile::DungeonTile(TileType tiletype, int xcoord, int ycoord) 
             }
             else if (roomvector[j][i] == '*') {
-                tilevector[j][i] = new DungeonTile(Floor, j, i);
+                tilevector[j][i] = new DungeonTile(TileType::Floor, j, i);
             }
             else if (roomvector[j][i] == '+') {
-                tilevector[j][i] = new DungeonTile(Pit, j, i);
+                tilevector[j][i] = new DungeonTile(TileType::Pit, j, i);
             }
             else if (roomvector[j][i] == '=') {
-                tilevector[j][i] = new DungeonTile(Door, j, i);
+                tilevector[j][i] = new DungeonTile(TileType::Door, j, i);
             }
             else if (roomvector[j][i] == 'E') {
-                tilevector[j][i] = new DungeonTile(Spawner, j, i);
+                tilevector[j][i] = new DungeonTile(TileType::Spawner, j, i);
             }
             else if (roomvector[j][i] == 'T') {
-                tilevector[j][i] = new DungeonTile(Trap, j, i);
+                tilevector[j][i] = new DungeonTile(TileType::Trap, j, i);
             }
             else if (roomvector[j][i] == 'U') {
                 if (isplayerstartingroom) {
-                    tilevector[j][i] = new DungeonTile(Entrance, j, i);
+                    tilevector[j][i] = new DungeonTile(TileType::Entrance, j, i);
                 }
                 else {
-                    tilevector[j][i] = new DungeonTile(Floor, j, i);
+                    tilevector[j][i] = new DungeonTile(TileType::Floor, j, i);
                 }
             }
             else if (roomvector[j][i] == 'L') {
-                tilevector[j][i] = new DungeonTile(Loot, j, i);
+                tilevector[j][i] = new DungeonTile(TileType::Loot, j, i);
             }
             else {
-                tilevector[j][i] = new DungeonTile(Exit, j, i);
+                tilevector[j][i] = new DungeonTile(TileType::Exit, j, i);
             }
         }
     }

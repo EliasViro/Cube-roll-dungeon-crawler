@@ -8,6 +8,7 @@
 //Represents a room on a level.
 //A room consists of 144 tiles on a 12 x 12 grid.
 
+
 enum RoomType {
     _1DoorRoom,
     _2DoorRoomCorner,
@@ -53,7 +54,7 @@ class DungeonRoom {
     
     std::vector<DungeonRoom*> GetNeighbors() const; // return the room neighbors
     
-    void AddNeighbor(DungeonRoom* room);
+    void AddNeighbor(DungeonRoom *room);
 
     private:
     std::pair<int, int> indexinlevel_; //The index of the room in the list of Rooms on a level.

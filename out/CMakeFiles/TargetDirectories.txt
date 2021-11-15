@@ -1,0 +1,5 @@
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles/DungeonCrawler.dir
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/src/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/src/CMakeFiles/edit_cache.dir

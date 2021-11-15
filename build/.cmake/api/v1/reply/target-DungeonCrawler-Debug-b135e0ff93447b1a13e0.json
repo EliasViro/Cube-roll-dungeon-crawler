@@ -76,6 +76,7 @@
 				"role" : "libraries"
 			},
 			{
+				"backtrace" : 2,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1",
 				"role" : "libraries"
 			},

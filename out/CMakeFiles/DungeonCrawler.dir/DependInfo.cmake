@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/tests/dungeonleveltest.cpp" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.o"
+  "/home/atte/cpp_projects/DungeonCrawler/src/main.cpp" "/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles/DungeonCrawler.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

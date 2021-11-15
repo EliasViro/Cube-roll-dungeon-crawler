@@ -2,9 +2,9 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("DungeonCrawler")
 
-find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
+file(GLOB SOURCES src/*.cpp src/DungeonGeneration/*.cpp src/Items/*.cpp)
 
-add_subdirectory ("src")
+find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 
 # test_instructions.txt
 # This (below) is the line that tells CMake which .cpp file the executable is created for.
@@ -13,7 +13,10 @@ add_subdirectory ("src")
 # is created for your test cpp which you can then run.
 ####################################\  /#######
 #####################################\/########
-add_executable(DungeonCrawler "tests/dungeonleveltest.cpp")
+add_executable(DungeonCrawler src/main.cpp)
+
+#add_executable(DungeonCrawler ${SOURCES})
+
 #####################################/\########
 ####################################/  \#######
 

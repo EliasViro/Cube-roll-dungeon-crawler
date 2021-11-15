@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3"
+CMAKE_SOURCE_DIR = /home/atte/cpp_projects/DungeonCrawler
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build"
+CMAKE_BINARY_DIR = /home/atte/cpp_projects/DungeonCrawler/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/DungeonCrawler.dir/depend.make
@@ -57,34 +57,34 @@ include CMakeFiles/DungeonCrawler.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/DungeonCrawler.dir/flags.make
 
-CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
-CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.o: ../tests/dungeonleveltest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.o"
-	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/tests/dungeonleveltest.cpp"
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/main.cpp.o"
+	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/main.cpp
 
-CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.i"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/tests/dungeonleveltest.cpp" > CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.i
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/main.cpp.i"
+	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/main.cpp > CMakeFiles/DungeonCrawler.dir/src/main.cpp.i
 
-CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.s"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/tests/dungeonleveltest.cpp" -o CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.s
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/main.cpp.s"
+	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/main.cpp -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.s
 
 # Object files for target DungeonCrawler
 DungeonCrawler_OBJECTS = \
-"CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.o"
+"CMakeFiles/DungeonCrawler.dir/src/main.cpp.o"
 
 # External object files for target DungeonCrawler
 DungeonCrawler_EXTERNAL_OBJECTS =
 
-DungeonCrawler: CMakeFiles/DungeonCrawler.dir/tests/dungeonleveltest.cpp.o
+DungeonCrawler: CMakeFiles/DungeonCrawler.dir/src/main.cpp.o
 DungeonCrawler: CMakeFiles/DungeonCrawler.dir/build.make
 DungeonCrawler: /usr/lib/x86_64-linux-gnu/libsfml-audio.so.2.5.1
 DungeonCrawler: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1
 DungeonCrawler: /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1
 DungeonCrawler: /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.5.1
 DungeonCrawler: CMakeFiles/DungeonCrawler.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable DungeonCrawler"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/atte/cpp_projects/DungeonCrawler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable DungeonCrawler"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DungeonCrawler.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -97,6 +97,6 @@ CMakeFiles/DungeonCrawler.dir/clean:
 .PHONY : CMakeFiles/DungeonCrawler.dir/clean
 
 CMakeFiles/DungeonCrawler.dir/depend:
-	cd "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build/CMakeFiles/DungeonCrawler.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/atte/cpp_projects/DungeonCrawler/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/atte/cpp_projects/DungeonCrawler /home/atte/cpp_projects/DungeonCrawler /home/atte/cpp_projects/DungeonCrawler/build /home/atte/cpp_projects/DungeonCrawler/build /home/atte/cpp_projects/DungeonCrawler/build/CMakeFiles/DungeonCrawler.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/DungeonCrawler.dir/depend
 

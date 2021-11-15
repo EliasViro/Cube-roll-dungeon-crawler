@@ -37,7 +37,7 @@ int main() {
     start_text.setPosition(start_button.getPosition());
 
     sf::Music start_music;
-    start_music.openFromFile("src/Sounds/Placeholder.mp3");
+    start_music.openFromFile("src/Sounds/Placeholder.ogg");
 
     while (window.isOpen())
     {

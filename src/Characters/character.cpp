@@ -11,8 +11,6 @@ Character::Character(CharacterType charactertype, int healthpoints, DungeonTile*
         currenttile_->SetCharacter();
     }
 
-Character::~Character() {}
-
 CharacterType Character::GetCharacterType() const {
     return charactertype_;
 }

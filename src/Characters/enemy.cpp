@@ -32,25 +32,76 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
     //PATHFINDING AWAY FROM THE TARGET. AVOID INPASSABLE TILES.
 }
 
-int Enemy::DistanceToCharacter(Character* targetcharacter) const {
-    std::pair<int, int> measurer = std::make_pair(GetXCoordinate(), GetYCoordinate());
+bool Enemy::DistanceToCharacterLargerThanThree(Character* targetcharacter) const {
+    DungeonTile* measurertile = targetcharacter->GetCurrentTile();
     int distance = 0;
-    int ydifference = abs(GetYCoordinate() - targetcharacter->GetYCoordinate());
-    int xdifference = abs(GetYCoordinate() - targetcharacter->GetYCoordinate());
-    while (measurer.first != targetcharacter->GetXCoordinate() && measurer.second != targetcharacter->GetYCoordinate()) {
-        if (xdifference > ydifference) {
-            //Implemententation still underway
-        }
-        else if (ydifference > xdifference) {
-
+    char* xdir = "";
+    char* ydir = "";
+    int ydifference = GetYCoordinate() - measurertile->GetYCoord();
+    int xdifference = GetXCoordinate() - measurertile->GetXCoord();
+    while ((measurertile->GetXCoord() != GetXCoordinate() && measurertile->GetYCoord() != GetYCoordinate()) || distance < 3) {
+        if (xdifference > 0) {
+            xdir = "E";
         }
         else {
-
+            xdir = "W";
         }
-        xdifference = abs(measurer.first - targetcharacter->GetYCoordinate());
-        ydifference = abs(measurer.second - targetcharacter->GetXCoordinate());
+        if (ydifference > 0) {
+            ydir = "S";
+        }
+        else {
+            ydir = "N";
+        }
+        if (abs(xdifference) > abs(ydifference)) {
+            if (measurertile->GetTileNeighbor(xdir)->GetTileType() != Wall) {
+                measurertile = measurertile->GetTileNeighbor(xdir);
+            }
+            else {
+                measurertile = measurertile->GetTileNeighbor(ydir);
+            }
+        }
+        else if (abs(ydifference) > abs(xdifference)) {
+            if (measurertile->GetTileNeighbor(ydir)->GetTileType() != Wall) {
+                measurertile = measurertile->GetTileNeighbor(ydir);
+            }
+            else {
+                measurertile = measurertile->GetTileNeighbor(xdir);
+            }
+        }
+        else {
+            int randomnumber = rand() % 2 + 1;
+            if (randomnumber == 1) {
+                if (measurertile->GetTileNeighbor(ydir)->GetTileType() != Wall) {
+                    measurertile = measurertile->GetTileNeighbor(ydir);
+                }
+                else {
+                    measurertile = measurertile->GetTileNeighbor(xdir);
+                }
+            }
+            else {
+                if (measurertile->GetTileNeighbor(xdir)->GetTileType() != Wall) {
+                    measurertile = measurertile->GetTileNeighbor(xdir);
+                }
+                else {
+                    measurertile = measurertile->GetTileNeighbor(ydir);
+                }
+            }
+        }
+        ydifference = GetYCoordinate() - measurertile->GetYCoord();
+        xdifference = GetXCoordinate() - measurertile->GetXCoord();
+        distance++;
     }
-    return distance;
+
+    if (measurertile->GetXCoord() == GetXCoordinate() && measurertile->GetYCoord() == GetYCoordinate()) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+bool Enemy::NextToCharacter(Character* targetcharacter) const {
+    return ((GetXCoordinate() == targetcharacter->GetXCoordinate() && (abs(GetYCoordinate() - targetcharacter->GetYCoordinate()) == 1)) || (GetYCoordinate() == targetcharacter->GetYCoordinate() && (abs(GetXCoordinate() - targetcharacter->GetXCoordinate()))));
 }
 
 void Enemy::TakeAction(Character* targetcharacter) {
@@ -81,13 +132,14 @@ void Enemy::TakeAction(Character* targetcharacter) {
                     movedsuccessfully = MoveToDirection("S");
                     attemptedsouth = true;
                 }
+                randomnumber = rand() % 4 + 1;
             }
         }
         if (enemyai_ == Aggressive) {
             MoveTowards(targetcharacter);
         }
         if (enemyai_ == Careful) {
-            if (DistanceToCharacter(targetcharacter) >= 3) {
+            if (DistanceToCharacterLargerThanThree(targetcharacter)) {
                 MoveTowards(targetcharacter);
             }
             else {
@@ -95,7 +147,7 @@ void Enemy::TakeAction(Character* targetcharacter) {
             }
         }
         if (indexinactionvector_ < actionvector_.size() - 1) {
-        indexinactionvector_++;
+            indexinactionvector_++;
         }
         else {
             indexinactionvector_ = 0;
@@ -109,32 +161,32 @@ void Enemy::TakeAction(Character* targetcharacter) {
         if (actionvector_[indexinactionvector_] = Defend_3) {
             AddDefensePoints(3);
         }
-        if (actionvector_[indexinactionvector_] == Melee_1 && DistanceToCharacter(targetcharacter) == 1) {
+        if (actionvector_[indexinactionvector_] == Melee_1 && NextToCharacter(targetcharacter)) {
             targetcharacter->TakeDamage(1);
             if (targetcharacter->GetDefensePoints() > 0) {
                 Stun();
             }
         }
-        if (actionvector_[indexinactionvector_] == Melee_2 && DistanceToCharacter(targetcharacter) == 1) {
+        if (actionvector_[indexinactionvector_] == Melee_2 && NextToCharacter(targetcharacter)) {
             targetcharacter->TakeDamage(2);
             if (targetcharacter->GetDefensePoints() > 0) {
                 Stun();
             }
         }
-        if (actionvector_[indexinactionvector_] == Melee_3 && DistanceToCharacter(targetcharacter) == 1) {
+        if (actionvector_[indexinactionvector_] == Melee_3 && NextToCharacter(targetcharacter)) {
             targetcharacter->TakeDamage(3);
             if (targetcharacter->GetDefensePoints() > 0) {
                 Stun();
             }
         }
-        if (actionvector_[indexinactionvector_] == Ranged_1 && DistanceToCharacter(targetcharacter) <= 3) {
+        if (actionvector_[indexinactionvector_] == Ranged_1 && !DistanceToCharacterLargerThanThree(targetcharacter)) {
             targetcharacter->TakeDamage(1);
         }
-        if (actionvector_[indexinactionvector_] == Ranged_2 && DistanceToCharacter(targetcharacter) <= 3) {
-            targetcharacter->TakeDamage(1);
+        if (actionvector_[indexinactionvector_] == Ranged_2 && !DistanceToCharacterLargerThanThree(targetcharacter)) {
+            targetcharacter->TakeDamage(2);
         }
-        if (actionvector_[indexinactionvector_] == Ranged_3 && DistanceToCharacter(targetcharacter) <= 3) {
-            targetcharacter->TakeDamage(1);
+        if (actionvector_[indexinactionvector_] == Ranged_3 && !DistanceToCharacterLargerThanThree(targetcharacter)) {
+            targetcharacter->TakeDamage(3);
         }
     }
     else {
@@ -151,15 +203,6 @@ void Enemy::TakeDamage(int damage) {
 }
 
 
-<<<<<<< HEAD
-bool AttackCanHitTarget(Character* targetcharacter) {
-    // CHECK IF A PROJECTILE THAT IS SPAWNED IN THE SAME TILE AS THE SHOOTER CAN WALK INTO THE SAME TILE AS THE TARGET IN 3 MOVES. PROJECTILES PASS THROUGH CHARACTERS AND PITS, BUT NOT WALLS.
-}
-
-
-
-=======
->>>>>>> 0e54a2693ae78b81303f163b9ccd312d2c001376
 Slime::Slime(DungeonTile* tile) : Enemy("Slime", "A blindly wandering blob of acidic jelly that tries to eat anything near it.", tile, Random, {Melee_1, Empty}) {}
 std::string Slime::GetDescription() const { return description_; }
 

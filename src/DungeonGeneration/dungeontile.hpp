@@ -19,8 +19,6 @@ class DungeonTile {
     public:
     DungeonTile(TileType tiletype, int xcoord, int ycoord); //Constructs a new tile.
 
-    ~DungeonTile(); //Destructor.
-
     bool IsPassable() const; //Returns true if the tile can be walked onto.
 
     Item* GetItem() const; //Returns a pointer to the item on the tile.

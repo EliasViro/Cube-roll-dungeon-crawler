@@ -47,7 +47,9 @@ class Enemy : public Character {
 
     void MoveAwayFrom(Character* targetcharacter); //Pathfinds away from the targer character.
 
-    int DistanceToCharacter(Character* targetcharacter) const; //Calculates and returns the distance to the target character in tiles. 1 means next to it, 0 is in the same tile.
+    bool DistanceToCharacterLargerThanThree(Character* targetcharacter) const; //Checks if an enemy can be reached in three steps through tiles that aren't walls.
+
+    bool NextToCharacter(Character* targetcharacter) const; //Checks if the target character is next to the character.
 
     void TakeAction(Character* targetcharacter); //Proceeds the actionvector index by one and moves the character according to its AI.
 

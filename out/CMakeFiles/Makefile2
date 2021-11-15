@@ -54,20 +54,74 @@ CMAKE_BINARY_DIR = /home/atte/cpp_projects/DungeonCrawler/out
 
 # The main recursive "all" target.
 all: CMakeFiles/DungeonCrawler.dir/all
+<<<<<<< HEAD
+=======
+all: src/all
+all: tests/all
+>>>>>>> 27d098b446bd2fb03b08682eff5cfff3c359cf5c
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
+<<<<<<< HEAD
 preinstall:
+=======
+preinstall: src/preinstall
+preinstall: tests/preinstall
+>>>>>>> 27d098b446bd2fb03b08682eff5cfff3c359cf5c
 
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/DungeonCrawler.dir/clean
+<<<<<<< HEAD
+=======
+clean: src/clean
+clean: tests/clean
+>>>>>>> 27d098b446bd2fb03b08682eff5cfff3c359cf5c
 
 .PHONY : clean
 
 #=============================================================================
+<<<<<<< HEAD
+=======
+# Directory level rules for directory src
+
+# Recursive "all" directory target.
+src/all:
+
+.PHONY : src/all
+
+# Recursive "preinstall" directory target.
+src/preinstall:
+
+.PHONY : src/preinstall
+
+# Recursive "clean" directory target.
+src/clean:
+
+.PHONY : src/clean
+
+#=============================================================================
+# Directory level rules for directory tests
+
+# Recursive "all" directory target.
+tests/all:
+
+.PHONY : tests/all
+
+# Recursive "preinstall" directory target.
+tests/preinstall:
+
+.PHONY : tests/preinstall
+
+# Recursive "clean" directory target.
+tests/clean:
+
+.PHONY : tests/clean
+
+#=============================================================================
+>>>>>>> 27d098b446bd2fb03b08682eff5cfff3c359cf5c
 # Target rules for target CMakeFiles/DungeonCrawler.dir
 
 # All Build rule for target.

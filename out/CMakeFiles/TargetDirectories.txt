@@ -1,3 +1,13 @@
+<<<<<<< HEAD
 /home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles/rebuild_cache.dir
 /home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles/edit_cache.dir
 /home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles/DungeonCrawler.dir
+=======
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles/DungeonCrawler.dir
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/src/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/src/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/tests/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/tests/CMakeFiles/edit_cache.dir
+>>>>>>> 27d098b446bd2fb03b08682eff5cfff3c359cf5c

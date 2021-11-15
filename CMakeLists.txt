@@ -6,6 +6,8 @@ file(GLOB SOURCES src/*.cpp src/DungeonGeneration/*.cpp src/Items/*.cpp)
 
 find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 
+add_subdirectory ("tests")
+
 # test_instructions.txt
 # This (below) is the line that tells CMake which .cpp file the executable is created for.
 # Define the path to the cpp file of your choice inside the quotation marks.

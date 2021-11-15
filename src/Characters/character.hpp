@@ -16,9 +16,6 @@ class Character {
     public:
     Character(CharacterType charactertype, int healthpoints, DungeonTile* currenttile); //Constructs a new character.
 
-    ~Character(); //Destructor that destroys the character if health points
-    //are reduced to zero or below.
-
     CharacterType GetCharacterType() const; //Returns the character type.
 
     DungeonTile* GetCurrentTile() const; //Returns the tile the character is standing on.

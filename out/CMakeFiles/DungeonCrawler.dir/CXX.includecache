@@ -6,3 +6,26 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< HEAD
+=======
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeontile.hpp
+../Items/item.hpp
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/item.hpp
+vector
+-
+
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/item.hpp
+string
+-
+
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/tests/dungeonleveltest.cpp
+../src/DungeonGeneration/dungeontile.hpp
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeontile.hpp
+utility
+-
+iostream
+-
+string
+-
+
+>>>>>>> 27d098b446bd2fb03b08682eff5cfff3c359cf5c

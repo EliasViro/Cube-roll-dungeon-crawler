@@ -20,7 +20,7 @@ All files MUST have:
 -A character signifying a loot tile
 -At least five (5) characters signifying enemy tiles.
 
-Also note that there should ONLY be singular wall tiles inside rooms, not counting the edges of a room.
+Also note that there should ONLY be singular wall tiles inside rooms, not counting the edges of a room. Adjacent wall tiles will break pathfinding.
 
 '#' means a WallTile.
 '*' means a FloorTile.

@@ -13,8 +13,8 @@ add_subdirectory ("src")
 # is created for your test cpp which you can then run.
 ####################################\  /#######
 #####################################\/########
-add_executable(DungeonCrawler "tests/dungeonleveltest.cpp")
+add_executable(DungeonCrawler "src/main.cpp")
 #####################################/\########
 ####################################/  \#######
 
-target_link_libraries(DungeonCrawler sfml-audio sfml-graphics)
+target_link_libraries(DungeonCrawler sfml-audio sfml-graphics sfml-window)

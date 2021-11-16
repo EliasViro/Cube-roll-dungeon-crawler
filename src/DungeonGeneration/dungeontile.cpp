@@ -42,6 +42,22 @@ DungeonTile::DungeonTile(TileType tiletype, int xcoord, int ycoord)
         ispassable_ = true;
         isopen_ = false;
     }
+    if (tiletype != Trap) {
+        trapstate_ = Dormant;
+    }
+    else {
+        srand(time(NULL));
+        int randomnumber = rand() % 3 + 1;
+        if (randomnumber == 1) {
+            trapstate_ = Dormant;
+        }
+        else if (randomnumber == 2) {
+            trapstate_ = Emerging;
+        }
+        else {
+            trapstate_ = Spikes;
+        }
+    }
     
     std::vector<DungeonTile*> tileneighbors_;
 }
@@ -147,6 +163,24 @@ void DungeonTile::Open() {
     }
 }
 
-bool DungeonTile::IsOpen() {
+bool DungeonTile::IsOpen() const {
     return isopen_;
+}
+
+TrapState DungeonTile::GetTrapState() const {
+    return trapstate_;
+}
+
+void DungeonTile::ProceedTrapState() {
+    if (tiletype_ == Trap) {
+        if (trapstate_ == Dormant) {
+            trapstate_ = Emerging;
+        }
+        else if (trapstate_ == Emerging) {
+            trapstate_ = Spikes;
+        }
+        else {
+            trapstate_ = Dormant;
+        }
+    }
 }

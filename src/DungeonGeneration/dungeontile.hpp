@@ -1,5 +1,7 @@
 #include "../Items/item.hpp"
 #include <vector>
+#include <stdlib.h>
+#include <time.h>
 
 //A class that is inherited by all tile types.
 
@@ -13,6 +15,12 @@ enum TileType {
     Exit,
     Entrance,
     Loot
+};
+
+enum TrapState {
+    Dormant,
+    Emerging,
+    Spikes
 };
 
 class DungeonTile {
@@ -46,7 +54,12 @@ class DungeonTile {
 
     void Open(); //Changes the isopen value to true. Also changes the ispassable value to true if the tile is a door.
 
-    bool IsOpen(); //Returns true if the isopen status is true.
+    bool IsOpen() const; //Returns true if the isopen status is true.
+
+    TrapState GetTrapState() const; //Returns the trap state of the tile.
+
+    void ProceedTrapState(); //Proceeds the trap state of the tile if the tile is a trap tile.
+
 
     private:
     bool ispassable_; //The status of the tile. True if passable, false otherwise.
@@ -56,5 +69,6 @@ class DungeonTile {
     TileType tiletype_; //The type of the tile, e.g. FloorTile or WallTile.
     int xcoord_; //The x-coordinate of the tile in a room.
     int ycoord_; //The y-coordinate of the tile in a room.
+    TrapState trapstate_; //The status of trap tiles.
     std::vector<DungeonTile*> tileneighbors_; //Neighboring tiles of the tile stored as NEWS.
 };

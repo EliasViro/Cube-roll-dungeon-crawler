@@ -1,9 +1,11 @@
 #include <iostream>
+
 #include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/OpenGL.hpp>
 #include <SFML/Audio.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
+
 
 // User-specific local paths
 //############################
@@ -16,6 +18,7 @@ std::string fff_forward_path = "/home/atte/.local/share/fonts/Unknown Vendor/Tru
 int main() {
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Dungeon Crawler", sf::Style::Close);
     
+    /*
     sf::RectangleShape quit_button(sf::Vector2f(300, 100));
     quit_button.setOrigin(quit_button.getLocalBounds().width/2, quit_button.getLocalBounds().height/2);
     quit_button.setPosition(800, 600);
@@ -36,9 +39,14 @@ int main() {
     sf::Text start_text("Start game", pixel_font, 40);
     start_text.setOrigin(start_text.getLocalBounds().width/2, start_text.getLocalBounds().height/2 - 10);
     start_text.setPosition(start_button.getPosition());
+    */
+
+    sf::Texture menu_texture;
+    menu_texture.loadFromFile("../src/Graphics/GUI_Sprites/MainMenu.png");
+    sf::Sprite menu_sprite(menu_texture);
 
     sf::Music start_music;
-    start_music.openFromFile("src/Sounds/Music/Placeholder.ogg");
+    start_music.openFromFile("../src/Sounds/Music/Placeholder.ogg");
 
     while (window.isOpen())
     {
@@ -49,6 +57,7 @@ int main() {
                 window.close();
         }
 
+        /*
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
             if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
@@ -59,12 +68,14 @@ int main() {
             }
 
         }
+        */
 
         window.clear();
-        window.draw(quit_button);
-        window.draw(start_button);
-        window.draw(quit_text);
-        window.draw(start_text);
+        window.draw(menu_sprite);
+        //window.draw(quit_button);
+        //window.draw(start_button);
+        //window.draw(quit_text);
+        //window.draw(start_text);
         window.display();
 
         //start_music.play();

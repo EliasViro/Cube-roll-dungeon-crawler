@@ -1,4 +1,5 @@
 #include <iostream>
+#include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/OpenGL.hpp>
@@ -37,7 +38,7 @@ int main() {
     start_text.setPosition(start_button.getPosition());
 
     sf::Music start_music;
-    start_music.openFromFile("src/Sounds/Placeholder.ogg");
+    start_music.openFromFile("src/Sounds/Music/Placeholder.ogg");
 
     while (window.isOpen())
     {

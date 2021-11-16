@@ -42,11 +42,11 @@ int main() {
     */
 
     sf::Texture menu_texture;
-    menu_texture.loadFromFile("Graphics/GUI_Sprites/MainMenu.png");
+    menu_texture.loadFromFile("../src/Graphics/GUI_Sprites/MainMenu.png");
     sf::Sprite menu_sprite(menu_texture);
 
     sf::Music start_music;
-    start_music.openFromFile("/home/atte/cpp_projects/DungeonCrawler/src/Sounds/Music/Placeholder.ogg");
+    start_music.openFromFile("../src/Sounds/Music/Placeholder.ogg");
 
     while (window.isOpen())
     {

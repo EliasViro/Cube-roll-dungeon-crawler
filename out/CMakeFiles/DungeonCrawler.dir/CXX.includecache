@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/main.cpp
+iostream
+-
+SFML/System.hpp
+-
+SFML/Graphics.hpp
+-
+SFML/Window.hpp
+-
+SFML/OpenGL.hpp
+-
+SFML/Audio.hpp
+-
+

@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/main.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/main.cpp"
+}
+]

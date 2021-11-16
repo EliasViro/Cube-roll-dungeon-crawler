@@ -6,7 +6,7 @@ project ("DungeonCrawler")
 
 
 file(GLOB SOURCES 
-"src/*.hpp" 
+#"src/*.hpp" 
 "src/*.cpp"
 "src/Characters/*.hpp" 
 "src/Characters/*.cpp"

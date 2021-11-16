@@ -1,3 +1,6 @@
+#pragma once
+
+
 #include "dungeontile.hpp"
 #include "../Characters/character.hpp"
 #include "../Characters/characterplayer.hpp"

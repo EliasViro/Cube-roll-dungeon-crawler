@@ -1,3 +1,6 @@
+#pragma once
+
+
 #include "character.hpp"
 #include <stdlib.h> //For randomization purposes.
 #include <time.h> //For creating a random seed.

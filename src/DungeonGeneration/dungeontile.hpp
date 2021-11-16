@@ -1,3 +1,6 @@
+#pragma once
+
+
 #include "../Items/item.hpp"
 #include <vector>
 #include <stdlib.h>

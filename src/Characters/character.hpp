@@ -1,3 +1,6 @@
+#pragma once
+
+
 #include "../DungeonGeneration/dungeontile.hpp"
 #include <string>
 

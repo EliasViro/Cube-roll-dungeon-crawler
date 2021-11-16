@@ -1,3 +1,6 @@
+#pragma once
+
+
 #include <string>
 
 //Item is a class that all item type classes will inherit.

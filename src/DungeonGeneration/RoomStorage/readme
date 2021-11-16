@@ -1,4 +1,3 @@
-
 ROOMSTORAGE RULES:
 
 1DoorRooms are stored in North orientation.
@@ -18,9 +17,9 @@ All files MUST have:
 -A character signifying a level entrance
 -A character signifying a level exit
 -A character signifying a loot tile
--At least five (5) characters signifying enemy tiles.
+-At least five characters signifying enemy tiles.
 
-Also note that there should ONLY be singular wall tiles inside rooms, not counting the edges of a room. Adjacent wall tiles will break pathfinding.
+Also note that there should ONLY be up to only two consecutive wall/pit tiles inside rooms, not counting the edges of a room in order for the character pathfinding to work.
 
 '#' means a WallTile.
 '*' means a FloorTile.
@@ -37,8 +36,8 @@ Example of a room file stored in 2DoorRoomsCorner:
 
 #####==#####
 #####******#
-#####******#
-#####******#
+#####**##**#
+#####**##**#
 #####*L**E*#
 #####**E***#
 #####**D***#

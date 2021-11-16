@@ -17,9 +17,11 @@ DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, unsigned int depth, Ro
         std::ifstream reader(RandomizeFileName(roomtype) + ".txt");
         std::string readline;
         std::vector<std::string&> roomvector;
-        while (std::getline(reader, readline)) {
+        int i = 0;
+        while (std::getline(reader, readline) && i < 12) {
             std::istringstream iss(readline);
             roomvector.push_back(readline);
+            i++;
         }
         roomvector = RandomizeRoom(roomvector, doororientation);
         alltiles_ = CreateTiles(roomvector, isplayerstartingroom);

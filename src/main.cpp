@@ -148,7 +148,7 @@ Main game:
 Loop starts from here:
 1. Generate a level
 2. Place the player on the level entrance tile in the starting room. Update grpahics.
-3. Ask for player input and move the player accordingly.
+3. Ask for player input and move the player accordingly, or allow interacting with the inventory, open the level map etc.
 4. When the player walks to a door tile, move the player to the next room, and if the size of the enemy group next in the enemy vector is larger than zero, spawn enemies and close doors.
 5. Player moves first (can't walk to inpassable tiles), graphics are updated. The top item is checked for using conditions and possibly used. Player input might be needed in case of multiple
 enemies being in range of a weapon that can only target one enemy at a time. Graphics are updated again.

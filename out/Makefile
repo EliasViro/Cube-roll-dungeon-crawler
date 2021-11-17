@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/atte/cpp_projects/DungeonCrawler
+CMAKE_SOURCE_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/atte/cpp_projects/DungeonCrawler/out
+CMAKE_BINARY_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles /home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -123,6 +123,330 @@ DungeonCrawler/fast:
 	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/build
 .PHONY : DungeonCrawler/fast
 
+src/Characters/character.o: src/Characters/character.cpp.o
+
+.PHONY : src/Characters/character.o
+
+# target to build an object file
+src/Characters/character.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.o
+.PHONY : src/Characters/character.cpp.o
+
+src/Characters/character.i: src/Characters/character.cpp.i
+
+.PHONY : src/Characters/character.i
+
+# target to preprocess a source file
+src/Characters/character.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.i
+.PHONY : src/Characters/character.cpp.i
+
+src/Characters/character.s: src/Characters/character.cpp.s
+
+.PHONY : src/Characters/character.s
+
+# target to generate assembly for a file
+src/Characters/character.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.s
+.PHONY : src/Characters/character.cpp.s
+
+src/Characters/characterplayer.o: src/Characters/characterplayer.cpp.o
+
+.PHONY : src/Characters/characterplayer.o
+
+# target to build an object file
+src/Characters/characterplayer.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.o
+.PHONY : src/Characters/characterplayer.cpp.o
+
+src/Characters/characterplayer.i: src/Characters/characterplayer.cpp.i
+
+.PHONY : src/Characters/characterplayer.i
+
+# target to preprocess a source file
+src/Characters/characterplayer.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.i
+.PHONY : src/Characters/characterplayer.cpp.i
+
+src/Characters/characterplayer.s: src/Characters/characterplayer.cpp.s
+
+.PHONY : src/Characters/characterplayer.s
+
+# target to generate assembly for a file
+src/Characters/characterplayer.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.s
+.PHONY : src/Characters/characterplayer.cpp.s
+
+src/Characters/enemy.o: src/Characters/enemy.cpp.o
+
+.PHONY : src/Characters/enemy.o
+
+# target to build an object file
+src/Characters/enemy.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.o
+.PHONY : src/Characters/enemy.cpp.o
+
+src/Characters/enemy.i: src/Characters/enemy.cpp.i
+
+.PHONY : src/Characters/enemy.i
+
+# target to preprocess a source file
+src/Characters/enemy.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.i
+.PHONY : src/Characters/enemy.cpp.i
+
+src/Characters/enemy.s: src/Characters/enemy.cpp.s
+
+.PHONY : src/Characters/enemy.s
+
+# target to generate assembly for a file
+src/Characters/enemy.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.s
+.PHONY : src/Characters/enemy.cpp.s
+
+src/DungeonGeneration/dungeonlevel.o: src/DungeonGeneration/dungeonlevel.cpp.o
+
+.PHONY : src/DungeonGeneration/dungeonlevel.o
+
+# target to build an object file
+src/DungeonGeneration/dungeonlevel.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o
+.PHONY : src/DungeonGeneration/dungeonlevel.cpp.o
+
+src/DungeonGeneration/dungeonlevel.i: src/DungeonGeneration/dungeonlevel.cpp.i
+
+.PHONY : src/DungeonGeneration/dungeonlevel.i
+
+# target to preprocess a source file
+src/DungeonGeneration/dungeonlevel.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.i
+.PHONY : src/DungeonGeneration/dungeonlevel.cpp.i
+
+src/DungeonGeneration/dungeonlevel.s: src/DungeonGeneration/dungeonlevel.cpp.s
+
+.PHONY : src/DungeonGeneration/dungeonlevel.s
+
+# target to generate assembly for a file
+src/DungeonGeneration/dungeonlevel.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.s
+.PHONY : src/DungeonGeneration/dungeonlevel.cpp.s
+
+src/DungeonGeneration/dungeonroom.o: src/DungeonGeneration/dungeonroom.cpp.o
+
+.PHONY : src/DungeonGeneration/dungeonroom.o
+
+# target to build an object file
+src/DungeonGeneration/dungeonroom.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.o
+.PHONY : src/DungeonGeneration/dungeonroom.cpp.o
+
+src/DungeonGeneration/dungeonroom.i: src/DungeonGeneration/dungeonroom.cpp.i
+
+.PHONY : src/DungeonGeneration/dungeonroom.i
+
+# target to preprocess a source file
+src/DungeonGeneration/dungeonroom.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.i
+.PHONY : src/DungeonGeneration/dungeonroom.cpp.i
+
+src/DungeonGeneration/dungeonroom.s: src/DungeonGeneration/dungeonroom.cpp.s
+
+.PHONY : src/DungeonGeneration/dungeonroom.s
+
+# target to generate assembly for a file
+src/DungeonGeneration/dungeonroom.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.s
+.PHONY : src/DungeonGeneration/dungeonroom.cpp.s
+
+src/DungeonGeneration/dungeontile.o: src/DungeonGeneration/dungeontile.cpp.o
+
+.PHONY : src/DungeonGeneration/dungeontile.o
+
+# target to build an object file
+src/DungeonGeneration/dungeontile.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.o
+.PHONY : src/DungeonGeneration/dungeontile.cpp.o
+
+src/DungeonGeneration/dungeontile.i: src/DungeonGeneration/dungeontile.cpp.i
+
+.PHONY : src/DungeonGeneration/dungeontile.i
+
+# target to preprocess a source file
+src/DungeonGeneration/dungeontile.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.i
+.PHONY : src/DungeonGeneration/dungeontile.cpp.i
+
+src/DungeonGeneration/dungeontile.s: src/DungeonGeneration/dungeontile.cpp.s
+
+.PHONY : src/DungeonGeneration/dungeontile.s
+
+# target to generate assembly for a file
+src/DungeonGeneration/dungeontile.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.s
+.PHONY : src/DungeonGeneration/dungeontile.cpp.s
+
+src/Items/item.o: src/Items/item.cpp.o
+
+.PHONY : src/Items/item.o
+
+# target to build an object file
+src/Items/item.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.o
+.PHONY : src/Items/item.cpp.o
+
+src/Items/item.i: src/Items/item.cpp.i
+
+.PHONY : src/Items/item.i
+
+# target to preprocess a source file
+src/Items/item.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.i
+.PHONY : src/Items/item.cpp.i
+
+src/Items/item.s: src/Items/item.cpp.s
+
+.PHONY : src/Items/item.s
+
+# target to generate assembly for a file
+src/Items/item.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.s
+.PHONY : src/Items/item.cpp.s
+
+src/Items/meleeweapons.o: src/Items/meleeweapons.cpp.o
+
+.PHONY : src/Items/meleeweapons.o
+
+# target to build an object file
+src/Items/meleeweapons.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.o
+.PHONY : src/Items/meleeweapons.cpp.o
+
+src/Items/meleeweapons.i: src/Items/meleeweapons.cpp.i
+
+.PHONY : src/Items/meleeweapons.i
+
+# target to preprocess a source file
+src/Items/meleeweapons.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.i
+.PHONY : src/Items/meleeweapons.cpp.i
+
+src/Items/meleeweapons.s: src/Items/meleeweapons.cpp.s
+
+.PHONY : src/Items/meleeweapons.s
+
+# target to generate assembly for a file
+src/Items/meleeweapons.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.s
+.PHONY : src/Items/meleeweapons.cpp.s
+
+src/Items/potions.o: src/Items/potions.cpp.o
+
+.PHONY : src/Items/potions.o
+
+# target to build an object file
+src/Items/potions.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o
+.PHONY : src/Items/potions.cpp.o
+
+src/Items/potions.i: src/Items/potions.cpp.i
+
+.PHONY : src/Items/potions.i
+
+# target to preprocess a source file
+src/Items/potions.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.i
+.PHONY : src/Items/potions.cpp.i
+
+src/Items/potions.s: src/Items/potions.cpp.s
+
+.PHONY : src/Items/potions.s
+
+# target to generate assembly for a file
+src/Items/potions.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.s
+.PHONY : src/Items/potions.cpp.s
+
+src/Items/rangedweapons.o: src/Items/rangedweapons.cpp.o
+
+.PHONY : src/Items/rangedweapons.o
+
+# target to build an object file
+src/Items/rangedweapons.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o
+.PHONY : src/Items/rangedweapons.cpp.o
+
+src/Items/rangedweapons.i: src/Items/rangedweapons.cpp.i
+
+.PHONY : src/Items/rangedweapons.i
+
+# target to preprocess a source file
+src/Items/rangedweapons.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.i
+.PHONY : src/Items/rangedweapons.cpp.i
+
+src/Items/rangedweapons.s: src/Items/rangedweapons.cpp.s
+
+.PHONY : src/Items/rangedweapons.s
+
+# target to generate assembly for a file
+src/Items/rangedweapons.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.s
+.PHONY : src/Items/rangedweapons.cpp.s
+
+src/Items/shields.o: src/Items/shields.cpp.o
+
+.PHONY : src/Items/shields.o
+
+# target to build an object file
+src/Items/shields.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o
+.PHONY : src/Items/shields.cpp.o
+
+src/Items/shields.i: src/Items/shields.cpp.i
+
+.PHONY : src/Items/shields.i
+
+# target to preprocess a source file
+src/Items/shields.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.i
+.PHONY : src/Items/shields.cpp.i
+
+src/Items/shields.s: src/Items/shields.cpp.s
+
+.PHONY : src/Items/shields.s
+
+# target to generate assembly for a file
+src/Items/shields.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.s
+.PHONY : src/Items/shields.cpp.s
+
+src/dungeonleveltest.o: src/dungeonleveltest.cpp.o
+
+.PHONY : src/dungeonleveltest.o
+
+# target to build an object file
+src/dungeonleveltest.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.o
+.PHONY : src/dungeonleveltest.cpp.o
+
+src/dungeonleveltest.i: src/dungeonleveltest.cpp.i
+
+.PHONY : src/dungeonleveltest.i
+
+# target to preprocess a source file
+src/dungeonleveltest.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.i
+.PHONY : src/dungeonleveltest.cpp.i
+
+src/dungeonleveltest.s: src/dungeonleveltest.cpp.s
+
+.PHONY : src/dungeonleveltest.s
+
+# target to generate assembly for a file
+src/dungeonleveltest.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.s
+.PHONY : src/dungeonleveltest.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -159,6 +483,42 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... DungeonCrawler"
+	@echo "... src/Characters/character.o"
+	@echo "... src/Characters/character.i"
+	@echo "... src/Characters/character.s"
+	@echo "... src/Characters/characterplayer.o"
+	@echo "... src/Characters/characterplayer.i"
+	@echo "... src/Characters/characterplayer.s"
+	@echo "... src/Characters/enemy.o"
+	@echo "... src/Characters/enemy.i"
+	@echo "... src/Characters/enemy.s"
+	@echo "... src/DungeonGeneration/dungeonlevel.o"
+	@echo "... src/DungeonGeneration/dungeonlevel.i"
+	@echo "... src/DungeonGeneration/dungeonlevel.s"
+	@echo "... src/DungeonGeneration/dungeonroom.o"
+	@echo "... src/DungeonGeneration/dungeonroom.i"
+	@echo "... src/DungeonGeneration/dungeonroom.s"
+	@echo "... src/DungeonGeneration/dungeontile.o"
+	@echo "... src/DungeonGeneration/dungeontile.i"
+	@echo "... src/DungeonGeneration/dungeontile.s"
+	@echo "... src/Items/item.o"
+	@echo "... src/Items/item.i"
+	@echo "... src/Items/item.s"
+	@echo "... src/Items/meleeweapons.o"
+	@echo "... src/Items/meleeweapons.i"
+	@echo "... src/Items/meleeweapons.s"
+	@echo "... src/Items/potions.o"
+	@echo "... src/Items/potions.i"
+	@echo "... src/Items/potions.s"
+	@echo "... src/Items/rangedweapons.o"
+	@echo "... src/Items/rangedweapons.i"
+	@echo "... src/Items/rangedweapons.s"
+	@echo "... src/Items/shields.o"
+	@echo "... src/Items/shields.i"
+	@echo "... src/Items/shields.s"
+	@echo "... src/dungeonleveltest.o"
+	@echo "... src/dungeonleveltest.i"
+	@echo "... src/dungeonleveltest.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

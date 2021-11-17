@@ -37,9 +37,9 @@ class Character {
 
     virtual void TakeDamage(int damage) = 0; //Reduces healthpoints by the amount of damage minus defense points.
 
-    void Stun(); //Stuns the character.
+    void Stun(int stunamount); //Stuns the character.
 
-    void UnStun(); //Removes stunned status.
+    void UnStun(); //Reduces stunned status.
 
     bool MoveToDirection(const char* direction); //Attempts to move the character on the neighboring tile in the given direction. Returns true if successful.
 
@@ -54,6 +54,6 @@ class Character {
     CharacterType charactertype_; //The type of the character.
     int healthpoints_; //The health points of the character.
     int defensepoints_; //The defense points of the character from using a shield. Blocks damage.
-    bool isstunned_; //Indicates if the character is stunned or not.
+    int isstunned_; //Indicates if the character is stunned or not. 0 = no stun, other number = the amount of turns the character will remain stunned.
     DungeonTile* currenttile_; //A pointer to the tile the character is standing on.
 };

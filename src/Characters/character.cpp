@@ -43,12 +43,14 @@ void Character::RemoveDefensePoints() {
     defensepoints_ = 0;
 }
 
-void Character::Stun() {
-    isstunned_ = true;
+void Character::Stun(int stunamount) {
+    isstunned_ += stunamount;
 }
 
 void Character::UnStun() {
-    isstunned_ = false;
+    if (isstunned_ > 0) {
+        isstunned_--;
+    }
 }
 
 bool Character::MoveToDirection(const char* direction) {

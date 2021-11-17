@@ -84,3 +84,25 @@ int main() {
     return 0;
 
 }
+
+
+
+/*
+Main game:
+
+1. Create the player character and a pointer to it. Remember starting items.
+2. Create six pre-made vectors of characters, one for each level, and divide the enemies into randomly sized 8 groups (smaller enemy vectors that will be assigned to rooms).
+3. Create loot vectors of items for each level.
+
+Loop starts from here:
+1. Generate a level
+2. Place the player on the level entrance tile in the starting room.
+3. Ask for player input and move the player accordingly.
+4. When the player walks to a door tile, move the player to the next room, and if the size of the enemy group next in the enemy vector is larger than zero, spawn enemies and close doors.
+5. Player moves first (can't walk to inpassable tiles), the top item is checked for using conditions and possibly used, graphics are updated. Player input might be needed in case of multiple
+enemies being in range of a weapon that can only target one enemy at a time.
+6. Traps cycle one step, graphics are updated, play trap sound. Then enemies move, and after all of them have moved, update graphics and play sounds.
+7. When all enemies have been defeated, spawn the appropriate loot item from the loot vector if it isn't a nullptr.
+8. When the enemies of the last room on a level are defeated, change player tile to a storage tile, delete the level and generate a new one. Then place the player on the level entrance and
+resume loop from step 3.
+*/

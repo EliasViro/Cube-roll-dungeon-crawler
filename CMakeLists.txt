@@ -28,8 +28,8 @@ file(GLOB SOURCES
 ####################################\  /#######
 #####################################\/########
 
-#add_executable(DungeonCrawler ${SOURCES})
-add_executable(DungeonCrawler src/main.cpp)
+add_executable(DungeonCrawler ${SOURCES})
+#add_executable(DungeonCrawler src/main.cpp)
 
 #####################################/\########
 ####################################/  \#######

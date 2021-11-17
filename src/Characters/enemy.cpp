@@ -107,7 +107,7 @@ bool Enemy::NextToCharacter(Character* targetcharacter) const {
 void Enemy::TakeAction(Character* targetcharacter) {
     srand(time(NULL));
     RemoveDefensePoints();
-    if (!isstunned_) {
+    if (isstunned_ = 0) {
         if (enemyai_ == Random) {
             int randomnumber = rand() % 4 + 1;
             bool movedsuccessfully = false;
@@ -164,19 +164,19 @@ void Enemy::TakeAction(Character* targetcharacter) {
         if (actionvector_[indexinactionvector_] == Melee_1 && NextToCharacter(targetcharacter)) {
             targetcharacter->TakeDamage(1);
             if (targetcharacter->GetDefensePoints() > 0) {
-                Stun();
+                Stun(1);
             }
         }
         if (actionvector_[indexinactionvector_] == Melee_2 && NextToCharacter(targetcharacter)) {
             targetcharacter->TakeDamage(2);
             if (targetcharacter->GetDefensePoints() > 0) {
-                Stun();
+                Stun(1);
             }
         }
         if (actionvector_[indexinactionvector_] == Melee_3 && NextToCharacter(targetcharacter)) {
             targetcharacter->TakeDamage(3);
             if (targetcharacter->GetDefensePoints() > 0) {
-                Stun();
+                Stun(1);
             }
         }
         if (actionvector_[indexinactionvector_] == Ranged_1 && !DistanceToCharacterLargerThanThree(targetcharacter)) {

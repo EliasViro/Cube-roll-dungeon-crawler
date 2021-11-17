@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/home/atte/cpp_projects/DungeonCrawler")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/atte/cpp_projects/DungeonCrawler/out")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/atte/cpp_projects/DungeonCrawler/build")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

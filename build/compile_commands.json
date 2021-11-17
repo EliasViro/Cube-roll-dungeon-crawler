@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/atte/cpp_projects/DungeonCrawler/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/main.cpp",
+  "file": "/home/atte/cpp_projects/DungeonCrawler/src/main.cpp"
+}
+]

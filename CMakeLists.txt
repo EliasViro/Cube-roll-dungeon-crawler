@@ -6,7 +6,6 @@ project ("DungeonCrawler")
 
 
 file(GLOB SOURCES 
-#"src/*.hpp" 
 "src/*.cpp"
 "src/Characters/*.hpp" 
 "src/Characters/*.cpp"
@@ -28,8 +27,8 @@ file(GLOB SOURCES
 ####################################\  /#######
 #####################################\/########
 
-add_executable(DungeonCrawler ${SOURCES})
-#add_executable(DungeonCrawler src/main.cpp)
+#add_executable(DungeonCrawler ${SOURCES})
+add_executable(DungeonCrawler src/main.cpp)
 
 #####################################/\########
 ####################################/  \#######

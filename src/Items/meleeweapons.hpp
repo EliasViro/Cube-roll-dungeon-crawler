@@ -25,10 +25,10 @@ class MeleeWeapon : public Item {
     virtual bool TargetSeveralEnemies() const = 0;
 
     protected:
-    int range_;
-    int damage_;
-    bool isstunning_;
-    bool targetseveralenemies_;
+    int range_; //The range of the weapon.
+    int damage_; //The damage of the weapon.
+    bool isstunning_; //If the weapon is stunning, it will stun the struck enemy and enemies adjacent to it.
+    bool targetseveralenemies_; //If the weapon can target several enemies, it will attack all enemies in attack range instead of just one.
 };
 
 

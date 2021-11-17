@@ -146,6 +146,9 @@ void Enemy::TakeAction(Character* targetcharacter) {
                 MoveAwayFrom(targetcharacter);
             }
         }
+        if (currenttile_->GetTrapState() == Spikes) {
+            TakeDamage(1);
+        }
         if (indexinactionvector_ < actionvector_.size() - 1) {
             indexinactionvector_++;
         }

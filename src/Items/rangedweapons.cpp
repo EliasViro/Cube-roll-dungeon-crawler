@@ -39,12 +39,12 @@ int RangedWeapon::GetRange() const {
 
 
 //Cooldown 7, Damage 2. Thrown.
-Javelin::Javelin() : RangedWeapon("Javelin", "A basic throwing spear with a sharp tip.", 999, 7, 2, 3, false, true) {}
+Javelin::Javelin() : RangedWeapon("Javelin", "A hefty throwing spear with a sharp tip.", 999, 7, 2, 3, false, true) {}
 bool Javelin::IsStunning() const { return isstunning_; }
 bool Javelin::IsThrown() const { return isthrown_; }
 
 //Cooldown 7, Damage 0. Thrown. Stunning.
-Bolas::Bolas() : RangedWeapon("Bolas", "A strange throwing weapon consisting of three stone weights attached to each other with rope. The ropes wrap around the target it is thrown at, restricting the target's movement for a short while.", 999, 7, 0, 3, true, true) {}
+Bolas::Bolas() : RangedWeapon("Bolas", "A strange throwing weapon consisting of three stone weights attached to each other with rope. The weights wrap around and entangle the target it is thrown at and any enemies next to it, restricting their movement for a short while.", 999, 7, 0, 3, true, true) {}
 bool Bolas::IsStunning() const { return isstunning_; }
 bool Bolas::IsThrown() const { return isthrown_; }
 

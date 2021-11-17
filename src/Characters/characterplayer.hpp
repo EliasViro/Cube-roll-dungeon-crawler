@@ -14,9 +14,9 @@ class Player : public Character {
     public:
     Player(DungeonTile* tile);
 
-    std::vector<InventorySlot> GetInventory() const; //Returns the player inventory.
+    std::vector<InventorySlot*> GetInventory() const; //Returns the player inventory.
 
-    bool DropItemFromSlot(InventorySlot inventoryslot); //Attempts to drop the item in the given inventory slot on the tile the player is standing on.
+    bool DropItemFromSlot(InventorySlot* inventoryslot); //Attempts to drop the item in the given inventory slot on the tile the player is standing on.
     //Returns true if successful.
 
     bool AddItemToSlot(Item* item); //Attempts to add the item to the first free inventory slot in the player inventory. Returns true if successful.
@@ -26,7 +26,7 @@ class Player : public Character {
     void TakeDamage(int damage); //Deals damage to the player.
 
     private:
-    std::vector<InventorySlot> inventory_; //A vector of InventorySlots that are stored in the following order: TOP, N, E, W, S, BOTTOM.
+    std::vector<InventorySlot*> inventory_; //A vector of InventorySlots that are stored in the following order: TOP, N, E, W, S, BOTTOM.
 };
 
 
@@ -34,8 +34,6 @@ class Player : public Character {
 class InventorySlot {
     public:
     InventorySlot(Item* item); //Constructor.
-    
-    ~InventorySlot(); //Destructor, used if the player character dies.
 
     bool IsEmpty() const; //Returns true if the inventory slot is not holding an item.
 

@@ -9,17 +9,17 @@
 
 Player::Player(DungeonTile* tile) 
     : Character(PlayerCharacter, 3, tile) {
-    inventory_ = {InventorySlot(nullptr), InventorySlot(nullptr), InventorySlot(nullptr), InventorySlot(nullptr), InventorySlot(nullptr), InventorySlot(nullptr)};
+    inventory_ = {new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr)};
 }
 
-std::vector<InventorySlot> Player::GetInventory() const {
+std::vector<InventorySlot*> Player::GetInventory() const {
     return inventory_;
 }
 
-bool Player::DropItemFromSlot(InventorySlot inventoryslot) {
-    if (!inventoryslot.IsEmpty() && currenttile_->GetItem() == nullptr) {
-        currenttile_->PlaceItem(inventoryslot.GetItem());
-        inventoryslot.DropItem();
+bool Player::DropItemFromSlot(InventorySlot* inventoryslot) {
+    if (!inventoryslot->IsEmpty() && currenttile_->GetItem() == nullptr) {
+        currenttile_->PlaceItem(inventoryslot->GetItem());
+        inventoryslot->DropItem();
         return true;
     }
     else {
@@ -31,7 +31,7 @@ bool Player::AddItemToSlot(Item* item) {
     bool hasbeenadded = false;
     int i = 0;
     while (hasbeenadded == false && i < 6) {
-        hasbeenadded = inventory_[i].AddItem(item);
+        hasbeenadded = inventory_[i]->AddItem(item);
         i++;
     }
     return hasbeenadded;
@@ -43,7 +43,14 @@ bool Player::MoveToDirection(DungeonTile* tile, const char* direction) {
         tile->SetCharacter();
         currenttile_->RemoveCharacter();
         currenttile_ = tile;
-        std::vector<InventorySlot> tempinventory = inventory_;
+        std::vector<InventorySlot*> tempinventory;
+        tempinventory.push_back(inventory_[0]);
+        tempinventory.push_back(inventory_[1]);
+        tempinventory.push_back(inventory_[2]);
+        tempinventory.push_back(inventory_[3]);
+        tempinventory.push_back(inventory_[4]);
+        tempinventory.push_back(inventory_[5]);
+        
         if (direction == "N") {
             inventory_[0] = tempinventory[4];
             inventory_[1] = tempinventory[0];
@@ -76,7 +83,7 @@ bool Player::MoveToDirection(DungeonTile* tile, const char* direction) {
             inventory_[4] = tempinventory[0];
             inventory_[5] = tempinventory[4];
         }
-        inventory_[0].UseItem();
+        inventory_[0]->UseItem();
         return true;
     }
     else {
@@ -85,21 +92,16 @@ bool Player::MoveToDirection(DungeonTile* tile, const char* direction) {
 }
 
 void Player::TakeDamage(int damage) {
-    if (inventory_[0].GetItem()->GetItemType() == ShieldItem) {
-        AddDefensePoints(inventory_[0].UseItem());
+    if (inventory_[0]->GetItem()->GetItemType() == ShieldItem) {
+        AddDefensePoints(inventory_[0]->UseItem());
     }
     healthpoints_ = healthpoints_ - (damage - defensepoints_);
-    if (healthpoints_ <= 0) {
-        delete(this);
-    }
 }
 
 
 //A class that represents one of the six slots in the player inventory. Holds an Item.
 
 InventorySlot::InventorySlot(Item* item) : item_(item) {}
-
-InventorySlot::~InventorySlot() {}
 
 bool InventorySlot::IsEmpty() const {
     if (item_ == nullptr) {

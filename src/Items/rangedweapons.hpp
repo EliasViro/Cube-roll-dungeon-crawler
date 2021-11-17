@@ -31,10 +31,10 @@ class RangedWeapon : public Item {
     virtual bool IsThrown() const = 0;
 
     protected:
-    int range_;
-    int damage_;
-    bool isstunning_;
-    bool isthrown_;
+    int range_; //The range of the weapon.
+    int damage_; //The damage of the weapon.
+    bool isstunning_; //If a ranged weapon is stunning, it will stun its target and enemies adjacent to it.
+    bool isthrown_; //If the weapon is a throwing weapon, it will be removed from player inventory upon using and placed on the target tile.
 };
 
 

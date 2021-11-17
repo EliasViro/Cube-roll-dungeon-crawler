@@ -46,7 +46,7 @@ class DungeonRoom {
 
     std::vector<std::vector<DungeonTile*>> GetAllTiles() const; //Returns a vector of all tiles in the room.
 
-    bool IsExplored() const; //Returns true if the room has been explored already.
+    bool IsExplored() const; //Returns true if the room has been already explored.
 
     void SpawnEnemies(std::vector<Character*> enemyvector); //Spawns enemies on Enemy spawning tiles if the room hasn't been explored yet and the player enters the room.
 

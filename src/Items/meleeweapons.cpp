@@ -60,12 +60,12 @@ bool BattleAxe::IsStunning() const { return isstunning_; }
 bool BattleAxe::TargetSeveralEemies() const { return targetseveralenemies_; }
 
 //Cooldown 5, Damage 1. Stuns targets.
-Mace::Mace() : MeleeWeapon("Mace", "A simple mace with a metallic weight at the end of a wooden handle. Stuns enemies.", 999, 5, 1, 1, true, false) {}
+Mace::Mace() : MeleeWeapon("Mace", "A simple mace with a metallic weight at the end of a wooden handle. Stuns the struck enemy and enemies next to it.", 999, 5, 1, 1, true, false) {}
 bool Mace::IsStunning() const { return isstunning_; }
 bool Mace::TargetSeveralEemies() const { return targetseveralenemies_; }
 
 //Cooldown 6, Damage 2. Stuns targets.
-WarHammer::WarHammer() : MeleeWeapon("Warhammer", "A hammer specifically designed for cracking skulls on the battlefield. Stuns enemies.", 999, 6, 2, 1, true, false) {}
+WarHammer::WarHammer() : MeleeWeapon("Warhammer", "A hammer specifically designed for cracking skulls on the battlefield. Stuns the struck enemy and enemies next to it.", 999, 6, 2, 1, true, false) {}
 bool WarHammer::IsStunning() const { return isstunning_; }
 bool WarHammer::TargetSeveralEemies() const { return targetseveralenemies_; }
 

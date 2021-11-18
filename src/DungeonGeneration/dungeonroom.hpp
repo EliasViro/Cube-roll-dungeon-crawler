@@ -50,6 +50,8 @@ class DungeonRoom {
 
     void SpawnEnemies(std::vector<Character*> enemyvector); //Spawns enemies on Enemy spawning tiles if the room hasn't been explored yet and the player enters the room.
 
+    void GiveLoot(Item* lootitem); //Assigns a new loot item to the room.
+
     void SpawnLoot(); //Spawns loot on a loot tile if the room was given loot when it was created.
 
     void CloseDoors(); //Closes the doors of the room until all enemies have been defeated.
@@ -65,5 +67,5 @@ class DungeonRoom {
     bool hasbeenexplored_; //True if the room has already been explored.
     Item* loot_; //A pointer to the loot item.
     std::vector<std::vector<DungeonTile*>> alltiles_; // A vector that stores all tiles in the room.
-    std::vector<DungeonRoom*> neighbors_; // A vector that stores the neighboring rooms of the room.
+    std::vector<DungeonRoom*> neighbors_; // A vector that stores the neighboring rooms of the room in the order NEWS.
 };

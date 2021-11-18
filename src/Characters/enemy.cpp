@@ -201,7 +201,6 @@ void Enemy::TakeDamage(int damage) {
     healthpoints_ = healthpoints_ - (damage - defensepoints_);
     if (healthpoints_ <= 0) {
         currenttile_->RemoveCharacter();
-        delete(this);
     }
 }
 

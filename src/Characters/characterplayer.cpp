@@ -8,7 +8,7 @@
 
 
 Player::Player(DungeonTile* tile) 
-    : Character(PlayerCharacter, 3, tile) {
+    : Character(PlayerCharacter, 4, tile) {
     inventory_ = {new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr)};
 }
 

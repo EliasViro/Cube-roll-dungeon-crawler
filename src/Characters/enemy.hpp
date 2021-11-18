@@ -86,7 +86,52 @@ class HugeSlime : public Enemy {
     std::string GetDescription() const;
 };
 
-class Rat : public Enemy {
-    Rat(DungeonTile* tile);
+class SmallSpider : public Enemy {
+    SmallSpider(DungeonTile* tile);
+    std::string GetDescription() const;
+};
+
+class Spider : public Enemy {
+    Spider(DungeonTile* tile);
+    std::string GetDescription() const;
+};
+
+class BigSpider : public Enemy {
+    BigSpider(DungeonTile* tile);
+    std::string GetDescription() const;
+};
+
+class SpitterSpider : public Enemy {
+    SpitterSpider(DungeonTile* tile);
+    std::string GetDescription() const;
+};
+
+class Skeleton : public Enemy {
+    Skeleton(DungeonTile* tile);
+    std::string GetDescription() const;
+};
+
+class SkeletonWarrior : public Enemy {
+    SkeletonWarrior(DungeonTile* tile);
+    std::string GetDescription() const;
+};
+
+class SkeletonKnight : public Enemy {
+    SkeletonKnight(DungeonTile* tile);
+    std::string GetDescription() const;
+};
+
+class SkeletonArcher : public Enemy {
+    SkeletonArcher(DungeonTile* tile);
+    std::string GetDescription() const;
+};
+
+class SkeletonMage : public Enemy {
+    SkeletonMage(DungeonTile* tile);
+    std::string GetDescription() const;
+};
+
+class Lich : public Enemy {
+    Lich(DungeonTile* tile);
     std::string GetDescription() const;
 };

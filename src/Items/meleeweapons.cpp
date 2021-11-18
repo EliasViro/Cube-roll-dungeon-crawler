@@ -35,12 +35,12 @@ int MeleeWeapon::GetRange() const {
 
 
 //Cooldown 3, Damage 1.
-ShortSword::ShortSword() : MeleeWeapon("Shortsword", "A short and sturdy bladed weapon with a comfortable grip.", 999, 3, 1, 1, false, false) {}
+ShortSword::ShortSword() : MeleeWeapon("Shortsword", "A short and sturdy sword with a comfortable grip.", 999, 3, 1, 1, false, false) {}
 bool ShortSword::IsStunning() const { return isstunning_; }
 bool ShortSword::TargetSeveralEemies() const { return targetseveralenemies_; }
 
 //Cooldown 5, Damage 1. Hits several enemies.
-ArmingSword::ArmingSword() : MeleeWeapon("Arming sword", "A medium sized single-handed sword that can cut down several enemies with a single swing.", 999, 5, 1, 1, false, true) {}
+ArmingSword::ArmingSword() : MeleeWeapon("Arming sword", "A medium sized single-handed sword that can cut down multiple enemies with a single swing.", 999, 5, 1, 1, false, true) {}
 bool ArmingSword::IsStunning() const { return isstunning_; }
 bool ArmingSword::TargetSeveralEemies() const { return targetseveralenemies_; }
 

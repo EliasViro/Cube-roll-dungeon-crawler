@@ -38,8 +38,7 @@ class Item {
     //For MeleeWeapons this value is the damage, if 0 the item was not used.
     //For RangedWeapons this value is the damage, if 0 the item was not used.
     //For Shields this value is the added defense power, if 0 the item was not used.
-    //For Spells this value signifies the effect. If 0 the item was not used. If 1 the spell swaps the character's location with another character's location. Etc.
-    //For Potions this value signifies the effect. If 0 the item was not used. If 1 the potion heals the player by 1. Etc.
+    //For Potions this value signifies the effect. If 0 the item was not used. If 1 the potion heals the player by 1. If 2, a stamina potion.
 
     void PickUp(); //Sets the isactive status to true.
 

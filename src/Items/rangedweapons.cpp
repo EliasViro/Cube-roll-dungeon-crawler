@@ -49,6 +49,6 @@ bool Bolas::IsStunning() const { return isstunning_; }
 bool Bolas::IsThrown() const { return isthrown_; }
 
 //Cooldown 8, Damage 1.
-Sling::Sling() : RangedWeapon("Sling", "A simple piece of leather meant for throwing stones, which means that the ammunition is very plentiful. It takes a while to place a new stone in it though.", 999, 8, 1, 3, false, false) {}
+Sling::Sling() : RangedWeapon("Sling", "A simple piece of leather meant for slinging stones, which means that the ammunition is very plentiful. It takes a while to place a new stone in it though.", 999, 8, 1, 3, false, false) {}
 bool Sling::IsStunning() const { return isstunning_; }
 bool Sling::IsThrown() const { return isthrown_; }

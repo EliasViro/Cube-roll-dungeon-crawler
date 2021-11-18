@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 
+#include "DungeonGeneration/dungeonlevel.hpp"
 
 
 // User-specific local paths
@@ -18,25 +19,28 @@ std::string fff_forward_path = "/home/atte/.local/share/fonts/Unknown Vendor/Tru
 
 
 
-int game(sf::RenderWindow& window) {
-    /*
-    This function is called from the main() when the player clicks the start game button in the start menu.
-    This function holds a game loop which is active while a game instance is running. When the game ends,
-    the program execution returns to the main() and the player is thrown back to start menu.
-    */
 
+
+//#####################################################################################################
+/*
+This function is called from the main() when the player clicks the start game button in the start menu.
+This function holds a game loop which is active while a game instance is running. When the game ends,
+the program execution returns to the main() and the player is thrown back to start menu.
+*/
+void room(sf::RenderWindow& window, int sidelenght) {
     // Game view items
     sf::Texture game_texture;
     game_texture.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
     sf::Sprite game_sprite(game_texture);
 
+
+
     sf::RectangleShape end_game_button(sf::Vector2f(115, 115));
     end_game_button.setPosition(1415, 712);
 
-
     // Game loop
     while (window.isOpen()) {
-        
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -47,7 +51,7 @@ int game(sf::RenderWindow& window) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
             if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-                return 0;
+                return;
             }
 
         }
@@ -57,6 +61,8 @@ int game(sf::RenderWindow& window) {
         window.display();
     }
 
+        return;
+}
 /*
 Main game:
 
@@ -80,14 +86,36 @@ enemies being in range of a weapon that can only target one enemy at a time. Gra
 11. Change the player tile to a storage tile, delete the level and resume loop from step 1.
 */
 
-    return 0;
+
+
+
+
+//#############################################################################################################
+// This function simply loops through the six levels of one game instance.
+void levelLoop(sf::RenderWindow& window) {
+    auto const levels = {1, 2, 3, 4, 5, 6};
+    int sidelength;
+
+    for (int i : levels) {
+        if (i == 1) sidelength = 2;
+        else if (1 < i < 6) sidelength = 3;
+        else sidelength = 4;
+
+        DungeonLevel::DungeonLevel level(sidelength);
+
+        //level(window, sidelength);
+    }
+
+    return;
 }
 
 
 
-int main() {
-    // This is a main function that launches the game i.e. initiates a render window in which a start menu is displayed.
 
+
+//#################################################################################################################
+// This is a main function that launches the game i.e. initiates a render window in which a start menu is displayed.
+int main() {
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Dungeon Crawler", sf::Style::Close);
     
     // Start menu items
@@ -137,7 +165,7 @@ int main() {
             }
             else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                 std::cout << "Start button pressed" << std::endl;
-                game(window);
+                levelLoop(window);
             }
             else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                 std::cout << "Instructions button pressed" << std::endl;

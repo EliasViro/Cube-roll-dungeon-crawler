@@ -45,8 +45,6 @@ class Character {
 
     void MoveToTile(DungeonTile* tile); //Moves the character onto the given tile.
 
-    virtual void MoveToTile(DungeonTile* tile, const char* direction) = 0; //Overridden by the player class.
-
     virtual void TakeAction() = 0; //Overridden by Allied and Enemy subclasses.
     //Causes Allies and Enemies to take an action.
 

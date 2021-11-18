@@ -5,10 +5,6 @@
 
 int DungeonLevel::GetLevel() const { return sidelength_; }
 
-int DungeonLevel::GetDepth() const {
-  return depth_;
-}
-
 std::pair<int,int> DungeonLevel::GetStartPos() const {
   return startPos_;
 }
@@ -17,12 +13,12 @@ std::vector<std::vector<DungeonRoom>> DungeonLevel::GetRooms() const {
   return rooms_;
 };
 
-DungeonLevel::DungeonLevel(int sidelength, unsigned int depth) : sidelength_(sidelength), depth_(depth) {
+DungeonLevel::DungeonLevel(int sidelength) : sidelength_(sidelength) {
     int startRow = (std::rand() % sidelength) ; // Generate rand number between 1 to level side length
     int startCol = (std::rand() % sidelength) ; // Generate rand number between 1 to level side length
     std::pair<int,int> startPos(startCol, startRow); // (col, row) due to graphics reason
     startPos_ = startPos; // Starting room
-    rooms_ = GenerateRooms(sidelength, startPos, depth); // Generated rooms
+    rooms_ = GenerateRooms(sidelength, startPos); // Generated rooms
 } 
 
 // Outside DungeonLevel class helper functions 
@@ -122,7 +118,7 @@ void Visit(std::pair<int, int>& room, int sidelength,
     }
 
 // Depth first search maze generator
-std::vector<std::vector<DungeonRoom>> GenerateRooms(int sidelength, std::pair<int,int> startPos, unsigned int depth) {
+std::vector<std::vector<DungeonRoom>> GenerateRooms(int sidelength, std::pair<int,int> startPos) {
     std::vector<std::pair<int,int>> roomsVisited; // vector to store
     int s = sidelength; // side length of the level
     int n = sidelength * sidelength; // total rooms of the sidelength
@@ -153,7 +149,7 @@ std::vector<std::vector<DungeonRoom>> GenerateRooms(int sidelength, std::pair<in
             RoomType roomtype = orient[col][row].first;
             DoorOrientation doororientation = orient[col][row].second;
             bool isStart = col == startPos.first && row == startPos.second;           
-            DungeonRoom room(indexinlevel, depth, roomtype, doororientation, nullptr, isStart);
+            DungeonRoom room(indexinlevel, roomtype, doororientation, nullptr, isStart);
             rooms[col][row] = room; // add the room
         }
     }

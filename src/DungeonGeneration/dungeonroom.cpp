@@ -10,8 +10,8 @@
 //Represents a room of a level.
 //A room consists of 144 tiles on a 12 x 12 grid.
 
-DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, unsigned int depth, RoomType roomtype, DoorOrientation doororientation, Item* loot, bool isplayerstartingroom)
-    : indexinlevel_(indexinlevel), depth_(depth), hasbeenexplored_(isplayerstartingroom), loot_(loot) {
+DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, RoomType roomtype, DoorOrientation doororientation, Item* loot, bool isplayerstartingroom)
+    : indexinlevel_(indexinlevel), hasbeenexplored_(isplayerstartingroom), loot_(loot) {
         srand(time(NULL));
         std::vector<DungeonRoom*> neighbors_;
         std::ifstream reader(RandomizeFileName(roomtype) + ".txt");

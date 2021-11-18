@@ -38,7 +38,7 @@ enum DoorOrientation {
 
 class DungeonRoom {
     public:
-    DungeonRoom(std::pair<int,int> indexinlevel, unsigned int depth, RoomType roomtype, DoorOrientation doororientation, Item* loot, bool isplayerstartingroom);
+    DungeonRoom(std::pair<int,int> indexinlevel, RoomType roomtype, DoorOrientation doororientation, Item* loot, bool isplayerstartingroom);
 
     std::pair<int,int> GetIndexInLevel() const; //Returns the index of the room in a level.
 
@@ -62,7 +62,6 @@ class DungeonRoom {
 
     private:
     std::pair<int, int> indexinlevel_; //The index of the room in the list of Rooms on a level.
-    unsigned int depth_; //The number of the level the player is on. The difficulty of generated rooms is scaled based on this number.
     bool hasbeenexplored_; //True if the room has already been explored.
     Item* loot_; //A pointer to the loot item.
     std::vector<std::vector<DungeonTile*>> alltiles_; // A vector that stores all tiles in the room.

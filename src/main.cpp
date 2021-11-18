@@ -1,3 +1,5 @@
+#include "DungeonGeneration/dungeonlevel.hpp"
+
 #include <iostream>
 
 #include <SFML/System.hpp>
@@ -6,7 +8,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 
-#include "DungeonGeneration/dungeonlevel.hpp"
 
 
 // User-specific local paths
@@ -93,6 +94,7 @@ enemies being in range of a weapon that can only target one enemy at a time. Gra
 //#############################################################################################################
 // This function simply loops through the six levels of one game instance.
 void levelLoop(sf::RenderWindow& window) {
+    
     auto const levels = {1, 2, 3, 4, 5, 6};
     int sidelength;
 
@@ -101,7 +103,7 @@ void levelLoop(sf::RenderWindow& window) {
         else if (1 < i < 6) sidelength = 3;
         else sidelength = 4;
 
-        DungeonLevel::DungeonLevel level(sidelength);
+        DungeonLevel level(sidelength);
 
         //level(window, sidelength);
     }
@@ -215,3 +217,5 @@ int main() {
     start_text.setPosition(start_button.getPosition());
     */
    // ####################################################################################################
+
+ 

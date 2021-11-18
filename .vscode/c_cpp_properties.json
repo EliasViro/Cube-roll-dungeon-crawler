@@ -5,7 +5,9 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}",
-                "${workspaceFolder}/src"
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/src/DungeonGeneration"
+
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

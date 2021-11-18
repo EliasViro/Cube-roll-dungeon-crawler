@@ -1,23 +1,14 @@
 cmake_minimum_required (VERSION 3.8)
 project ("DungeonCrawler")
 
-#include_directories("src")
-#add_subdirectory("src")
-
-
 file(GLOB SOURCES 
-"src/*.cpp"
-"src/Characters/*.hpp" 
-"src/Characters/*.cpp"
-"src/DungeonGeneration/*.hpp" 
-"src/DungeonGeneration/*.cpp"
-"src/Graphics/*.hpp" 
-"src/Graphics/*.cpp"
-"src/Items/*.hpp" 
-"src/Items/*.cpp"
-"src/Sounds/*.hpp" 
-"src/Sounds/*.cpp"
+    "src/*.cpp"
+    "src/Characters/*.cpp"
+    "src/DungeonGeneration/*.cpp"
+    "src/Items/*.cpp"
 )
+
+set(HEADER_FILES src/Characters src/DungeonGeneration src/Items)
 
 # test_instructions.txt
 # This (below) is the line that tells CMake which .cpp file the executable is created for.
@@ -27,8 +18,8 @@ file(GLOB SOURCES
 ####################################\  /#######
 #####################################\/########
 
-#add_executable(DungeonCrawler ${SOURCES})
-add_executable(DungeonCrawler src/main.cpp)
+add_executable(DungeonCrawler ${SOURCES} ${HEADER_FILES})
+#add_executable(DungeonCrawler src/main.cpp)
 
 #####################################/\########
 ####################################/  \#######
@@ -39,3 +30,5 @@ set(CMAKE_BUILD_TYPE Debug)
 
 find_package(SFML 2.5 COMPONENTS audio graphics window system REQUIRED)
 target_link_libraries(DungeonCrawler sfml-audio sfml-graphics sfml-window sfml-system)
+target_include_directories(DungeonCrawler PUBLIC ${HEADER_FILES})
+#target_precompile_headers(DungeonCrawler PUBLIC "src/DungeonGeneration/dungeonlevel.hpp")

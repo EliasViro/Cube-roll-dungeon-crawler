@@ -7,115 +7,6 @@
 #include <algorithm> //For mirroring rooms horizontally.
 #include <utility>
 
-//Represents a room of a level.
-//A room consists of 144 tiles on a 12 x 12 grid.
-
-DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, RoomType roomtype, DoorOrientation doororientation, Item* loot, bool isplayerstartingroom)
-    : indexinlevel_(indexinlevel), hasbeenexplored_(isplayerstartingroom), loot_(loot) {
-        srand(time(NULL));
-        std::vector<DungeonRoom*> neighbors_;
-        std::ifstream reader(RandomizeFileName(roomtype) + ".txt");
-        std::string readline;
-        std::vector<std::string&> roomvector;
-        int i = 0;
-        while (std::getline(reader, readline) && i < 12) {
-            std::istringstream iss(readline);
-            roomvector.push_back(readline);
-            i++;
-        }
-        roomvector = RandomizeRoom(roomvector, doororientation);
-        alltiles_ = CreateTiles(roomvector, isplayerstartingroom);
-    }
-
-std::pair<int,int> DungeonRoom::GetIndexInLevel() const {
-    return indexinlevel_;
-}
-
-DungeonTile* DungeonRoom::GetDungeonTile(int xcoord, int ycoord) const {
-    return alltiles_[xcoord][ycoord];
-}
-
-std::vector<std::vector<DungeonTile*>> DungeonRoom::GetAllTiles() const {
-    return alltiles_;
-}
-
-bool DungeonRoom::IsExplored() const {
-    return hasbeenexplored_;
-}
-
-void DungeonRoom::SpawnEnemies(std::vector<Character*> enemyvector) {
-    int spawnedenemies = 0;
-    int index = 0;
-    if (!hasbeenexplored_) {
-        for (auto j : alltiles_) {
-            for (auto i : j) {
-                if (i->GetTileType() == Spawner) {
-                    if (enemyvector[index] != nullptr) {
-                        i->SetCharacter();
-                        enemyvector[index]->MoveToTile(i);
-                        spawnedenemies++;
-                    }
-                    index++;
-                }
-            }
-        }
-        if (spawnedenemies > 0) {
-            CloseDoors();
-        }
-        else {
-            hasbeenexplored_ = true;
-            SpawnLoot();
-        }
-    }
-}
-
-void DungeonRoom::GiveLoot(Item* lootitem) {
-    loot_ = lootitem;
-}
-
-void DungeonRoom::SpawnLoot() {
-    if (loot_ != nullptr) {
-        for (auto j : alltiles_) {
-            for (auto i : j) {
-                if (i->GetTileType() == Loot) {
-                    i->PlaceItem(loot_);
-                }
-            }
-        }
-    }
-}
-
-void DungeonRoom::CloseDoors() {
-    alltiles_[0][5]->Close();
-    alltiles_[0][6]->Close();
-    alltiles_[11][5]->Close();
-    alltiles_[11][6]->Close();
-    alltiles_[5][0]->Close();
-    alltiles_[6][0]->Close();
-    alltiles_[5][11]->Close();
-    alltiles_[6][11]->Close();
-}
-
-void DungeonRoom::OpenDoors() {
-    hasbeenexplored_ = true;
-    SpawnLoot();
-    alltiles_[0][5]->Open();
-    alltiles_[0][6]->Open();
-    alltiles_[11][5]->Open();
-    alltiles_[11][6]->Open();
-    alltiles_[5][0]->Open();
-    alltiles_[6][0]->Open();
-    alltiles_[5][11]->Open();
-    alltiles_[6][11]->Open();
-}
-
-std::vector<DungeonRoom*> DungeonRoom::GetNeighbors() const {
-        return neighbors_;
-}
-
-void DungeonRoom::AddNeighbor(DungeonRoom* room) {
-    neighbors_.push_back(room);
-}
 
 //Randomizes the name of the file in order to allow reading a random room file.
 std::string RandomizeFileName(RoomType roomtype) {
@@ -301,3 +192,114 @@ std::vector<std::vector<DungeonTile*>> CreateTiles(std::vector<std::string&> roo
     }
     return tilevector;
 }
+
+//Represents a room of a level.
+//A room consists of 144 tiles on a 12 x 12 grid.
+
+DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, RoomType roomtype, DoorOrientation doororientation, Item* loot, bool isplayerstartingroom)
+    : indexinlevel_(indexinlevel), hasbeenexplored_(isplayerstartingroom), loot_(loot) {
+        srand(time(NULL));
+        std::vector<DungeonRoom*> neighbors_;
+        std::ifstream reader(RandomizeFileName(roomtype) + ".txt");
+        std::string readline;
+        std::vector<std::string&> roomvector;
+        int i = 0;
+        while (std::getline(reader, readline) && i < 12) {
+            std::istringstream iss(readline);
+            roomvector.push_back(readline);
+            i++;
+        }
+        roomvector = RandomizeRoom(roomvector, doororientation);
+        alltiles_ = CreateTiles(roomvector, isplayerstartingroom);
+    }
+
+std::pair<int,int> DungeonRoom::GetIndexInLevel() const {
+    return indexinlevel_;
+}
+
+DungeonTile* DungeonRoom::GetDungeonTile(int xcoord, int ycoord) const {
+    return alltiles_[xcoord][ycoord];
+}
+
+std::vector<std::vector<DungeonTile*>> DungeonRoom::GetAllTiles() const {
+    return alltiles_;
+}
+
+bool DungeonRoom::IsExplored() const {
+    return hasbeenexplored_;
+}
+
+void DungeonRoom::SpawnEnemies(std::vector<Character*> enemyvector) {
+    int spawnedenemies = 0;
+    int index = 0;
+    if (!hasbeenexplored_) {
+        for (auto j : alltiles_) {
+            for (auto i : j) {
+                if (i->GetTileType() == Spawner) {
+                    if (enemyvector[index] != nullptr) {
+                        i->SetCharacter();
+                        enemyvector[index]->MoveToTile(i);
+                        spawnedenemies++;
+                    }
+                    index++;
+                }
+            }
+        }
+        if (spawnedenemies > 0) {
+            CloseDoors();
+        }
+        else {
+            hasbeenexplored_ = true;
+            SpawnLoot();
+        }
+    }
+}
+
+void DungeonRoom::GiveLoot(Item* lootitem) {
+    loot_ = lootitem;
+}
+
+void DungeonRoom::SpawnLoot() {
+    if (loot_ != nullptr) {
+        for (auto j : alltiles_) {
+            for (auto i : j) {
+                if (i->GetTileType() == Loot) {
+                    i->PlaceItem(loot_);
+                }
+            }
+        }
+    }
+}
+
+void DungeonRoom::CloseDoors() {
+    alltiles_[0][5]->Close();
+    alltiles_[0][6]->Close();
+    alltiles_[11][5]->Close();
+    alltiles_[11][6]->Close();
+    alltiles_[5][0]->Close();
+    alltiles_[6][0]->Close();
+    alltiles_[5][11]->Close();
+    alltiles_[6][11]->Close();
+}
+
+void DungeonRoom::OpenDoors() {
+    hasbeenexplored_ = true;
+    SpawnLoot();
+    alltiles_[0][5]->Open();
+    alltiles_[0][6]->Open();
+    alltiles_[11][5]->Open();
+    alltiles_[11][6]->Open();
+    alltiles_[5][0]->Open();
+    alltiles_[6][0]->Open();
+    alltiles_[5][11]->Open();
+    alltiles_[6][11]->Open();
+}
+
+std::vector<DungeonRoom*> DungeonRoom::GetNeighbors() const {
+        return neighbors_;
+}
+
+void DungeonRoom::AddNeighbor(DungeonRoom* room) {
+    neighbors_.push_back(room);
+}
+

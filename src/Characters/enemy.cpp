@@ -35,8 +35,8 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
 bool Enemy::DistanceToCharacterLargerThanThree(Character* targetcharacter) const {
     DungeonTile* measurertile = targetcharacter->GetCurrentTile();
     int distance = 0;
-    char* xdir = "";
-    char* ydir = "";
+    std::string xdir = "";
+    std::string ydir = "";
     int ydifference = GetYCoordinate() - measurertile->GetYCoord();
     int xdifference = GetXCoordinate() - measurertile->GetXCoord();
     while ((measurertile->GetXCoord() != GetXCoordinate() && measurertile->GetYCoord() != GetYCoordinate()) || distance < 3) {
@@ -53,37 +53,37 @@ bool Enemy::DistanceToCharacterLargerThanThree(Character* targetcharacter) const
             ydir = "N";
         }
         if (abs(xdifference) > abs(ydifference)) {
-            if (measurertile->GetTileNeighbor(xdir)->GetTileType() != Wall) {
-                measurertile = measurertile->GetTileNeighbor(xdir);
+            if (measurertile->GetTileNeighbor(xdir.c_str())->GetTileType() != Wall) {
+                measurertile = measurertile->GetTileNeighbor(xdir.c_str());
             }
             else {
-                measurertile = measurertile->GetTileNeighbor(ydir);
+                measurertile = measurertile->GetTileNeighbor(ydir.c_str());
             }
         }
         else if (abs(ydifference) > abs(xdifference)) {
-            if (measurertile->GetTileNeighbor(ydir)->GetTileType() != Wall) {
-                measurertile = measurertile->GetTileNeighbor(ydir);
+            if (measurertile->GetTileNeighbor(ydir.c_str())->GetTileType() != Wall) {
+                measurertile = measurertile->GetTileNeighbor(ydir.c_str());
             }
             else {
-                measurertile = measurertile->GetTileNeighbor(xdir);
+                measurertile = measurertile->GetTileNeighbor(xdir.c_str());
             }
         }
         else {
             int randomnumber = rand() % 2 + 1;
             if (randomnumber == 1) {
-                if (measurertile->GetTileNeighbor(ydir)->GetTileType() != Wall) {
-                    measurertile = measurertile->GetTileNeighbor(ydir);
+                if (measurertile->GetTileNeighbor(ydir.c_str())->GetTileType() != Wall) {
+                    measurertile = measurertile->GetTileNeighbor(ydir.c_str());
                 }
                 else {
-                    measurertile = measurertile->GetTileNeighbor(xdir);
+                    measurertile = measurertile->GetTileNeighbor(xdir.c_str());
                 }
             }
             else {
-                if (measurertile->GetTileNeighbor(xdir)->GetTileType() != Wall) {
-                    measurertile = measurertile->GetTileNeighbor(xdir);
+                if (measurertile->GetTileNeighbor(xdir.c_str())->GetTileType() != Wall) {
+                    measurertile = measurertile->GetTileNeighbor(xdir.c_str());
                 }
                 else {
-                    measurertile = measurertile->GetTileNeighbor(ydir);
+                    measurertile = measurertile->GetTileNeighbor(ydir.c_str());
                 }
             }
         }
@@ -233,7 +233,7 @@ Spider::Spider(DungeonTile* tile) : Enemy("Large spider", "An unusually large ca
 std::string Spider::GetDescription() const { return description_; }
 
 BigSpider::BigSpider(DungeonTile* tile) : Enemy("Huge spider", "A massive cave-dwelling arachnid with a set of enormous sharp fangs.", tile, Aggressive, {Melee_2, Melee_2, Empty}) {}
-std::string Spider::GetDescription() const { return description_; }
+std::string BigSpider::GetDescription() const { return description_; }
 
 SpitterSpider::SpitterSpider(DungeonTile* tile) : Enemy("Spitter spider", "A large cave-dwelling arachnid that prefers to spit acidic venom from a distance.", tile, Careful, {Ranged_1, Empty, Melee_1, Empty}) {}
 std::string SpitterSpider::GetDescription() const { return description_; }

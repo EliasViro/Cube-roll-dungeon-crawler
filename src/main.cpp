@@ -1,5 +1,13 @@
 #include "DungeonGeneration/dungeonlevel.hpp"
 
+#include "Characters/enemy.hpp"
+#include "Characters/characterplayer.hpp"
+
+#include "Items/meleeweapons.hpp"
+#include "Items/rangedweapons.hpp"
+#include "Items/shields.hpp"
+#include "Items/potions.hpp"
+
 #include <iostream>
 
 #include <SFML/System.hpp>
@@ -186,8 +194,225 @@ int main() {
 }
 
 
+//A function that generates a vector of five enemies depending on the level the player is on.
+
+std::vector<Character*> GenerateRoomEnemies(int level) {
+	if (level == 1) {
+		int randomnumber = rand() % 3 + 1;
+		if (randomnumber == 1) {
+			return {new Slime(nullptr), new Slime(nullptr), new Slime(nullptr), new Slime(nullptr), new Slime(nullptr)};
+		}
+		else if (randomnumber == 2) {
+			return {new SmallSpider(nullptr), nullptr, new Slime(nullptr), new SmallSpider(nullptr), nullptr};
+		}
+		else if (randomnumber == 2) {
+			return {nullptr, new Slime(nullptr), new Slime(nullptr), new Slime(nullptr), new SmallSpider(nullptr)};
+		}
+	}
+	else if (level == 2) {
+		int randomnumber = rand() % 4 + 1;
+		if (randomnumber == 1) {
+			return {nullptr, nullptr, nullptr, nullptr, nullptr};
+		}
+		else if (randomnumber == 2) {
+			return {new LargeSlime(nullptr), new SmallSpider(nullptr), new LargeSlime(nullptr), new SmallSpider(nullptr), new SmallSpider(nullptr)};
+		}
+		else if (randomnumber == 3) {
+			return {new Spider(nullptr), new Slime(nullptr), new Slime(nullptr), new Spider(nullptr), new Spider(nullptr)};
+		}
+		else {
+			return {new Spider(nullptr), new LargeSlime(nullptr), new Spider(nullptr), new Spider(nullptr), new Spider(nullptr)};
+		}
+	}
+	else if (level == 3) {
+		int randomnumber = rand() % 4 + 1;
+		if (randomnumber == 1) {
+			return {nullptr, nullptr, nullptr, nullptr, nullptr};
+		}
+		else if (randomnumber == 2) {
+			return {new Spider(nullptr), new Spider(nullptr), new Spider(nullptr), new Spider(nullptr), new Spider(nullptr)};
+		}
+		else if (randomnumber == 3) {
+			return {new Spider(nullptr), new HugeSlime(nullptr), new HugeSlime(nullptr), new Spider(nullptr), new Spider(nullptr)};
+		}
+		else {
+			return {new LargeSlime(nullptr), new LargeSlime(nullptr), new LargeSlime(nullptr), new BigSpider(nullptr), new SpitterSpider(nullptr)};
+		}
+	}
+	else if (level == 4) {
+		int randomnumber = rand() % 5 + 1;
+		if (randomnumber == 1) {
+			return {nullptr, nullptr, nullptr, nullptr, nullptr};
+		}
+		else if (randomnumber == 2) {
+			return {new BigSpider(nullptr), new BigSpider(nullptr), new HugeSlime(nullptr), new BigSpider(nullptr), new HugeSlime(nullptr)};
+		}
+		else if (randomnumber == 3) {
+			return {new SpitterSpider(nullptr), new SmallSpider(nullptr), new SmallSpider(nullptr), new SpitterSpider(nullptr), new SmallSpider(nullptr)};
+		}
+		else if (randomnumber == 4) {
+			return {new Spider(nullptr), new SpitterSpider(nullptr), new Spider(nullptr), new Spider(nullptr), nullptr};
+		}
+		else {
+			return {new SpitterSpider(nullptr), new BigSpider(nullptr), new BigSpider(nullptr), new BigSpider(nullptr), nullptr};
+		}
+	}
+	else if (level == 5) {
+		int randomnumber = rand() % 5 + 1;
+		if (randomnumber == 1) {
+			return {nullptr, nullptr, nullptr, nullptr, nullptr};
+		}
+		else if (randomnumber == 2) {
+			return {new Skeleton(nullptr), new SkeletonWarrior(nullptr), new SkeletonWarrior(nullptr), new Skeleton(nullptr), new SkeletonWarrior(nullptr)};
+		}
+		else if (randomnumber == 3) {
+			return {new SkeletonKnight(nullptr), new Skeleton(nullptr), new Skeleton(nullptr), new SkeletonArcher(nullptr), new Skeleton(nullptr)};
+		}
+		else if (randomnumber == 4) {
+			return {new SkeletonArcher(nullptr), new SkeletonWarrior(nullptr), new SkeletonWarrior(nullptr), new Skeleton(nullptr), new Skeleton(nullptr)};
+		}
+		else {
+			return {new SkeletonMage(nullptr), new SkeletonWarrior(nullptr), new SkeletonKnight(nullptr), new Skeleton(nullptr), new Skeleton(nullptr)};
+		}
+	}
+	else {
+		int randomnumber = rand() % 7 + 1;
+		if (randomnumber == 1) {
+			return {nullptr, nullptr, nullptr, nullptr, nullptr};
+		}
+		else if (randomnumber == 2) {
+			return {new SkeletonWarrior(nullptr), new SkeletonWarrior(nullptr), new SkeletonWarrior(nullptr), new SkeletonArcher(nullptr), new SkeletonWarrior(nullptr)};
+		}
+		else if (randomnumber == 3) {
+			return {new SkeletonKnight(nullptr), new SkeletonMage(nullptr), new Skeleton(nullptr), new SkeletonMage(nullptr), new Skeleton(nullptr)};
+		}
+		else if (randomnumber == 4) {
+			return {new SkeletonArcher(nullptr), new SkeletonWarrior(nullptr), new SkeletonWarrior(nullptr), new SkeletonKnight(nullptr), new SkeletonWarrior(nullptr)};
+		}
+		else if (randomnumber == 5) {
+			return {new SkeletonKnight(nullptr), new SkeletonWarrior(nullptr), new SkeletonWarrior(nullptr), new SkeletonKnight(nullptr), new SkeletonWarrior(nullptr)};
+		}
+		else if (randomnumber == 6) {
+			return {nullptr, nullptr, nullptr, nullptr, nullptr};
+		}
+		else {
+			return {new SkeletonMage(nullptr), new SkeletonKnight(nullptr), new SkeletonKnight(nullptr), new SkeletonWarrior(nullptr), new SkeletonWarrior(nullptr)};
+		}
+	}
+}
 
 
+std::vector<std::vector<Item*>> CreateLoot() {
+	std::vector<std::vector<Item*>> lootvector;
+
+	//Level 1 loot: A shield and a potion
+	std::vector<Item*> level1lootvector = {new RoundShield(), new HealthPotion()};
+
+	//Level 2 loot: A melee weapon and two potions
+	int randomnumber = rand() % 3 + 1;
+	std::vector<Item*> level2lootvector;
+	if (randomnumber == 1) {
+		level2lootvector.push_back(new HandAxe());
+	}
+	else if (randomnumber == 2) {
+		level2lootvector.push_back(new ArmingSword());
+	}
+	else {
+		level2lootvector.push_back(new Mace());
+	}
+	level2lootvector.push_back(new HealthPotion());
+	level2lootvector.push_back(new StaminaPotion());
+
+	//Level 3 loot: A ranged weapon, a shield and a melee weapon
+	randomnumber = rand() % 3 + 1;
+	std::vector<Item*> level3lootvector;
+	if (randomnumber == 1) {
+		level3lootvector.push_back(new Javelin());
+	}
+	else if (randomnumber == 2) {
+		level3lootvector.push_back(new Bolas());
+	}
+	else {
+		level3lootvector.push_back(new Sling());
+	}
+	randomnumber = rand() % 3 + 1;
+	level3lootvector.push_back(new HeaterShield());
+	randomnumber = rand() % 3 + 1;
+	if (randomnumber == 1) {
+		level3lootvector.push_back(new HandAxe());
+	}
+	else if (randomnumber == 2) {
+		level3lootvector.push_back(new ArmingSword());
+	}
+	else {
+		level3lootvector.push_back(new Mace());
+	}
+	
+	//Level 4 loot: A potion, a melee weapon, a potion and a shield
+	std::vector<Item*> level4lootvector;
+	level4lootvector.push_back(new StaminaPotion());
+	randomnumber = rand() % 3 + 1;
+	if (randomnumber == 1) {
+		level4lootvector.push_back(new HandAxe());
+	}
+	else if (randomnumber == 2) {
+		level4lootvector.push_back(new ArmingSword());
+	}
+	else {
+		level4lootvector.push_back(new Mace());
+	}
+	level4lootvector.push_back(new HealthPotion());
+	level4lootvector.push_back(new KiteShield());
+
+	//Level 5 loot: A ranged weapon, a potion, a shield and a melee weapon
+	randomnumber = rand() % 3 + 1;
+	std::vector<Item*> level5lootvector;
+	if (randomnumber == 1) {
+		level5lootvector.push_back(new Javelin());
+	}
+	else if (randomnumber == 2) {
+		level5lootvector.push_back(new Bolas());
+	}
+	else {
+		level5lootvector.push_back(new Sling());
+	}
+	level5lootvector.push_back(new HealthPotion());
+	level5lootvector.push_back(new TowerShield());
+	randomnumber = rand() % 3 + 1;
+	if (randomnumber == 1) {
+		level5lootvector.push_back(new BattleAxe());
+	}
+	else if (randomnumber == 2) {
+		level5lootvector.push_back(new LongSword());
+	}
+	else {
+		level5lootvector.push_back(new WarHammer());
+	}
+	
+	//Level 6 loot: A potion, a shield, a melee weapon and a potion.
+	std::vector<Item*> level6lootvector;
+	level5lootvector.push_back(new StaminaPotion());
+	level5lootvector.push_back(new KiteShield());
+	randomnumber = rand() % 3 + 1;
+	if (randomnumber == 1) {
+		level6lootvector.push_back(new BattleAxe());
+	}
+	else if (randomnumber == 2) {
+		level6lootvector.push_back(new LongSword());
+	}
+	else {
+		level6lootvector.push_back(new WarHammer());
+	}
+	level6lootvector.push_back(new HealthPotion());
+
+	lootvector.push_back(level1lootvector);
+	lootvector.push_back(level2lootvector);
+	lootvector.push_back(level3lootvector);
+	lootvector.push_back(level4lootvector);
+	lootvector.push_back(level5lootvector);
+	lootvector.push_back(level6lootvector);
+	return lootvector;
+}
 
 
 

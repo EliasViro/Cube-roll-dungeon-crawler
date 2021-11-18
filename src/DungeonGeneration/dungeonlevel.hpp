@@ -17,12 +17,12 @@ class DungeonLevel {
     public:
     DungeonLevel(int sidelength); 
     
-    int GetLevel() const;
+    int GetSideLength() const;
     std::pair<int,int> GetStartPos() const;
-    std::vector<std::vector<DungeonRoom>> GetRooms() const;
+    std::vector<std::vector<DungeonRoom*>> GetRooms() const;
     
     private:
     int sidelength_; // side length of the map
     std::pair<int,int> startPos_; // starting room
-    std::vector<std::vector<DungeonRoom>> rooms_; // Two dimensional vector that stores the rooms.
+    std::vector<std::vector<DungeonRoom*>> rooms_; // Two dimensional vector that stores the rooms.
 };

@@ -22,7 +22,7 @@ class MeleeWeapon : public Item {
 
     virtual bool IsStunning() const = 0;
 
-    virtual bool TargetSeveralEnemies() const = 0;
+    virtual bool TargetSeveralEnemies() const;
 
     protected:
     int range_; //The range of the weapon.

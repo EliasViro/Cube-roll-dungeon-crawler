@@ -133,10 +133,11 @@ void InventorySlot::DropItem() {
 }
 
 int InventorySlot::UseItem() {
-    if (item_->Use()) {
+    int returned = item_->Use();
+    if (returned != 0) {
         if (item_->GetDurability() == 0) {
-            delete(item_);
             item_ = nullptr;
         }
     }
+    return returned;
 }

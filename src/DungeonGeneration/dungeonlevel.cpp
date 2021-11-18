@@ -1,25 +1,6 @@
 #include "dungeonlevel.hpp"
 
-//Represents a level of the dungeon.
-//A level consists of nine rooms connected by doors on a 3 x 3 grid.
 
-int DungeonLevel::GetLevel() const { return sidelength_; }
-
-std::pair<int,int> DungeonLevel::GetStartPos() const {
-  return startPos_;
-}
-
-std::vector<std::vector<DungeonRoom>> DungeonLevel::GetRooms() const {
-  return rooms_;
-};
-
-DungeonLevel::DungeonLevel(int sidelength) : sidelength_(sidelength) {
-    int startRow = (std::rand() % sidelength) ; // Generate rand number between 1 to level side length
-    int startCol = (std::rand() % sidelength) ; // Generate rand number between 1 to level side length
-    std::pair<int,int> startPos(startCol, startRow); // (col, row) due to graphics reason
-    startPos_ = startPos; // Starting room
-    rooms_ = GenerateRooms(sidelength, startPos); // Generated rooms
-} 
 
 // Outside DungeonLevel class helper functions 
 
@@ -53,12 +34,12 @@ std::pair<int, int> RoomInDirection(std::pair<int, int> room, Direction directio
     }
 
 // find the opposite direction
-Direction Opposite(Direction direction){
+Direction Opposite(Direction direction) {
     if (direction == Up) return Down;
-    if (direction == Down) return Up;
-    if (direction == Left) return Right;
-    if (direction == Right) return Left;
-};
+    else if (direction == Down) return Up;
+    else if (direction == Left) return Right;
+    else return Left;
+}
 
 // return the room type and orientation of a room based on its exits
 std::pair<RoomType, DoorOrientation> RoomOrient(std::vector<Direction> exits){
@@ -100,7 +81,7 @@ void Visit(std::pair<int, int>& room, int sidelength,
     std::vector<std::vector<std::pair<RoomType, DoorOrientation>>>& orient,
     std::vector<std::vector<std::vector<Direction>>> exits,
     std::vector<std::vector<std::vector<std::pair<int,int>>>> neighbors,
-    std::vector<std::vector<DungeonRoom>> rooms){
+    std::vector<std::vector<DungeonRoom*>> rooms){
     auto rng = std::default_random_engine {};
         roomsVisited.push_back(room);
         std::vector<Direction> dirs = DirsAvailable(room, sidelength);
@@ -118,7 +99,7 @@ void Visit(std::pair<int, int>& room, int sidelength,
     }
 
 // Depth first search maze generator
-std::vector<std::vector<DungeonRoom>> GenerateRooms(int sidelength, std::pair<int,int> startPos) {
+std::vector<std::vector<DungeonRoom*>> GenerateRooms(int sidelength, std::pair<int,int> startPos) {
     std::vector<std::pair<int,int>> roomsVisited; // vector to store
     int s = sidelength; // side length of the level
     int n = sidelength * sidelength; // total rooms of the sidelength
@@ -129,7 +110,7 @@ std::vector<std::vector<DungeonRoom>> GenerateRooms(int sidelength, std::pair<in
 
     std::vector<std::vector<std::vector<std::pair<int,int>>>> neighbors(sidelength, std::vector<std::vector<std::pair<int,int>>> (sidelength)); // information on the neighbors of each room after maze generation
     
-    std::vector<std::vector<DungeonRoom>> rooms(sidelength, std::vector<DungeonRoom> (sidelength)); // rooms generated after maze generation
+    std::vector<std::vector<DungeonRoom*>> rooms(sidelength, std::vector<DungeonRoom*> (sidelength)); // rooms generated after maze generation
 
     Visit(startPos, sidelength, roomsVisited, orient, exits, neighbors, rooms);
     
@@ -149,8 +130,8 @@ std::vector<std::vector<DungeonRoom>> GenerateRooms(int sidelength, std::pair<in
             RoomType roomtype = orient[col][row].first;
             DoorOrientation doororientation = orient[col][row].second;
             bool isStart = col == startPos.first && row == startPos.second;           
-            DungeonRoom room(indexinlevel, roomtype, doororientation, nullptr, isStart);
-            rooms[col][row] = room; // add the room
+            auto room = new DungeonRoom(indexinlevel, roomtype, doororientation, nullptr, isStart);
+            rooms[col][row]; // add the room
         }
     }
     
@@ -158,7 +139,7 @@ std::vector<std::vector<DungeonRoom>> GenerateRooms(int sidelength, std::pair<in
     for (int row = 0; row < sidelength; row++){
         for (int col = 0; col < sidelength; col++){
             for (auto index : neighbors[col][row]){
-                rooms[col][row].AddNeighbor(&rooms[index.second][index.first]);
+                rooms[col][row]->AddNeighbor(rooms[index.second][index.first]);
             }
         }
     }
@@ -166,3 +147,25 @@ std::vector<std::vector<DungeonRoom>> GenerateRooms(int sidelength, std::pair<in
     return rooms; // set the rooms
 }
 
+
+
+//Represents a level of the dungeon.
+//A level consists of nine rooms connected by doors on a 3 x 3 grid.
+
+DungeonLevel::DungeonLevel(int sidelength) : sidelength_(sidelength) {
+    int startRow = (std::rand() % sidelength) ; // Generate rand number between 1 to level side length
+    int startCol = (std::rand() % sidelength) ; // Generate rand number between 1 to level side length
+    std::pair<int,int> startPos = std::make_pair(startCol, startRow); // (col, row) due to graphics reason
+    startPos_ = startPos; // Starting room
+    rooms_ = GenerateRooms(sidelength, startPos); // Generated rooms
+} 
+
+int DungeonLevel::GetSideLength() const { return sidelength_; }
+
+std::pair<int,int> DungeonLevel::GetStartPos() const {
+  return startPos_;
+}
+
+std::vector<std::vector<DungeonRoom*>> DungeonLevel::GetRooms() const {
+  return rooms_;
+}

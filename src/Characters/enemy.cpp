@@ -205,6 +205,18 @@ void Enemy::TakeDamage(int damage) {
     }
 }
 
+bool Enemy::MoveToDirection(const char* direction) {
+    if (currenttile_->GetTileNeighbor(direction)->IsPassable()) {
+        currenttile_->GetTileNeighbor(direction)->SetCharacter();
+        currenttile_->RemoveCharacter();
+        currenttile_ = currenttile_->GetTileNeighbor(direction);
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 
 Slime::Slime(DungeonTile* tile) : Enemy("Slime", "A blindly wandering blob of acidic jelly that tries to eat anything near it.", tile, Random, {Melee_1, Empty}) {}
 std::string Slime::GetDescription() const { return description_; }

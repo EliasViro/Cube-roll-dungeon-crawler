@@ -58,6 +58,8 @@ class Enemy : public Character {
 
     void TakeDamage(int damage); //Damages the character.
 
+    bool MoveToDirection(const char* direction); //Attempts to move the character to the given direction, returns true if successful.
+
     virtual std::string GetDescription() const = 0; //Overridden by subclasses. Returns the description of the enemy.
 
     protected:

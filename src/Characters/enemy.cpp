@@ -201,7 +201,18 @@ void Enemy::TakeDamage(int damage) {
     healthpoints_ = healthpoints_ - (damage - defensepoints_);
     if (healthpoints_ <= 0) {
         currenttile_->RemoveCharacter();
-        delete(this);
+    }
+}
+
+bool Enemy::MoveToDirection(const char* direction) {
+    if (currenttile_->GetTileNeighbor(direction)->IsPassable()) {
+        currenttile_->GetTileNeighbor(direction)->SetCharacter();
+        currenttile_->RemoveCharacter();
+        currenttile_ = currenttile_->GetTileNeighbor(direction);
+        return true;
+    }
+    else {
+        return false;
     }
 }
 

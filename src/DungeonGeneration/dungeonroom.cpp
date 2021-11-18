@@ -45,21 +45,32 @@ bool DungeonRoom::IsExplored() const {
 
 void DungeonRoom::SpawnEnemies(std::vector<Character*> enemyvector) {
     int spawnedenemies = 0;
+    int index = 0;
     if (!hasbeenexplored_) {
         for (auto j : alltiles_) {
-            if (spawnedenemies >= enemyvector.size()) {
-                break;
-            }
             for (auto i : j) {
                 if (i->GetTileType() == Spawner) {
-                    i->SetCharacter();
-                    enemyvector[spawnedenemies]->MoveToTile(i);
-                    spawnedenemies++;
+                    if (enemyvector[index] != nullptr) {
+                        i->SetCharacter();
+                        enemyvector[index]->MoveToTile(i);
+                        spawnedenemies++;
+                    }
+                    index++;
                 }
             }
         }
-        CloseDoors();
+        if (spawnedenemies > 0) {
+            CloseDoors();
+        }
+        else {
+            hasbeenexplored_ = true;
+            SpawnLoot();
+        }
     }
+}
+
+void DungeonRoom::GiveLoot(Item* lootitem) {
+    loot_ = lootitem;
 }
 
 void DungeonRoom::SpawnLoot() {
@@ -83,10 +94,10 @@ void DungeonRoom::CloseDoors() {
     alltiles_[6][0]->Close();
     alltiles_[5][11]->Close();
     alltiles_[6][11]->Close();
-    hasbeenexplored_ = true;
 }
 
 void DungeonRoom::OpenDoors() {
+    hasbeenexplored_ = true;
     SpawnLoot();
     alltiles_[0][5]->Open();
     alltiles_[0][6]->Open();

@@ -37,12 +37,12 @@ bool Player::AddItemToSlot(Item* item) {
     return hasbeenadded;
 } //Attempts to add the item to the first free inventory slot in the player inventory. Returns true if successful.
 
-bool Player::MoveToDirection(DungeonTile* tile, const char* direction) {
+bool Player::MoveToDirection(const char* direction) {
     RemoveDefensePoints();
-    if (tile->IsPassable()) {
-        tile->SetCharacter();
+    if (currenttile_->GetTileNeighbor(direction)->IsPassable()) {
+        currenttile_->GetTileNeighbor(direction)->SetCharacter();
         currenttile_->RemoveCharacter();
-        currenttile_ = tile;
+        currenttile_ = currenttile_->GetTileNeighbor(direction);
         std::vector<InventorySlot*> tempinventory;
         tempinventory.push_back(inventory_[0]);
         tempinventory.push_back(inventory_[1]);
@@ -50,7 +50,7 @@ bool Player::MoveToDirection(DungeonTile* tile, const char* direction) {
         tempinventory.push_back(inventory_[3]);
         tempinventory.push_back(inventory_[4]);
         tempinventory.push_back(inventory_[5]);
-        
+
         if (direction == "N") {
             inventory_[0] = tempinventory[4];
             inventory_[1] = tempinventory[0];

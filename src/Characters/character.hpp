@@ -41,7 +41,7 @@ class Character {
 
     void UnStun(); //Reduces stunned status.
 
-    bool MoveToDirection(const char* direction); //Attempts to move the character on the neighboring tile in the given direction. Returns true if successful.
+    virtual bool MoveToDirection(const char* direction) = 0; //Attempts to move the character on the neighboring tile in the given direction. Returns true if successful.
 
     void MoveToTile(DungeonTile* tile); //Moves the character onto the given tile.
 

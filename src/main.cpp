@@ -205,7 +205,7 @@ std::vector<Character*> GenerateRoomEnemies(int level) {
 		else if (randomnumber == 2) {
 			return {new SmallSpider(nullptr), nullptr, new Slime(nullptr), new SmallSpider(nullptr), nullptr};
 		}
-		else if (randomnumber == 2) {
+		else {
 			return {nullptr, new Slime(nullptr), new Slime(nullptr), new Slime(nullptr), new SmallSpider(nullptr)};
 		}
 	}
@@ -299,7 +299,6 @@ std::vector<Character*> GenerateRoomEnemies(int level) {
 			return {new SkeletonMage(nullptr), new SkeletonKnight(nullptr), new SkeletonKnight(nullptr), new SkeletonWarrior(nullptr), new SkeletonWarrior(nullptr)};
 		}
 	}
-    return {nullptr};
 }
 
 

@@ -68,21 +68,21 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
     int dirs[2] = { 1, 2 };
     //1 = UP-DOWN
     //2 = RIGHT-LEFT
-    do{
-        if(dirs[rndm]==2){
+    do {
+        if (dirs[rndm]==2) {
             if( xdiff>0){
                 MoveToDirection("E");
                 c++;
-            }else{
+            } else {
                 MoveToDirection("W");
                 c++;
             }
             
-        }else{
-            if( ydiff>0){
+        } else {
+            if ( ydiff>0){
                 MoveToDirection("S");
                 c++;
-            }else{
+            } else {
                 MoveToDirection("N");
                 c++;
             }
@@ -90,14 +90,14 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
         }
         //MoveToDirection(dirs[rndm])
         rndm=(rand()% 2);
-    }while(c<4);
+    } while ( c < 4 );
 }
 
 bool Enemy::DistanceToCharacterLargerThanThree(Character* targetcharacter) const {
     DungeonTile* measurertile = targetcharacter->GetCurrentTile();
     int distance = 0;
-    char const* xdir = "";
-    char const* ydir = "";
+    std::string xdir = "";
+    std::string ydir = "";
     int ydifference = GetYCoordinate() - measurertile->GetYCoord();
     int xdifference = GetXCoordinate() - measurertile->GetXCoord();
     while ((measurertile->GetXCoord() != GetXCoordinate() && measurertile->GetYCoord() != GetYCoordinate()) || distance < 3) {

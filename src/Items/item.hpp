@@ -16,8 +16,6 @@ class Item {
     public:
     Item(const std::string& name, const std::string& description, ItemType itemtype, unsigned int durability, unsigned int maxcooldown); //constructs a new item.
 
-    ~Item(); //deletes the item if the durability reaches zero.
-
     const std::string& GetName() const; //Returns the name of the item.
 
     const ItemType GetItemType() const; //Returns the type of the item.

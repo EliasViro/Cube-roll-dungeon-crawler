@@ -6,21 +6,35 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/character.cpp
+character.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/character.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/character.hpp
 ../DungeonGeneration/dungeontile.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeontile.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.hpp
 string
 -
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/characterplayer.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/characterplayer.cpp
+characterplayer.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/characterplayer.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/characterplayer.hpp
 character.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/character.hpp
 vector
 -
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/enemy.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/enemy.cpp
+enemy.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/enemy.hpp
+cmath
+-
+
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/enemy.hpp
 character.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/character.hpp
 stdlib.h
 -
 time.h
@@ -28,9 +42,27 @@ time.h
 string
 -
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonroom.cpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonlevel.cpp
+dungeonlevel.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonlevel.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonlevel.hpp
 dungeonroom.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonroom.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonroom.hpp
+cstdlib
+-
+vector
+-
+random
+-
+utility
+-
+algorithm
+-
+
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonroom.cpp
+dungeonroom.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonroom.hpp
 sstream
 -
 fstream
@@ -46,23 +78,27 @@ algorithm
 utility
 -
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonroom.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonroom.hpp
 dungeontile.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeontile.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.hpp
 ../Characters/character.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/character.hpp
 ../Characters/characterplayer.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/characterplayer.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/characterplayer.hpp
 ../Characters/enemy.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/enemy.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/enemy.hpp
 ../Items/item.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
 vector
 -
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeontile.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.cpp
+dungeontile.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.hpp
 ../Items/item.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
 vector
 -
 stdlib.h
@@ -70,7 +106,79 @@ stdlib.h
 time.h
 -
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.cpp
+item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
 string
+-
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/meleeweapons.cpp
+meleeweapons.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/meleeweapons.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/meleeweapons.hpp
+item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/potions.cpp
+potions.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/potions.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/potions.hpp
+item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/rangedweapons.cpp
+rangedweapons.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/rangedweapons.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/rangedweapons.hpp
+item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/shields.cpp
+shields.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/shields.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/shields.hpp
+item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/dungeonleveltest.cpp
+DungeonGeneration/dungeontile.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.hpp
+iostream
+-
+utility
+-
+
+/home/atte/cpp_projects/DungeonCrawler/src/main.cpp
+DungeonGeneration/dungeonlevel.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonlevel.hpp
+Characters/enemy.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/enemy.hpp
+Characters/characterplayer.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/characterplayer.hpp
+Items/meleeweapons.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/meleeweapons.hpp
+Items/rangedweapons.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/rangedweapons.hpp
+Items/shields.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/shields.hpp
+Items/potions.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/potions.hpp
+iostream
+-
+SFML/System.hpp
+-
+SFML/Audio.hpp
+-
+SFML/Window.hpp
+-
+SFML/Graphics.hpp
+-
+SFML/OpenGL.hpp
 -
 

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3"
+CMAKE_SOURCE_DIR = /home/atte/cpp_projects/DungeonCrawler
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out"
+CMAKE_BINARY_DIR = /home/atte/cpp_projects/DungeonCrawler/out
 
 # Include any dependencies generated for this target.
 include CMakeFiles/DungeonCrawler.dir/depend.make
@@ -59,172 +59,172 @@ include CMakeFiles/DungeonCrawler.dir/flags.make
 
 CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.o: ../src/Characters/character.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/Characters/character.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.cpp" > CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/Characters/character.cpp > CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.cpp" -o CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/Characters/character.cpp -o CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.s
 
 CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.o: ../src/Characters/characterplayer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/characterplayer.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/Characters/characterplayer.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/characterplayer.cpp" > CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/Characters/characterplayer.cpp > CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/characterplayer.cpp" -o CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/Characters/characterplayer.cpp -o CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.s
 
 CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.o: ../src/Characters/enemy.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/enemy.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/Characters/enemy.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/enemy.cpp" > CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/Characters/enemy.cpp > CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/enemy.cpp" -o CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/Characters/enemy.cpp -o CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.s
 
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o: ../src/DungeonGeneration/dungeonlevel.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonlevel.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonlevel.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonlevel.cpp" > CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonlevel.cpp > CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonlevel.cpp" -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonlevel.cpp -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.s
 
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.o: ../src/DungeonGeneration/dungeonroom.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonroom.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonroom.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonroom.cpp" > CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonroom.cpp > CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonroom.cpp" -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonroom.cpp -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.s
 
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.o: ../src/DungeonGeneration/dungeontile.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeontile.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeontile.cpp" > CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.cpp > CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeontile.cpp" -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.cpp -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.s
 
 CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.o: ../src/Items/item.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/item.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/Items/item.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/item.cpp" > CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/Items/item.cpp > CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/item.cpp" -o CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/Items/item.cpp -o CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.s
 
 CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.o: ../src/Items/meleeweapons.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/meleeweapons.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/Items/meleeweapons.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/meleeweapons.cpp" > CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/Items/meleeweapons.cpp > CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/meleeweapons.cpp" -o CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/Items/meleeweapons.cpp -o CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.s
 
 CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o: ../src/Items/potions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/potions.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/Items/potions.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/potions.cpp" > CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/Items/potions.cpp > CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/potions.cpp" -o CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/Items/potions.cpp -o CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.s
 
 CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o: ../src/Items/rangedweapons.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/rangedweapons.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/Items/rangedweapons.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/rangedweapons.cpp" > CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/Items/rangedweapons.cpp > CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/rangedweapons.cpp" -o CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/Items/rangedweapons.cpp -o CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.s
 
 CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o: ../src/Items/shields.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/shields.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/Items/shields.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/shields.cpp" > CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/Items/shields.cpp > CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/shields.cpp" -o CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/Items/shields.cpp -o CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.s
 
 CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.o: ../src/dungeonleveltest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/dungeonleveltest.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/dungeonleveltest.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/dungeonleveltest.cpp" > CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/dungeonleveltest.cpp > CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/dungeonleveltest.cpp" -o CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/dungeonleveltest.cpp -o CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.s
 
 CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: CMakeFiles/DungeonCrawler.dir/flags.make
 CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.o -c "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/DungeonCrawler.dir/src/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/main.cpp
 
 CMakeFiles/DungeonCrawler.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/main.cpp" > CMakeFiles/DungeonCrawler.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/atte/cpp_projects/DungeonCrawler/src/main.cpp > CMakeFiles/DungeonCrawler.dir/src/main.cpp.i
 
 CMakeFiles/DungeonCrawler.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/main.cpp" -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/atte/cpp_projects/DungeonCrawler/src/main.cpp -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.s
 
 # Object files for target DungeonCrawler
 DungeonCrawler_OBJECTS = \
@@ -264,7 +264,7 @@ DungeonCrawler: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1
 DungeonCrawler: /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1
 DungeonCrawler: /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.5.1
 DungeonCrawler: CMakeFiles/DungeonCrawler.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable DungeonCrawler"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable DungeonCrawler"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DungeonCrawler.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -277,6 +277,6 @@ CMakeFiles/DungeonCrawler.dir/clean:
 .PHONY : CMakeFiles/DungeonCrawler.dir/clean
 
 CMakeFiles/DungeonCrawler.dir/depend:
-	cd "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles/DungeonCrawler.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/atte/cpp_projects/DungeonCrawler/out && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/atte/cpp_projects/DungeonCrawler /home/atte/cpp_projects/DungeonCrawler /home/atte/cpp_projects/DungeonCrawler/out /home/atte/cpp_projects/DungeonCrawler/out /home/atte/cpp_projects/DungeonCrawler/out/CMakeFiles/DungeonCrawler.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/DungeonCrawler.dir/depend
 

@@ -39,8 +39,8 @@ std::string RandomizeFileName(RoomType roomtype) {
 }
 
 //Mirrors the contents given as the parameter vertically.
-std::vector<std::string&> MirrorRoomVertically(std::vector<std::string&> roomvector) {
-    std::vector<std::string&> roomvector2;
+std::vector<std::string> MirrorRoomVertically(std::vector<std::string> roomvector) {
+    std::vector<std::string> roomvector2;
     for (int i = 11; i >= 0; i--) {
         roomvector2.push_back(roomvector[i]);
     }
@@ -48,7 +48,7 @@ std::vector<std::string&> MirrorRoomVertically(std::vector<std::string&> roomvec
 }
 
 //Mirrors the contents given as the parameter horizontally.
-std::vector<std::string&> MirrorRoomHorizontally(std::vector<std::string&> roomvector) {
+std::vector<std::string> MirrorRoomHorizontally(std::vector<std::string> roomvector) {
     for (int j = 0; j < 12; j++) {
         for (int i = 0; i < 12 / 2; i++) {
             std::swap(roomvector[j][i], roomvector[j][15 - i]);
@@ -58,8 +58,8 @@ std::vector<std::string&> MirrorRoomHorizontally(std::vector<std::string&> roomv
 }
 
 //Rotates the contents of the vector clockwise.
-std::vector<std::string&> RotateRoomClockwise(std::vector<std::string&> roomvector) {
-    std::vector<std::string&> roomvector2 = roomvector;
+std::vector<std::string> RotateRoomClockwise(std::vector<std::string> roomvector) {
+    std::vector<std::string> roomvector2 = roomvector;
     for (int j = 0; j < 12; j++) {
         for (int i = 15; i >= 0; i--) {
             roomvector2[j][11 - i] = roomvector[i][j];
@@ -68,7 +68,7 @@ std::vector<std::string&> RotateRoomClockwise(std::vector<std::string&> roomvect
     return roomvector2;
 }
 
-std::vector<std::string&> RandomizeRoom(std::vector<std::string&> roomvector, DoorOrientation doororientation) {
+std::vector<std::string> RandomizeRoom(std::vector<std::string> roomvector, DoorOrientation doororientation) {
     if (doororientation == East || doororientation == SouthEast || doororientation == Horizontal) {
         roomvector = RotateRoomClockwise(roomvector);
     }
@@ -81,7 +81,7 @@ std::vector<std::string&> RandomizeRoom(std::vector<std::string&> roomvector, Do
         roomvector = RotateRoomClockwise(roomvector);
         roomvector = RotateRoomClockwise(roomvector);
     }
-    unsigned int randomnumber = rand() % 2; //Random number that is either 1 or 0.
+    int randomnumber = rand() % 2; //Random number that is either 1 or 0.
     if (randomnumber == 1) { //Mirror the room vertically with 50% probability.
         roomvector = MirrorRoomVertically(roomvector);
         if (doororientation == NorthEast || doororientation == SouthWest) {
@@ -98,7 +98,7 @@ std::vector<std::string&> RandomizeRoom(std::vector<std::string&> roomvector, Do
         }
     }
 
-    unsigned int randomnumber = rand() % 2; //Random number that is either 1 or 0.
+    randomnumber = rand() % 2; //Random number that is either 1 or 0.
     if (randomnumber == 1) { //Mirror the room horizontally with 50% probability.
         roomvector = MirrorRoomHorizontally(roomvector);
         if (doororientation == NorthWest || doororientation == SouthEast) {
@@ -117,7 +117,7 @@ std::vector<std::string&> RandomizeRoom(std::vector<std::string&> roomvector, Do
     return roomvector;
 }
 
-std::vector<std::vector<DungeonTile*>> CreateTiles(std::vector<std::string&> roomvector, bool isplayerstartingroom) {
+std::vector<std::vector<DungeonTile*>> CreateTiles(std::vector<std::string> roomvector, bool isplayerstartingroom) {
     std::vector<std::vector<DungeonTile*>> tilevector;
     std::vector<DungeonTile*> neighborvector;
     for (int j = 0; j < 12; j++) {
@@ -202,7 +202,7 @@ DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, RoomType roomtype, Doo
         std::vector<DungeonRoom*> neighbors_;
         std::ifstream reader(RandomizeFileName(roomtype) + ".txt");
         std::string readline;
-        std::vector<std::string&> roomvector;
+        std::vector<std::string> roomvector;
         int i = 0;
         while (std::getline(reader, readline) && i < 12) {
             std::istringstream iss(readline);

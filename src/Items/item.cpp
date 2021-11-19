@@ -6,8 +6,6 @@
 Item::Item(const std::string& name, const std::string& description, ItemType itemtype, unsigned int durability, unsigned int maxcooldown)
     : name_(name), description_(description), itemtype_(itemtype), durability_(durability), maxcooldown_(maxcooldown), cooldown_(1), isactive_(false) {}
 
-Item::~Item() {}
-
 const std::string& Item::GetName() const {
     return name_;
 }

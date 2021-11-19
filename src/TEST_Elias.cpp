@@ -5,11 +5,20 @@
 #include "../Characters/enemy.hpp"
 #include <iostream>
 
-void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec) {
+/*
+
+void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec, std::vector<Character*> enemyvec, Character* player) {
     for (auto i : roomvec) {
         for (auto j : i) {
             if (j->HasCharacter()) {
-                std::cout << "O";
+                for (auto enemy : enemyvec) {
+                    if (enemy->GetCurrentTile() == j) {
+                        std::cout << "O";
+                    }
+                }
+                if (player->GetCurrentTile() == j) {
+                    std::cout << "X";
+                }
             }
             else if (j->GetItem() != nullptr) {
                 std::cout << "%";
@@ -57,23 +66,24 @@ int main() {
     DungeonRoom* testroom = new DungeonRoom(std::make_pair(0,0), RoomType::_2DoorRoomCorner, DoorOrientation::SouthWest, testitem, true);
     auto alltiles = testroom->GetAllTiles();
     auto player = new Player(alltiles[6][1]);
-    PrintTiles(alltiles);
     std::vector<Character*> enemyvec = {new Slime(nullptr), new Slime(nullptr), new Slime(nullptr), new Slime(nullptr), new Slime(nullptr)};
+    PrintTiles(alltiles, enemyvec, player);
     testroom->SpawnEnemies(enemyvec);
     for (auto h : enemyvec) {
         h->TakeAction(player, 1);
     }
-    PrintTiles(alltiles);
+    PrintTiles(alltiles, enemyvec, player);
     for (auto h : enemyvec) {
         h->TakeAction(player, 1);
     }
-    PrintTiles(alltiles);
+    PrintTiles(alltiles, enemyvec, player);
     for (auto h : enemyvec) {
         h->TakeAction(player, 1);
     }
-    PrintTiles(alltiles);
+    PrintTiles(alltiles, enemyvec, player);
 
     std::cout << "Test done." << std::endl;
 
     return 1;
 }
+*/

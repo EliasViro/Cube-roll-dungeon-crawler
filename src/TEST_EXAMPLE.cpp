@@ -3,6 +3,7 @@ Here is an example of a test function.
 Make sure you have a function named 'main'. Otherwise it won't work.
 */
 
+/*
 #include "DungeonGeneration/dungeontile.hpp"
 #include <iostream>
 
@@ -16,3 +17,4 @@ int main() {
 
     return 1;
 }
+*/

@@ -33,20 +33,22 @@ int Shield::Use() {
     return defense_;
 }
 
+int Shield::GetDefense() const {
+    return defense_;
+}
 
 
 //Cooldown 3, Defense 1.
 RoundShield::RoundShield() : Shield("Round shield", "A small round wooden shield. Not very sturdy, but at least it is light.", 999, 3, 1) {}
-int RoundShield::GetDefense() const { return defense_; }
+
 
 //Cooldown 5, Defense 2.
 HeaterShield::HeaterShield() : Shield("Heater shield", "A medium sized wooden shield.", 999, 5, 2) {}
-int HeaterShield::GetDefense() const { return defense_; }
+
 
 //Cooldown 4, Defense 2.
 KiteShield::KiteShield() : Shield("Kite shield", "A large wooden shield shaped like an upside down droplet.", 999, 4, 2) {}
-int KiteShield::GetDefense() const { return defense_; }
+
 
 //Cooldown 7, Defense 3.
 TowerShield::TowerShield() : Shield("Tower shield", "An enormous shield with an inpenetrable defense. It is a shame it is so heavy.", 999, 7, 3) {}
-int TowerShield::GetDefense() const { return defense_; }

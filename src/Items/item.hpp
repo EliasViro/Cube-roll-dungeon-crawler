@@ -32,7 +32,7 @@ class Item {
 
     std::string GetDescription() const; //Returns the description of the item.
 
-    virtual int Use() = 0; //Overridden by subclasses. Triggers the item effect and returns the value. 
+    virtual int Use() {return 0;}; //Overridden by subclasses. Triggers the item effect and returns the value. 
     //For MeleeWeapons this value is the damage, if 0 the item was not used.
     //For RangedWeapons this value is the damage, if 0 the item was not used.
     //For Shields this value is the added defense power, if 0 the item was not used.

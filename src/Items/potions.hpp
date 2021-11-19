@@ -16,7 +16,7 @@ class Potion : public Item {
     
     int Use();
 
-    virtual int GetEffect() const = 0;
+    int GetEffect() const;
 
     protected:
     int effect_;
@@ -30,8 +30,6 @@ class Potion : public Item {
 class HealthPotion : public Potion {
     public:
     HealthPotion();
-    
-    int GetEffect() const;
 };
 
 
@@ -41,6 +39,4 @@ class HealthPotion : public Potion {
 class StaminaPotion : public Potion {
     public:
     StaminaPotion();
-    
-    int GetEffect() const;
 };

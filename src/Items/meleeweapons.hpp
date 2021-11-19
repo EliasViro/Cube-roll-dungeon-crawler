@@ -20,9 +20,9 @@ class MeleeWeapon : public Item {
 
     int GetRange() const;
 
-    virtual bool IsStunning() const = 0;
+    bool IsStunning() const;
 
-    virtual bool TargetSeveralEnemies() const;
+    bool TargetSeveralEnemies() const;
 
     protected:
     int range_; //The range of the weapon.
@@ -36,68 +36,40 @@ class MeleeWeapon : public Item {
 class ShortSword : public MeleeWeapon {
     public:
     ShortSword();
-
-    bool IsStunning() const;
-
-    bool TargetSeveralEemies() const;
 };
 
 
 class ArmingSword : public MeleeWeapon {
     public:
     ArmingSword();
-
-    bool IsStunning() const;
-
-    bool TargetSeveralEemies() const;
 };
 
 
 class LongSword : public MeleeWeapon {
     public:
     LongSword();
-
-    bool IsStunning() const;
-
-    bool TargetSeveralEemies() const;
 };
 
 
 class HandAxe : public MeleeWeapon {
     public:
     HandAxe();
-
-    bool IsStunning() const;
-
-    bool TargetSeveralEemies() const;
 };
 
 
 class BattleAxe : public MeleeWeapon {
     public:
     BattleAxe();
-
-    bool IsStunning() const;
-
-    bool TargetSeveralEemies() const;
 };
 
 
 class Mace : public MeleeWeapon {
     public:
     Mace();
-
-    bool IsStunning() const;
-
-    bool TargetSeveralEemies() const;
 };
 
 
 class WarHammer : public MeleeWeapon {
     public:
     WarHammer();
-
-    bool IsStunning() const;
-
-    bool TargetSeveralEemies() const;
 };

@@ -35,18 +35,15 @@ class Character {
 
     void RemoveDefensePoints(); //Sets the defense points to zero.
 
-    virtual void TakeDamage(int damage); //Reduces healthpoints by the amount of damage minus defense points.
+    virtual void TakeDamage(int damage) {}; //Reduces healthpoints by the amount of damage minus defense points.
 
     void Stun(int stunamount); //Stuns the character.
 
     void UnStun(); //Reduces stunned status.
 
-    virtual bool MoveToDirection(const char* direction); //Attempts to move the character on the neighboring tile in the given direction. Returns true if successful.
+    virtual bool MoveToDirection(const char* direction) {return false;}; //Attempts to move the character on the neighboring tile in the given direction. Returns true if successful.
 
     void MoveToTile(DungeonTile* tile); //Moves the character onto the given tile.
-
-    virtual void TakeAction(Character* targetcharacter); //Overridden by Enemy subclass.
-    //Causes Allies and Enemies to take an action.
 
     protected:
     CharacterType charactertype_; //The type of the character.

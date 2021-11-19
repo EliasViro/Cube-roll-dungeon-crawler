@@ -299,6 +299,7 @@ std::vector<Character*> GenerateRoomEnemies(int level) {
 			return {new SkeletonMage(nullptr), new SkeletonKnight(nullptr), new SkeletonKnight(nullptr), new SkeletonWarrior(nullptr), new SkeletonWarrior(nullptr)};
 		}
 	}
+    return {nullptr};
 }
 
 

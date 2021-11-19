@@ -26,9 +26,9 @@ class RangedWeapon : public Item {
 
     int GetRange() const;
 
-    virtual bool IsStunning() const = 0;
+    bool IsStunning() const;
 
-    virtual bool IsThrown() const = 0;
+    bool IsThrown() const;
 
     protected:
     int range_; //The range of the weapon.

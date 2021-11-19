@@ -141,5 +141,3 @@ void Player::TakeDamage(int damage) {
     }
     healthpoints_ = healthpoints_ - (damage - defensepoints_);
 }
-
-void Player::TakeAction() {}

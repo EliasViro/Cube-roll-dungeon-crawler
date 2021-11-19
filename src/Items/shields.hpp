@@ -27,7 +27,7 @@ class Shield : public Item {
     
     int Use();
 
-    virtual int GetDefense() const = 0;
+    int GetDefense() const;
 
     protected:
     int defense_;
@@ -37,30 +37,22 @@ class Shield : public Item {
 class RoundShield : public Shield {
     public:
     RoundShield();
-
-    int GetDefense() const;
 };
 
 
 class HeaterShield : public Shield {
     public:
     HeaterShield();
-
-    int GetDefense() const;
 };
 
 
 class KiteShield : public Shield {
     public:
     KiteShield();
-
-    int GetDefense() const;
 };
 
 
 class TowerShield : public Shield {
     public:
     TowerShield();
-
-    int GetDefense() const;
 };

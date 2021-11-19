@@ -119,42 +119,47 @@ std::vector<std::string> RandomizeRoom(std::vector<std::string> roomvector, Door
 
 std::vector<std::vector<DungeonTile*>> CreateTiles(std::vector<std::string> roomvector, bool isplayerstartingroom) {
     std::vector<std::vector<DungeonTile*>> tilevector;
+    std::vector<DungeonTile*> tempvector;
     std::vector<DungeonTile*> neighborvector;
     for (int j = 0; j < 12; j++) {
         for (int i = 0; i < 12; i++) {
             if (roomvector[j][i] == '#') {
-                tilevector[j][i] = new DungeonTile(TileType::Wall, j, i);
+                tempvector.push_back(new DungeonTile(TileType::Wall, j, i));
                 // DungeonTile::DungeonTile(TileType tiletype, int xcoord, int ycoord) 
             }
             else if (roomvector[j][i] == '*') {
-                tilevector[j][i] = new DungeonTile(TileType::Floor, j, i);
+                tempvector.push_back(new DungeonTile(TileType::Floor, j, i));
             }
             else if (roomvector[j][i] == '+') {
-                tilevector[j][i] = new DungeonTile(TileType::Pit, j, i);
+                tempvector.push_back(new DungeonTile(TileType::Pit, j, i));
             }
             else if (roomvector[j][i] == '=') {
-                tilevector[j][i] = new DungeonTile(TileType::Door, j, i);
+                tempvector.push_back(new DungeonTile(TileType::Door, j, i));
             }
             else if (roomvector[j][i] == 'E') {
-                tilevector[j][i] = new DungeonTile(TileType::Spawner, j, i);
+                tempvector.push_back(new DungeonTile(TileType::Spawner, j, i));
             }
             else if (roomvector[j][i] == 'T') {
-                tilevector[j][i] = new DungeonTile(TileType::Trap, j, i);
+                tempvector.push_back(new DungeonTile(TileType::Trap, j, i));
             }
             else if (roomvector[j][i] == 'U') {
                 if (isplayerstartingroom) {
-                    tilevector[j][i] = new DungeonTile(TileType::Entrance, j, i);
+                    tempvector.push_back(new DungeonTile(TileType::Entrance, j, i));
                 }
                 else {
-                    tilevector[j][i] = new DungeonTile(TileType::Floor, j, i);
+                    tempvector.push_back(new DungeonTile(TileType::Floor, j, i));
                 }
             }
             else if (roomvector[j][i] == 'L') {
-                tilevector[j][i] = new DungeonTile(TileType::Loot, j, i);
+                tempvector.push_back(new DungeonTile(TileType::Loot, j, i));
             }
             else {
-                tilevector[j][i] = new DungeonTile(TileType::Exit, j, i);
+                tempvector.push_back(new DungeonTile(TileType::Exit, j, i));
             }
+        }
+        tilevector.push_back(tempvector);
+        for (int k = 0; k < 12; k++) {
+            tempvector.pop_back();
         }
     }
     for (int a = 0; a < 12; a++) {

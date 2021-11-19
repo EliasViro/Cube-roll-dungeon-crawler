@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/atte/cpp_projects/DungeonCrawler/build"
+			"value" : "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -418,18 +418,6 @@
 			"value" : "CMAKE_DLLTOOL-NOTFOUND"
 		},
 		{
-			"name" : "CMAKE_EDIT_COMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to cache edit program executable."
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "/usr/bin/cmake-gui"
-		},
-		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
 			"properties" : 
 			[
@@ -607,7 +595,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/atte/cpp_projects/DungeonCrawler"
+			"value" : "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1143,7 +1131,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/atte/cpp_projects/DungeonCrawler/build"
+			"value" : "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build"
 		},
 		{
 			"name" : "DungeonCrawler_SOURCE_DIR",
@@ -1155,7 +1143,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/atte/cpp_projects/DungeonCrawler"
+			"value" : "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3"
 		},
 		{
 			"name" : "SFML_DIR",

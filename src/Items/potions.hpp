@@ -18,6 +18,16 @@ class Potion : public Item {
 
     int GetEffect() const;
 
+    int GetDamage() const {return 0;};
+
+    int GetRange() const {return 0;};
+
+    bool IsStunning() const {return false;};
+
+    bool TargetSeveralEnemies() const {return false;};
+
+    bool IsThrown() const {return false;};
+
     protected:
     int effect_;
 };

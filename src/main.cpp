@@ -95,6 +95,9 @@ enemies being in range of a weapon that can only target one enemy at a time. Gra
 9. When the player enters the last room of a level, make the level exit visible.
 10. When the enemies of the last room on a level are defeated, open the level exit.
 11. Change the player tile to a storage tile, delete the level and resume loop from step 1.
+
+REMEMBER TO CHECK INVENTORY SLOT ITEM RETURN VALUE FOR RANGED & MELEE WEAPONS
+IF THE ITEM IS A RANGED WEAPON, RETURN VALUE IS 10
 */
 
 

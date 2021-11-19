@@ -54,11 +54,11 @@ class Enemy : public Character {
 
     bool NextToCharacter(Character* targetcharacter) const; //Checks if the target character is next to the character.
 
-    void TakeAction(Character* targetcharacter); //Proceeds the actionvector index by one and moves the character according to its AI.
+    void TakeAction(Character* targetcharacter, int fillernumber); //Proceeds the actionvector index by one and moves the character according to its AI.
 
     void TakeDamage(int damage); //Damages the character.
 
-    bool MoveToDirection(const char* direction); //Attempts to move the character to the given direction, returns true if successful.
+    int MoveToDirection(const char* direction); //Attempts to move the character to the given direction, returns -1 if didn't succeed, positive otherwise.
 
     std::string GetDescription() const; //Returns the description of the enemy.
 

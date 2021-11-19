@@ -30,6 +30,8 @@ class RangedWeapon : public Item {
 
     bool IsThrown() const;
 
+    bool TargetSeveralEnemies() const {return false;};
+
     protected:
     int range_; //The range of the weapon.
     int damage_; //The damage of the weapon.
@@ -41,28 +43,16 @@ class RangedWeapon : public Item {
 class Javelin : public RangedWeapon {
     public:
     Javelin();
-
-    bool IsStunning() const;
-
-    bool IsThrown() const;
 };
 
 
 class Bolas : public RangedWeapon {
     public:
     Bolas();
-
-    bool IsStunning() const;
-
-    bool IsThrown() const;
 };
 
 
 class Sling : public RangedWeapon {
     public:
     Sling();
-
-    bool IsStunning() const;
-
-    bool IsThrown() const;
 };

@@ -165,18 +165,19 @@ bool Enemy::NextToCharacter(Character* targetcharacter) const {
     return ((GetXCoordinate() == targetcharacter->GetXCoordinate() && (abs(GetYCoordinate() - targetcharacter->GetYCoordinate()) == 1)) || (GetYCoordinate() == targetcharacter->GetYCoordinate() && (abs(GetXCoordinate() - targetcharacter->GetXCoordinate()))));
 }
 
-void Enemy::TakeAction(Character* targetcharacter) {
+void Enemy::TakeAction(Character* targetcharacter, int fillernumber) {
     srand(time(NULL));
+    fillernumber = 1;
     RemoveDefensePoints();
     if (isstunned_ = 0) {
         if (enemyai_ == Random) {
             int randomnumber = rand() % 4 + 1;
-            bool movedsuccessfully = false;
+            int movedsuccessfully = false;
             bool attemptednorth = false;
             bool attemptedeast = false;
             bool attemptedwest = false;
             bool attemptedsouth = false;
-            while (!movedsuccessfully || !(attemptednorth && attemptedwest && attemptedeast && attemptedsouth)) {
+            while (movedsuccessfully < 0 || !(attemptednorth && attemptedwest && attemptedeast && attemptedsouth)) {
                 if (randomnumber == 1 && !attemptednorth) {
                     movedsuccessfully = MoveToDirection("N");
                     attemptednorth = true;
@@ -211,7 +212,7 @@ void Enemy::TakeAction(Character* targetcharacter) {
             TakeDamage(1);
         }
         if (indexinactionvector_ < actionvector_.size() - 1) {
-            indexinactionvector_++;
+            indexinactionvector_+= fillernumber;
         }
         else {
             indexinactionvector_ = 0;
@@ -265,15 +266,15 @@ void Enemy::TakeDamage(int damage) {
     }
 }
 
-bool Enemy::MoveToDirection(const char* direction) {
+int Enemy::MoveToDirection(const char* direction) {
     if (currenttile_->GetTileNeighbor(direction)->IsPassable()) {
         currenttile_->GetTileNeighbor(direction)->SetCharacter();
         currenttile_->RemoveCharacter();
         currenttile_ = currenttile_->GetTileNeighbor(direction);
-        return true;
+        return 1;
     }
     else {
-        return false;
+        return -1;
     }
 }
 

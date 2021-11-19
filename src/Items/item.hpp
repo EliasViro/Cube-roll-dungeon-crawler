@@ -42,6 +42,16 @@ class Item {
 
     void Drop(); //Sets the isactive status to false and adds one point to the cooldown if the item isn't on cooldown.
 
+    virtual int GetDamage() const {return 0;};
+
+    virtual int GetRange() const {return 0;};
+
+    virtual bool IsStunning() const {return false;};
+
+    virtual bool TargetSeveralEnemies() const {return false;};
+
+    virtual bool IsThrown() const {return false;};
+
     protected:
     std::string name_; //The name of the item.
     std::string description_;

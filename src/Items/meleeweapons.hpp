@@ -24,6 +24,8 @@ class MeleeWeapon : public Item {
 
     bool TargetSeveralEnemies() const;
 
+    bool IsThrown() const {return false;};
+
     protected:
     int range_; //The range of the weapon.
     int damage_; //The damage of the weapon.

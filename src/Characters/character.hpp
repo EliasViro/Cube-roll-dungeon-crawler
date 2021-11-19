@@ -37,11 +37,15 @@ class Character {
 
     virtual void TakeDamage(int damage) {}; //Reduces healthpoints by the amount of damage minus defense points.
 
+    virtual void TakeAction(Character* targetcharacter, int fillernumber) {}; //Makes the character take an action. For Players the fillernumber is dealt as damage to targetcharacter.
+    //Enemies will pathfind and attack the character given as target, and the int will not be used.
+
     void Stun(int stunamount); //Stuns the character.
 
     void UnStun(); //Reduces stunned status.
 
-    virtual bool MoveToDirection(const char* direction) {return false;}; //Attempts to move the character on the neighboring tile in the given direction. Returns true if successful.
+    virtual int MoveToDirection(const char* direction) {return -1;}; //Attempts to move the character on the neighboring tile in the given direction. 
+    //Returns -1 if did not succeed, otherwise positive.
 
     void MoveToTile(DungeonTile* tile); //Moves the character onto the given tile.
 

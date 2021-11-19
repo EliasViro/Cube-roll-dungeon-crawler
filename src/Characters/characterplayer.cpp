@@ -36,24 +36,29 @@ void InventorySlot::DropItem() {
 }
 
 int InventorySlot::UseItem() {
-    int returned = item_->Use();
-    if (returned != 0) {
-        if (item_->GetDurability() == 0) {
-            item_ = nullptr;
+    int returned = 0;
+    if (item_ != nullptr) {
+        int returned = item_->Use();
+        if (returned != 0) {
+            if (item_->GetDurability() == 0) {
+                item_ = nullptr;
+            }
         }
     }
     return returned;
 }
+
+
 
 //The character that represents the player on the game board.
 //Moving will roll the player inventory along with the cube.
 //After moving attempts to use the item on the top inventory tile
 //of the player cube.
 
-
 Player::Player(DungeonTile* tile) 
     : Character(PlayerCharacter, 4, tile) {
     inventory_ = {new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr)};
+    tile->SetCharacter();
 }
 
 std::vector<InventorySlot*> Player::GetInventory() const {
@@ -81,9 +86,9 @@ bool Player::AddItemToSlot(Item* item) {
     return hasbeenadded;
 } //Attempts to add the item to the first free inventory slot in the player inventory. Returns true if successful.
 
-bool Player::MoveToDirection(const char* direction) {
-    RemoveDefensePoints();
+int Player::MoveToDirection(const char* direction) {
     if (currenttile_->GetTileNeighbor(direction)->IsPassable()) {
+        RemoveDefensePoints();
         currenttile_->GetTileNeighbor(direction)->SetCharacter();
         currenttile_->RemoveCharacter();
         currenttile_ = currenttile_->GetTileNeighbor(direction);
@@ -127,17 +132,73 @@ bool Player::MoveToDirection(const char* direction) {
             inventory_[4] = tempinventory[0];
             inventory_[5] = tempinventory[4];
         }
-        inventory_[0]->UseItem();
-        return true;
+        auto itemintopslot = inventory_[0]->GetItem();
+        int itemreturnval = 0;
+        if (itemintopslot != nullptr) {
+            if (itemintopslot->GetName() == "Healing potion" && healthpoints_ < 4) {
+                itemreturnval = itemintopslot->Use();
+                if (itemreturnval > 0) {
+                    healthpoints_++;
+                }
+            }
+            bool itemoncooldown = false;
+            for (auto slot : inventory_) {
+                if (!slot->IsEmpty()) {
+                    if (slot->GetItem()->GetCoolDown() >= 0) {
+                        itemoncooldown = true;
+                        break;
+                    }
+                }
+            }
+            if (itemintopslot->GetName() == "Stamina potion" && itemoncooldown) {
+                itemreturnval = itemintopslot->Use();
+                if (itemreturnval > 0) {
+                    for (auto slot2 : inventory_) {
+                        if (!slot2->IsEmpty()) {
+                            while (slot2->GetItem()->GetCoolDown() > 0) {
+                                slot2->GetItem()->ReduceCoolDown();
+                            }
+                        }
+                    }
+                }
+            }
+            if (itemintopslot->GetItemType() == RangedWeaponItem) {
+                itemreturnval = 10;
+            }
+            if (itemintopslot->GetItemType() == MeleeWeaponItem) {
+                if (currenttile_->GetTileNeighbor("N")->HasCharacter() || currenttile_->GetTileNeighbor("E")->HasCharacter() || currenttile_->GetTileNeighbor("W")->HasCharacter() || currenttile_->GetTileNeighbor("S")->HasCharacter()) {
+                    itemreturnval = itemintopslot->Use();
+                }
+            }
+            for (auto slot3 : inventory_) {
+                    if (!slot3->IsEmpty()) {
+                        slot3->GetItem()->ReduceCoolDown();
+                    }
+                }
+        }        
+        return itemreturnval;
     }
     else {
-        return false;
+        return -1;
     }
 }
 
 void Player::TakeDamage(int damage) {
-    if (inventory_[0]->GetItem()->GetItemType() == ShieldItem) {
-        AddDefensePoints(inventory_[0]->UseItem());
+    if (!inventory_[0]->IsEmpty()) {
+        if (inventory_[0]->GetItem()->GetItemType() == ShieldItem) {
+            AddDefensePoints(inventory_[0]->UseItem());
+        }
     }
     healthpoints_ = healthpoints_ - (damage - defensepoints_);
+}
+
+void Player::TakeAction(Character* targetcharacter, int damage) {
+    if (!inventory_[0]->IsEmpty()) {
+        targetcharacter->TakeDamage(damage);
+        if (inventory_[0]->GetItem()->GetItemType() == MeleeWeaponItem || inventory_[0]->GetItem()->GetItemType() == RangedWeaponItem) {
+            if (inventory_[0]->GetItem()->IsStunning()) {
+                targetcharacter->Stun(2);
+            }
+        }
+    }
 }

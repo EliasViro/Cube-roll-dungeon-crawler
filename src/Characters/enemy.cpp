@@ -25,18 +25,78 @@ ActionType Enemy::GetCurrentAction() const {
 }
 
 void Enemy::MoveTowards(Character* targetcharacter) {
-    //PATHFINDING TOWARDS THE TARGET. AVOID INPASSABLE TILES.
+    int target_tileX= targetcharacter->GetXCoordinate();
+    int target_tileY = targetcharacter->GetYCoordinate();
+    int current_tileX = GetXCoordinate();
+    int current_tileY = currenttile_->GetYCoord();
+    int ydiff= current_tileY - target_tileY;
+    int xdiff= current_tileX - target_tileX;
+    // xdiff > 0 => enemy is left, go W
+    //xdiff < 0 => enemy is right, go E
+    //ydiff > 0 => enemy is up, go N
+    //ydiff < 0 => enemy is down , go  S
+    //first go horizontal
+    do{
+        if( xdiff>0){
+            MoveToDirection("W");
+        }else if (xdiff<0){
+            MoveToDirection("E");
+        }else if(ydiff>0){
+            MoveToDirection("N");
+        }else{
+            MoveToDirection("S");
+        }
+        
+    }while(!(ydiff==0 & xdiff==0));
 }
 
 void Enemy::MoveAwayFrom(Character* targetcharacter) {
-    //PATHFINDING AWAY FROM THE TARGET. AVOID INPASSABLE TILES.
+    int  c=0;
+    int target_tileX= targetcharacter->GetXCoordinate();
+    int target_tileY = targetcharacter->GetYCoordinate();
+    int current_tileX = GetXCoordinate();
+    int current_tileY = currenttile_->GetYCoord();
+    int ydiff= current_tileY - target_tileY;
+    int xdiff= current_tileX - target_tileX;
+    // xdiff > 0 => enemy is down, go E
+    //xdiff < 0 => enemy is up, go W
+    //ydiff > 0 => enemy is right, go S
+    //ydiff < 0 => enemy is left , go  N
+    //first go horizontal
+    int rndm = (rand()% 2);
+    int dirs[2] = { 1, 2 };
+    //1 = UP-DOWN
+    //2 = RIGHT-LEFT
+    do{
+        if(dirs[rndm]==2){
+            if( xdiff>0){
+                MoveToDirection("E");
+                c++;
+            }else{
+                MoveToDirection("W");
+                c++;
+            }
+            
+        }else{
+            if( ydiff>0){
+                MoveToDirection("S");
+                c++;
+            }else{
+                MoveToDirection("N");
+                c++;
+            }
+            
+        }
+        //MoveToDirection(dirs[rndm])
+        rndm=(rand()% 2);
+    }while(c<4);
 }
 
 bool Enemy::DistanceToCharacterLargerThanThree(Character* targetcharacter) const {
     DungeonTile* measurertile = targetcharacter->GetCurrentTile();
     int distance = 0;
-    std::string xdir = "";
-    std::string ydir = "";
+    char const* xdir = "";
+    char const* ydir = "";
     int ydifference = GetYCoordinate() - measurertile->GetYCoord();
     int xdifference = GetXCoordinate() - measurertile->GetXCoord();
     while ((measurertile->GetXCoord() != GetXCoordinate() && measurertile->GetYCoord() != GetYCoordinate()) || distance < 3) {
@@ -155,13 +215,13 @@ void Enemy::TakeAction(Character* targetcharacter) {
         else {
             indexinactionvector_ = 0;
         }
-        if (actionvector_[indexinactionvector_] = Defend_1) {
+        if (actionvector_[indexinactionvector_] == Defend_1) {
             AddDefensePoints(1);
         }
-        if (actionvector_[indexinactionvector_] = Defend_2) {
+        if (actionvector_[indexinactionvector_] == Defend_2) {
             AddDefensePoints(2);
         }
-        if (actionvector_[indexinactionvector_] = Defend_3) {
+        if (actionvector_[indexinactionvector_] == Defend_3) {
             AddDefensePoints(3);
         }
         if (actionvector_[indexinactionvector_] == Melee_1 && NextToCharacter(targetcharacter)) {

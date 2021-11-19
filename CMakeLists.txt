@@ -19,7 +19,7 @@ set(HEADER_FILES src/Characters src/DungeonGeneration src/Items)
 #####################################\/########
 
 add_executable(DungeonCrawler ${SOURCES} ${HEADER_FILES})
-#add_executable(DungeonCrawler src/main.cpp)
+#add_executable(DungeonCrawler src/random_test.cpp src/DungeonGeneration/dungeontile.cpp src/DungeonGeneration/dungeontile.hpp)
 
 #####################################/\########
 ####################################/  \#######

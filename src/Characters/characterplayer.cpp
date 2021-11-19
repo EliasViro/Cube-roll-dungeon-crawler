@@ -1,6 +1,50 @@
 #include "characterplayer.hpp"
 
 
+
+//A class that represents one of the six slots in the player inventory. Holds an Item.
+
+InventorySlot::InventorySlot(Item* item) : item_(item) {}
+
+bool InventorySlot::IsEmpty() const {
+    if (item_ == nullptr) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+Item* InventorySlot::GetItem() const {
+    return item_;
+}
+
+bool InventorySlot::AddItem(Item* item) {
+    if (IsEmpty()) {
+        item_ = item;
+        item_->PickUp();
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void InventorySlot::DropItem() {
+    item_->Drop();
+    item_ = nullptr;
+}
+
+int InventorySlot::UseItem() {
+    int returned = item_->Use();
+    if (returned != 0) {
+        if (item_->GetDurability() == 0) {
+            item_ = nullptr;
+        }
+    }
+    return returned;
+}
+
 //The character that represents the player on the game board.
 //Moving will roll the player inventory along with the cube.
 //After moving attempts to use the item on the top inventory tile
@@ -98,46 +142,4 @@ void Player::TakeDamage(int damage) {
     healthpoints_ = healthpoints_ - (damage - defensepoints_);
 }
 
-
-//A class that represents one of the six slots in the player inventory. Holds an Item.
-
-InventorySlot::InventorySlot(Item* item) : item_(item) {}
-
-bool InventorySlot::IsEmpty() const {
-    if (item_ == nullptr) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-Item* InventorySlot::GetItem() const {
-    return item_;
-}
-
-bool InventorySlot::AddItem(Item* item) {
-    if (IsEmpty()) {
-        item_ = item;
-        item_->PickUp();
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-void InventorySlot::DropItem() {
-    item_->Drop();
-    item_ = nullptr;
-}
-
-int InventorySlot::UseItem() {
-    int returned = item_->Use();
-    if (returned != 0) {
-        if (item_->GetDurability() == 0) {
-            item_ = nullptr;
-        }
-    }
-    return returned;
-}
+void Player::TakeAction() {}

@@ -47,6 +47,8 @@ class Player : public Character {
 
     void TakeDamage(int damage); //Deals damage to the player.
 
+    void TakeAction();
+
     private:
     std::vector<InventorySlot*> inventory_; //A vector of InventorySlots that are stored in the following order: TOP, N, E, W, S, BOTTOM.
 };

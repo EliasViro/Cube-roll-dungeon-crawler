@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3"
+CMAKE_SOURCE_DIR = /home/atte/cpp_projects/DungeonCrawler
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out"
+CMAKE_BINARY_DIR = /home/atte/cpp_projects/DungeonCrawler/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/atte/cpp_projects/DungeonCrawler/build/CMakeFiles /home/atte/cpp_projects/DungeonCrawler/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/atte/cpp_projects/DungeonCrawler/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -420,33 +420,6 @@ src/Items/shields.cpp.s:
 	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.s
 .PHONY : src/Items/shields.cpp.s
 
-src/dungeonleveltest.o: src/dungeonleveltest.cpp.o
-
-.PHONY : src/dungeonleveltest.o
-
-# target to build an object file
-src/dungeonleveltest.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.o
-.PHONY : src/dungeonleveltest.cpp.o
-
-src/dungeonleveltest.i: src/dungeonleveltest.cpp.i
-
-.PHONY : src/dungeonleveltest.i
-
-# target to preprocess a source file
-src/dungeonleveltest.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.i
-.PHONY : src/dungeonleveltest.cpp.i
-
-src/dungeonleveltest.s: src/dungeonleveltest.cpp.s
-
-.PHONY : src/dungeonleveltest.s
-
-# target to generate assembly for a file
-src/dungeonleveltest.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.s
-.PHONY : src/dungeonleveltest.cpp.s
-
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -473,6 +446,33 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/random_test.o: src/random_test.cpp.o
+
+.PHONY : src/random_test.o
+
+# target to build an object file
+src/random_test.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/random_test.cpp.o
+.PHONY : src/random_test.cpp.o
+
+src/random_test.i: src/random_test.cpp.i
+
+.PHONY : src/random_test.i
+
+# target to preprocess a source file
+src/random_test.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/random_test.cpp.i
+.PHONY : src/random_test.cpp.i
+
+src/random_test.s: src/random_test.cpp.s
+
+.PHONY : src/random_test.s
+
+# target to generate assembly for a file
+src/random_test.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/random_test.cpp.s
+.PHONY : src/random_test.cpp.s
 
 # Help Target
 help:
@@ -516,12 +516,12 @@ help:
 	@echo "... src/Items/shields.o"
 	@echo "... src/Items/shields.i"
 	@echo "... src/Items/shields.s"
-	@echo "... src/dungeonleveltest.o"
-	@echo "... src/dungeonleveltest.i"
-	@echo "... src/dungeonleveltest.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/random_test.o"
+	@echo "... src/random_test.i"
+	@echo "... src/random_test.s"
 .PHONY : help
 
 

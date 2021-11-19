@@ -2,9 +2,9 @@
 #include <iostream>
 #include <utility>
 
-int mainX() {
+int main() {
     DungeonTile tile(TileType::Wall, 1, 2);
-    std::cout << "moro" << std::endl;
+    std::cout << "Hello!" << std::endl;
 
     return 1;
 }

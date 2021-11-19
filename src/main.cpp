@@ -9,6 +9,7 @@
 #include "Items/potions.hpp"
 
 #include <iostream>
+#include <vector>
 
 #include <SFML/System.hpp>
 #include <SFML/Audio.hpp>
@@ -113,12 +114,16 @@ void levelLoop(sf::RenderWindow& window) {
         else sidelength = 4;
 
         DungeonLevel level(sidelength);
+		std::vector<std::vector<DungeonRoom*>> rooms = level.GetRooms();
+		std::pair<int,int> startingRoom = level.GetStartPos();
+		
 
         //level(window, sidelength);
     }
 
     return;
 }
+
 
 
 

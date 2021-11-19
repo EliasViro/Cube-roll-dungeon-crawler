@@ -10,8 +10,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o"
   "CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o"
   "CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o"
-  "CMakeFiles/DungeonCrawler.dir/src/dungeonleveltest.cpp.o"
   "CMakeFiles/DungeonCrawler.dir/src/main.cpp.o"
+  "CMakeFiles/DungeonCrawler.dir/src/random_test.cpp.o"
   "DungeonCrawler"
   "DungeonCrawler.pdb"
 )

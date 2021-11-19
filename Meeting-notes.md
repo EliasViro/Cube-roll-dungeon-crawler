@@ -168,3 +168,44 @@ Process has been swift and most classes have been implemented, except the main g
 -Refactoring DungeonLevel
 -Fixing errors in DungeonLevel & DungeonRoom.
 -Implementing a working game window, accepting input and creating the game engine.
+
+
+
+
+# Meeting 19.11.2021 14::00
+
+**Participants**: 
+1. Elias
+2. Atte
+3. Binh
+4. Selin
+
+## Summary of works
+1. Elias: Created textures for the game, converted game sounds to the correct file format (OGG), added a bunch of enemy classes, debugged lots of errors and implemented a
+couple of helpful functions for the main game loop.
+
+2. Atte: Configured CMake and the debugger, created a functioning main menu screen and laid the groundwork for main game loop.
+
+3. Binh: Fixed compilation errors related to the DungeonLevel class, added a few more rooms for testing purposes.
+
+4. Selin: Started the work on enemy pathfinding algorithms.
+
+## Challenges
+
+-Problems with getting the debugger to work
+-Compilation errors
+-Finding appropriate game music
+
+## Actions
+1. Elias: Support role, debugging and testing some classes, implementing final missing textures, adding helper functions for the main game loop.
+2. Atte: Work on the main game loop.
+3. Binh: Fix the bugs in the DungeonLevel class (such as always creating 4DoorRooms)
+4. Selin: Continue working on enemy pathfinding
+
+## Project status 
+Compilation errors have been fixed for now and the work on the main game loop is proceeding well. Debugger is working and the main menu interactions also work.
+
+### TODOs
+-Pathfinding fixes for enemies
+-Fixing bugs in DungeonLevel
+-Working on the main game loop and getting the game into a playable state

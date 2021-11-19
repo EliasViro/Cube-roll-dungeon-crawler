@@ -51,7 +51,7 @@ std::vector<std::string> MirrorRoomVertically(std::vector<std::string> roomvecto
 std::vector<std::string> MirrorRoomHorizontally(std::vector<std::string> roomvector) {
     for (int j = 0; j < 12; j++) {
         for (int i = 0; i < 12 / 2; i++) {
-            std::swap(roomvector[j][i], roomvector[j][15 - i]);
+            std::swap(roomvector[j][i], roomvector[j][11 - i]);
         }
     }
     return roomvector;
@@ -61,7 +61,7 @@ std::vector<std::string> MirrorRoomHorizontally(std::vector<std::string> roomvec
 std::vector<std::string> RotateRoomClockwise(std::vector<std::string> roomvector) {
     std::vector<std::string> roomvector2 = roomvector;
     for (int j = 0; j < 12; j++) {
-        for (int i = 15; i >= 0; i--) {
+        for (int i = 11; i >= 0; i--) {
             roomvector2[j][11 - i] = roomvector[i][j];
         }
     }

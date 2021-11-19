@@ -56,12 +56,32 @@
 },
 {
   "directory": "/home/atte/cpp_projects/DungeonCrawler/build",
-  "command": "/bin/x86_64-linux-gnu-g++-9   -I/home/atte/cpp_projects/DungeonCrawler/src/Characters -I/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration -I/home/atte/cpp_projects/DungeonCrawler/src/Items  -g   -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/main.cpp",
-  "file": "/home/atte/cpp_projects/DungeonCrawler/src/main.cpp"
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I/home/atte/cpp_projects/DungeonCrawler/src/Characters -I/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration -I/home/atte/cpp_projects/DungeonCrawler/src/Items  -g   -o CMakeFiles/DungeonCrawler.dir/src/TEST_Atte.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/TEST_Atte.cpp",
+  "file": "/home/atte/cpp_projects/DungeonCrawler/src/TEST_Atte.cpp"
 },
 {
   "directory": "/home/atte/cpp_projects/DungeonCrawler/build",
-  "command": "/bin/x86_64-linux-gnu-g++-9   -I/home/atte/cpp_projects/DungeonCrawler/src/Characters -I/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration -I/home/atte/cpp_projects/DungeonCrawler/src/Items  -g   -o CMakeFiles/DungeonCrawler.dir/src/random_test.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/random_test.cpp",
-  "file": "/home/atte/cpp_projects/DungeonCrawler/src/random_test.cpp"
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I/home/atte/cpp_projects/DungeonCrawler/src/Characters -I/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration -I/home/atte/cpp_projects/DungeonCrawler/src/Items  -g   -o CMakeFiles/DungeonCrawler.dir/src/TEST_Binh.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/TEST_Binh.cpp",
+  "file": "/home/atte/cpp_projects/DungeonCrawler/src/TEST_Binh.cpp"
+},
+{
+  "directory": "/home/atte/cpp_projects/DungeonCrawler/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I/home/atte/cpp_projects/DungeonCrawler/src/Characters -I/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration -I/home/atte/cpp_projects/DungeonCrawler/src/Items  -g   -o CMakeFiles/DungeonCrawler.dir/src/TEST_EXAMPLE.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/TEST_EXAMPLE.cpp",
+  "file": "/home/atte/cpp_projects/DungeonCrawler/src/TEST_EXAMPLE.cpp"
+},
+{
+  "directory": "/home/atte/cpp_projects/DungeonCrawler/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I/home/atte/cpp_projects/DungeonCrawler/src/Characters -I/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration -I/home/atte/cpp_projects/DungeonCrawler/src/Items  -g   -o CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/TEST_Elias.cpp",
+  "file": "/home/atte/cpp_projects/DungeonCrawler/src/TEST_Elias.cpp"
+},
+{
+  "directory": "/home/atte/cpp_projects/DungeonCrawler/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I/home/atte/cpp_projects/DungeonCrawler/src/Characters -I/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration -I/home/atte/cpp_projects/DungeonCrawler/src/Items  -g   -o CMakeFiles/DungeonCrawler.dir/src/TEST_Selin.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/TEST_Selin.cpp",
+  "file": "/home/atte/cpp_projects/DungeonCrawler/src/TEST_Selin.cpp"
+},
+{
+  "directory": "/home/atte/cpp_projects/DungeonCrawler/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I/home/atte/cpp_projects/DungeonCrawler/src/Characters -I/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration -I/home/atte/cpp_projects/DungeonCrawler/src/Items  -g   -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.o -c /home/atte/cpp_projects/DungeonCrawler/src/main.cpp",
+  "file": "/home/atte/cpp_projects/DungeonCrawler/src/main.cpp"
 }
 ]

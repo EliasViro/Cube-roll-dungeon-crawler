@@ -420,6 +420,141 @@ src/Items/shields.cpp.s:
 	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.s
 .PHONY : src/Items/shields.cpp.s
 
+src/TEST_Atte.o: src/TEST_Atte.cpp.o
+
+.PHONY : src/TEST_Atte.o
+
+# target to build an object file
+src/TEST_Atte.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Atte.cpp.o
+.PHONY : src/TEST_Atte.cpp.o
+
+src/TEST_Atte.i: src/TEST_Atte.cpp.i
+
+.PHONY : src/TEST_Atte.i
+
+# target to preprocess a source file
+src/TEST_Atte.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Atte.cpp.i
+.PHONY : src/TEST_Atte.cpp.i
+
+src/TEST_Atte.s: src/TEST_Atte.cpp.s
+
+.PHONY : src/TEST_Atte.s
+
+# target to generate assembly for a file
+src/TEST_Atte.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Atte.cpp.s
+.PHONY : src/TEST_Atte.cpp.s
+
+src/TEST_Binh.o: src/TEST_Binh.cpp.o
+
+.PHONY : src/TEST_Binh.o
+
+# target to build an object file
+src/TEST_Binh.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Binh.cpp.o
+.PHONY : src/TEST_Binh.cpp.o
+
+src/TEST_Binh.i: src/TEST_Binh.cpp.i
+
+.PHONY : src/TEST_Binh.i
+
+# target to preprocess a source file
+src/TEST_Binh.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Binh.cpp.i
+.PHONY : src/TEST_Binh.cpp.i
+
+src/TEST_Binh.s: src/TEST_Binh.cpp.s
+
+.PHONY : src/TEST_Binh.s
+
+# target to generate assembly for a file
+src/TEST_Binh.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Binh.cpp.s
+.PHONY : src/TEST_Binh.cpp.s
+
+src/TEST_EXAMPLE.o: src/TEST_EXAMPLE.cpp.o
+
+.PHONY : src/TEST_EXAMPLE.o
+
+# target to build an object file
+src/TEST_EXAMPLE.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_EXAMPLE.cpp.o
+.PHONY : src/TEST_EXAMPLE.cpp.o
+
+src/TEST_EXAMPLE.i: src/TEST_EXAMPLE.cpp.i
+
+.PHONY : src/TEST_EXAMPLE.i
+
+# target to preprocess a source file
+src/TEST_EXAMPLE.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_EXAMPLE.cpp.i
+.PHONY : src/TEST_EXAMPLE.cpp.i
+
+src/TEST_EXAMPLE.s: src/TEST_EXAMPLE.cpp.s
+
+.PHONY : src/TEST_EXAMPLE.s
+
+# target to generate assembly for a file
+src/TEST_EXAMPLE.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_EXAMPLE.cpp.s
+.PHONY : src/TEST_EXAMPLE.cpp.s
+
+src/TEST_Elias.o: src/TEST_Elias.cpp.o
+
+.PHONY : src/TEST_Elias.o
+
+# target to build an object file
+src/TEST_Elias.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.o
+.PHONY : src/TEST_Elias.cpp.o
+
+src/TEST_Elias.i: src/TEST_Elias.cpp.i
+
+.PHONY : src/TEST_Elias.i
+
+# target to preprocess a source file
+src/TEST_Elias.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.i
+.PHONY : src/TEST_Elias.cpp.i
+
+src/TEST_Elias.s: src/TEST_Elias.cpp.s
+
+.PHONY : src/TEST_Elias.s
+
+# target to generate assembly for a file
+src/TEST_Elias.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.s
+.PHONY : src/TEST_Elias.cpp.s
+
+src/TEST_Selin.o: src/TEST_Selin.cpp.o
+
+.PHONY : src/TEST_Selin.o
+
+# target to build an object file
+src/TEST_Selin.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Selin.cpp.o
+.PHONY : src/TEST_Selin.cpp.o
+
+src/TEST_Selin.i: src/TEST_Selin.cpp.i
+
+.PHONY : src/TEST_Selin.i
+
+# target to preprocess a source file
+src/TEST_Selin.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Selin.cpp.i
+.PHONY : src/TEST_Selin.cpp.i
+
+src/TEST_Selin.s: src/TEST_Selin.cpp.s
+
+.PHONY : src/TEST_Selin.s
+
+# target to generate assembly for a file
+src/TEST_Selin.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Selin.cpp.s
+.PHONY : src/TEST_Selin.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -446,33 +581,6 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
-
-src/random_test.o: src/random_test.cpp.o
-
-.PHONY : src/random_test.o
-
-# target to build an object file
-src/random_test.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/random_test.cpp.o
-.PHONY : src/random_test.cpp.o
-
-src/random_test.i: src/random_test.cpp.i
-
-.PHONY : src/random_test.i
-
-# target to preprocess a source file
-src/random_test.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/random_test.cpp.i
-.PHONY : src/random_test.cpp.i
-
-src/random_test.s: src/random_test.cpp.s
-
-.PHONY : src/random_test.s
-
-# target to generate assembly for a file
-src/random_test.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/random_test.cpp.s
-.PHONY : src/random_test.cpp.s
 
 # Help Target
 help:
@@ -516,12 +624,24 @@ help:
 	@echo "... src/Items/shields.o"
 	@echo "... src/Items/shields.i"
 	@echo "... src/Items/shields.s"
+	@echo "... src/TEST_Atte.o"
+	@echo "... src/TEST_Atte.i"
+	@echo "... src/TEST_Atte.s"
+	@echo "... src/TEST_Binh.o"
+	@echo "... src/TEST_Binh.i"
+	@echo "... src/TEST_Binh.s"
+	@echo "... src/TEST_EXAMPLE.o"
+	@echo "... src/TEST_EXAMPLE.i"
+	@echo "... src/TEST_EXAMPLE.s"
+	@echo "... src/TEST_Elias.o"
+	@echo "... src/TEST_Elias.i"
+	@echo "... src/TEST_Elias.s"
+	@echo "... src/TEST_Selin.o"
+	@echo "... src/TEST_Selin.i"
+	@echo "... src/TEST_Selin.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/random_test.o"
-	@echo "... src/random_test.i"
-	@echo "... src/random_test.s"
 .PHONY : help
 
 

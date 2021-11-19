@@ -1,31 +1,26 @@
-Atte Aarnio, 16.11.2021
 
-NOTE: These instructions don't apply at the moment!
-
-#####################################################################
-#####################################################################
-
-
-Atte Aarnio, 10.11.2021
+Atte Aarnio, 19.11.2021
 
 This document is for all developers. This document contains instructions how to create a test setting
 to test, for instance, a class that you are working on, and compile it using CMake and finally run the
 created executable.
 
-These instructions apply to linux systems (WSL).
+These instructions apply to linux systems (WSL) (at least).
 
 
-1.  Go to folder 'tests' and create your own <test name>.cpp there.
+1.  Go to folder 'src' and create your own test.cpp there. There is 'TEST_EXAMPLE.cpp' to demonstrate this.
 
 2.  Open the top level 'CMakeLists.txt'. There you have to modify one line so that the executable is
-    created for your test.cpp. Further instructions are commented in the file.
+    created for your test.cpp including its dependencies. Further instructions are commented in the file.
     IMPORTANT: Please do not modify anything else except the specified line in the 'CMakeLists.txt'
     to prevent breaking the CMake configuration.
 
 3.  Once you have gone through the step 2, use terminal commands to navigate to the folder 'out'.
     Once you are in the 'out' folder, type the following command in the terminal:
+
     
-    cmake -S .. -B .
+        cmake -S .. -B .
+
 
     It's likely that you get an error message that says something like:
 
@@ -36,12 +31,14 @@ These instructions apply to linux systems (WSL).
 
     Once you have run the cmake command above succesfully without errors, type the following command:
 
-    make
+
+        make
+
 
     This command starts the actual compilation process for your test setting and you get compilation errors if there should be any. Once the compilation is run without errors and the executable is created, you can run the executable by typing.
 
-    ./DungeonCrawler
 
-    For example, if you have told your test cpp to print out some values of your class instance, this is the point where you should be able to observe those values.
+        ./DungeonCrawler
+
 
     Note that once you have succesfully run the cmake command, you don't have to run it again to recompile your code. For example, if you have made changes to your code to fix compilation errors, you can recompile by only running the 'make' command again.

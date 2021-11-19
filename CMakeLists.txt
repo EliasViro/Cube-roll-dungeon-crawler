@@ -11,24 +11,21 @@ file(GLOB SOURCES
 set(HEADER_FILES src/Characters src/DungeonGeneration src/Items)
 
 # test_instructions.txt
-# This (below) is the line that tells CMake which .cpp file the executable is created for.
-# Define the path to the cpp file of your choice inside the quotation marks.
-# For example, "tests/my_test.cpp" ---> once you compile the project using CMake, the executable
-# is created for your test cpp which you can then run.
-####################################\  /#######
-#####################################\/########
+# Use the line 'add_executable' below to configure CMake for your test setting.
+# The fist argument defines the name of the executable.
+# Other arguments define all the files that will be compiled. There must be: 1. the test.cpp which has your main() function 2. all the .cpps and .hpps that the test depends on.
+####################################\  /################################################################
+#####################################\/#################################################################
+#add_executable(DungeonCrawler src/TEST_EXAMPLE.cpp src/DungeonGeneration/dungeontile.cpp src/DungeonGeneration/dungeontile.hpp)
+#####################################/\#################################################################
+####################################/  \################################################################
 
+# This line creates makefiles to compile the whole project. Dont't change it, only comment it out if you are running tests with your test.cpp.
 add_executable(DungeonCrawler ${SOURCES} ${HEADER_FILES})
-#add_executable(DungeonCrawler src/random_test.cpp src/DungeonGeneration/dungeontile.cpp src/DungeonGeneration/dungeontile.hpp)
-
-#####################################/\########
-####################################/  \#######
-
-#file(GLOB SOURCES src/*.cpp src/DungeonGeneration/*.cpp src/Items/*.cpp)
+#########################################################################################################
 
 set(CMAKE_BUILD_TYPE Debug)
 
 find_package(SFML 2.5 COMPONENTS audio graphics window system REQUIRED)
 target_link_libraries(DungeonCrawler sfml-audio sfml-graphics sfml-window sfml-system)
 target_include_directories(DungeonCrawler PUBLIC ${HEADER_FILES})
-#target_precompile_headers(DungeonCrawler PUBLIC "src/DungeonGeneration/dungeonlevel.hpp")

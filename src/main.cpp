@@ -72,6 +72,7 @@ void room(sf::RenderWindow& window, int sidelenght) {
 
         return;
 }
+
 /*
 Main game:
 

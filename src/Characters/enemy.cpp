@@ -36,8 +36,9 @@ void Enemy::MoveTowards(Character* targetcharacter) {
     //ydiff > 0 => enemy is up, go N
     //ydiff < 0 => enemy is down , go  S
     //first go horizontal
+    //Its not based on individual enemies, same forr all I  need to change 
     do{
-        if( xdiff>0){
+        if( xdiff>0 ){
             MoveToDirection("W");
         }else if (xdiff<0){
             MoveToDirection("E");

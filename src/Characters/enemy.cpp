@@ -860,12 +860,13 @@ Moving towards:
 1. Save X and Y differences to the target (diff = ownpos - targetpos)
 2. See which one is larger with abs(diff). If X is larger -> horizontal movement, if Y is larger -> vertical movement. 
 If both are the same, skip to step 7 (this would be just the last else path).
-3. Check if the difference is positive or negative. Positive means E for horizontal, S for verical. Negative means W for horizontal, N for vertical.
+3. Check if the difference is positive or negative. Positive means E for horizontal, S for vertical. Negative means W for horizontal, N for vertical.
 4. Use MoveToDirection(dir) and save the return value. Check if the return value was negative, and if it was, check if the difference value of
-the attempted axis is zero. In case it was, randomize either of the neighboring tiles and ask its neighbor in the movement direction if it is a Wall or a Pit.
-(tile->GetTileType() != Wall && tile ->GetTileType() != Pit). If the neighbor of the neighbor isn't a wall or a pit, move onto the tile whose neighbor was checked.
-Otherwise attempt to move to the direction that wasn't randomly picked **without** checking its neighbor (remember the return value!). If this fails, resume from step 6.
-take the character closer to the target (so if attempted horizontal first, attempt vertical, if attempted vertical first, attempt horizontal)
+the attempted axis is zero. In case it was, randomize either of the neighboring tiles and ask it if it is passable. If it is, ask its neighbor in the original attempted movement direction 
+if it is a Wall or a Pit (tile->GetTileType() != Wall && tile ->GetTileType() != Pit). 
+If the neighbor of the neighbor isn't a wall or a pit, move onto the tile whose neighbor was checked.
+Otherwise attempt to move to the direction that wasn't randomly picked **without** checking its neighbor (remember the return value!). If this fails, try to move to the direction
+whose neighbor was checked earlier. If this fails, attempt to move to the last available direction.
 5. If the return value from that is negative as well, attempt the direction that leads the least away from the target (so the one with smaller difference)
 6. If that fails as well, attempt the last available direction, no return value checking is needed.
 

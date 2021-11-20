@@ -28,59 +28,65 @@ void Enemy::MoveTowards(Character* targetcharacter) {
     //mmove direction
     //Attempts to move the character to the given direction,
     //returns -1 if didn't succeed, positive otherwise.
-    int target_tileX= targetcharacter->GetXCoordinate();
+    int target_tileX = targetcharacter->GetXCoordinate();
     int target_tileY = targetcharacter->GetYCoordinate();
     int current_tileX = GetXCoordinate();
-    int current_tileY = currenttile_->GetYCoord();
-    int ydiff= current_tileY - target_tileY;
-    int xdiff= current_tileX - target_tileX;
+    int current_tileY = GetYCoordinate();
+    int ydiff = current_tileY - target_tileY;
+    int xdiff = current_tileX - target_tileX;
     // xdiff > 0 => enemy is left, go W
     //xdiff < 0 => enemy is right, go E
     //ydiff > 0 => enemy is up, go N
     //ydiff < 0 => enemy is down , go  S
-    int rndm=(rand()%2);
-    if(std::abs(xdiff)<std::abs(ydiff)){
+    int rndm = (rand() % 2);
+    if (std::abs(xdiff) < std::abs(ydiff)) {
         //if it is closer in horizontal direction, go in horizontal direction first
-        if (xdiff>0) {
-            if(MoveToDirection("W")>0){
+        if (xdiff > 0) {
+            if (MoveToDirection("W") > 0) {
                 MoveToDirection("W");
                 //return true;
-            }else{
-                if(ydiff>0){
-                    if(MoveToDirection("N")<0){
+            } 
+            else {
+                if (ydiff > 0) {
+                    if (MoveToDirection("N") < 0) {
                         //1 is E, 0 is S.
-                        if(rndm==1){
-                            if(MoveToDirection("E")<0){
-                                if(MoveToDirection("S")>0){
+                        if (rndm == 1) {
+                            if (MoveToDirection("E") < 0) {
+                                if (MoveToDirection("S") > 0) {
                                     MoveToDirection("S");
                                 }
                                 
-                            }else{
+                            }
+                            else {
                                 MoveToDirection("E");
                                 //return true;
                             }
-                        }else{
-                            if(MoveToDirection("S")<0){
-                                if(MoveToDirection("E")>0){
+                        }
+                        else {
+                            if (MoveToDirection("S") < 0){
+                                if (MoveToDirection("E") > 0){
                                     MoveToDirection("E");
                                 }
                                 
-                            }else{
+                            } 
+                            else {
                                 MoveToDirection("S");
                                 //return true;
                             }
                         }
-                    }else{
+                    }
+                    else {
                         MoveToDirection("N");
                         //return true;
                     }
                     
-                }else if (ydiff<0){
+                }
+                else if (ydiff < 0) {
                     if(MoveToDirection("S")<0){
                         // 1 is E, 0 is N
-                        if(rndm==1){
-                            if(MoveToDirection("E")<0){
-                                if(MoveToDirection("N")>0){
+                        if (rndm == 1) {
+                            if ( MoveToDirection("E") < 0){
+                                if (MoveToDirection("N") > 0){
                                     MoveToDirection("N");
                                 }
                                 
@@ -88,8 +94,9 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                                 MoveToDirection("E");
                                 //return true;
                             }
-                        }else{
-                            if(MoveToDirection("N")<0){
+                        }
+                        else {
+                            if(MoveToDirection("N") < 0){
                                 if(MoveToDirection("E")>0){
                                     MoveToDirection("E");
                                 }

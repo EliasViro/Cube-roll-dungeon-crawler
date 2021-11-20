@@ -53,8 +53,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                             if(MoveToDirection("E")<0){
                                 if(MoveToDirection("S")>0){
                                     MoveToDirection("S");
-                                }else {
-                                    //PROBLEM SHOULDNT HAPPEN
                                 }
                                 
                             }else{
@@ -65,8 +63,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                             if(MoveToDirection("S")<0){
                                 if(MoveToDirection("E")>0){
                                     MoveToDirection("E");
-                                }else {
-                                    //PROBLEM SHOULDNT HAPPEN
                                 }
                                 
                             }else{
@@ -86,8 +82,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                             if(MoveToDirection("E")<0){
                                 if(MoveToDirection("N")>0){
                                     MoveToDirection("N");
-                                }else {
-                                    //PROBLEM SHOULDNT HAPPEN
                                 }
                                 
                             }else{
@@ -98,8 +92,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                             if(MoveToDirection("N")<0){
                                 if(MoveToDirection("E")>0){
                                     MoveToDirection("E");
-                                }else {
-                                    //PROBLEM SHOULDNT HAPPEN
                                 }
                                 
                             }else{
@@ -128,8 +120,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                                 if(MoveToDirection("S")<0){
                                     //return true;
                                     MoveToDirection("S");
-                                }else{
-                                    //shouldnt happen
                                 }
                                 
                             }else{
@@ -141,8 +131,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                                 if(MoveToDirection("W")<0){
                                     //return true;
                                     MoveToDirection("W");
-                                }else{
-                                    //shouldnt happen
                                 }
                                 
                             }else{
@@ -164,8 +152,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                                 if(MoveToDirection("N")<0){
                                     //return true;
                                     MoveToDirection("N");
-                                }else{
-                                    //shouldnt happen
                                 }
                                 
                             }else{
@@ -178,8 +164,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                                 if(MoveToDirection("W")<0){
                                     //return true;
                                     MoveToDirection("W");
-                                }else{
-                                    //shouldnt happen
                                 }
                                 
                             }else{
@@ -209,8 +193,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                                 if(MoveToDirection("S")>0){
                                     MoveToDirection("S");
                                     //return true;
-                                }else{
-                                    //PROBLEM
                                 }
                             }else{
                                 MoveToDirection("E");
@@ -222,8 +204,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                                 if(MoveToDirection("E")>0){
                                     MoveToDirection("E");
                                     //return true;
-                                }else{
-                                    //PROBLEM
                                 }
                             }else{
                                 MoveToDirection("S");
@@ -292,8 +272,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                                 if(MoveToDirection("N")>0){
                                     MoveToDirection("N");
                                     //return true;
-                                }else{
-                                    //PROBLEM;
                                 }
                                 
                             }else{
@@ -305,8 +283,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                                 if(MoveToDirection("W")>0){
                                     MoveToDirection("W");
                                     //return true;
-                                }else{
-                                    //PROBLEM;
                                 }
                                 
                             }else{
@@ -358,8 +334,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                             if(MoveToDirection("W")<0){
                                 if(MoveToDirection("N")>0){
                                     MoveToDirection("N");
-                                }else {
-                                    //PROBLEM SHOULDNT HAPPEN
                                 }
                                 
                             }else{
@@ -370,8 +344,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                             if(MoveToDirection("N")<0){
                                 if(MoveToDirection("W")>0){
                                     MoveToDirection("W");
-                                }else {
-                                    //PROBLEM SHOULDNT HAPPEN
                                 }
                                 
                             }else{
@@ -391,8 +363,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                             if(MoveToDirection("W")<0){
                                 if(MoveToDirection("S")>0){
                                     MoveToDirection("S");
-                                }else {
-                                    //PROBLEM SHOULDNT HAPPEN
                                 }
                                 
                             }else{
@@ -403,8 +373,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                             if(MoveToDirection("S")<0){
                                 if(MoveToDirection("W")>0){
                                     MoveToDirection("W");
-                                }else {
-                                    //PROBLEM SHOULDNT HAPPEN
                                 }
                                 
                             }else{
@@ -433,8 +401,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                                 if(MoveToDirection("N")<0){
                                     //return true;
                                     MoveToDirection("N");
-                                }else{
-                                    //shouldnt happen
                                 }
                                 
                             }else{
@@ -446,8 +412,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                                 if(MoveToDirection("E")<0){
                                     //return true;
                                     MoveToDirection("E");
-                                }else{
-                                    //shouldnt happen
                                 }
                                 
                             }else{
@@ -469,8 +433,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                                 if(MoveToDirection("S")<0){
                                     //return true;
                                     MoveToDirection("S");
-                                }else{
-                                    //shouldnt happen
                                 }
                                 
                             }else{
@@ -483,8 +445,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                                 if(MoveToDirection("E")<0){
                                     //return true;
                                     MoveToDirection("E");
-                                }else{
-                                    //shouldnt happen
                                 }
                                 
                             }else{
@@ -514,8 +474,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                                 if(MoveToDirection("N")>0){
                                     MoveToDirection("N");
                                     //return true;
-                                }else{
-                                    //PROBLEM
                                 }
                             }else{
                                 MoveToDirection("W");
@@ -527,8 +485,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                                 if(MoveToDirection("W")>0){
                                     MoveToDirection("W");
                                     //return true;
-                                }else{
-                                    //PROBLEM
                                 }
                             }else{
                                 MoveToDirection("N");
@@ -549,9 +505,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                                 if(MoveToDirection("N")>0){
                                     MoveToDirection("N");
                                     //return true;
-                                }else{
-                                    //problem
-                                
                                 }
                             }else{
                                 MoveToDirection("E");
@@ -563,9 +516,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                                 if(MoveToDirection("E")>0){
                                     MoveToDirection("E");
                                     //return true;
-                                }else{
-                                    //problem
-                                
                                 }
                             }else{
                                 MoveToDirection("N");
@@ -597,8 +547,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                                 if(MoveToDirection("S")>0){
                                     MoveToDirection("S");
                                     //return true;
-                                }else{
-                                    //PROBLEM;
                                 }
                                 
                             }else{
@@ -610,8 +558,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                                 if(MoveToDirection("E")>0){
                                     MoveToDirection("E");
                                     //return true;
-                                }else{
-                                    //PROBLEM;
                                 }
                                 
                             }else{

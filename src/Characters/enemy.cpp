@@ -42,6 +42,52 @@ void Enemy::MoveTowards(Character* targetcharacter) {
     if (std::abs(xdiff) < std::abs(ydiff)) {
         //if it is closer in horizontal direction, go in horizontal direction first
         if (xdiff > 0) {
+            dirkeep = MoveToDirection("W"); //-1 ==> couldn't move, 1==> moved
+            if (dirkeep == -1 ){
+                if(ydiff>0){
+                    dirkeep=MoveToDirection("N");
+                    if (dirkeep == -1) {
+                        if ( rndm == 1 ){
+                            if((currenttile_->GetTileNeighbor("E")->GetTileType() != Wall) &&(currenttile_->GetTileNeighbor("E")->GetTileType() != Pit)){
+                                //it can move in E direction.
+                            }
+                        }
+                    }
+                    
+                    
+                        
+                        
+                        if (rndm == 1) {
+                            if (MoveToDirection("E") < 0) {
+                                if (MoveToDirection("S") > 0) {
+                                    MoveToDirection("S");
+                                }
+                                
+                            }
+                            else {
+                                MoveToDirection("E");
+                                //return true;
+                            }
+                        }
+                        else {
+                            if (MoveToDirection("S") < 0){
+                                if (MoveToDirection("E") > 0){
+                                    MoveToDirection("E");
+                                }
+                                
+                            }
+                            else {
+                                MoveToDirection("S");
+                                //return true;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            else{
+                
+            }
             if (MoveToDirection("W") > 0) {
                 MoveToDirection("W");
                 //return true;

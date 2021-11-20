@@ -48,13 +48,47 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                     dirkeep=MoveToDirection("N");
                     if (dirkeep == -1) {
                         if ( rndm == 1 ){
-                            if((currenttile_->GetTileNeighbor("E")->GetTileType() != Wall) &&(currenttile_->GetTileNeighbor("E")->GetTileType() != Pit)){
+                            if(currenttile_->GetTileNeighbor("E")->IsPassable()){
                                 //it can move in E direction.
+                                //but checks if the neighbours neighbour is a pit or a wall.
+                                if((currenttile_->GetTileNeighbor("E")->GetTileNeighbor("N")->GetTileType() !=Wall)&&(currenttile_->GetTileNeighbor("E")->GetTileNeighbor("N")->GetTileType() !=Pit)){
+                                    MoveToDirection("E");
+                                }
+                                else if(currenttile_->GetTileNeighbor("W")->IsPassable() ){
+                                    //it can move in W direction
+                                    MoveToDirection("W");
+                                    
+                                }
+                                else{
+                                    MoveToDirection("E");
+                                }
+                            }
+                            else {
+                                MoveToDirection("S");
                             }
                         }
+                        else{
+                            if(currenttile_->GetTileNeighbor("W")->IsPassable()){
+                                //it can move in E direction.
+                                //but checks if the neighbours neighbour is a pit or a wall.
+                                if((currenttile_->GetTileNeighbor("W")->GetTileNeighbor("N")->GetTileType() !=Wall)&&(currenttile_->GetTileNeighbor("W")->GetTileNeighbor("N")->GetTileType() !=Pit)){
+                                    MoveToDirection("W");
+                                }
+                                else if(currenttile_->GetTileNeighbor("E")->IsPassable() ){
+                                    //it can move in W direction
+                                    MoveToDirection("E");
+                                    
+                                }
+                                else{
+                                    MoveToDirection("W");
+                                }
+                            }
+                            else {
+                                MoveToDirection("S");
+                            }
+                            
+                        }
                     }
-                    
-                    
                         
                         
                         if (rndm == 1) {

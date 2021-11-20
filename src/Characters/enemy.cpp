@@ -284,83 +284,100 @@ void Enemy::MoveTowards(Character* targetcharacter) {
         }
     }
     else { //DIFFERENCES ARE EQUAL
-        random = 1 or 0
         if (xdiff > 0) {
-            attemptdirx = W
+            std::string attemptdirx = "W";
+            
         }
         else {
-            attemptdirx = E
+            std::string attemptdirx = "E";
+
         }
         if (ydiff > 0) {
-            attemptdiry = N
+            std::string attemptdiry = "N";
         }
         else {
-            attemptdiry = N
+            std::string attemptdiry = "N";
         }
 
-        if (random == 1) { // Attempt horizontal first
-            if (attemptdirx is passable) {
-                if (attemptdirx neighbor of attemptdirx isn't a wall or pit || attemptdiry neigbor of attemptdirx isn't a wall or pit) {
-                    Move to attemptdirx
+        if (rndm == 1) { // Attempt horizontal first
+            if (currenttile_->GetTileNeighbor(attemptdirx)->IsPassable()) {
+
+                if ((currenttile_->GetTileNeighbor(attemptdirx )->GetTileNeighbor(attemptdirx )->GetTileType() !=Wall) &&(currenttile_->GetTileNeighbor(attemptdirx )->GetTileNeighbor(attemptdirx )->GetTileType() != Pit)|| currenttile_->GetTileNeighbor(attemptdirx )->GetTileNeighbor(attemptdiry )->GetTileType() !=Wall) &&(currenttile_->GetTileNeighbor(attemptdirx )->GetTileNeighbor(attemptdiry )->GetTileType() != Pit) {
+                    MoveToDirection(attemptdirx);
                 }
                 else {
-                    Attempt to move to attemptdiry
-                    if (attemptdiry movement failed) {
-                        move to attemptdirx
+                    attemptsuccessful=MoveToDirection(attemptdiry);
+                    //Attempt to move to attemptdiry
+                    if (attemptsuccessful == -1) {
+                        //move to attemptdirx
+                        MoveToDirection(attemptdirx);
                     }
                 }
             }
             else {
-                if (attemptdiry is passable) {
-                    Move to attemptdiry
+                if (currenttile_->GetTileNeighbor(attemptdiry)->IsPassable()) {
+                    //Move to attemptdiry
+                    MoveToDirection(attemptdiry);
                 }
                 else {
-                    random = 1 or 0
-                    if (random == 1) {
-                        if (attemptdirx == E) {
-                            attempt to move to W
-                            if (W attempt not successful) {
-                                if (attemptdiry == N) {
-                                    attempt to move to S
+                    r= (rand()%2)
+                    if (r == 1) {
+                        if (attemptdirx == "E") {
+                            //attempt to move to W
+                            attemptsuccessful = MoveToDirection("W");
+                            if (attemptsuccessful == -1) {
+                                if (attemptdiry == "N") {
+                                    //attempt to move to S
+                                    MoveToDirection("S");
                                 }
                                 else {
-                                    attempt to move to N
+                                    //attempt to move to N
+                                    MoveToDirection("N");
                                 }
                             }
                         }
                         else {
-                            attempt to move to E
-                            if (E attempt not successful) {
-                                if (attemptdiry == N) {
-                                    attempt to move to S
+                            //attempt to move to E
+                            attemptsuccessful = MoveToDirection("E");
+                            if (attemptsuccessful = -1) {
+                                if (attemptdiry == "N") {
+                                    //attempt to move to S
+                                    MoveToDirection("S");
                                 }
                                 else {
-                                    attempt to move to N
+                                    //attempt to move to N
+                                    MoveToDirection("N");
                                 }
                             }
                         }
                         
                     }
                     else {
-                        if (attemptdiry == N) {
-                            attempt to move to S
-                            if (S attempt not successful) {
-                                if (attemptdirx == E) {
-                                    attempt to move to W
+                        if (attemptdiry == "N") {
+                            //attempt to move to S
+                            attemptsuccessful = MoveToDirection("S");
+                            if (attemptsuccessful == -1) {
+                                if (attemptdirx == "E") {
+                                    //attempt to move to W
+                                    MoveToDirection("W");
                                 }
                                 else {
-                                    attempt to move to E
+                                    //attempt to move to E
+                                    MoveToDirection("E");
                                 }
                             }
                         }
                         else {
-                            attempt to move to N
-                            if (N attempt not successful) {
-                                if (attemptdirx == E) {
-                                    attempt to move to W
+                            //attempt to move to N
+                            attemptsuccessful = MoveToDirection("N");
+                            if (attemptsuccessful == -1) {
+                                if (attemptdirx == "E") {
+                                    //attempt to move to W
+                                    MoveToDirection("W");
                                 }
                                 else {
-                                    attempt to move to E
+                                    //attempt to move to E
+                                    MoveToDirection("E");
                                 }
                             }
                         }
@@ -369,68 +386,88 @@ void Enemy::MoveTowards(Character* targetcharacter) {
             }
         }
         else { //Attempt vertical first
-            if (attemptdiry is passable) {
-                if (attemptdiry neighbor of attemptdiry isn't a wall or pit || attemptdirx neigbor of attemptdiry isn't a wall or pit) {
-                    Move to attemptdiry
+            //attemptdiry is passable
+            if (currenttile_->GetTileNeighbor(attemptdiry)->IsPassable()) {
+
+                if ((currenttile_->GetTileNeighbor(attemptdiry )->GetTileNeighbor(attemptdiry )->GetTileType() !=Wall) &&(currenttile_->GetTileNeighbor(attemptdiry )->GetTileNeighbor(attemptdiry )->GetTileType() != Pit)||
+                    (currenttile_->GetTileNeighbor(attemptdiry )->GetTileNeighbor(attemptdirx )->GetTileType() !=Wall) &&(currenttile_->GetTileNeighbor(attemptdiry )->GetTileNeighbor(attemptdirx )->GetTileType() != Pit)) {
+                    MoveToDirection(attemptdiry);
+                    //Move to attemptdiry
                 }
                 else {
-                    Attempt to move to attemptdirx
-                    if (attemptdirx movement failed) {
-                        move to attemptdiry
+                    //Attempt to move to attemptdirx
+                    attemptsuccessful = MoveToDirection(attemptdirx);
+                    if (attemptsuccessful == -1) {
+                        //move to attemptdiry
+                        MoveToDirection(attemptdiry);
                     }
                 }
             }
             else {
-                if (attemptdirx is passable) {
-                    Move to attemptdirx
+                if (currenttile_->GetTileNeighbor(attemptdirx)->IsPassable()) {
+                    //Move to attemptdirx
+                    MoveToDirection(attemptdirx)
                 }
                 else {
-                    random = 1 or 0
-                    if (random == 0) {
-                        if (attemptdirx == E) {
-                            attempt to move to W
-                            if (W attempt not successful) {
+                    int rr= (rand()%2)
+                    
+                    if (rr == 0) {
+                        if (attemptdirx == "E") {
+                            //attempt to move to W
+                            attemptsuccessful = MoveToDirection("W");
+                            if (attemptsuccessful == -1) {
                                 if (attemptdiry == N) {
-                                    attempt to move to S
+                                    //attempt to move to S
+                                    MoveToDirection(S);
                                 }
                                 else {
-                                    attempt to move to N
+                                    //attempt to move to N
+                                    MoveToDirection(N);
                                 }
                             }
                         }
                         else {
-                            attempt to move to E
-                            if (E attempt not successful) {
-                                if (attemptdiry == N) {
-                                    attempt to move to S
+                            //attempt to move to E
+                            attemptsuccessful= MoveToDirection("E");
+                            if (attemptsuccessful == -1) {
+                                if (attemptdiry == "N") {
+                                    //attempt to move to S
+                                    MoveToDirection("S");
                                 }
                                 else {
-                                    attempt to move to N
+                                    //attempt to move to N
+                                    MoveToDirection("N");
                                 }
                             }
                         }
                         
                     }
                     else {
-                        if (attemptdiry == N) {
-                            attempt to move to S
-                            if (S attempt not successful) {
-                                if (attemptdirx == E) {
-                                    attempt to move to W
+                        if (attemptdiry == "N") {
+                            //attempt to move to S
+                            attemptsuccessful= MoveToDirection("S");
+                            if (attemptsuccessful == -1) {
+                                if (attemptdirx == "E") {
+                                    MoveToDirection("W")
+                                    //attempt to move to W
                                 }
                                 else {
-                                    attempt to move to E
+                                    //attempt to move to E
+                                    MoveToDirection("E");
                                 }
                             }
                         }
                         else {
-                            attempt to move to N
-                            if (N attempt not successful) {
-                                if (attemptdirx == E) {
-                                    attempt to move to W
+                            //attempt to move to N
+                            attemptsuccessful = MoveToDirection("N");
+                            if (attemptsuccessful == -1) {
+                                if (attemptdirx == "E") {
+                                    //attempt to move to W
+                                    MoveToDirection("W");
                                 }
                                 else {
-                                    attempt to move to E
+                                    //attempt to move to E
+                                    MoveToDirection("E")
                                 }
                             }
                         }

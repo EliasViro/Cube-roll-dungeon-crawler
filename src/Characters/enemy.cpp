@@ -711,7 +711,7 @@ void Enemy::TakeAction(Character* targetcharacter, int fillernumber) {
     srand(time(NULL));
     fillernumber = 1;
     RemoveDefensePoints();
-    if (isstunned_ = 0) {
+    if (isstunned_ == 0) {
         if (enemyai_ == Random) {
             int randomnumber = rand() % 4 + 1;
             int movedsuccessfully = false;

@@ -803,3 +803,29 @@ SkeletonArcher::SkeletonArcher(DungeonTile* tile) : Enemy("Skeleton archer", "Th
 SkeletonMage::SkeletonMage(DungeonTile* tile) : Enemy("Skeleton mage", "The rotting skeleton of some poor mage reanimated by dark magic. It is wielding a magic staff that glows menacingly in the darkness.", tile, Careful, {Ranged_1, Empty, Defend_1}) {}
 
 Lich::Lich(DungeonTile* tile) : Enemy("The Lich", "The undead king of the underworld, said to have been the most powerful necromancer who ever existed when he was still alive.", tile, Stationary, {Ranged_2, Defend_3, Melee_2}) {}
+
+
+
+
+
+/*
+Moving towards:
+
+1. Save X and Y differences to the target (diff = ownpos - targetpos)
+2. See which one is larger with abs(diff). If X is larger -> horizontal movement, if Y is larger -> vertical movement. 
+If both are the same, skip to step 7 (this would be just the last else path).
+3. Check if the difference is positive or negative. Positive means E for horizontal, S for verical. Negative means W for horizontal, N for vertical.
+4. Use MoveToDirection(dir) and save the return value. Check if the return value was negative, and if it was, check if the difference value of
+the attempted axis is zero. In case it was, randomize either of the neighboring tiles and ask its neighbor in the movement direction if it is a Wall or a Pit.
+(tile->GetTileType() != Wall && tile ->GetTileType() != Pit). If the neighbor of the neighbor isn't a wall or a pit, move onto the tile whose neighbor was checked.
+Otherwise attempt to move to the direction that wasn't randomly picked **without** checking its neighbor (remember the return value!). If this fails, resume from step 6.
+take the character closer to the target (so if attempted horizontal first, attempt vertical, if attempted vertical first, attempt horizontal)
+5. If the return value from that is negative as well, attempt the direction that leads the least away from the target (so the one with smaller difference)
+6. If that fails as well, attempt the last available direction, no return value checking is needed.
+
+7. In case both difference absolute values are equal (the character is diagonally located to the item), 
+select either horizontal or vertical randomly and check if the tile is passable. 
+If it is, check if **either** of its neighbors **towards** the player isn't a wall or a pit tile (tile->GetTileType() != Wall && tile ->GetTileType() != Pit)
+If this check succeeds, move to that direction. Otherwise pick the other direction (if horizontal was attempted first, try vertical, if vertical was
+attempted first, try horizontal) and just move there.
+*/

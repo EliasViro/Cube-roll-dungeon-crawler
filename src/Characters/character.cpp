@@ -8,7 +8,9 @@
 
 Character::Character(CharacterType charactertype, int healthpoints, DungeonTile* currenttile)
     : charactertype_(charactertype), healthpoints_(healthpoints), defensepoints_(0), isstunned_(false), currenttile_(currenttile) {
-        currenttile_->SetCharacter();
+        if (currenttile_ != nullptr) {
+            currenttile_->SetCharacter();
+        }
     }
 
 CharacterType Character::GetCharacterType() const {

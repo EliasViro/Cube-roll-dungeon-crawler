@@ -88,7 +88,7 @@ void DungeonTile::PlaceItem(Item* item) {
 }
 
 bool DungeonTile::SetCharacter() {
-    if (hascharacter_ == true) {
+    if (HasCharacter() == true) {
         return false;
     }
     else {

@@ -1,19 +1,19 @@
-
-
 #include "../DungeonGeneration/dungeonroom.hpp"
 #include "../Characters/characterplayer.hpp"
 #include "../Characters/enemy.hpp"
 #include <iostream>
 
-/*
+
 
 void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec, std::vector<Character*> enemyvec, Character* player) {
     for (auto i : roomvec) {
         for (auto j : i) {
             if (j->HasCharacter()) {
                 for (auto enemy : enemyvec) {
-                    if (enemy->GetCurrentTile() == j) {
-                        std::cout << "O";
+                    if (enemy->GetCurrentTile() != nullptr) {
+                        if (enemy->GetCurrentTile()->GetXCoord() == j->GetXCoord() && enemy->GetCurrentTile()->GetYCoord() == j->GetYCoord()) {
+                            std::cout << "O";
+                        }
                     }
                 }
                 if (player->GetCurrentTile() == j) {
@@ -55,6 +55,7 @@ void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec, std::vector<Char
             else {
                 std::cout << "D";
             }
+            std::cout << " ";
         }
         std::cout << std::endl;
     }
@@ -62,11 +63,14 @@ void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec, std::vector<Char
 }
 
 int main() {
+    
     Item* testitem = nullptr;
-    DungeonRoom* testroom = new DungeonRoom(std::make_pair(0,0), RoomType::_2DoorRoomCorner, DoorOrientation::SouthWest, testitem, true);
+    DungeonRoom* testroom = new DungeonRoom(std::make_pair(0,0), RoomType::_2DoorRoomCorner, DoorOrientation::SouthWest, testitem, false);
     auto alltiles = testroom->GetAllTiles();
-    auto player = new Player(alltiles[6][1]);
     std::vector<Character*> enemyvec = {new Slime(nullptr), new Slime(nullptr), new Slime(nullptr), new Slime(nullptr), new Slime(nullptr)};
+    
+    auto player = new Player(alltiles[6][1]);
+    
     PrintTiles(alltiles, enemyvec, player);
     testroom->SpawnEnemies(enemyvec);
     for (auto h : enemyvec) {
@@ -86,4 +90,3 @@ int main() {
 
     return 1;
 }
-*/

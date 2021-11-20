@@ -1,4 +1,5 @@
 #include "dungeonroom.hpp"
+#include <iostream>
 #include <sstream>
 #include <fstream>
 #include <stdlib.h> //For randomization purposes.
@@ -58,12 +59,16 @@ std::vector<std::string> MirrorRoomHorizontally(std::vector<std::string> roomvec
 }
 
 //Rotates the contents of the vector clockwise.
+//Rotates the contents of the vector clockwise.
 std::vector<std::string> RotateRoomClockwise(std::vector<std::string> roomvector) {
-    std::vector<std::string> roomvector2 = roomvector;
+    std::vector<std::string> roomvector2;
+    std::string tempstring = "";
     for (int j = 0; j < 12; j++) {
         for (int i = 11; i >= 0; i--) {
-            roomvector2[j][11 - i] = roomvector[i][j];
+            tempstring += roomvector[i][j];
         }
+        roomvector2.push_back(tempstring);
+        tempstring = "";
     }
     return roomvector2;
 }
@@ -205,11 +210,16 @@ DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, RoomType roomtype, Doo
     : indexinlevel_(indexinlevel), hasbeenexplored_(isplayerstartingroom), loot_(loot) {
         srand(time(NULL));
         std::vector<DungeonRoom*> neighbors_;
-        std::ifstream reader(RandomizeFileName(roomtype) + ".txt");
+        std::fstream roomfile;
+        roomfile.open(RandomizeFileName(roomtype) + ".txt", std::ios::in);
+        if (!roomfile) {
+            std::cout << "ERROR" << std::endl;
+            throw;
+        }
         std::string readline;
         std::vector<std::string> roomvector;
         int i = 0;
-        while (std::getline(reader, readline) && i < 12) {
+        while (std::getline(roomfile, readline) && i < 12) {
             std::istringstream iss(readline);
             roomvector.push_back(readline);
             i++;

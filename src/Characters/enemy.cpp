@@ -27,7 +27,6 @@ ActionType Enemy::GetCurrentAction() const {
 void Enemy::MoveTowards(Character* targetcharacter) {
     //mmove direction
     //Attempts to move the character to the given direction,
-    //returns -1 if didn't succeed, positive otherwise.
     int target_tileX = targetcharacter->GetXCoordinate();
     int target_tileY = targetcharacter->GetYCoordinate();
     int current_tileX = GetXCoordinate();
@@ -39,634 +38,411 @@ void Enemy::MoveTowards(Character* targetcharacter) {
     //ydiff > 0 => enemy is up, go N
     //ydiff < 0 => enemy is down , go  S
     int rndm = (rand() % 2);
+    bool attemptsuccessful = false;
     if (abs(xdiff) > abs(ydiff)) { //Horizontal movement attempt
         if (xdiff > 0) { //attempt to move towards W
             attemptsuccessful = MoveToDirection("W");
-            //attemptsuccessful = ATTEMPT TO MOVE W
-            if (attemptsuccessful == -1 && ydiff == 0) { //Randomize N or S, check the neighbor of the neighbor
-                if ( rndm == 1 ){
-                    if(currenttile_ -> GetTileNeighbor("N") -> IsPassable() ){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("N") -> GetTileNeighbor("W") -> GetTileType() !=  Wall) && (currenttile_ -> GetTileNeighbor("N") -> GetTileNeighbor("W") -> GetTileType() != Pit)) {
-                            MoveToDirection("N");
+            if (attemptsuccessful == -1) {
+                if (ydiff == 0) {
+                    if (rndm == 1) {
+                        if (currenttile_->GetTileNeighbor("N")->IsPassable()){
+                            if ((currenttile_->GetTileNeighbor("N")->GetTileNeighbor("W")->GetTileType() !=  Wall) && (currenttile_->GetTileNeighbor("N")->GetTileNeighbor("W")->GetTileType() != Pit)) {
+                                MoveToDirection("N");
+                            }
+                            else if (currenttile_->GetTileNeighbor("S")->IsPassable()){
+                                MoveToDirection("S");
+                            }
+                            else{
+                                MoveToDirection("N");
+                            }
                         }
-                        else if (currenttile_ -> GetTileNeighbor("S") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("S");
-                            
-                        }
-                        else{
-                            MoveToDirection("N");
-                        }
-                    }
-                    else {
-                        MoveToDirection("E");
-                    }
-                }
-                else{
-                    if (currenttile_ -> GetTileNeighbor("S") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("S") -> GetTileNeighbor("W") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("S") -> GetTileNeighbor("W") -> GetTileType() != Pit)) {
-                            MoveToDirection("S");
-                        }
-                        else if (currenttile_ -> GetTileNeighbor("N") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("N");
-                            
-                        }
-                        else{
-                            MoveToDirection("S");
-                        }
-                    }
-                    else {
-                        MoveToDirection("E");
-                    }
-                    
-                }
-            }
-            else {
-                if (ydiff > 0) {
-                    attemptsuccessful = MoveToDirection("N");
-                    //Attempt N
-                    if (attemptsuccessful == -1) {
-                        //Attempt S
-                        attemptsuccessful = MoveToDirection("S");
-                        if (attemptsuccessful == -1) {
-                            //Attempt E
+                        else {
                             MoveToDirection("E");
-                            
                         }
+                    }
+                    else {
+                        if (currenttile_ -> GetTileNeighbor("S")->IsPassable()) {
+                            if ((currenttile_->GetTileNeighbor("S")->GetTileNeighbor("W")->GetTileType() != Wall) && (currenttile_->GetTileNeighbor("S")->GetTileNeighbor("W")->GetTileType() != Pit)) {
+                                MoveToDirection("S");
+                            }
+                            else if (currenttile_->GetTileNeighbor("N")->IsPassable() ){
+                                MoveToDirection("N");
+                            }
+                            else {
+                                MoveToDirection("S");
+                            }
+                        }
+                        else {
+                            MoveToDirection("E");
+                        }
+                        
                     }
                 }
                 else {
-                    //Attempt S
-                    attemptsuccessful = MoveToDirection("S");
-                    if (attemptsuccessful == -1) {
-                        //Attempt N
+                    if (ydiff > 0) {
                         attemptsuccessful = MoveToDirection("N");
                         if (attemptsuccessful == -1) {
-                            //Attempt E
-                            MoveToDirection("E");
+                            attemptsuccessful = MoveToDirection("S");
+                            if (attemptsuccessful == -1) {
+                                MoveToDirection("E");
+                            }
+                        }
+                    }
+                    else {
+                        attemptsuccessful = MoveToDirection("S");
+                        if (attemptsuccessful == -1) {
+                            attemptsuccessful = MoveToDirection("N");
+                            if (attemptsuccessful == -1) {
+                                MoveToDirection("E");
+                            }
                         }
                     }
                 }
-                
             }
         }
         else { //Attempt to move towards E
-            //attemptsuccessful = ATTEMPT TO MOVE E
             attemptsuccessful = MoveToDirection("E");
-            if (attemptsuccessful == -1 && ydiff == 0) { //Randomize N or S, check the neighbor of the neighbor
-                if ( rndm == 1 ){
-                    if (currenttile_ -> GetTileNeighbor("N") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ ->GetTileNeighbor("N") -> GetTileNeighbor("E") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("N") -> GetTileNeighbor("E") -> GetTileType() != Pit )) {
-                            MoveToDirection("N");
+            if (attemptsuccessful == -1) {
+                if (ydiff == 0) {
+                    if (rndm == 1) {
+                        if (currenttile_->GetTileNeighbor("N")->IsPassable()){
+                            if ((currenttile_->GetTileNeighbor("N")->GetTileNeighbor("E")->GetTileType() !=  Wall) && (currenttile_->GetTileNeighbor("N")->GetTileNeighbor("E")->GetTileType() != Pit)) {
+                                MoveToDirection("N");
+                            }
+                            else if (currenttile_->GetTileNeighbor("S")->IsPassable()){
+                                MoveToDirection("S");
+                            }
+                            else{
+                                MoveToDirection("N");
+                            }
                         }
-                        else if (currenttile_ -> GetTileNeighbor("S") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("S");
-                            
-                        }
-                        else{
-                            MoveToDirection("N");
-                        }
-                    }
-                    else {
-                        MoveToDirection("W");
-                    }
-                }
-                else{
-                    if (currenttile_ -> GetTileNeighbor("S") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("S") -> GetTileNeighbor("E") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("S") -> GetTileNeighbor("E") -> GetTileType() != Pit )) {
-                            MoveToDirection("S");
-                        }
-                        else if (currenttile_ -> GetTileNeighbor("N") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("N");
-                            
-                        }
-                        else{
-                            MoveToDirection("S");
-                        }
-                    }
-                    else {
-                        MoveToDirection("W");
-                    }
-                    
-                }
-            }
-            else {
-                if (ydiff > 0) {
-                    attemptsuccessful = MoveToDirection("N");
-                    //Attempt N
-                    if (attemptsuccessful == -1) {
-                        //Attempt S
-                        attemptsuccessful= MoveToDirection("S");
-                        if (attemptsuccessful == -1) {
-                            //Attempt W
+                        else {
                             MoveToDirection("W");
                         }
+                    }
+                    else {
+                        if (currenttile_ -> GetTileNeighbor("S")->IsPassable()) {
+                            if ((currenttile_->GetTileNeighbor("S")->GetTileNeighbor("E")->GetTileType() != Wall) && (currenttile_->GetTileNeighbor("S")->GetTileNeighbor("E")->GetTileType() != Pit)) {
+                                MoveToDirection("S");
+                            }
+                            else if (currenttile_->GetTileNeighbor("N")->IsPassable() ){
+                                MoveToDirection("N");
+                            }
+                            else {
+                                MoveToDirection("S");
+                            }
+                        }
+                        else {
+                            MoveToDirection("W");
+                        }
+                        
                     }
                 }
                 else {
-                    attemptsuccessful= MoveToDirection("S");
-                    if (attemptsuccessful == -1) {
+                    if (ydiff > 0) {
                         attemptsuccessful = MoveToDirection("N");
-                        //Attempt N
                         if (attemptsuccessful == -1) {
-                            MoveToDirection("W");
-                            //Attempt W
+                            attemptsuccessful = MoveToDirection("S");
+                            if (attemptsuccessful == -1) {
+                                MoveToDirection("W");
+                            }
+                        }
+                    }
+                    else {
+                        attemptsuccessful = MoveToDirection("S");
+                        if (attemptsuccessful == -1) {
+                            attemptsuccessful = MoveToDirection("N");
+                            if (attemptsuccessful == -1) {
+                                MoveToDirection("W");
+                            }
                         }
                     }
                 }
-                
             }
         }
-        
     }
     else if (ydiff > xdiff) { //vertical movement attempt
         if (ydiff > 0) { //attempt to move towards N
             attemptsuccessful = MoveToDirection("N");
-            //attemptsuccessful = ATTEMPT TO MOVE N
-            
-            if (attemptsuccessful == -1  && ydiff == 0) { //Randomize E or W, check the neighbor of the neighbor
-                if ( rndm == 1 ){
-                    if (currenttile_ -> GetTileNeighbor("E") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("E") -> GetTileNeighbor("N") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("E") -> GetTileNeighbor("N") -> GetTileType() != Pit )) {
-                            MoveToDirection("E");
+            if (attemptsuccessful == -1) {
+                if (xdiff == 0) {
+                    if (rndm == 1) {
+                        if (currenttile_->GetTileNeighbor("E")->IsPassable()){
+                            if ((currenttile_->GetTileNeighbor("E")->GetTileNeighbor("N")->GetTileType() !=  Wall) && (currenttile_->GetTileNeighbor("E")->GetTileNeighbor("N")->GetTileType() != Pit)) {
+                                MoveToDirection("E");
+                            }
+                            else if (currenttile_->GetTileNeighbor("W")->IsPassable()){
+                                MoveToDirection("W");
+                            }
+                            else{
+                                MoveToDirection("E");
+                            }
                         }
-                        else if (currenttile_ -> GetTileNeighbor("W") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("W");
-                            
-                        }
-                        else{
-                            MoveToDirection("E");
-                        }
-                    }
-                    else {
-                        MoveToDirection("S");
-                    }
-                }
-                else{
-                    if (currenttile_ -> GetTileNeighbor("W") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("W") -> GetTileNeighbor("N") -> GetTileType()  != Wall) && (currenttile_ -> GetTileNeighbor("W") -> GetTileNeighbor("N") -> GetTileType() != Pit )) {
-                            MoveToDirection("W");
-                        }
-                        else if (currenttile_ -> GetTileNeighbor("E") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("E");
-                            
-                        }
-                        else{
-                            MoveToDirection("W");
-                        }
-                    }
-                    else {
-                        MoveToDirection("S");
-                    }
-                    
-                }
-            }
-            else {
-                if (xdiff > 0) {
-                    attemptsuccessful = MoveToDirection("W");
-                    //Attempt W
-                    if (attemptsuccessful == -1) {
-                        //Attempt E
-                        attemptsuccessful = MoveToDirection("E");
-                        if (attemptsuccessful == -1) {
-                            //Attempt S
+                        else {
                             MoveToDirection("S");
                         }
+                    }
+                    else {
+                        if (currenttile_ -> GetTileNeighbor("W")->IsPassable()) {
+                            if ((currenttile_->GetTileNeighbor("W")->GetTileNeighbor("N")->GetTileType() != Wall) && (currenttile_->GetTileNeighbor("W")->GetTileNeighbor("N")->GetTileType() != Pit)) {
+                                MoveToDirection("W");
+                            }
+                            else if (currenttile_->GetTileNeighbor("E")->IsPassable() ){
+                                MoveToDirection("E");
+                            }
+                            else {
+                                MoveToDirection("W");
+                            }
+                        }
+                        else {
+                            MoveToDirection("S");
+                        }
+                        
                     }
                 }
                 else {
-                    //Attempt E
-                    attemptsuccessful = MoveToDirection("E");
-                    if (attemptsuccessful == -1) {
-                        //Attempt W
+                    if (xdiff > 0) {
                         attemptsuccessful = MoveToDirection("W");
                         if (attemptsuccessful == -1) {
-                            //Attempt S
-                            MoveToDirection("S");
+                            attemptsuccessful = MoveToDirection("E");
+                            if (attemptsuccessful == -1) {
+                                MoveToDirection("S");
+                            }
+                        }
+                    }
+                    else {
+                        attemptsuccessful = MoveToDirection("E");
+                        if (attemptsuccessful == -1) {
+                            attemptsuccessful = MoveToDirection("W");
+                            if (attemptsuccessful == -1) {
+                                MoveToDirection("S");
+                            }
                         }
                     }
                 }
-                
             }
         }
         else { //attempt to move towards S
             attemptsuccessful = MoveToDirection("S");
-            //attemptsuccessful = ATTEMPT TO MOVE S
-            if (attemptsuccessful == -1 && ydiff == 0) { //Randomize E or W, check the neighbor of the neighbor
-                if ( rndm == 1 ){
-                    if(currenttile_ -> GetTileNeighbor("E") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("E") -> GetTileNeighbor("S") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("E") -> GetTileNeighbor("S") -> GetTileType() !=Pit )) {
-                            MoveToDirection("E");
+            if (attemptsuccessful == -1) {
+                if (xdiff == 0) {
+                    if (rndm == 1) {
+                        if (currenttile_->GetTileNeighbor("E")->IsPassable()){
+                            if ((currenttile_->GetTileNeighbor("E")->GetTileNeighbor("S")->GetTileType() !=  Wall) && (currenttile_->GetTileNeighbor("E")->GetTileNeighbor("S")->GetTileType() != Pit)) {
+                                MoveToDirection("E");
+                            }
+                            else if (currenttile_->GetTileNeighbor("W")->IsPassable()){
+                                MoveToDirection("W");
+                            }
+                            else{
+                                MoveToDirection("E");
+                            }
                         }
-                        else if(currenttile_ -> GetTileNeighbor("W") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("W");
-                            
-                        }
-                        else{
-                            MoveToDirection("E");
-                        }
-                    }
-                    else {
-                        MoveToDirection("N");
-                    }
-                }
-                else{
-                    if (currenttile_ -> GetTileNeighbor("W") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("W") -> GetTileNeighbor("S") -> GetTileType() !=Wall ) && (currenttile_ -> GetTileNeighbor("W") -> GetTileNeighbor("S") -> GetTileType() !=Pit )) {
-                            MoveToDirection("W");
-                        }
-                        else if (currenttile_ -> GetTileNeighbor("E") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("E");
-                            
-                        }
-                        else{
-                            MoveToDirection("W");
-                        }
-                    }
-                    else {
-                        MoveToDirection("N");
-                    }
-                    
-                }
-            }
-            else {
-                if (xdiff > 0) {
-                    attemptsuccessful = MoveToDirection("W");
-                    //Attempt W
-                    if (attemptsuccessful == -1) {
-                        //Attempt E
-                        attemptsuccessful = MoveToDirection("E");
-                        if ( attemptsuccessful == -1) {
-                            //Attempt N
+                        else {
                             MoveToDirection("N");
                         }
+                    }
+                    else {
+                        if (currenttile_ -> GetTileNeighbor("W")->IsPassable()) {
+                            if ((currenttile_->GetTileNeighbor("W")->GetTileNeighbor("S")->GetTileType() != Wall) && (currenttile_->GetTileNeighbor("W")->GetTileNeighbor("S")->GetTileType() != Pit)) {
+                                MoveToDirection("W");
+                            }
+                            else if (currenttile_->GetTileNeighbor("E")->IsPassable() ){
+                                MoveToDirection("E");
+                            }
+                            else {
+                                MoveToDirection("W");
+                            }
+                        }
+                        else {
+                            MoveToDirection("N");
+                        }
+                        
                     }
                 }
                 else {
-                    //Attempt E
-                    attemptsuccessful = MoveToDirection("E");
-                    if (attemptsuccessful == -1) {
-                        //Attempt W
-                        attemptsuccessful = MoveToDirection("W");
+                    if (xdiff > 0) {
+                        attemptsuccessful = MoveToDirection("N");
                         if (attemptsuccessful == -1) {
-                            //Attempt N
-                            MoveToDirection("N");
+                            attemptsuccessful = MoveToDirection("S");
+                            if (attemptsuccessful == -1) {
+                                MoveToDirection("W");
+                            }
+                        }
+                    }
+                    else {
+                        attemptsuccessful = MoveToDirection("S");
+                        if (attemptsuccessful == -1) {
+                            attemptsuccessful = MoveToDirection("N");
+                            if (attemptsuccessful == -1) {
+                                MoveToDirection("W");
+                            }
                         }
                     }
                 }
-    
             }
         }
     }
     else { //DIFFERENCES ARE EQUAL
-        //neighbor of the neighbor stuff
+        random = 1 or 0
+        if (xdiff > 0) {
+            attemptdirx = W
+        }
+        else {
+            attemptdirx = E
+        }
+        if (ydiff > 0) {
+            attemptdiry = N
+        }
+        else {
+            attemptdiry = N
+        }
+
+        if (random == 1) { // Attempt horizontal first
+            if (attemptdirx is passable) {
+                if (attemptdirx neighbor of attemptdirx isn't a wall or pit || attemptdiry neigbor of attemptdirx isn't a wall or pit) {
+                    Move to attemptdirx
+                }
+                else {
+                    Attempt to move to attemptdiry
+                    if (attemptdiry movement failed) {
+                        move to attemptdirx
+                    }
+                }
+            }
+            else {
+                if (attemptdiry is passable) {
+                    Move to attemptdiry
+                }
+                else {
+                    random = 1 or 0
+                    if (random == 1) {
+                        if (attemptdirx == E) {
+                            attempt to move to W
+                            if (W attempt not successful) {
+                                if (attemptdiry == N) {
+                                    attempt to move to S
+                                }
+                                else {
+                                    attempt to move to N
+                                }
+                            }
+                        }
+                        else {
+                            attempt to move to E
+                            if (E attempt not successful) {
+                                if (attemptdiry == N) {
+                                    attempt to move to S
+                                }
+                                else {
+                                    attempt to move to N
+                                }
+                            }
+                        }
+                        
+                    }
+                    else {
+                        if (attemptdiry == N) {
+                            attempt to move to S
+                            if (S attempt not successful) {
+                                if (attemptdirx == E) {
+                                    attempt to move to W
+                                }
+                                else {
+                                    attempt to move to E
+                                }
+                            }
+                        }
+                        else {
+                            attempt to move to N
+                            if (N attempt not successful) {
+                                if (attemptdirx == E) {
+                                    attempt to move to W
+                                }
+                                else {
+                                    attempt to move to E
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else { //Attempt vertical first
+            if (attemptdiry is passable) {
+                if (attemptdiry neighbor of attemptdiry isn't a wall or pit || attemptdirx neigbor of attemptdiry isn't a wall or pit) {
+                    Move to attemptdiry
+                }
+                else {
+                    Attempt to move to attemptdirx
+                    if (attemptdirx movement failed) {
+                        move to attemptdiry
+                    }
+                }
+            }
+            else {
+                if (attemptdirx is passable) {
+                    Move to attemptdirx
+                }
+                else {
+                    random = 1 or 0
+                    if (random == 0) {
+                        if (attemptdirx == E) {
+                            attempt to move to W
+                            if (W attempt not successful) {
+                                if (attemptdiry == N) {
+                                    attempt to move to S
+                                }
+                                else {
+                                    attempt to move to N
+                                }
+                            }
+                        }
+                        else {
+                            attempt to move to E
+                            if (E attempt not successful) {
+                                if (attemptdiry == N) {
+                                    attempt to move to S
+                                }
+                                else {
+                                    attempt to move to N
+                                }
+                            }
+                        }
+                        
+                    }
+                    else {
+                        if (attemptdiry == N) {
+                            attempt to move to S
+                            if (S attempt not successful) {
+                                if (attemptdirx == E) {
+                                    attempt to move to W
+                                }
+                                else {
+                                    attempt to move to E
+                                }
+                            }
+                        }
+                        else {
+                            attempt to move to N
+                            if (N attempt not successful) {
+                                if (attemptdirx == E) {
+                                    attempt to move to W
+                                }
+                                else {
+                                    attempt to move to E
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-    
 }
 
 void Enemy::MoveAwayFrom(Character* targetcharacter) {
     
-    int target_tileX= targetcharacter->GetXCoordinate();
-    int target_tileY = targetcharacter->GetYCoordinate();
-    int current_tileX = GetXCoordinate();
-    int current_tileY = currenttile_->GetYCoord();
-    int ydiff= current_tileY - target_tileY;
-    int xdiff= current_tileX - target_tileX;
-    // xdiff > 0 => enemy is down, go E
-    //xdiff < 0 => enemy is up, go W
-    //ydiff > 0 => enemy is right, go S
-    //ydiff < 0 => enemy is left , go  N
-
-    int rndm= (rand()%2);
-    int attemptsuccessful;
-    if (abs(xdiff) > abs(ydiff)) { //Horizontal movement attempt
-        if (xdiff > 0) { //attempt to move towards W
-            attemptsuccessful = MoveToDirection("E");
-            //attemptsuccessful = ATTEMPT TO MOVE W
-            if (attemptsuccessful == -1 && ydiff == 0) { //Randomize N or S, check the neighbor of the neighbor
-                if ( rndm == 1 ){
-                    if(currenttile_ -> GetTileNeighbor("S") -> IsPassable() ){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("S") -> GetTileNeighbor("E") -> GetTileType() !=  Wall) && (currenttile_ -> GetTileNeighbor("S") -> GetTileNeighbor("E") -> GetTileType() != Pit)) {
-                            MoveToDirection("S");
-                        }
-                        else if (currenttile_ -> GetTileNeighbor("N") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("N");
-                            
-                        }
-                        else{
-                            MoveToDirection("S");
-                        }
-                    }
-                    else {
-                        MoveToDirection("W");
-                    }
-                }
-                else{
-                    if (currenttile_ -> GetTileNeighbor("N") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("N") -> GetTileNeighbor("E") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("N") -> GetTileNeighbor("E") -> GetTileType() != Pit)) {
-                            MoveToDirection("N");
-                        }
-                        else if (currenttile_ -> GetTileNeighbor("S") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("S");
-                            
-                        }
-                        else{
-                            MoveToDirection("N");
-                        }
-                    }
-                    else {
-                        MoveToDirection("W");
-                    }
-                    
-                }
-            }
-            else {
-                if (ydiff > 0) {
-                    attemptsuccessful = MoveToDirection("S");
-                    //Attempt N
-                    if (attemptsuccessful == -1) {
-                        //Attempt S
-                        attemptsuccessful = MoveToDirection("N");
-                        if (attemptsuccessful == -1) {
-                            //Attempt E
-                            MoveToDirection("W");
-                            
-                        }
-                    }
-                }
-                else {
-                    //Attempt S
-                    attemptsuccessful = MoveToDirection("N");
-                    if (attemptsuccessful == -1) {
-                        //Attempt N
-                        attemptsuccessful = MoveToDirection("S");
-                        if (attemptsuccessful == -1) {
-                            //Attempt E
-                            MoveToDirection("W");
-                        }
-                    }
-                }
-                
-            }
-        }
-        else { //Attempt to move towards E
-            //attemptsuccessful = ATTEMPT TO MOVE E
-            attemptsuccessful = MoveToDirection("W");
-            if (attemptsuccessful == -1 && ydiff == 0) { //Randomize N or S, check the neighbor of the neighbor
-                if ( rndm == 1 ){
-                    if (currenttile_ -> GetTileNeighbor("S") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ ->GetTileNeighbor("S") -> GetTileNeighbor("W") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("S") -> GetTileNeighbor("W") -> GetTileType() != Pit )) {
-                            MoveToDirection("S");
-                        }
-                        else if (currenttile_ -> GetTileNeighbor("N") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("N");
-                            
-                        }
-                        else{
-                            MoveToDirection("S");
-                        }
-                    }
-                    else {
-                        MoveToDirection("E");
-                    }
-                }
-                else{
-                    if (currenttile_ -> GetTileNeighbor("N") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("N") -> GetTileNeighbor("W") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("N") -> GetTileNeighbor("W") -> GetTileType() != Pit )) {
-                            MoveToDirection("N");
-                        }
-                        else if (currenttile_ -> GetTileNeighbor("S") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("S");
-                            
-                        }
-                        else{
-                            MoveToDirection("N");
-                        }
-                    }
-                    else {
-                        MoveToDirection("E");
-                    }
-                    
-                }
-            }
-            else {
-                if (ydiff > 0) {
-                    attemptsuccessful = MoveToDirection("S");
-                    //Attempt N
-                    if (attemptsuccessful == -1) {
-                        //Attempt S
-                        attemptsuccessful= MoveToDirection("N");
-                        if (attemptsuccessful == -1) {
-                            //Attempt W
-                            MoveToDirection("E");
-                        }
-                    }
-                }
-                else {
-                    attemptsuccessful= MoveToDirection("N");
-                    if (attemptsuccessful == -1) {
-                        attemptsuccessful = MoveToDirection("S");
-                        //Attempt N
-                        if (attemptsuccessful == -1) {
-                            MoveToDirection("E");
-                            //Attempt W
-                        }
-                    }
-                }
-                
-            }
-        }
-        
-    }
-    else if (ydiff > xdiff) { //vertical movement attempt
-        if (ydiff > 0) { //attempt to move towards N
-            attemptsuccessful = MoveToDirection("S");
-            //attemptsuccessful = ATTEMPT TO MOVE N
-            
-            if (attemptsuccessful == -1  && ydiff == 0) { //Randomize E or W, check the neighbor of the neighbor
-                if ( rndm == 1 ){
-                    if (currenttile_ -> GetTileNeighbor("W") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("W") -> GetTileNeighbor("S") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("W") -> GetTileNeighbor("S") -> GetTileType() != Pit )) {
-                            MoveToDirection("W");
-                        }
-                        else if (currenttile_ -> GetTileNeighbor("E") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("E");
-                            
-                        }
-                        else{
-                            MoveToDirection("W");
-                        }
-                    }
-                    else {
-                        MoveToDirection("N");
-                    }
-                }
-                else{
-                    if (currenttile_ -> GetTileNeighbor("E") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("E") -> GetTileNeighbor("S") -> GetTileType()  != Wall) && (currenttile_ -> GetTileNeighbor("E") -> GetTileNeighbor("S") -> GetTileType() != Pit )) {
-                            MoveToDirection("E");
-                        }
-                        else if (currenttile_ -> GetTileNeighbor("W") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("W");
-                            
-                        }
-                        else{
-                            MoveToDirection("E");
-                        }
-                    }
-                    else {
-                        MoveToDirection("N");
-                    }
-                    
-                }
-            }
-            else {
-                if (xdiff > 0) {
-                    attemptsuccessful = MoveToDirection("E");
-                    //Attempt W
-                    if (attemptsuccessful == -1) {
-                        //Attempt E
-                        attemptsuccessful = MoveToDirection("W");
-                        if (attemptsuccessful == -1) {
-                            //Attempt S
-                            MoveToDirection("N");
-                        }
-                    }
-                }
-                else {
-                    //Attempt E
-                    attemptsuccessful = MoveToDirection("W");
-                    if (attemptsuccessful == -1) {
-                        //Attempt W
-                        attemptsuccessful = MoveToDirection("E");
-                        if (attemptsuccessful == -1) {
-                            //Attempt S
-                            MoveToDirection("N");
-                        }
-                    }
-                }
-                
-            }
-        }
-        else { //attempt to move towards S
-            attemptsuccessful = MoveToDirection("N");
-            //attemptsuccessful = ATTEMPT TO MOVE S
-            if (attemptsuccessful == -1 && ydiff == 0) { //Randomize E or W, check the neighbor of the neighbor
-                if ( rndm == 1 ){
-                    if(currenttile_ -> GetTileNeighbor("W") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("EW") -> GetTileNeighbor("N") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("W") -> GetTileNeighbor("N") -> GetTileType() !=Pit )) {
-                            MoveToDirection("W");
-                        }
-                        else if(currenttile_ -> GetTileNeighbor("E") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("E");
-                            
-                        }
-                        else{
-                            MoveToDirection("W");
-                        }
-                    }
-                    else {
-                        MoveToDirection("S");
-                    }
-                }
-                else{
-                    if (currenttile_ -> GetTileNeighbor("E") -> IsPassable()){
-                        //it can move in E direction.
-                        //but checks if the neighbours neighbour is a pit or a wall.
-                        if ((currenttile_ -> GetTileNeighbor("E") -> GetTileNeighbor("N") -> GetTileType() !=Wall ) && (currenttile_ -> GetTileNeighbor("E") -> GetTileNeighbor("N") -> GetTileType() !=Pit )) {
-                            MoveToDirection("E");
-                        }
-                        else if (currenttile_ -> GetTileNeighbor("W") -> IsPassable() ){
-                            //it can move in W direction
-                            MoveToDirection("W");
-                            
-                        }
-                        else{
-                            MoveToDirection("E");
-                        }
-                    }
-                    else {
-                        MoveToDirection("S");
-                    }
-                    
-                }
-            }
-            else {
-                if (xdiff > 0) {
-                    attemptsuccessful = MoveToDirection("E");
-                    //Attempt W
-                    if (attemptsuccessful == -1) {
-                        //Attempt E
-                        attemptsuccessful = MoveToDirection("W");
-                        if ( attemptsuccessful == -1) {
-                            //Attempt N
-                            MoveToDirection("S");
-                        }
-                    }
-                }
-                else {
-                    //Attempt E
-                    attemptsuccessful = MoveToDirection("W");
-                    if (attemptsuccessful == -1) {
-                        //Attempt W
-                        attemptsuccessful = MoveToDirection("E");
-                        if (attemptsuccessful == -1) {
-                            //Attempt N
-                            MoveToDirection("S");
-                        }
-                    }
-                }
-    
-            }
-        }
-    }
-    else { //DIFFERENCES ARE EQUAL
-        //neighbor of the neighbor stuff
-    }
 }
 
 bool Enemy::DistanceToCharacterLargerThanThree(Character* targetcharacter) const {

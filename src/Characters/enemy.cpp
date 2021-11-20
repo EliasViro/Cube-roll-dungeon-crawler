@@ -39,356 +39,121 @@ void Enemy::MoveTowards(Character* targetcharacter) {
     //ydiff > 0 => enemy is up, go N
     //ydiff < 0 => enemy is down , go  S
     int rndm = (rand() % 2);
-    if (std::abs(xdiff) < std::abs(ydiff)) {
-        //if it is closer in horizontal direction, go in horizontal direction first
-        if (xdiff > 0) {
-            dirkeep = MoveToDirection("W"); //-1 ==> couldn't move, 1==> moved
-            if (dirkeep == -1 ){
-                if(ydiff>0){
-                    dirkeep=MoveToDirection("N");
-                    if (dirkeep == -1) {
-                        if ( rndm == 1 ){
-                            if(currenttile_->GetTileNeighbor("E")->IsPassable()){
-                                //it can move in E direction.
-                                //but checks if the neighbours neighbour is a pit or a wall.
-                                if((currenttile_->GetTileNeighbor("E")->GetTileNeighbor("N")->GetTileType() !=Wall)&&(currenttile_->GetTileNeighbor("E")->GetTileNeighbor("N")->GetTileType() !=Pit)){
-                                    MoveToDirection("E");
-                                }
-                                else if(currenttile_->GetTileNeighbor("W")->IsPassable() ){
-                                    //it can move in W direction
-                                    MoveToDirection("W");
-                                    
-                                }
-                                else{
-                                    MoveToDirection("E");
-                                }
-                            }
-                            else {
-                                MoveToDirection("S");
-                            }
-                        }
-                        else{
-                            if(currenttile_->GetTileNeighbor("W")->IsPassable()){
-                                //it can move in E direction.
-                                //but checks if the neighbours neighbour is a pit or a wall.
-                                if((currenttile_->GetTileNeighbor("W")->GetTileNeighbor("N")->GetTileType() !=Wall)&&(currenttile_->GetTileNeighbor("W")->GetTileNeighbor("N")->GetTileType() !=Pit)){
-                                    MoveToDirection("W");
-                                }
-                                else if(currenttile_->GetTileNeighbor("E")->IsPassable() ){
-                                    //it can move in W direction
-                                    MoveToDirection("E");
-                                    
-                                }
-                                else{
-                                    MoveToDirection("W");
-                                }
-                            }
-                            else {
-                                MoveToDirection("S");
-                            }
-                            
-                        }
-                    }
-                        
-                        
-                        if (rndm == 1) {
-                            if (MoveToDirection("E") < 0) {
-                                if (MoveToDirection("S") > 0) {
-                                    MoveToDirection("S");
-                                }
-                                
-                            }
-                            else {
-                                MoveToDirection("E");
-                                //return true;
-                            }
-                        }
-                        else {
-                            if (MoveToDirection("S") < 0){
-                                if (MoveToDirection("E") > 0){
-                                    MoveToDirection("E");
-                                }
-                                
-                            }
-                            else {
-                                MoveToDirection("S");
-                                //return true;
-                            }
-                        }
-                        
-                    }
-                }
-            }
-            else{
+    if (abs(xdiff) > abs(ydiff)) { //Horizontal movement attempt
+        if (xdiff > 0) { //attempt to move towards E
+            attemptsuccessful = ATTEMPT TO MOVE E
+            if (!attemptsuccessful && ydiff == 0) { //Randomize N or S, check the neighbor of the neighbor 
                 
             }
-            if (MoveToDirection("W") > 0) {
-                MoveToDirection("W");
-                //return true;
-            } 
             else {
                 if (ydiff > 0) {
-                    if (MoveToDirection("N") < 0) {
-                        //1 is E, 0 is S.
-                        if (rndm == 1) {
-                            if (MoveToDirection("E") < 0) {
-                                if (MoveToDirection("S") > 0) {
-                                    MoveToDirection("S");
-                                }
-                                
-                            }
-                            else {
-                                MoveToDirection("E");
-                                //return true;
-                            }
-                        }
-                        else {
-                            if (MoveToDirection("S") < 0){
-                                if (MoveToDirection("E") > 0){
-                                    MoveToDirection("E");
-                                }
-                                
-                            } 
-                            else {
-                                MoveToDirection("S");
-                                //return true;
-                            }
+                    //Attempt N
+                    if (N movement failed) {
+                        //Attempt S
+                        if (S movement failed) {
+                            //Attempt W
                         }
                     }
-                    else {
-                        MoveToDirection("N");
-                        //return true;
-                    }
-                    
                 }
-                else if (ydiff < 0) {
-                    if(MoveToDirection("S")<0){
-                        // 1 is E, 0 is N
-                        if (rndm == 1) {
-                            if ( MoveToDirection("E") < 0){
-                                if (MoveToDirection("N") > 0){
-                                    MoveToDirection("N");
-                                }
-                                
-                            }else{
-                                MoveToDirection("E");
-                                //return true;
-                            }
+                else {
+                    //Attempt S
+                    if (S movement failed) {
+                        //Attempt N
+                        if (N movement failed) {
+                            //Attempt W
                         }
-                        else {
-                            if(MoveToDirection("N") < 0){
-                                if(MoveToDirection("E")>0){
-                                    MoveToDirection("E");
-                                }
-                                
-                            }else{
-                                MoveToDirection("n");
-                                //return true;
-                            }
-                        }
-                    }else{
-                        //return true;
-                        MoveToDirection("S");
                     }
                 }
                 
             }
-        } else if(xdiff<0) {
-            if(MoveToDirection("E")>1){
-                MoveToDirection("E");
-                //return true;
-            }else{
-                //return false;
-                if (ydiff>0) {
-                    if( MoveToDirection("N")<0){
-                        //1 is W, 0 is S
-                        if(rndm==1){
-                            if(MoveToDirection("W")<0){
-                                if(MoveToDirection("S")<0){
-                                    //return true;
-                                    MoveToDirection("S");
-                                }
-                                
-                            }else{
-                                //return true;
-                                MoveToDirection("W");
-                            }
-                        }else{
-                            if(MoveToDirection("S")<0){
-                                if(MoveToDirection("W")<0){
-                                    //return true;
-                                    MoveToDirection("W");
-                                }
-                                
-                            }else{
-                                //return true;
-                                MoveToDirection("S");
-                            }
-                        }
-                        
-                        
-                    }else{
-                        //return true;
-                        MoveToDirection("N");
-                    }
-                } else if(ydiff<0) {
-                    if(MoveToDirection("S")<0){
-                        //1 is W, 0 is N
-                        if(rndm==1){
-                            if(MoveToDirection("W")<0){
-                                if(MoveToDirection("N")<0){
-                                    //return true;
-                                    MoveToDirection("N");
-                                }
-                                
-                            }else{
-                                //return true;
-                                MoveToDirection("W");
-                            }
-                            
-                        }else{
-                            if(MoveToDirection("N")<0){
-                                if(MoveToDirection("W")<0){
-                                    //return true;
-                                    MoveToDirection("W");
-                                }
-                                
-                            }else{
-                                //return true;
-                                MoveToDirection("N");
-                            }
-                        }
-                        
-                    }else{
-                        //return true;
-                        MoveToDirection("S");
-                    }
-                    
-                }
-            }
-            
         }
-    } else {
-        //if it is closer in vertical direction, start moving vertically
-        if (ydiff>0) {
-            if( MoveToDirection("N")<0){
-                if(xdiff>0){
-                    if(MoveToDirection("W")<0){
-                        //1 is E, 0 is S
-                        if(rndm==1){
-                            if(MoveToDirection("E")<0){
-                                if(MoveToDirection("S")>0){
-                                    MoveToDirection("S");
-                                    //return true;
-                                }
-                            }else{
-                                MoveToDirection("E");
-                            }
-                            
-                            
-                        }else{
-                            if(MoveToDirection("S")<0){
-                                if(MoveToDirection("E")>0){
-                                    MoveToDirection("E");
-                                    //return true;
-                                }
-                            }else{
-                                MoveToDirection("S");
-                            }
-                        }
-                        
-                        
-                    }else{
-                        //return true;
-                        MoveToDirection("W");
-                    }
-                    
-                    
-                }else if(xdiff<0){
-                    if(MoveToDirection("E")<0){
-                        if(rndm==1){
-                            if(MoveToDirection("W")<0){
-                                if(MoveToDirection("S")>0){
-                                    MoveToDirection("S");
-                                    //return true;
-                                }else{
-                                    //problem
-                                
-                                }
-                            }else{
-                                MoveToDirection("W");
-                                //return true;
-                            }
-                            
-                        }else{
-                            if(MoveToDirection("S")<0){
-                                if(MoveToDirection("W")>0){
-                                    MoveToDirection("W");
-                                    //return true;
-                                }else{
-                                    //problem
-                                
-                                }
-                            }else{
-                                MoveToDirection("S");
-                                //return true;
-                            }
-                        }
-                        
-                        
-                    }else{
-                        //return true;
-                        MoveToDirection("E");
-                    }
-                    
-                }
+        else { //Attempt to move towards W
+            attemptsuccessful = ATTEMPT TO MOVE W
+            if (!attemptsuccessful && ydiff == 0) { //Randomize N or S, check the neighbor of the neighbor 
                 
-            }else{
-                MoveToDirection("N");
             }
-            
-        } else if(ydiff<0) {
-            if(MoveToDirection("S")<0){
-                if (xdiff>0) {
-                    MoveToDirection("W");
-                } else if(xdiff<0) {
-                    if(MoveToDirection("E")<0){
-                        //1 is W, 0 is N
-                        if(rndm==1){
-                            if(MoveToDirection("W")<0){
-                                if(MoveToDirection("N")>0){
-                                    MoveToDirection("N");
-                                    //return true;
-                                }
-                                
-                            }else{
-                                MoveToDirection("W");
-                            }
-                            
-                        }else{
-                            if(MoveToDirection("N")<0){
-                                if(MoveToDirection("W")>0){
-                                    MoveToDirection("W");
-                                    //return true;
-                                }
-                                
-                            }else{
-                                MoveToDirection("N");
-                            }
-                            
+            else {
+                if (ydiff > 0) {
+                    //Attempt N
+                    if (N movement failed) {
+                        //Attempt S
+                        if (S movement failed) {
+                            //Attempt E
                         }
-                        
-                    }else{
-                        MoveToDirection("E");
-                        //return true;
+                    }
+                }
+                else {
+                    //Attempt S
+                    if (S movement failed) {
+                        //Attempt N
+                        if (N movement failed) {
+                            //Attempt E
+                        }
                     }
                 }
                 
-            }else{
-                MoveToDirection("S");
             }
         }
         
+    }
+    else if (ydiff > xdiff) { //vertical movement attempt
+        if (ydiff > 0) { //attempt to move towards N
+            attemptsuccessful = ATTEMPT TO MOVE N
+            if (!attemptsuccessful && ydiff == 0) { //Randomize E or W, check the neighbor of the neighbor 
+                
+            }
+            else {
+                if (xdiff > 0) {
+                    //Attempt E
+                    if (E movement failed) {
+                        //Attempt W
+                        if (W movement failed) {
+                            //Attempt S
+                        }
+                    }
+                }
+                else {
+                    //Attempt W
+                    if (W movement failed) {
+                        //Attempt E
+                        if (E movement failed) {
+                            //Attempt S
+                        }
+                    }
+                }
+                
+            }
+        }
+        else { //attempt to move towards S
+            attemptsuccessful = ATTEMPT TO MOVE S
+            if (!attemptsuccessful && ydiff == 0) { //Randomize E or W, check the neighbor of the neighbor 
+                
+            }
+		    else {
+			    if (xdiff > 0) {
+				    //Attempt E
+				    if (E movement failed) {
+					    //Attempt W
+					    if (W movement failed) {
+						    //Attempt N
+					    }
+				    }
+			    }
+			    else {
+				    //Attempt W
+				    if (W movement failed) {
+					    //Attempt E
+					    if (E movement failed) {
+				    		//Attempt M
+			    		}
+		    		}
+	    		}
+    
+		    }
+	    }
+    }
+    else { //DIFFERENCES ARE EQUAL
+	    neighbor of the neighbor stuff
     }
     
 }
@@ -406,266 +171,6 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
     //ydiff > 0 => enemy is right, go S
     //ydiff < 0 => enemy is left , go  N
     //first go horizontal
-    int rndm=(rand()%2);
-    if(std::abs(xdiff)<std::abs(ydiff)){
-        //if it is closer in horizontal direction, go in horizontal direction first
-        if (xdiff>0) {
-            if(MoveToDirection("E")>0){
-                MoveToDirection("E");
-                //return true;
-            }else{
-                if(ydiff>0){
-                    if(MoveToDirection("S")<0){
-                        //1 is E, 0 is S.
-                        if(rndm==1){
-                            if(MoveToDirection("W")<0){
-                                if(MoveToDirection("N")>0){
-                                    MoveToDirection("N");
-                                }
-                                
-                            }else{
-                                MoveToDirection("W");
-                                //return true;
-                            }
-                        }else{
-                            if(MoveToDirection("N")<0){
-                                if(MoveToDirection("W")>0){
-                                    MoveToDirection("W");
-                                }
-                                
-                            }else{
-                                MoveToDirection("N");
-                                //return true;
-                            }
-                        }
-                    }else{
-                        MoveToDirection("S");
-                        //return true;
-                    }
-                    
-                }else if (ydiff<0){
-                    if(MoveToDirection("N")<0){
-                        // 1 is E, 0 is N
-                        if(rndm==1){
-                            if(MoveToDirection("W")<0){
-                                if(MoveToDirection("S")>0){
-                                    MoveToDirection("S");
-                                }
-                                
-                            }else{
-                                MoveToDirection("W");
-                                //return true;
-                            }
-                        }else{
-                            if(MoveToDirection("S")<0){
-                                if(MoveToDirection("W")>0){
-                                    MoveToDirection("W");
-                                }
-                                
-                            }else{
-                                MoveToDirection("S");
-                                //return true;
-                            }
-                        }
-                    }else{
-                        //return true;
-                        MoveToDirection("N");
-                    }
-                }
-                
-            }
-        } else if(xdiff<0) {
-            if(MoveToDirection("W")>1){
-                MoveToDirection("W");
-                //return true;
-            }else{
-                //return false;
-                if (ydiff>0) {
-                    if( MoveToDirection("S")<0){
-                        //1 is W, 0 is S
-                        if(rndm==1){
-                            if(MoveToDirection("E")<0){
-                                if(MoveToDirection("N")<0){
-                                    //return true;
-                                    MoveToDirection("N");
-                                }
-                                
-                            }else{
-                                //return true;
-                                MoveToDirection("E");
-                            }
-                        }else{
-                            if(MoveToDirection("N")<0){
-                                if(MoveToDirection("E")<0){
-                                    //return true;
-                                    MoveToDirection("E");
-                                }
-                                
-                            }else{
-                                //return true;
-                                MoveToDirection("N");
-                            }
-                        }
-                        
-                        
-                    }else{
-                        //return true;
-                        MoveToDirection("S");
-                    }
-                } else if(ydiff<0) {
-                    if(MoveToDirection("N")<0){
-                        //1 is W, 0 is N
-                        if(rndm==1){
-                            if(MoveToDirection("E")<0){
-                                if(MoveToDirection("S")<0){
-                                    //return true;
-                                    MoveToDirection("S");
-                                }
-                                
-                            }else{
-                                //return true;
-                                MoveToDirection("E");
-                            }
-                            
-                        }else{
-                            if(MoveToDirection("S")<0){
-                                if(MoveToDirection("E")<0){
-                                    //return true;
-                                    MoveToDirection("E");
-                                }
-                                
-                            }else{
-                                //return true;
-                                MoveToDirection("S");
-                            }
-                        }
-                        
-                    }else{
-                        //return true;
-                        MoveToDirection("N");
-                    }
-                    
-                }
-            }
-            
-        }
-    } else {
-        //if it is closer in vertical direction, start moving vertically
-        if (ydiff>0) {
-            if( MoveToDirection("S")<0){
-                if(xdiff>0){
-                    if(MoveToDirection("E")<0){
-                        //1 is E, 0 is S
-                        if(rndm==1){
-                            if(MoveToDirection("W")<0){
-                                if(MoveToDirection("N")>0){
-                                    MoveToDirection("N");
-                                    //return true;
-                                }
-                            }else{
-                                MoveToDirection("W");
-                            }
-                            
-                            
-                        }else{
-                            if(MoveToDirection("N")<0){
-                                if(MoveToDirection("W")>0){
-                                    MoveToDirection("W");
-                                    //return true;
-                                }
-                            }else{
-                                MoveToDirection("N");
-                            }
-                        }
-                        
-                        
-                    }else{
-                        //return true;
-                        MoveToDirection("E");
-                    }
-                    
-                    
-                }else if(xdiff<0){
-                    if(MoveToDirection("W")<0){
-                        if(rndm==1){
-                            if(MoveToDirection("E")<0){
-                                if(MoveToDirection("N")>0){
-                                    MoveToDirection("N");
-                                    //return true;
-                                }
-                            }else{
-                                MoveToDirection("E");
-                                //return true;
-                            }
-                            
-                        }else{
-                            if(MoveToDirection("N")<0){
-                                if(MoveToDirection("E")>0){
-                                    MoveToDirection("E");
-                                    //return true;
-                                }
-                            }else{
-                                MoveToDirection("N");
-                                //return true;
-                            }
-                        }
-                        
-                        
-                    }else{
-                        //return true;
-                        MoveToDirection("W");
-                    }
-                    
-                }
-                
-            }else{
-                MoveToDirection("S");
-            }
-            
-        } else if(ydiff<0) {
-            if(MoveToDirection("N")<0){
-                if (xdiff>0) {
-                    MoveToDirection("E");
-                } else if(xdiff<0) {
-                    if(MoveToDirection("W")<0){
-                        //1 is W, 0 is N
-                        if(rndm==1){
-                            if(MoveToDirection("E")<0){
-                                if(MoveToDirection("S")>0){
-                                    MoveToDirection("S");
-                                    //return true;
-                                }
-                                
-                            }else{
-                                MoveToDirection("E");
-                            }
-                            
-                        }else{
-                            if(MoveToDirection("S")<0){
-                                if(MoveToDirection("E")>0){
-                                    MoveToDirection("E");
-                                    //return true;
-                                }
-                                
-                            }else{
-                                MoveToDirection("S");
-                            }
-                            
-                        }
-                        
-                    }else{
-                        MoveToDirection("W");
-                        //return true;
-                    }
-                }
-                
-            }else{
-                MoveToDirection("N");
-            }
-        }
-        
-    }
-    
 }
 
 bool Enemy::DistanceToCharacterLargerThanThree(Character* targetcharacter) const {

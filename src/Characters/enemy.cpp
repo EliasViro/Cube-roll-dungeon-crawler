@@ -25,6 +25,9 @@ ActionType Enemy::GetCurrentAction() const {
 }
 
 void Enemy::MoveTowards(Character* targetcharacter) {
+    //mmove direction
+    //Attempts to move the character to the given direction,
+    //returns -1 if didn't succeed, positive otherwise.
     int target_tileX= targetcharacter->GetXCoordinate();
     int target_tileY = targetcharacter->GetYCoordinate();
     int current_tileX = GetXCoordinate();
@@ -35,24 +38,300 @@ void Enemy::MoveTowards(Character* targetcharacter) {
     //xdiff < 0 => enemy is right, go E
     //ydiff > 0 => enemy is up, go N
     //ydiff < 0 => enemy is down , go  S
-    //first go horizontal
-    //Its not based on individual enemies, same forr all I  need to change 
-    do{
-        if( xdiff>0 ){
-            MoveToDirection("W");
-        }else if (xdiff<0){
-            MoveToDirection("E");
-        }else if(ydiff>0){
-            MoveToDirection("N");
-        }else{
-            MoveToDirection("S");
+    int rndm=(rand()%2);
+    if(std::abs(xdiff)<std::abs(ydiff)){
+        //if it is closer in horizontal direction, go in horizontal direction first
+        if (xdiff>0) {
+            if(MoveToDirection("W")>0){
+                MoveToDirection("W");
+                //return true;
+            }else{
+                if(ydiff>0){
+                    if(MoveToDirection("N")<0){
+                        //1 is E, 0 is S.
+                        if(rndm==1){
+                            if(MoveToDirection("E")<0){
+                                if(MoveToDirection("S")>0){
+                                    MoveToDirection("S");
+                                }else {
+                                    //PROBLEM SHOULDNT HAPPEN
+                                }
+                                
+                            }else{
+                                MoveToDirection("E");
+                                //return true;
+                            }
+                        }else{
+                            if(MoveToDirection("S")<0){
+                                if(MoveToDirection("E")>0){
+                                    MoveToDirection("E");
+                                }else {
+                                    //PROBLEM SHOULDNT HAPPEN
+                                }
+                                
+                            }else{
+                                MoveToDirection("S");
+                                //return true;
+                            }
+                        }
+                    }else{
+                        MoveToDirection("N");
+                        //return true;
+                    }
+                    
+                }else if (ydiff<0){
+                    if(MoveToDirection("S")<0){
+                        // 1 is E, 0 is N
+                        if(rndm==1){
+                            if(MoveToDirection("E")<0){
+                                if(MoveToDirection("N")>0){
+                                    MoveToDirection("N");
+                                }else {
+                                    //PROBLEM SHOULDNT HAPPEN
+                                }
+                                
+                            }else{
+                                MoveToDirection("E");
+                                //return true;
+                            }
+                        }else{
+                            if(MoveToDirection("N")<0){
+                                if(MoveToDirection("E")>0){
+                                    MoveToDirection("E");
+                                }else {
+                                    //PROBLEM SHOULDNT HAPPEN
+                                }
+                                
+                            }else{
+                                MoveToDirection("n");
+                                //return true;
+                            }
+                        }
+                    }else{
+                        //return true;
+                        MoveToDirection("S");
+                    }
+                }
+                
+            }
+        } else if(xdiff<0) {
+            if(MoveToDirection("E")>1){
+                MoveToDirection("E");
+                //return true;
+            }else{
+                //return false;
+                if (ydiff>0) {
+                    if( MoveToDirection("N")<0){
+                        //1 is W, 0 is S
+                        if(rndm==1){
+                            if(MoveToDirection("W")<0){
+                                if(MoveToDirection("S")<0){
+                                    //return true;
+                                    MoveToDirection("S");
+                                }else{
+                                    //shouldnt happen
+                                }
+                                
+                            }else{
+                                //return true;
+                                MoveToDirection("W");
+                            }
+                        }else{
+                            if(MoveToDirection("S")<0){
+                                if(MoveToDirection("W")<0){
+                                    //return true;
+                                    MoveToDirection("W");
+                                }else{
+                                    //shouldnt happen
+                                }
+                                
+                            }else{
+                                //return true;
+                                MoveToDirection("S");
+                            }
+                        }
+                        
+                        
+                    }else{
+                        //return true;
+                        MoveToDirection("N");
+                    }
+                } else if(ydiff<0) {
+                    if(MoveToDirection("S")<0){
+                        //1 is W, 0 is N
+                        if(rndm==1){
+                            if(MoveToDirection("W")<0){
+                                if(MoveToDirection("N")<0){
+                                    //return true;
+                                    MoveToDirection("N");
+                                }else{
+                                    //shouldnt happen
+                                }
+                                
+                            }else{
+                                //return true;
+                                MoveToDirection("W");
+                            }
+                            
+                        }else{
+                            if(MoveToDirection("N")<0){
+                                if(MoveToDirection("W")<0){
+                                    //return true;
+                                    MoveToDirection("W");
+                                }else{
+                                    //shouldnt happen
+                                }
+                                
+                            }else{
+                                //return true;
+                                MoveToDirection("N");
+                            }
+                        }
+                        
+                    }else{
+                        //return true;
+                        MoveToDirection("S");
+                    }
+                    
+                }
+            }
+            
+        }
+    } else {
+        //if it is closer in vertical direction, start moving vertically
+        if (ydiff>0) {
+            if( MoveToDirection("N")<0){
+                if(xdiff>0){
+                    if(MoveToDirection("W")<0){
+                        //1 is E, 0 is S
+                        if(rndm==1){
+                            if(MoveToDirection("E")<0){
+                                if(MoveToDirection("S")>0){
+                                    MoveToDirection("S");
+                                    //return true;
+                                }else{
+                                    //PROBLEM
+                                }
+                            }else{
+                                MoveToDirection("E");
+                            }
+                            
+                            
+                        }else{
+                            if(MoveToDirection("S")<0){
+                                if(MoveToDirection("E")>0){
+                                    MoveToDirection("E");
+                                    //return true;
+                                }else{
+                                    //PROBLEM
+                                }
+                            }else{
+                                MoveToDirection("S");
+                            }
+                        }
+                        
+                        
+                    }else{
+                        //return true;
+                        MoveToDirection("W");
+                    }
+                    
+                    
+                }else if(xdiff<0){
+                    if(MoveToDirection("E")<0){
+                        if(rndm==1){
+                            if(MoveToDirection("W")<0){
+                                if(MoveToDirection("S")>0){
+                                    MoveToDirection("S");
+                                    //return true;
+                                }else{
+                                    //problem
+                                
+                                }
+                            }else{
+                                MoveToDirection("W");
+                                //return true;
+                            }
+                            
+                        }else{
+                            if(MoveToDirection("S")<0){
+                                if(MoveToDirection("W")>0){
+                                    MoveToDirection("W");
+                                    //return true;
+                                }else{
+                                    //problem
+                                
+                                }
+                            }else{
+                                MoveToDirection("S");
+                                //return true;
+                            }
+                        }
+                        
+                        
+                    }else{
+                        //return true;
+                        MoveToDirection("E");
+                    }
+                    
+                }
+                
+            }else{
+                MoveToDirection("N");
+            }
+            
+        } else if(ydiff<0) {
+            if(MoveToDirection("S")<0){
+                if (xdiff>0) {
+                    MoveToDirection("W");
+                } else if(xdiff<0) {
+                    if(MoveToDirection("E")<0){
+                        //1 is W, 0 is N
+                        if(rndm==1){
+                            if(MoveToDirection("W")<0){
+                                if(MoveToDirection("N")>0){
+                                    MoveToDirection("N");
+                                    //return true;
+                                }else{
+                                    //PROBLEM;
+                                }
+                                
+                            }else{
+                                MoveToDirection("W");
+                            }
+                            
+                        }else{
+                            if(MoveToDirection("N")<0){
+                                if(MoveToDirection("W")>0){
+                                    MoveToDirection("W");
+                                    //return true;
+                                }else{
+                                    //PROBLEM;
+                                }
+                                
+                            }else{
+                                MoveToDirection("N");
+                            }
+                            
+                        }
+                        
+                    }else{
+                        MoveToDirection("E");
+                        //return true;
+                    }
+                }
+                
+            }else{
+                MoveToDirection("S");
+            }
         }
         
-    }while(!(ydiff==0 & xdiff==0));
+    }
+    
 }
 
 void Enemy::MoveAwayFrom(Character* targetcharacter) {
-    int  c=0;
+    
     int target_tileX= targetcharacter->GetXCoordinate();
     int target_tileY = targetcharacter->GetYCoordinate();
     int current_tileX = GetXCoordinate();
@@ -64,33 +343,296 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
     //ydiff > 0 => enemy is right, go S
     //ydiff < 0 => enemy is left , go  N
     //first go horizontal
-    int rndm = (rand()% 2);
-    int dirs[2] = { 1, 2 };
-    //1 = UP-DOWN
-    //2 = RIGHT-LEFT
-    do {
-        if (dirs[rndm]==2) {
-            if( xdiff>0){
+    int rndm=(rand()%2);
+    if(std::abs(xdiff)<std::abs(ydiff)){
+        //if it is closer in horizontal direction, go in horizontal direction first
+        if (xdiff>0) {
+            if(MoveToDirection("E")>0){
                 MoveToDirection("E");
-                c++;
-            } else {
-                MoveToDirection("W");
-                c++;
+                //return true;
+            }else{
+                if(ydiff>0){
+                    if(MoveToDirection("S")<0){
+                        //1 is E, 0 is S.
+                        if(rndm==1){
+                            if(MoveToDirection("W")<0){
+                                if(MoveToDirection("N")>0){
+                                    MoveToDirection("N");
+                                }else {
+                                    //PROBLEM SHOULDNT HAPPEN
+                                }
+                                
+                            }else{
+                                MoveToDirection("W");
+                                //return true;
+                            }
+                        }else{
+                            if(MoveToDirection("N")<0){
+                                if(MoveToDirection("W")>0){
+                                    MoveToDirection("W");
+                                }else {
+                                    //PROBLEM SHOULDNT HAPPEN
+                                }
+                                
+                            }else{
+                                MoveToDirection("N");
+                                //return true;
+                            }
+                        }
+                    }else{
+                        MoveToDirection("S");
+                        //return true;
+                    }
+                    
+                }else if (ydiff<0){
+                    if(MoveToDirection("N")<0){
+                        // 1 is E, 0 is N
+                        if(rndm==1){
+                            if(MoveToDirection("W")<0){
+                                if(MoveToDirection("S")>0){
+                                    MoveToDirection("S");
+                                }else {
+                                    //PROBLEM SHOULDNT HAPPEN
+                                }
+                                
+                            }else{
+                                MoveToDirection("W");
+                                //return true;
+                            }
+                        }else{
+                            if(MoveToDirection("S")<0){
+                                if(MoveToDirection("W")>0){
+                                    MoveToDirection("W");
+                                }else {
+                                    //PROBLEM SHOULDNT HAPPEN
+                                }
+                                
+                            }else{
+                                MoveToDirection("S");
+                                //return true;
+                            }
+                        }
+                    }else{
+                        //return true;
+                        MoveToDirection("N");
+                    }
+                }
+                
             }
-            
-        } else {
-            if ( ydiff>0){
-                MoveToDirection("S");
-                c++;
-            } else {
-                MoveToDirection("N");
-                c++;
+        } else if(xdiff<0) {
+            if(MoveToDirection("W")>1){
+                MoveToDirection("W");
+                //return true;
+            }else{
+                //return false;
+                if (ydiff>0) {
+                    if( MoveToDirection("S")<0){
+                        //1 is W, 0 is S
+                        if(rndm==1){
+                            if(MoveToDirection("E")<0){
+                                if(MoveToDirection("N")<0){
+                                    //return true;
+                                    MoveToDirection("N");
+                                }else{
+                                    //shouldnt happen
+                                }
+                                
+                            }else{
+                                //return true;
+                                MoveToDirection("E");
+                            }
+                        }else{
+                            if(MoveToDirection("N")<0){
+                                if(MoveToDirection("E")<0){
+                                    //return true;
+                                    MoveToDirection("E");
+                                }else{
+                                    //shouldnt happen
+                                }
+                                
+                            }else{
+                                //return true;
+                                MoveToDirection("N");
+                            }
+                        }
+                        
+                        
+                    }else{
+                        //return true;
+                        MoveToDirection("S");
+                    }
+                } else if(ydiff<0) {
+                    if(MoveToDirection("N")<0){
+                        //1 is W, 0 is N
+                        if(rndm==1){
+                            if(MoveToDirection("E")<0){
+                                if(MoveToDirection("S")<0){
+                                    //return true;
+                                    MoveToDirection("S");
+                                }else{
+                                    //shouldnt happen
+                                }
+                                
+                            }else{
+                                //return true;
+                                MoveToDirection("E");
+                            }
+                            
+                        }else{
+                            if(MoveToDirection("S")<0){
+                                if(MoveToDirection("E")<0){
+                                    //return true;
+                                    MoveToDirection("E");
+                                }else{
+                                    //shouldnt happen
+                                }
+                                
+                            }else{
+                                //return true;
+                                MoveToDirection("S");
+                            }
+                        }
+                        
+                    }else{
+                        //return true;
+                        MoveToDirection("N");
+                    }
+                    
+                }
             }
             
         }
-        //MoveToDirection(dirs[rndm])
-        rndm=(rand()% 2);
-    } while ( c < 4 );
+    } else {
+        //if it is closer in vertical direction, start moving vertically
+        if (ydiff>0) {
+            if( MoveToDirection("S")<0){
+                if(xdiff>0){
+                    if(MoveToDirection("E")<0){
+                        //1 is E, 0 is S
+                        if(rndm==1){
+                            if(MoveToDirection("W")<0){
+                                if(MoveToDirection("N")>0){
+                                    MoveToDirection("N");
+                                    //return true;
+                                }else{
+                                    //PROBLEM
+                                }
+                            }else{
+                                MoveToDirection("W");
+                            }
+                            
+                            
+                        }else{
+                            if(MoveToDirection("N")<0){
+                                if(MoveToDirection("W")>0){
+                                    MoveToDirection("W");
+                                    //return true;
+                                }else{
+                                    //PROBLEM
+                                }
+                            }else{
+                                MoveToDirection("N");
+                            }
+                        }
+                        
+                        
+                    }else{
+                        //return true;
+                        MoveToDirection("E");
+                    }
+                    
+                    
+                }else if(xdiff<0){
+                    if(MoveToDirection("W")<0){
+                        if(rndm==1){
+                            if(MoveToDirection("E")<0){
+                                if(MoveToDirection("N")>0){
+                                    MoveToDirection("N");
+                                    //return true;
+                                }else{
+                                    //problem
+                                
+                                }
+                            }else{
+                                MoveToDirection("E");
+                                //return true;
+                            }
+                            
+                        }else{
+                            if(MoveToDirection("N")<0){
+                                if(MoveToDirection("E")>0){
+                                    MoveToDirection("E");
+                                    //return true;
+                                }else{
+                                    //problem
+                                
+                                }
+                            }else{
+                                MoveToDirection("N");
+                                //return true;
+                            }
+                        }
+                        
+                        
+                    }else{
+                        //return true;
+                        MoveToDirection("W");
+                    }
+                    
+                }
+                
+            }else{
+                MoveToDirection("S");
+            }
+            
+        } else if(ydiff<0) {
+            if(MoveToDirection("N")<0){
+                if (xdiff>0) {
+                    MoveToDirection("E");
+                } else if(xdiff<0) {
+                    if(MoveToDirection("W")<0){
+                        //1 is W, 0 is N
+                        if(rndm==1){
+                            if(MoveToDirection("E")<0){
+                                if(MoveToDirection("S")>0){
+                                    MoveToDirection("S");
+                                    //return true;
+                                }else{
+                                    //PROBLEM;
+                                }
+                                
+                            }else{
+                                MoveToDirection("E");
+                            }
+                            
+                        }else{
+                            if(MoveToDirection("S")<0){
+                                if(MoveToDirection("E")>0){
+                                    MoveToDirection("E");
+                                    //return true;
+                                }else{
+                                    //PROBLEM;
+                                }
+                                
+                            }else{
+                                MoveToDirection("S");
+                            }
+                            
+                        }
+                        
+                    }else{
+                        MoveToDirection("W");
+                        //return true;
+                    }
+                }
+                
+            }else{
+                MoveToDirection("N");
+            }
+        }
+        
+    }
+    
 }
 
 bool Enemy::DistanceToCharacterLargerThanThree(Character* targetcharacter) const {

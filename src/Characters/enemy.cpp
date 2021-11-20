@@ -41,17 +41,17 @@ void Enemy::MoveTowards(Character* targetcharacter) {
     int rndm = (rand() % 2);
     if (abs(xdiff) > abs(ydiff)) { //Horizontal movement attempt
         if (xdiff > 0) { //attempt to move towards W
-            attemptsuccessful= MoveToDirection("W");
+            attemptsuccessful = MoveToDirection("W");
             //attemptsuccessful = ATTEMPT TO MOVE W
             if (attemptsuccessful == -1 && ydiff == 0) { //Randomize N or S, check the neighbor of the neighbor
                 if ( rndm == 1 ){
-                    if(currenttile_->GetTileNeighbor("N")->IsPassable()){
+                    if(currenttile_ -> GetTileNeighbor("N") -> IsPassable() ){
                         //it can move in E direction.
                         //but checks if the neighbours neighbour is a pit or a wall.
-                        if((currenttile_->GetTileNeighbor("N")->GetTileNeighbor("W")->GetTileType() !=Wall)&&(currenttile_->GetTileNeighbor("N")->GetTileNeighbor("W")->GetTileType() !=Pit)){
+                        if ((currenttile_ -> GetTileNeighbor("N") -> GetTileNeighbor("W") -> GetTileType() !=  Wall) && (currenttile_ -> GetTileNeighbor("N") -> GetTileNeighbor("W") -> GetTileType() != Pit)) {
                             MoveToDirection("N");
                         }
-                        else if(currenttile_->GetTileNeighbor("S")->IsPassable() ){
+                        else if (currenttile_ -> GetTileNeighbor("S") -> IsPassable() ){
                             //it can move in W direction
                             MoveToDirection("S");
                             
@@ -65,13 +65,13 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                     }
                 }
                 else{
-                    if(currenttile_->GetTileNeighbor("S")->IsPassable()){
+                    if (currenttile_ -> GetTileNeighbor("S") -> IsPassable()){
                         //it can move in E direction.
                         //but checks if the neighbours neighbour is a pit or a wall.
-                        if((currenttile_->GetTileNeighbor("S")->GetTileNeighbor("W")->GetTileType() !=Wall)&&(currenttile_->GetTileNeighbor("S")->GetTileNeighbor("W")->GetTileType() !=Pit)){
+                        if ((currenttile_ -> GetTileNeighbor("S") -> GetTileNeighbor("W") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("S") -> GetTileNeighbor("W") -> GetTileType() != Pit)) {
                             MoveToDirection("S");
                         }
-                        else if(currenttile_->GetTileNeighbor("N")->IsPassable() ){
+                        else if (currenttile_ -> GetTileNeighbor("N") -> IsPassable() ){
                             //it can move in W direction
                             MoveToDirection("N");
                             
@@ -88,11 +88,11 @@ void Enemy::MoveTowards(Character* targetcharacter) {
             }
             else {
                 if (ydiff > 0) {
-                    attemptsuccessful=MoveToDirection("N");
+                    attemptsuccessful = MoveToDirection("N");
                     //Attempt N
                     if (attemptsuccessful == -1) {
                         //Attempt S
-                        attemptsuccessful=MoveToDirection("S");
+                        attemptsuccessful = MoveToDirection("S");
                         if (attemptsuccessful == -1) {
                             //Attempt E
                             MoveToDirection("E");
@@ -102,10 +102,10 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                 }
                 else {
                     //Attempt S
-                    attemptsuccessful=MoveToDirection("S");
+                    attemptsuccessful = MoveToDirection("S");
                     if (attemptsuccessful == -1) {
                         //Attempt N
-                        attemptsuccessful=MoveToDirection("N");
+                        attemptsuccessful = MoveToDirection("N");
                         if (attemptsuccessful == -1) {
                             //Attempt E
                             MoveToDirection("E");
@@ -117,16 +117,16 @@ void Enemy::MoveTowards(Character* targetcharacter) {
         }
         else { //Attempt to move towards E
             //attemptsuccessful = ATTEMPT TO MOVE E
-            attemptsuccessful= MoveToDirection("E");
-            if (!attemptsuccessful && ydiff == 0) { //Randomize N or S, check the neighbor of the neighbor
+            attemptsuccessful = MoveToDirection("E");
+            if (attemptsuccessful == -1 && ydiff == 0) { //Randomize N or S, check the neighbor of the neighbor
                 if ( rndm == 1 ){
-                    if(currenttile_->GetTileNeighbor("N")->IsPassable()){
+                    if (currenttile_ -> GetTileNeighbor("N") -> IsPassable()){
                         //it can move in E direction.
                         //but checks if the neighbours neighbour is a pit or a wall.
-                        if((currenttile_->GetTileNeighbor("N")->GetTileNeighbor("E")->GetTileType() !=Wall)&&(currenttile_->GetTileNeighbor("N")->GetTileNeighbor("E")->GetTileType() !=Pit)){
+                        if ((currenttile_ ->GetTileNeighbor("N") -> GetTileNeighbor("E") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("N") -> GetTileNeighbor("E") -> GetTileType() != Pit )) {
                             MoveToDirection("N");
                         }
-                        else if(currenttile_->GetTileNeighbor("S")->IsPassable() ){
+                        else if (currenttile_ -> GetTileNeighbor("S") -> IsPassable() ){
                             //it can move in W direction
                             MoveToDirection("S");
                             
@@ -140,13 +140,13 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                     }
                 }
                 else{
-                    if(currenttile_->GetTileNeighbor("S")->IsPassable()){
+                    if (currenttile_ -> GetTileNeighbor("S") -> IsPassable()){
                         //it can move in E direction.
                         //but checks if the neighbours neighbour is a pit or a wall.
-                        if((currenttile_->GetTileNeighbor("S")->GetTileNeighbor("E")->GetTileType() !=Wall)&&(currenttile_->GetTileNeighbor("S")->GetTileNeighbor("E")->GetTileType() !=Pit)){
+                        if ((currenttile_ -> GetTileNeighbor("S") -> GetTileNeighbor("E") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("S") -> GetTileNeighbor("E") -> GetTileType() != Pit )) {
                             MoveToDirection("S");
                         }
-                        else if(currenttile_->GetTileNeighbor("N")->IsPassable() ){
+                        else if (currenttile_ -> GetTileNeighbor("N") -> IsPassable() ){
                             //it can move in W direction
                             MoveToDirection("N");
                             
@@ -163,7 +163,7 @@ void Enemy::MoveTowards(Character* targetcharacter) {
             }
             else {
                 if (ydiff > 0) {
-                    attemptsuccessful= MoveToDirection("N");
+                    attemptsuccessful = MoveToDirection("N");
                     //Attempt N
                     if (attemptsuccessful == -1) {
                         //Attempt S
@@ -177,7 +177,7 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                 else {
                     attemptsuccessful= MoveToDirection("S");
                     if (attemptsuccessful == -1) {
-                        attemptsuccessful= MoveToDirection("N");
+                        attemptsuccessful = MoveToDirection("N");
                         //Attempt N
                         if (attemptsuccessful == -1) {
                             MoveToDirection("W");
@@ -192,18 +192,18 @@ void Enemy::MoveTowards(Character* targetcharacter) {
     }
     else if (ydiff > xdiff) { //vertical movement attempt
         if (ydiff > 0) { //attempt to move towards N
-            attemptsuccessful=MoveToDirection("N");
+            attemptsuccessful = MoveToDirection("N");
             //attemptsuccessful = ATTEMPT TO MOVE N
             
             if (attemptsuccessful == -1  && ydiff == 0) { //Randomize E or W, check the neighbor of the neighbor
                 if ( rndm == 1 ){
-                    if(currenttile_->GetTileNeighbor("E")->IsPassable()){
+                    if (currenttile_ -> GetTileNeighbor("E") -> IsPassable()){
                         //it can move in E direction.
                         //but checks if the neighbours neighbour is a pit or a wall.
-                        if((currenttile_->GetTileNeighbor("E")->GetTileNeighbor("N")->GetTileType() !=Wall)&&(currenttile_->GetTileNeighbor("E")->GetTileNeighbor("N")->GetTileType() !=Pit)){
+                        if ((currenttile_ -> GetTileNeighbor("E") -> GetTileNeighbor("N") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("E") -> GetTileNeighbor("N") -> GetTileType() != Pit )) {
                             MoveToDirection("E");
                         }
-                        else if(currenttile_->GetTileNeighbor("W")->IsPassable() ){
+                        else if (currenttile_ -> GetTileNeighbor("W") -> IsPassable() ){
                             //it can move in W direction
                             MoveToDirection("W");
                             
@@ -217,13 +217,13 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                     }
                 }
                 else{
-                    if(currenttile_->GetTileNeighbor("W")->IsPassable()){
+                    if (currenttile_ -> GetTileNeighbor("W") -> IsPassable()){
                         //it can move in E direction.
                         //but checks if the neighbours neighbour is a pit or a wall.
-                        if((currenttile_->GetTileNeighbor("W")->GetTileNeighbor("N")->GetTileType() !=Wall)&&(currenttile_->GetTileNeighbor("W")->GetTileNeighbor("N")->GetTileType() !=Pit)){
+                        if ((currenttile_ -> GetTileNeighbor("W") -> GetTileNeighbor("N") -> GetTileType()  != Wall) && (currenttile_ -> GetTileNeighbor("W") -> GetTileNeighbor("N") -> GetTileType() != Pit )) {
                             MoveToDirection("W");
                         }
-                        else if(currenttile_->GetTileNeighbor("E")->IsPassable() ){
+                        else if (currenttile_ -> GetTileNeighbor("E") -> IsPassable() ){
                             //it can move in W direction
                             MoveToDirection("E");
                             
@@ -240,11 +240,11 @@ void Enemy::MoveTowards(Character* targetcharacter) {
             }
             else {
                 if (xdiff > 0) {
-                    attemptsuccessful=MoveToDirection("W");
+                    attemptsuccessful = MoveToDirection("W");
                     //Attempt W
                     if (attemptsuccessful == -1) {
                         //Attempt E
-                        attemptsuccessful=MoveToDirection("E");
+                        attemptsuccessful = MoveToDirection("E");
                         if (attemptsuccessful == -1) {
                             //Attempt S
                             MoveToDirection("S");
@@ -253,10 +253,10 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                 }
                 else {
                     //Attempt E
-                    attemptsuccessful=MoveToDirection("E");
+                    attemptsuccessful = MoveToDirection("E");
                     if (attemptsuccessful == -1) {
                         //Attempt W
-                        attemptsuccessful=MoveToDirection("W");
+                        attemptsuccessful = MoveToDirection("W");
                         if (attemptsuccessful == -1) {
                             //Attempt S
                             MoveToDirection("S");
@@ -267,17 +267,17 @@ void Enemy::MoveTowards(Character* targetcharacter) {
             }
         }
         else { //attempt to move towards S
-            attemptsuccessful=MoveToDirection("S");
+            attemptsuccessful = MoveToDirection("S");
             //attemptsuccessful = ATTEMPT TO MOVE S
             if (attemptsuccessful == -1 && ydiff == 0) { //Randomize E or W, check the neighbor of the neighbor
                 if ( rndm == 1 ){
-                    if(currenttile_->GetTileNeighbor("E")->IsPassable()){
+                    if(currenttile_ -> GetTileNeighbor("E") -> IsPassable()){
                         //it can move in E direction.
                         //but checks if the neighbours neighbour is a pit or a wall.
-                        if((currenttile_->GetTileNeighbor("E")->GetTileNeighbor("S")->GetTileType() !=Wall)&&(currenttile_->GetTileNeighbor("E")->GetTileNeighbor("S")->GetTileType() !=Pit)){
+                        if ((currenttile_ -> GetTileNeighbor("E") -> GetTileNeighbor("S") -> GetTileType() != Wall) && (currenttile_ -> GetTileNeighbor("E") -> GetTileNeighbor("S") -> GetTileType() !=Pit )) {
                             MoveToDirection("E");
                         }
-                        else if(currenttile_->GetTileNeighbor("W")->IsPassable() ){
+                        else if(currenttile_ -> GetTileNeighbor("W") -> IsPassable() ){
                             //it can move in W direction
                             MoveToDirection("W");
                             
@@ -291,13 +291,13 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                     }
                 }
                 else{
-                    if(currenttile_->GetTileNeighbor("W")->IsPassable()){
+                    if (currenttile_ -> GetTileNeighbor("W") -> IsPassable()){
                         //it can move in E direction.
                         //but checks if the neighbours neighbour is a pit or a wall.
-                        if((currenttile_->GetTileNeighbor("W")->GetTileNeighbor("S")->GetTileType() !=Wall)&&(currenttile_->GetTileNeighbor("W")->GetTileNeighbor("S")->GetTileType() !=Pit)){
+                        if ((currenttile_ -> GetTileNeighbor("W") -> GetTileNeighbor("S") -> GetTileType() !=Wall ) && (currenttile_ -> GetTileNeighbor("W") -> GetTileNeighbor("S") -> GetTileType() !=Pit )) {
                             MoveToDirection("W");
                         }
-                        else if(currenttile_->GetTileNeighbor("E")->IsPassable() ){
+                        else if (currenttile_ -> GetTileNeighbor("E") -> IsPassable() ){
                             //it can move in W direction
                             MoveToDirection("E");
                             
@@ -314,11 +314,11 @@ void Enemy::MoveTowards(Character* targetcharacter) {
             }
             else {
                 if (xdiff > 0) {
-                    attemptsuccessful=MoveToDirection("W");
+                    attemptsuccessful = MoveToDirection("W");
                     //Attempt W
                     if (attemptsuccessful == -1) {
                         //Attempt E
-                        attemptsuccessful=MoveToDirection("E");
+                        attemptsuccessful = MoveToDirection("E");
                         if ( attemptsuccessful == -1) {
                             //Attempt N
                             MoveToDirection("N");
@@ -327,10 +327,10 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                 }
                 else {
                     //Attempt E
-                    attemptsuccessful=MoveToDirection("E");
+                    attemptsuccessful = MoveToDirection("E");
                     if (attemptsuccessful == -1) {
                         //Attempt W
-                        attemptsuccessful=MoveToDirection("W");
+                        attemptsuccessful = MoveToDirection("W");
                         if (attemptsuccessful == -1) {
                             //Attempt N
                             MoveToDirection("N");

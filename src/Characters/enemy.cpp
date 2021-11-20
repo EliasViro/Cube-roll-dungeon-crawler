@@ -75,7 +75,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                         else {
                             MoveToDirection("E");
                         }
-                        
                     }
                 }
                 else {
@@ -135,7 +134,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                         else {
                             MoveToDirection("W");
                         }
-                        
                     }
                 }
                 else {
@@ -197,7 +195,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                         else {
                             MoveToDirection("S");
                         }
-                        
                     }
                 }
                 else {
@@ -257,7 +254,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                         else {
                             MoveToDirection("N");
                         }
-                        
                     }
                 }
                 else {
@@ -284,43 +280,42 @@ void Enemy::MoveTowards(Character* targetcharacter) {
         }
     }
     else { //DIFFERENCES ARE EQUAL
+        std::string attemptdirx = "";
+        std::string attemptdiry = "";
         if (xdiff > 0) {
-            std::string attemptdirx = "W";
-            
+            attemptdirx = "W";
         }
         else {
-            std::string attemptdirx = "E";
-
+            attemptdirx = "E";
         }
         if (ydiff > 0) {
-            std::string attemptdiry = "N";
+            attemptdiry = "N";
         }
         else {
-            std::string attemptdiry = "N";
+            attemptdiry = "N";
         }
-
         if (rndm == 1) { // Attempt horizontal first
-            if (currenttile_->GetTileNeighbor(attemptdirx)->IsPassable()) {
+            if (currenttile_->GetTileNeighbor(attemptdirx.c_str())->IsPassable()) {
 
-                if ((currenttile_->GetTileNeighbor(attemptdirx )->GetTileNeighbor(attemptdirx )->GetTileType() !=Wall) &&(currenttile_->GetTileNeighbor(attemptdirx )->GetTileNeighbor(attemptdirx )->GetTileType() != Pit)|| currenttile_->GetTileNeighbor(attemptdirx )->GetTileNeighbor(attemptdiry )->GetTileType() !=Wall) &&(currenttile_->GetTileNeighbor(attemptdirx )->GetTileNeighbor(attemptdiry )->GetTileType() != Pit) {
-                    MoveToDirection(attemptdirx);
+                if (((currenttile_->GetTileNeighbor(attemptdirx.c_str())->GetTileNeighbor(attemptdirx.c_str())->GetTileType() != Wall) && (currenttile_->GetTileNeighbor(attemptdirx.c_str())->GetTileNeighbor(attemptdirx.c_str())->GetTileType() != Pit) || currenttile_->GetTileNeighbor(attemptdirx.c_str())->GetTileNeighbor(attemptdiry.c_str() )->GetTileType() !=Wall) && (currenttile_->GetTileNeighbor(attemptdirx.c_str())->GetTileNeighbor(attemptdiry.c_str())->GetTileType() != Pit)) {
+                    MoveToDirection(attemptdirx.c_str());
                 }
                 else {
-                    attemptsuccessful=MoveToDirection(attemptdiry);
+                    attemptsuccessful=MoveToDirection(attemptdiry.c_str());
                     //Attempt to move to attemptdiry
                     if (attemptsuccessful == -1) {
                         //move to attemptdirx
-                        MoveToDirection(attemptdirx);
+                        MoveToDirection(attemptdirx.c_str());
                     }
                 }
             }
             else {
-                if (currenttile_->GetTileNeighbor(attemptdiry)->IsPassable()) {
+                if (currenttile_->GetTileNeighbor(attemptdiry.c_str())->IsPassable()) {
                     //Move to attemptdiry
-                    MoveToDirection(attemptdiry);
+                    MoveToDirection(attemptdiry.c_str());
                 }
                 else {
-                    r= (rand()%2)
+                    int r = (rand()%2);
                     if (r == 1) {
                         if (attemptdirx == "E") {
                             //attempt to move to W
@@ -350,7 +345,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                                 }
                             }
                         }
-                        
                     }
                     else {
                         if (attemptdiry == "N") {
@@ -387,42 +381,42 @@ void Enemy::MoveTowards(Character* targetcharacter) {
         }
         else { //Attempt vertical first
             //attemptdiry is passable
-            if (currenttile_->GetTileNeighbor(attemptdiry)->IsPassable()) {
+            if (currenttile_->GetTileNeighbor(attemptdiry.c_str())->IsPassable()) {
 
-                if ((currenttile_->GetTileNeighbor(attemptdiry )->GetTileNeighbor(attemptdiry )->GetTileType() !=Wall) &&(currenttile_->GetTileNeighbor(attemptdiry )->GetTileNeighbor(attemptdiry )->GetTileType() != Pit)||
-                    (currenttile_->GetTileNeighbor(attemptdiry )->GetTileNeighbor(attemptdirx )->GetTileType() !=Wall) &&(currenttile_->GetTileNeighbor(attemptdiry )->GetTileNeighbor(attemptdirx )->GetTileType() != Pit)) {
-                    MoveToDirection(attemptdiry);
+                if ((currenttile_->GetTileNeighbor(attemptdiry.c_str())->GetTileNeighbor(attemptdiry.c_str())->GetTileType() != Wall) && (currenttile_->GetTileNeighbor(attemptdiry.c_str())->GetTileNeighbor(attemptdiry.c_str())->GetTileType() != Pit) ||
+                    (currenttile_->GetTileNeighbor(attemptdiry.c_str())->GetTileNeighbor(attemptdirx.c_str())->GetTileType() != Wall) &&(currenttile_->GetTileNeighbor(attemptdiry.c_str())->GetTileNeighbor(attemptdirx.c_str())->GetTileType() != Pit)) {
+                    MoveToDirection(attemptdiry.c_str());
                     //Move to attemptdiry
                 }
                 else {
                     //Attempt to move to attemptdirx
-                    attemptsuccessful = MoveToDirection(attemptdirx);
+                    attemptsuccessful = MoveToDirection(attemptdirx.c_str());
                     if (attemptsuccessful == -1) {
                         //move to attemptdiry
-                        MoveToDirection(attemptdiry);
+                        MoveToDirection(attemptdiry.c_str());
                     }
                 }
             }
             else {
-                if (currenttile_->GetTileNeighbor(attemptdirx)->IsPassable()) {
+                if (currenttile_->GetTileNeighbor(attemptdirx.c_str())->IsPassable()) {
                     //Move to attemptdirx
-                    MoveToDirection(attemptdirx)
+                    MoveToDirection(attemptdirx.c_str());
                 }
                 else {
-                    int rr= (rand()%2)
+                    int rr= (rand()%2);
                     
                     if (rr == 0) {
                         if (attemptdirx == "E") {
                             //attempt to move to W
                             attemptsuccessful = MoveToDirection("W");
                             if (attemptsuccessful == -1) {
-                                if (attemptdiry == N) {
+                                if (attemptdiry == "N") {
                                     //attempt to move to S
-                                    MoveToDirection(S);
+                                    MoveToDirection("S");
                                 }
                                 else {
                                     //attempt to move to N
-                                    MoveToDirection(N);
+                                    MoveToDirection("N");
                                 }
                             }
                         }
@@ -440,7 +434,6 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                                 }
                             }
                         }
-                        
                     }
                     else {
                         if (attemptdiry == "N") {
@@ -448,7 +441,7 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                             attemptsuccessful= MoveToDirection("S");
                             if (attemptsuccessful == -1) {
                                 if (attemptdirx == "E") {
-                                    MoveToDirection("W")
+                                    MoveToDirection("W");
                                     //attempt to move to W
                                 }
                                 else {
@@ -467,7 +460,7 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                                 }
                                 else {
                                     //attempt to move to E
-                                    MoveToDirection("E")
+                                    MoveToDirection("E");
                                 }
                             }
                         }

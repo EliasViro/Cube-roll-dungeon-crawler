@@ -63,11 +63,11 @@ void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec, std::vector<Char
 }
 
 int main() {
-    
+
     Item* testitem = nullptr;
     DungeonRoom* testroom = new DungeonRoom(std::make_pair(0,0), RoomType::_2DoorRoomCorner, DoorOrientation::SouthWest, testitem, false);
     auto alltiles = testroom->GetAllTiles();
-    std::vector<Character*> enemyvec = {new Slime(nullptr), new Slime(nullptr), new Slime(nullptr), new Slime(nullptr), new Slime(nullptr)};
+    std::vector<Character*> enemyvec = {new SmallSpider(nullptr), new SmallSpider(nullptr), new SmallSpider(nullptr), new SmallSpider(nullptr), new SmallSpider(nullptr)};
     
     auto player = new Player(alltiles[6][1]);
     

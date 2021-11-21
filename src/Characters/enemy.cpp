@@ -166,23 +166,29 @@ void Enemy::MoveTowards(Character* targetcharacter) {
             if (attemptsuccessful < 0) {
                 if (xdiff == 0) {
                     if (rndm == 1) {
-                        if (currenttile_->GetTileNeighbor("E")->IsPassable()){
+                        if (currenttile_->GetTileNeighbor("E")->IsPassable()) {
                             if ((currenttile_->GetTileNeighbor("E")->GetTileNeighbor("N")->GetTileType() !=  Wall) && (currenttile_->GetTileNeighbor("E")->GetTileNeighbor("N")->GetTileType() != Pit)) {
                                 MoveToDirection("E");
                             }
-                            else if (currenttile_->GetTileNeighbor("W")->IsPassable()){
+                            else if (currenttile_->GetTileNeighbor("W")->IsPassable()) {
                                 MoveToDirection("W");
                             }
-                            else{
+                            else if (currenttile_->GetTileNeighbor("E")->IsPassable()){
                                 MoveToDirection("E");
+                            }
+                            else {
+                                MoveToDirection("S");
                             }
                         }
                         else {
-                            MoveToDirection("S");
+                            attemptsuccessful = MoveToDirection("W");
+                            if (attemptsuccessful < 0) {
+                                MoveToDirection("S");
+                            }
                         }
                     }
                     else {
-                        if (currenttile_ -> GetTileNeighbor("W")->IsPassable()) {
+                        if (currenttile_->GetTileNeighbor("W")->IsPassable()) {
                             if ((currenttile_->GetTileNeighbor("W")->GetTileNeighbor("N")->GetTileType() != Wall) && (currenttile_->GetTileNeighbor("W")->GetTileNeighbor("N")->GetTileType() != Pit)) {
                                 MoveToDirection("W");
                             }
@@ -194,7 +200,10 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                             }
                         }
                         else {
-                            MoveToDirection("S");
+                            attemptsuccessful = MoveToDirection("E");
+                            if (attemptsuccessful < 0) {
+                                MoveToDirection("S");
+                            }
                         }
                     }
                 }
@@ -237,11 +246,14 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                             }
                         }
                         else {
-                            MoveToDirection("N");
+                            attemptsuccessful = MoveToDirection("W");
+                            if (attemptsuccessful < 0) {
+                                MoveToDirection("N");
+                            }
                         }
                     }
                     else {
-                        if (currenttile_ -> GetTileNeighbor("W")->IsPassable()) {
+                        if (currenttile_->GetTileNeighbor("W")->IsPassable()) {
                             if ((currenttile_->GetTileNeighbor("W")->GetTileNeighbor("S")->GetTileType() != Wall) && (currenttile_->GetTileNeighbor("W")->GetTileNeighbor("S")->GetTileType() != Pit)) {
                                 MoveToDirection("W");
                             }
@@ -253,31 +265,34 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                             }
                         }
                         else {
-                            MoveToDirection("N");
+                            attemptsuccessful = MoveToDirection("E");
+                            if (attemptsuccessful < 0) {
+                                MoveToDirection("N");
+                            }
                         }
                     }
                 }
                 else {
                     if (xdiff > 0) {
-                        attemptsuccessful = MoveToDirection("N");
+                        attemptsuccessful = MoveToDirection("W");
                         if (attemptsuccessful < 0) {
-                            attemptsuccessful = MoveToDirection("S");
+                            attemptsuccessful = MoveToDirection("E");
                             if (attemptsuccessful < 0) {
-                                MoveToDirection("W");
+                                MoveToDirection("N");
                             }
                         }
                     }
                     else {
-                        attemptsuccessful = MoveToDirection("S");
+                        attemptsuccessful = MoveToDirection("E");
                         if (attemptsuccessful < 0) {
-                            attemptsuccessful = MoveToDirection("N");
+                            attemptsuccessful = MoveToDirection("W");
                             if (attemptsuccessful < 0) {
-                                MoveToDirection("W");
+                                MoveToDirection("N");
                             }
                         }
                     }
                 }
-            }
+            }   
         }
     }
     else { //DIFFERENCES ARE EQUAL
@@ -324,7 +339,7 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                         else {
                             //attempt to move to E
                             attemptsuccessful = MoveToDirection("E");
-                            if (attemptsuccessful = -1) {
+                            if (attemptsuccessful < 0) {
                                 if (attemptdiry == "N") {
                                     //attempt to move to S
                                     MoveToDirection("S");
@@ -457,7 +472,7 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
     //ydiff < 0 => go N
     int rndm = (rand() % 2);
     int attemptsuccessful = -1;
-    if (abs(xdiff) > abs(ydiff)) { //Horizontal movement attempt
+    if (abs(xdiff) < abs(ydiff)) { //Horizontal movement attempt
         if (xdiff > 0) { //attempt to move towards E
             attemptsuccessful = MoveToDirection("E");
             if (attemptsuccessful < 0) {
@@ -481,7 +496,7 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                 }
             }
         }
-        else { //Attempt to move towards W
+        else if (xdiff < 0) { //Attempt to move towards W
             attemptsuccessful = MoveToDirection("W");
             if (attemptsuccessful < 0) {
                 if (ydiff > 0) {
@@ -504,8 +519,39 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                 }
             }
         }
+        else {
+            rndm = (rand() % 2);
+            if (rndm == 1) {
+                attemptsuccessful = MoveToDirection("E");
+                if (attemptsuccessful < 0) {
+                    attemptsuccessful = MoveToDirection("W");
+                    if (attemptsuccessful < 0) {
+                        if (ydiff > 0) {
+                            attemptsuccessful = MoveToDirection("N");
+                            if (attemptsuccessful < 0) {
+                                MoveToDirection("S");
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                attemptsuccessful = MoveToDirection("W");
+                if (attemptsuccessful < 0) {
+                    attemptsuccessful = MoveToDirection("E");
+                    if (attemptsuccessful < 0) {
+                        if (ydiff > 0) {
+                            attemptsuccessful = MoveToDirection("S");
+                            if (attemptsuccessful < 0) {
+                                MoveToDirection("N");
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-    else if (abs(ydiff) > abs(xdiff)) { //vertical movement attempt
+    else if (abs(ydiff) < abs(xdiff)) { //vertical movement attempt
         if (ydiff > 0) { //attempt to move towards S
             attemptsuccessful = MoveToDirection("S");
             if (attemptsuccessful < 0) {
@@ -529,24 +575,128 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                 }
             }
         }
-        else { //attempt to move towards N
+        else if (ydiff < 0) { //attempt to move towards N
             attemptsuccessful = MoveToDirection("N");
             if (attemptsuccessful < 0) {
                 if (xdiff > 0) {
+                    attemptsuccessful = MoveToDirection("E");
+                    if (attemptsuccessful < 0) {
+                        attemptsuccessful = MoveToDirection("W");
+                        if (attemptsuccessful < 0) {
+                            MoveToDirection("S");
+                        }
+                    }
+                }
+                else {
+                    attemptsuccessful = MoveToDirection("W");
+                    if (attemptsuccessful < 0) {
+                        attemptsuccessful = MoveToDirection("E");
+                        if (attemptsuccessful < 0) {
+                            MoveToDirection("S");
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            if (xdiff > 0) {
+                rndm = rand() % 2;
+                if (rndm == 1) {
                     attemptsuccessful = MoveToDirection("S");
                     if (attemptsuccessful < 0) {
-                        attemptsuccessful = MoveToDirection("N");
-                        if (attemptsuccessful < 0) {
-                            MoveToDirection("E");
+                        rndm = (rand() % 2);
+                        if (rndm == 1) {
+                            attemptsuccessful = MoveToDirection("N");
+                            if (attemptsuccessful < 0) {
+                                attemptsuccessful = MoveToDirection("E");
+                                if (attemptsuccessful < 0) {
+                                    MoveToDirection("W");
+                                }
+                            }
+                        }
+                        else {
+                            attemptsuccessful = MoveToDirection("N");
+                            if (attemptsuccessful < 0) {
+                                attemptsuccessful = MoveToDirection("S");
+                                if (attemptsuccessful < 0) {
+                                    MoveToDirection("W");
+                                }
+                            }
                         }
                     }
                 }
                 else {
                     attemptsuccessful = MoveToDirection("N");
                     if (attemptsuccessful < 0) {
-                        attemptsuccessful = MoveToDirection("S");
-                        if (attemptsuccessful < 0) {
-                            MoveToDirection("E");
+                        rndm = (rand() % 2);
+                        if (rndm == 1) {
+                            attemptsuccessful = MoveToDirection("E");
+                            if (attemptsuccessful < 0) {
+                                attemptsuccessful = MoveToDirection("W");
+                                if (attemptsuccessful < 0) {
+                                    MoveToDirection("S");
+                                }
+                            }
+                        }
+                        else {
+                            attemptsuccessful = MoveToDirection("W");
+                            if (attemptsuccessful < 0) {
+                                attemptsuccessful = MoveToDirection("E");
+                                if (attemptsuccessful < 0) {
+                                    MoveToDirection("S");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                rndm = rand() % 2;
+                if (rndm == 0) {
+                    attemptsuccessful = MoveToDirection("S");
+                    if (attemptsuccessful < 0) {
+                        rndm = (rand() % 2);
+                        if (rndm == 1) {
+                            attemptsuccessful = MoveToDirection("N");
+                            if (attemptsuccessful < 0) {
+                                attemptsuccessful = MoveToDirection("E");
+                                if (attemptsuccessful < 0) {
+                                    MoveToDirection("W");
+                                }
+                            }
+                        }
+                        else {
+                            attemptsuccessful = MoveToDirection("N");
+                            if (attemptsuccessful < 0) {
+                                attemptsuccessful = MoveToDirection("S");
+                                if (attemptsuccessful < 0) {
+                                    MoveToDirection("W");
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    attemptsuccessful = MoveToDirection("N");
+                    if (attemptsuccessful < 0) {
+                        rndm = (rand() % 2);
+                        if (rndm == 1) {
+                            attemptsuccessful = MoveToDirection("E");
+                            if (attemptsuccessful < 0) {
+                                attemptsuccessful = MoveToDirection("W");
+                                if (attemptsuccessful < 0) {
+                                    MoveToDirection("S");
+                                }
+                            }
+                        }
+                        else {
+                            attemptsuccessful = MoveToDirection("W");
+                            if (attemptsuccessful < 0) {
+                                attemptsuccessful = MoveToDirection("E");
+                                if (attemptsuccessful < 0) {
+                                    MoveToDirection("S");
+                                }
+                            }
                         }
                     }
                 }

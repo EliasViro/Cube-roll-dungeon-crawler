@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-
+/*
 void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec, std::vector<Character*> enemyvec, Character* player) {
     for (auto i : roomvec) {
         for (auto j : i) {
@@ -73,19 +73,20 @@ void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec, std::vector<Char
 int main() {
 
     Item* testitem = nullptr;
-    DungeonRoom* testroom = new DungeonRoom(std::make_pair(0,0), RoomType::_2DoorRoomCorner, DoorOrientation::SouthWest, testitem, false);
+    DungeonRoom* testroom = new DungeonRoom(std::make_pair(0,0), RoomType::_1DoorRoom, DoorOrientation::South, testitem, false);
     auto alltiles = testroom->GetAllTiles();
     std::vector<Character*> enemyvec = {new SpitterSpider(nullptr), new SpitterSpider(nullptr), new SpitterSpider(nullptr), new SpitterSpider(nullptr), new SpitterSpider(nullptr)};
-    
-    auto player = new Player(alltiles[10][5]);
+    //std::vector<Character*> enemyvec = {new Spider(nullptr), new Spider(nullptr), new Spider(nullptr), new Spider(nullptr), new Spider(nullptr)};
+    //std::vector<Character*> enemyvec = {new SpitterSpider(nullptr), nullptr, nullptr, nullptr, nullptr};
+    auto player = new Player(alltiles[5][5]);
     testroom->SpawnEnemies(enemyvec);
     for (int i = 0; i < 20; i++) {
-        PrintTiles(alltiles, enemyvec, player);
-            for (auto h : enemyvec) {
-                if (h != nullptr) {
-                    h->TakeAction(player, 1);
-                }
+        for (auto h : enemyvec) {
+            if (h != nullptr) {
+                h->TakeAction(player, 1);
+                PrintTiles(alltiles, enemyvec, player);
             }
+        }
     }
     PrintTiles(alltiles, enemyvec, player);
 
@@ -93,3 +94,4 @@ int main() {
 
     return 1;
 }
+*/

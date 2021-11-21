@@ -1,8 +1,23 @@
 [
 {
   "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
-  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/TEST_ELIAS.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_ELIAS.cpp\"",
-  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_ELIAS.cpp"
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.cpp"
+},
+{
+  "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/characterplayer.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/characterplayer.cpp"
+},
+{
+  "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/enemy.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/enemy.cpp"
+},
+{
+  "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonlevel.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonlevel.cpp"
 },
 {
   "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
@@ -21,17 +36,52 @@
 },
 {
   "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
-  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/Characters/character.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.cpp\"",
-  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.cpp"
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/meleeweapons.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/meleeweapons.cpp"
 },
 {
   "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
-  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/enemy.cpp\"",
-  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/enemy.cpp"
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/potions.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/potions.cpp"
 },
 {
   "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
-  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/Characters/characterplayer.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/characterplayer.cpp\"",
-  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/characterplayer.cpp"
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/rangedweapons.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/rangedweapons.cpp"
+},
+{
+  "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/shields.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/shields.cpp"
+},
+{
+  "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/TEST_Atte.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_Atte.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_Atte.cpp"
+},
+{
+  "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/TEST_Binh.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_Binh.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_Binh.cpp"
+},
+{
+  "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/TEST_EXAMPLE.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_EXAMPLE.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_EXAMPLE.cpp"
+},
+{
+  "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_Elias.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_Elias.cpp"
+},
+{
+  "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/TEST_Selin.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_Selin.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_Selin.cpp"
+},
+{
+  "directory": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration\" -I\"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items\"  -g   -o CMakeFiles/DungeonCrawler.dir/src/main.cpp.o -c \"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/main.cpp\"",
+  "file": "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/main.cpp"
 }
 ]

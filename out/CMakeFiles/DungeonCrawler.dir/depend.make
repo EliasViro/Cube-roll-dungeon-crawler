@@ -18,6 +18,15 @@ CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.o: ../src/Characters/enem
 CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.o: ../src/DungeonGeneration/dungeontile.hpp
 CMakeFiles/DungeonCrawler.dir/src/Characters/enemy.cpp.o: ../src/Items/item.hpp
 
+CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o: ../src/Characters/character.hpp
+CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o: ../src/Characters/characterplayer.hpp
+CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o: ../src/Characters/enemy.hpp
+CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o: ../src/DungeonGeneration/dungeonlevel.cpp
+CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o: ../src/DungeonGeneration/dungeonlevel.hpp
+CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o: ../src/DungeonGeneration/dungeonroom.hpp
+CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o: ../src/DungeonGeneration/dungeontile.hpp
+CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonlevel.cpp.o: ../src/Items/item.hpp
+
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.o: ../src/Characters/character.hpp
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.o: ../src/Characters/characterplayer.hpp
 CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeonroom.cpp.o: ../src/Characters/enemy.hpp
@@ -33,11 +42,50 @@ CMakeFiles/DungeonCrawler.dir/src/DungeonGeneration/dungeontile.cpp.o: ../src/It
 CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.o: ../src/Items/item.cpp
 CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.o: ../src/Items/item.hpp
 
-CMakeFiles/DungeonCrawler.dir/src/TEST_ELIAS.cpp.o: ../src/Characters/character.hpp
-CMakeFiles/DungeonCrawler.dir/src/TEST_ELIAS.cpp.o: ../src/Characters/characterplayer.hpp
-CMakeFiles/DungeonCrawler.dir/src/TEST_ELIAS.cpp.o: ../src/Characters/enemy.hpp
-CMakeFiles/DungeonCrawler.dir/src/TEST_ELIAS.cpp.o: ../src/DungeonGeneration/dungeonroom.hpp
-CMakeFiles/DungeonCrawler.dir/src/TEST_ELIAS.cpp.o: ../src/DungeonGeneration/dungeontile.hpp
-CMakeFiles/DungeonCrawler.dir/src/TEST_ELIAS.cpp.o: ../src/Items/item.hpp
-CMakeFiles/DungeonCrawler.dir/src/TEST_ELIAS.cpp.o: ../src/TEST_ELIAS.cpp
+CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.o: ../src/Items/item.hpp
+CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.o: ../src/Items/meleeweapons.cpp
+CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.o: ../src/Items/meleeweapons.hpp
+
+CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o: ../src/Items/item.hpp
+CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o: ../src/Items/potions.cpp
+CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o: ../src/Items/potions.hpp
+
+CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o: ../src/Items/item.hpp
+CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o: ../src/Items/rangedweapons.cpp
+CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o: ../src/Items/rangedweapons.hpp
+
+CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o: ../src/Items/item.hpp
+CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o: ../src/Items/shields.cpp
+CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o: ../src/Items/shields.hpp
+
+CMakeFiles/DungeonCrawler.dir/src/TEST_Atte.cpp.o: ../src/TEST_Atte.cpp
+
+CMakeFiles/DungeonCrawler.dir/src/TEST_Binh.cpp.o: ../src/TEST_Binh.cpp
+
+CMakeFiles/DungeonCrawler.dir/src/TEST_EXAMPLE.cpp.o: ../src/DungeonGeneration/dungeontile.hpp
+CMakeFiles/DungeonCrawler.dir/src/TEST_EXAMPLE.cpp.o: ../src/Items/item.hpp
+CMakeFiles/DungeonCrawler.dir/src/TEST_EXAMPLE.cpp.o: ../src/TEST_EXAMPLE.cpp
+
+CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.o: ../src/Characters/character.hpp
+CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.o: ../src/Characters/characterplayer.hpp
+CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.o: ../src/Characters/enemy.hpp
+CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.o: ../src/DungeonGeneration/dungeonroom.hpp
+CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.o: ../src/DungeonGeneration/dungeontile.hpp
+CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.o: ../src/Items/item.hpp
+CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.o: ../src/TEST_Elias.cpp
+
+CMakeFiles/DungeonCrawler.dir/src/TEST_Selin.cpp.o: ../src/TEST_Selin.cpp
+
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/Characters/character.hpp
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/Characters/characterplayer.hpp
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/Characters/enemy.hpp
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/DungeonGeneration/dungeonlevel.hpp
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/DungeonGeneration/dungeonroom.hpp
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/DungeonGeneration/dungeontile.hpp
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/Items/item.hpp
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/Items/meleeweapons.hpp
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/Items/potions.hpp
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/Items/rangedweapons.hpp
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/Items/shields.hpp
+CMakeFiles/DungeonCrawler.dir/src/main.cpp.o: ../src/main.cpp
 

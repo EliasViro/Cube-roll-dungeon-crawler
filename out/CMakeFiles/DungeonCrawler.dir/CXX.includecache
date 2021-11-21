@@ -6,6 +6,23 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< HEAD
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/character.hpp
+../DungeonGeneration/dungeontile.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.hpp
+string
+-
+
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/characterplayer.hpp
+character.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/character.hpp
+vector
+-
+
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/enemy.hpp
+character.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/character.hpp
+=======
 ../src/Characters/character.hpp
 ../DungeonGeneration/dungeontile.hpp
 ../src/DungeonGeneration/dungeontile.hpp
@@ -21,6 +38,7 @@ vector
 ../src/Characters/enemy.hpp
 character.hpp
 ../src/Characters/character.hpp
+>>>>>>> 92ea82ab03c87ecb3823cff587e77061050d82dd
 stdlib.h
 -
 time.h
@@ -28,6 +46,39 @@ time.h
 string
 -
 
+<<<<<<< HEAD
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonlevel.hpp
+dungeonroom.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonroom.hpp
+cstdlib
+-
+vector
+-
+random
+-
+utility
+-
+algorithm
+-
+
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonroom.hpp
+dungeontile.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.hpp
+../Characters/character.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/character.hpp
+../Characters/characterplayer.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/characterplayer.hpp
+../Characters/enemy.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/enemy.hpp
+../Items/item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+vector
+-
+
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.hpp
+../Items/item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+=======
 ../src/DungeonGeneration/dungeonroom.hpp
 dungeontile.hpp
 ../src/DungeonGeneration/dungeontile.hpp
@@ -45,6 +96,7 @@ vector
 ../src/DungeonGeneration/dungeontile.hpp
 ../Items/item.hpp
 ../src/Items/item.hpp
+>>>>>>> 92ea82ab03c87ecb3823cff587e77061050d82dd
 vector
 -
 stdlib.h
@@ -52,6 +104,61 @@ stdlib.h
 time.h
 -
 
+<<<<<<< HEAD
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+string
+-
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/meleeweapons.hpp
+item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/potions.hpp
+item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/rangedweapons.hpp
+item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/Items/shields.hpp
+item.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+
+/home/atte/cpp_projects/DungeonCrawler/src/main.cpp
+iostream
+-
+vector
+-
+SFML/System.hpp
+-
+SFML/Audio.hpp
+-
+SFML/Window.hpp
+-
+SFML/Graphics.hpp
+-
+SFML/OpenGL.hpp
+-
+DungeonGeneration/dungeonlevel.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonlevel.hpp
+DungeonGeneration/dungeonroom.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonroom.hpp
+DungeonGeneration/dungeontile.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.hpp
+Characters/enemy.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/enemy.hpp
+Characters/characterplayer.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Characters/characterplayer.hpp
+Items/meleeweapons.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/meleeweapons.hpp
+Items/rangedweapons.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/rangedweapons.hpp
+Items/shields.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/shields.hpp
+Items/potions.hpp
+/home/atte/cpp_projects/DungeonCrawler/src/Items/potions.hpp
+=======
 ../src/Items/item.hpp
 string
 -
@@ -65,4 +172,5 @@ string
 /mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/Characters/enemy.hpp
 iostream
 -
+>>>>>>> 92ea82ab03c87ecb3823cff587e77061050d82dd
 

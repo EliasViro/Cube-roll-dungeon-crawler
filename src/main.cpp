@@ -1,4 +1,19 @@
+
+// C++ standard libraries
+#include <iostream>
+#include <vector>
+
+// SFML
+#include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
+
+// Project
 #include "DungeonGeneration/dungeonlevel.hpp"
+#include "DungeonGeneration/dungeonroom.hpp"
+#include "DungeonGeneration/dungeontile.hpp"
 
 #include "Characters/enemy.hpp"
 #include "Characters/characterplayer.hpp"
@@ -7,16 +22,6 @@
 #include "Items/rangedweapons.hpp"
 #include "Items/shields.hpp"
 #include "Items/potions.hpp"
-
-#include <iostream>
-#include <vector>
-
-#include <SFML/System.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
-
 
 
 // User-specific local paths
@@ -30,23 +35,101 @@ std::string fff_forward_path = "/home/atte/.local/share/fonts/Unknown Vendor/Tru
 
 
 
+// This function draws a new room in its initial state.
+void RenderRoom(sf::RenderWindow& window, DungeonRoom* room) {
+	// Create all sprites
+	sf::Texture door_closed_t;
+	door_closed_t.loadFromFile("../src/Graphics/TileSprites/DoorClosed.png");
+	sf::Sprite sprite_door_closed(door_closed_t);
+
+	sf::Texture floor_t;
+	floor_t.loadFromFile("../src/Graphics/TileSprites/Floor.png");
+	sf::Sprite sprite_floor(floor_t);
+
+	sf::Texture levelexitclosed_t;
+	levelexitclosed_t.loadFromFile("../src/Graphics/TileSprites/LevelExitClosed.png");
+	sf::Sprite sprite_levelexitclosed(levelexitclosed_t);
+
+	sf::Texture pit_t;
+	pit_t.loadFromFile("../src/Graphics/TileSprites/Pit.png");
+	sf::Sprite sprite_pit(pit_t);
+
+	sf::Texture trap1_t;
+	trap1_t.loadFromFile("../src/Graphics/TileSprites/Trap1.png");
+	sf::Sprite sprite_trap1(trap1_t);
+
+	sf::Texture trap2_t;
+	trap2_t.loadFromFile("../src/Graphics/TileSprites/Trap2.png");
+	sf::Sprite sprite_trap2(trap2_t);
+
+	sf::Texture trap3_t;
+	trap3_t.loadFromFile("../src/Graphics/TileSprites/Trap3.png");
+	sf::Sprite sprite_trap3(trap3_t);
+
+	sf::Texture wall_t;
+	wall_t.loadFromFile("../src/Graphics/TileSprites/Wall.png");
+	sf::Sprite sprite_wall(wall_t);
+	
+	// Render room
+	int x_orig = 65;
+	int y_orig = 65;
+	std::vector<std::vector<DungeonTile*>> tile_matrix = room->GetAllTiles();
+	for (std::vector<DungeonTile*> i : tile_matrix) {
+		for (DungeonTile* tile : i) {
+			int i_coord = tile->GetYCoord();
+			int j_coord = tile->GetXCoord();
+			int x = x_orig + (j_coord - 1)*64;
+			int y = y_orig + (i_coord - 1)*64;
+
+			TileType tiletype = tile->GetTileType();
+			if (tiletype == Floor || tiletype == Spawner || tiletype == Entrance || tiletype == Loot) {
+				sprite_floor.setPosition(static_cast<float>(x), static_cast<float>(y));
+				window.draw(sprite_floor);
+			}
+			else if (tiletype == Wall) {
+				sprite_wall.setPosition(static_cast<float>(x), static_cast<float>(y));
+				window.draw(sprite_wall);
+			}
+			else if (tiletype == Pit) {
+				sprite_pit.setPosition(static_cast<float>(x), static_cast<float>(y));
+				window.draw(sprite_pit);
+			}
+			else if (tiletype == Door) {
+				sprite_door_closed.setPosition(static_cast<float>(x), static_cast<float>(y));
+				window.draw(sprite_door_closed);
+			}
+			else if (tiletype == Trap) {
+				sprite_trap1.setPosition(static_cast<float>(x), static_cast<float>(y));
+				window.draw(sprite_trap1);
+			}
+			else if (tiletype == Exit) {
+				sprite_levelexitclosed.setPosition(static_cast<float>(x), static_cast<float>(y));
+				window.draw(sprite_levelexitclosed);
+			}
+		}
+	}
+}
+
+
+
+
 
 //#####################################################################################################
 /*
-This function is called from the main() when the player clicks the start game button in the start menu.
-This function holds a game loop which is active while a game instance is running. When the game ends,
-the program execution returns to the main() and the player is thrown back to start menu.
+This function holds a game loop for one room in a dungeon.
 */
-void room(sf::RenderWindow& window, int sidelenght) {
+void Level(sf::RenderWindow& window, DungeonLevel level) {
     // Game view items
     sf::Texture game_texture;
     game_texture.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
     sf::Sprite game_sprite(game_texture);
 
-
-
     sf::RectangleShape end_game_button(sf::Vector2f(115, 115));
     end_game_button.setPosition(1415, 712);
+
+	std::vector<std::vector<DungeonRoom*>> rooms = level.GetRooms();
+	DungeonRoom* starting_room = rooms[level.GetStartPos().first][level.GetStartPos().second];
+	RenderRoom(window, starting_room);
 
     // Game loop
     while (window.isOpen()) {
@@ -56,16 +139,23 @@ void room(sf::RenderWindow& window, int sidelenght) {
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-        }
 
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			else if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
+				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					return;
+				}
+			}
+        }
+		/*
+        if (sf::Mouse::is(sf::Mouse::Left)) {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
             if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                 return;
             }
 
         }
-
+		*/
         window.clear();
         window.draw(game_sprite);
         window.display();
@@ -74,39 +164,13 @@ void room(sf::RenderWindow& window, int sidelenght) {
         return;
 }
 
-/*
-Main game:
-
-1. Create the player character and a pointer to it. Remember starting items.
-2. Create six pre-made vectors of characters, one for each level, and divide the enemies into randomly sized 8 groups (smaller enemy vectors that will be assigned to rooms).
-3. Create loot vectors of items for each level.
-
-Loop starts from here:
-1. Generate a level
-2. Place the player on the level entrance tile in the starting room. Update graphics.
-3. Ask for player input and move the player accordingly, or allow interacting with the inventory, open the level map etc.
-4. When the player walks to a door tile, move the player to the next room, and if the size of the enemy group next in the enemy vector is larger than zero, spawn enemies and close doors. 
-Update Graphics.
-5. Player moves first (can't walk to inpassable tiles), graphics are updated. The top item is checked for using conditions and possibly used. Player input might be needed in case of multiple
-enemies being in range of a weapon that can only target one enemy at a time. Graphics are updated again.
-6. Traps cycle one step, check if the player tile trap state is Spikes and deal 1 damage if it is. If the player health is reduced to zero, play trap sound and game over. Reduce all item cooldowns.
-7. Enemies move, and after all of them have moved, update graphics and play sounds, including traps. If the player health is reduced to zero, game over.
-8. When all enemies have been defeated, spawn the appropriate loot item from the loot vector if the next item in it isn't a nullptr.
-9. When the player enters the last room of a level, make the level exit visible.
-10. When the enemies of the last room on a level are defeated, open the level exit.
-11. Change the player tile to a storage tile, delete the level and resume loop from step 1.
-
-REMEMBER TO CHECK INVENTORY SLOT ITEM RETURN VALUE FOR RANGED & MELEE WEAPONS
-IF THE ITEM IS A RANGED WEAPON, RETURN VALUE IS 10
-*/
-
 
 
 
 
 //#############################################################################################################
-// This function simply loops through the six levels of one game instance.
-void levelLoop(sf::RenderWindow& window) {
+// This function loops through the six levels of one game instance.
+void LevelLoop(sf::RenderWindow& window) {
     
     auto const levels = {1, 2, 3, 4, 5, 6};
     int sidelength;
@@ -117,11 +181,8 @@ void levelLoop(sf::RenderWindow& window) {
         else sidelength = 4;
 
         DungeonLevel level(sidelength);
-		std::vector<std::vector<DungeonRoom*>> rooms = level.GetRooms();
-		std::pair<int,int> startingRoom = level.GetStartPos();
 		
-
-        //level(window, sidelength);
+        //Level(window, level);
     }
 
     return;
@@ -131,10 +192,9 @@ void levelLoop(sf::RenderWindow& window) {
 
 
 
-
 //#################################################################################################################
 // This is a main function that launches the game i.e. initiates a render window in which a start menu is displayed.
-int main() {
+int main_INACTIVE() {
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Dungeon Crawler", sf::Style::Close);
     
     // Start menu items
@@ -175,22 +235,38 @@ int main() {
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-        }
-      
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-            if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-                window.close();
-            }
-            else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-                std::cout << "Start button pressed" << std::endl;
-                levelLoop(window);
-            }
-            else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-                std::cout << "Instructions button pressed" << std::endl;
-            }
 
+			/*else if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
+				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					window.close();
+				}
+				else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "Start button pressed" << std::endl;
+					LevelLoop(window);
+				}
+				else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "Instructions button pressed" << std::endl;
+				}
+			}*/
         }
+
+		sf::Event event2;
+		while (window.pollEvent(event2)) {
+			if (event2.type == event2.MouseButtonReleased && event2.mouseButton.button == sf::Mouse::Left) {
+					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+					if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						window.close();
+					}
+					else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "Start button pressed" << std::endl;
+						LevelLoop(window);
+					}
+					else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "Instructions button pressed" << std::endl;
+					}
+				}
+		}
         
         window.clear();
         window.draw(menu_sprite);
@@ -201,6 +277,9 @@ int main() {
 
     return 0;
 }
+
+
+
 
 
 //A function that generates a vector of five enemies depending on the level the player is on.
@@ -422,6 +501,36 @@ std::vector<std::vector<Item*>> CreateLoot() {
 	lootvector.push_back(level6lootvector);
 	return lootvector;
 }
+
+
+
+
+
+/*
+Main game:
+
+1. Create the player character and a pointer to it. Remember starting items.
+2. Create six pre-made vectors of characters, one for each level, and divide the enemies into randomly sized 8 groups (smaller enemy vectors that will be assigned to rooms).
+3. Create loot vectors of items for each level.
+
+Loop starts from here:
+1. Generate a level
+2. Place the player on the level entrance tile in the starting room. Update graphics.
+3. Ask for player input and move the player accordingly, or allow interacting with the inventory, open the level map etc.
+4. When the player walks to a door tile, move the player to the next room, and if the size of the enemy group next in the enemy vector is larger than zero, spawn enemies and close doors. 
+Update Graphics.
+5. Player moves first (can't walk to inpassable tiles), graphics are updated. The top item is checked for using conditions and possibly used. Player input might be needed in case of multiple
+enemies being in range of a weapon that can only target one enemy at a time. Graphics are updated again.
+6. Traps cycle one step, check if the player tile trap state is Spikes and deal 1 damage if it is. If the player health is reduced to zero, play trap sound and game over. Reduce all item cooldowns.
+7. Enemies move, and after all of them have moved, update graphics and play sounds, including traps. If the player health is reduced to zero, game over.
+8. When all enemies have been defeated, spawn the appropriate loot item from the loot vector if the next item in it isn't a nullptr.
+9. When the player enters the last room of a level, make the level exit visible.
+10. When the enemies of the last room on a level are defeated, open the level exit.
+11. Change the player tile to a storage tile, delete the level and resume loop from step 1.
+
+REMEMBER TO CHECK INVENTORY SLOT ITEM RETURN VALUE FOR RANGED & MELEE WEAPONS
+IF THE ITEM IS A RANGED WEAPON, RETURN VALUE IS 10
+*/
 
 
 

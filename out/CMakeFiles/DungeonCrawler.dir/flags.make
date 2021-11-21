@@ -6,5 +6,5 @@ CXX_FLAGS = -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters" -I"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration" -I"/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items" 
+CXX_INCLUDES = -I/home/atte/cpp_projects/DungeonCrawler/src/Characters -I/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration -I/home/atte/cpp_projects/DungeonCrawler/src/Items 
 

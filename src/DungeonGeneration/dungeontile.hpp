@@ -49,7 +49,7 @@ class DungeonTile {
 
     TileType GetTileType() const; //Returns the type of the tile.
 
-    DungeonTile* GetTileNeighbor(const char* direction); //Returns a pointer to the neighboring tile in the given direction.
+    DungeonTile* GetTileNeighbor(const std::string direction) const; //Returns a pointer to the neighboring tile in the given direction.
 
     void SetTileNeighbors(std::vector<DungeonTile*> neighborvector); //Sets the tile neigbors.
 

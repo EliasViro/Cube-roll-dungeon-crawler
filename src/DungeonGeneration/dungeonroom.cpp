@@ -129,37 +129,37 @@ std::vector<std::vector<DungeonTile*>> CreateTiles(std::vector<std::string> room
     for (int j = 0; j < 12; j++) {
         for (int i = 0; i < 12; i++) {
             if (roomvector[j][i] == '#') {
-                tempvector.push_back(new DungeonTile(TileType::Wall, j, i));
+                tempvector.push_back(new DungeonTile(TileType::Wall, i, j));
                 // DungeonTile::DungeonTile(TileType tiletype, int xcoord, int ycoord) 
             }
             else if (roomvector[j][i] == '*') {
-                tempvector.push_back(new DungeonTile(TileType::Floor, j, i));
+                tempvector.push_back(new DungeonTile(TileType::Floor, i, j));
             }
             else if (roomvector[j][i] == '+') {
-                tempvector.push_back(new DungeonTile(TileType::Pit, j, i));
+                tempvector.push_back(new DungeonTile(TileType::Pit, i, j));
             }
             else if (roomvector[j][i] == '=') {
-                tempvector.push_back(new DungeonTile(TileType::Door, j, i));
+                tempvector.push_back(new DungeonTile(TileType::Door, i, j));
             }
             else if (roomvector[j][i] == 'E') {
-                tempvector.push_back(new DungeonTile(TileType::Spawner, j, i));
+                tempvector.push_back(new DungeonTile(TileType::Spawner, i, j));
             }
             else if (roomvector[j][i] == 'T') {
-                tempvector.push_back(new DungeonTile(TileType::Trap, j, i));
+                tempvector.push_back(new DungeonTile(TileType::Trap, i, j));
             }
             else if (roomvector[j][i] == 'U') {
                 if (isplayerstartingroom) {
-                    tempvector.push_back(new DungeonTile(TileType::Entrance, j, i));
+                    tempvector.push_back(new DungeonTile(TileType::Entrance, i, j));
                 }
                 else {
-                    tempvector.push_back(new DungeonTile(TileType::Floor, j, i));
+                    tempvector.push_back(new DungeonTile(TileType::Floor, i, j));
                 }
             }
             else if (roomvector[j][i] == 'L') {
-                tempvector.push_back(new DungeonTile(TileType::Loot, j, i));
+                tempvector.push_back(new DungeonTile(TileType::Loot, i, j));
             }
             else {
-                tempvector.push_back(new DungeonTile(TileType::Exit, j, i));
+                tempvector.push_back(new DungeonTile(TileType::Exit, i, j));
             }
         }
         tilevector.push_back(tempvector);
@@ -169,26 +169,26 @@ std::vector<std::vector<DungeonTile*>> CreateTiles(std::vector<std::string> room
     }
     for (int a = 0; a < 12; a++) {
         for (int b = 0; b < 12; b++) {
-            if (b - 1 >= 0) { //North neighbor
-                neighborvector.push_back(tilevector[a][b - 1]);
-            }
-            else {
-                neighborvector.push_back(nullptr);
-            }
-            if (a + 1 <= 11) { //East neighbor
-                neighborvector.push_back(tilevector[a + 1][b]);
-            }
-            else {
-                neighborvector.push_back(nullptr);
-            }
-            if (a - 1 >= 0) { //West neighbor
+            if (a - 1 >= 0) { //North neighbor
                 neighborvector.push_back(tilevector[a - 1][b]);
             }
             else {
                 neighborvector.push_back(nullptr);
             }
-            if (b + 1 <= 11) { //South neighbor
+            if (b + 1 <= 11) { //East neighbor
                 neighborvector.push_back(tilevector[a][b + 1]);
+            }
+            else {
+                neighborvector.push_back(nullptr);
+            }
+            if (b - 1 >= 0) { //West neighbor
+                neighborvector.push_back(tilevector[a][b - 1]);
+            }
+            else {
+                neighborvector.push_back(nullptr);
+            }
+            if (a + 1 <= 11) { //South neighbor
+                neighborvector.push_back(tilevector[a + 1][b]);
             }
             else {
                 neighborvector.push_back(nullptr);

@@ -14,28 +14,6 @@
 //action pattern when they are created.
 
 
-enum EnemyAI {
-    Aggressive,
-    Careful,
-    Random,
-    Stationary
-};
-
-enum ActionType {
-    Empty,
-    Indirect,
-    Melee_1,
-    Ranged_1,
-    Defend_1,
-    Melee_2,
-    Ranged_2,
-    Defend_2,
-    Melee_3,
-    Ranged_3,
-    Defend_3
-};
-
-
 class Enemy : public Character {
     public:
     Enemy(const std::string& name, const std::string& description, DungeonTile* tile, EnemyAI enemyai, std::vector<ActionType> actionvector);
@@ -45,6 +23,8 @@ class Enemy : public Character {
     std::vector<ActionType> GetActionVector() const; //Returns the enemy action pattern.
 
     ActionType GetCurrentAction() const; //Returns the current enemy action.
+
+    int GetCurrentActionIndex() const; //Returns the current action vector index.
 
     void MoveTowards(Character* targetcharacter); //Pathfinds towards the target character.
 
@@ -58,7 +38,7 @@ class Enemy : public Character {
 
     void TakeDamage(int damage); //Damages the character.
 
-    int MoveToDirection(const char* direction); //Attempts to move the character to the given direction, returns -1 if didn't succeed, positive otherwise.
+    int MoveToDirection(std::string direction); //Attempts to move the character to the given direction, returns -1 if didn't succeed, positive otherwise.
 
     std::string GetDescription() const; //Returns the description of the enemy.
 

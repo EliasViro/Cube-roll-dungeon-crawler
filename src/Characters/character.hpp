@@ -15,6 +15,28 @@ enum CharacterType {
     EnemyCharacter
 };
 
+enum EnemyAI {
+    Aggressive,
+    Careful,
+    Random,
+    Stationary,
+    PlayerAI
+};
+
+enum ActionType {
+    Empty,
+    Indirect,
+    Melee_1,
+    Ranged_1,
+    Defend_1,
+    Melee_2,
+    Ranged_2,
+    Defend_2,
+    Melee_3,
+    Ranged_3,
+    Defend_3
+};
+
 class Character {
     public:
     Character(CharacterType charactertype, int healthpoints, DungeonTile* currenttile); //Constructs a new character.
@@ -44,10 +66,16 @@ class Character {
 
     void UnStun(); //Reduces stunned status.
 
-    virtual int MoveToDirection(const char* direction) {return -1;}; //Attempts to move the character on the neighboring tile in the given direction. 
+    virtual int MoveToDirection(std::string direction) {return -1;}; //Attempts to move the character on the neighboring tile in the given direction. 
     //Returns -1 if did not succeed, otherwise positive.
 
     void MoveToTile(DungeonTile* tile); //Moves the character onto the given tile.
+
+    virtual ActionType GetCurrentAction() const { return ActionType::Empty; };
+
+    virtual EnemyAI GetEnemyAI() const { return EnemyAI::Stationary; };
+
+    virtual int GetCurrentActionIndex() const { return 0; };
 
     protected:
     CharacterType charactertype_; //The type of the character.

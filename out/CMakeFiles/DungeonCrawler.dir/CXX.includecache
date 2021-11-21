@@ -6,21 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.hpp
+../src/Characters/character.hpp
 ../DungeonGeneration/dungeontile.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeontile.hpp
+../src/DungeonGeneration/dungeontile.hpp
 string
 -
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/characterplayer.hpp
+../src/Characters/characterplayer.hpp
 character.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.hpp
+../src/Characters/character.hpp
 vector
 -
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/enemy.hpp
+../src/Characters/enemy.hpp
 character.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.hpp
+../src/Characters/character.hpp
 stdlib.h
 -
 time.h
@@ -28,43 +28,23 @@ time.h
 string
 -
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonroom.cpp
-dungeonroom.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonroom.hpp
-iostream
--
-sstream
--
-fstream
--
-stdlib.h
--
-time.h
--
-string
--
-algorithm
--
-utility
--
-
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeonroom.hpp
+../src/DungeonGeneration/dungeonroom.hpp
 dungeontile.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeontile.hpp
+../src/DungeonGeneration/dungeontile.hpp
 ../Characters/character.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/character.hpp
+../src/Characters/character.hpp
 ../Characters/characterplayer.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/characterplayer.hpp
+../src/Characters/characterplayer.hpp
 ../Characters/enemy.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters/enemy.hpp
+../src/Characters/enemy.hpp
 ../Items/item.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/item.hpp
+../src/Items/item.hpp
 vector
 -
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration/dungeontile.hpp
+../src/DungeonGeneration/dungeontile.hpp
 ../Items/item.hpp
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/item.hpp
+../src/Items/item.hpp
 vector
 -
 stdlib.h
@@ -72,7 +52,17 @@ stdlib.h
 time.h
 -
 
-/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items/item.hpp
+../src/Items/item.hpp
 string
+-
+
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_ELIAS.cpp
+../DungeonGeneration/dungeonroom.hpp
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/DungeonGeneration/dungeonroom.hpp
+../Characters/characterplayer.hpp
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/Characters/characterplayer.hpp
+../Characters/enemy.hpp
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/Characters/enemy.hpp
+iostream
 -
 

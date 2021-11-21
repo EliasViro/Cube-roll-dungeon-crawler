@@ -6,6 +6,7 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< HEAD
 /home/atte/cpp_projects/DungeonCrawler/src/Characters/character.hpp
 ../DungeonGeneration/dungeontile.hpp
 /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.hpp
@@ -21,6 +22,23 @@ vector
 /home/atte/cpp_projects/DungeonCrawler/src/Characters/enemy.hpp
 character.hpp
 /home/atte/cpp_projects/DungeonCrawler/src/Characters/character.hpp
+=======
+../src/Characters/character.hpp
+../DungeonGeneration/dungeontile.hpp
+../src/DungeonGeneration/dungeontile.hpp
+string
+-
+
+../src/Characters/characterplayer.hpp
+character.hpp
+../src/Characters/character.hpp
+vector
+-
+
+../src/Characters/enemy.hpp
+character.hpp
+../src/Characters/character.hpp
+>>>>>>> 92ea82ab03c87ecb3823cff587e77061050d82dd
 stdlib.h
 -
 time.h
@@ -28,6 +46,7 @@ time.h
 string
 -
 
+<<<<<<< HEAD
 /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonlevel.hpp
 dungeonroom.hpp
 /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeonroom.hpp
@@ -59,6 +78,25 @@ vector
 /home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration/dungeontile.hpp
 ../Items/item.hpp
 /home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
+=======
+../src/DungeonGeneration/dungeonroom.hpp
+dungeontile.hpp
+../src/DungeonGeneration/dungeontile.hpp
+../Characters/character.hpp
+../src/Characters/character.hpp
+../Characters/characterplayer.hpp
+../src/Characters/characterplayer.hpp
+../Characters/enemy.hpp
+../src/Characters/enemy.hpp
+../Items/item.hpp
+../src/Items/item.hpp
+vector
+-
+
+../src/DungeonGeneration/dungeontile.hpp
+../Items/item.hpp
+../src/Items/item.hpp
+>>>>>>> 92ea82ab03c87ecb3823cff587e77061050d82dd
 vector
 -
 stdlib.h
@@ -66,6 +104,7 @@ stdlib.h
 time.h
 -
 
+<<<<<<< HEAD
 /home/atte/cpp_projects/DungeonCrawler/src/Items/item.hpp
 string
 -
@@ -119,4 +158,19 @@ Items/shields.hpp
 /home/atte/cpp_projects/DungeonCrawler/src/Items/shields.hpp
 Items/potions.hpp
 /home/atte/cpp_projects/DungeonCrawler/src/Items/potions.hpp
+=======
+../src/Items/item.hpp
+string
+-
+
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/TEST_ELIAS.cpp
+../DungeonGeneration/dungeonroom.hpp
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/DungeonGeneration/dungeonroom.hpp
+../Characters/characterplayer.hpp
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/Characters/characterplayer.hpp
+../Characters/enemy.hpp
+/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/Characters/enemy.hpp
+iostream
+-
+>>>>>>> 92ea82ab03c87ecb3823cff587e77061050d82dd
 

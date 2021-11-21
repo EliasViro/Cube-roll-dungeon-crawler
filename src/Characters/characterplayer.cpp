@@ -86,7 +86,7 @@ bool Player::AddItemToSlot(Item* item) {
     return hasbeenadded;
 } //Attempts to add the item to the first free inventory slot in the player inventory. Returns true if successful.
 
-int Player::MoveToDirection(const char* direction) {
+int Player::MoveToDirection(std::string direction) {
     if (currenttile_->GetTileNeighbor(direction)->IsPassable()) {
         RemoveDefensePoints();
         currenttile_->GetTileNeighbor(direction)->SetCharacter();

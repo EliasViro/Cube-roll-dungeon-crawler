@@ -43,11 +43,17 @@ class Player : public Character {
 
     bool AddItemToSlot(Item* item); //Attempts to add the item to the first free inventory slot in the player inventory. Returns true if successful.
 
-    int MoveToDirection(const char* direction); //Moves the player to the given direction. Returns true if moving was successful.
+    int MoveToDirection(std::string direction); //Moves the player to the given direction. Returns true if moving was successful.
 
     void TakeDamage(int damage); //Deals damage to the player.
 
     void TakeAction(Character* targetcharacter, int damage); //Hits the target character with a weapon if there is one in the top inventory slot.
+
+    ActionType GetCurrentAction() const { return Empty; };
+
+    EnemyAI GetEnemyAI() const { return PlayerAI; };
+
+    int GetCurrentActionIndex() const { return 0; };
 
     private:
     std::vector<InventorySlot*> inventory_; //A vector of InventorySlots that are stored in the following order: TOP, N, E, W, S, BOTTOM.

@@ -1,6 +1,5 @@
 #include "dungeontile.hpp"
 
-
 //A class that is inherited by all tile types.
 
 
@@ -100,22 +99,7 @@ bool DungeonTile::SetCharacter() {
 
 void DungeonTile::RemoveCharacter() {
     hascharacter_ = false;
-    if (tiletype_ == Floor) {
-        ispassable_ = true;
-    }
-    if (tiletype_ == Door) {
-        ispassable_ = true;
-    }
-    if (tiletype_ == Spawner) {
-        ispassable_ = true;
-    }
-    if (tiletype_ == Trap) {
-        ispassable_ = true;
-    }
-    if (tiletype_ == Entrance) {
-        ispassable_ = true;
-    }
-    if (tiletype_ == Loot) {
+    if (tiletype_ != Pit && tiletype_ != Wall) {
         ispassable_ = true;
     }
 }
@@ -124,7 +108,7 @@ TileType DungeonTile::GetTileType() const {
     return tiletype_;
 }
 
-DungeonTile* DungeonTile::GetTileNeighbor(const char* direction) {
+DungeonTile* DungeonTile::GetTileNeighbor(const std::string direction) const {
     if (direction == "N") {
         return tileneighbors_[0];
     }

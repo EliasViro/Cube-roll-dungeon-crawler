@@ -26,7 +26,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 19,
+				"line" : 24,
 				"parent" : 0
 			},
 			{
@@ -56,15 +56,15 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Characters"
+					"path" : "/home/atte/cpp_projects/DungeonCrawler/src/Characters"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/DungeonGeneration"
+					"path" : "/home/atte/cpp_projects/DungeonCrawler/src/DungeonGeneration"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/src/Items"
+					"path" : "/home/atte/cpp_projects/DungeonCrawler/src/Items"
 				}
 			],
 			"language" : "CXX",
@@ -72,11 +72,21 @@
 			[
 				0,
 				1,
+				2,
 				3,
+				4,
 				5,
+				6,
+				7,
 				8,
 				9,
-				12
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16
 			]
 		}
 	],
@@ -131,23 +141,30 @@
 			[
 				0,
 				1,
+				2,
 				3,
+				4,
 				5,
+				6,
+				7,
 				8,
 				9,
-				12
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16
 			]
 		},
 		{
-			"name" : "Header Files",
+			"name" : "",
 			"sourceIndexes" : 
 			[
-				2,
-				4,
-				6,
-				7,
-				10,
-				11
+				17,
+				18,
+				19
 			]
 		}
 	],
@@ -156,51 +173,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/TEST_ELIAS.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/DungeonGeneration/dungeonroom.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/DungeonGeneration/dungeonroom.hpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/DungeonGeneration/dungeontile.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/DungeonGeneration/dungeontile.hpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/Items/item.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/Items/item.hpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/Characters/character.hpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
 			"path" : "src/Characters/character.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Characters/characterplayer.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -211,19 +190,102 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/Characters/enemy.hpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/Characters/characterplayer.hpp",
-			"sourceGroupIndex" : 1
+			"compileGroupIndex" : 0,
+			"path" : "src/DungeonGeneration/dungeonlevel.cpp",
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/Characters/characterplayer.cpp",
+			"path" : "src/DungeonGeneration/dungeonroom.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/DungeonGeneration/dungeontile.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Items/item.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Items/meleeweapons.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Items/potions.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Items/rangedweapons.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Items/shields.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/TEST_Atte.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/TEST_Binh.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/TEST_EXAMPLE.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/TEST_Elias.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/TEST_Selin.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Characters",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/DungeonGeneration",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Items",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

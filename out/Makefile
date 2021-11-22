@@ -51,7 +51,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build"
+CMAKE_BINARY_DIR = "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build/CMakeFiles" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/Elias Viro/Documents/cpp-autumn2021/Project/dungeon-crawler-group-3/out/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -312,275 +312,32 @@ src/Items/item.cpp.s:
 	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/item.cpp.s
 .PHONY : src/Items/item.cpp.s
 
-src/Items/meleeweapons.o: src/Items/meleeweapons.cpp.o
+src/TEST_ELIAS.o: src/TEST_ELIAS.cpp.o
 
-.PHONY : src/Items/meleeweapons.o
-
-# target to build an object file
-src/Items/meleeweapons.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.o
-.PHONY : src/Items/meleeweapons.cpp.o
-
-src/Items/meleeweapons.i: src/Items/meleeweapons.cpp.i
-
-.PHONY : src/Items/meleeweapons.i
-
-# target to preprocess a source file
-src/Items/meleeweapons.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.i
-.PHONY : src/Items/meleeweapons.cpp.i
-
-src/Items/meleeweapons.s: src/Items/meleeweapons.cpp.s
-
-.PHONY : src/Items/meleeweapons.s
-
-# target to generate assembly for a file
-src/Items/meleeweapons.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/meleeweapons.cpp.s
-.PHONY : src/Items/meleeweapons.cpp.s
-
-src/Items/potions.o: src/Items/potions.cpp.o
-
-.PHONY : src/Items/potions.o
+.PHONY : src/TEST_ELIAS.o
 
 # target to build an object file
-src/Items/potions.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.o
-.PHONY : src/Items/potions.cpp.o
+src/TEST_ELIAS.cpp.o:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_ELIAS.cpp.o
+.PHONY : src/TEST_ELIAS.cpp.o
 
-src/Items/potions.i: src/Items/potions.cpp.i
+src/TEST_ELIAS.i: src/TEST_ELIAS.cpp.i
 
-.PHONY : src/Items/potions.i
-
-# target to preprocess a source file
-src/Items/potions.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.i
-.PHONY : src/Items/potions.cpp.i
-
-src/Items/potions.s: src/Items/potions.cpp.s
-
-.PHONY : src/Items/potions.s
-
-# target to generate assembly for a file
-src/Items/potions.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/potions.cpp.s
-.PHONY : src/Items/potions.cpp.s
-
-src/Items/rangedweapons.o: src/Items/rangedweapons.cpp.o
-
-.PHONY : src/Items/rangedweapons.o
-
-# target to build an object file
-src/Items/rangedweapons.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.o
-.PHONY : src/Items/rangedweapons.cpp.o
-
-src/Items/rangedweapons.i: src/Items/rangedweapons.cpp.i
-
-.PHONY : src/Items/rangedweapons.i
+.PHONY : src/TEST_ELIAS.i
 
 # target to preprocess a source file
-src/Items/rangedweapons.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.i
-.PHONY : src/Items/rangedweapons.cpp.i
+src/TEST_ELIAS.cpp.i:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_ELIAS.cpp.i
+.PHONY : src/TEST_ELIAS.cpp.i
 
-src/Items/rangedweapons.s: src/Items/rangedweapons.cpp.s
+src/TEST_ELIAS.s: src/TEST_ELIAS.cpp.s
 
-.PHONY : src/Items/rangedweapons.s
-
-# target to generate assembly for a file
-src/Items/rangedweapons.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/rangedweapons.cpp.s
-.PHONY : src/Items/rangedweapons.cpp.s
-
-src/Items/shields.o: src/Items/shields.cpp.o
-
-.PHONY : src/Items/shields.o
-
-# target to build an object file
-src/Items/shields.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.o
-.PHONY : src/Items/shields.cpp.o
-
-src/Items/shields.i: src/Items/shields.cpp.i
-
-.PHONY : src/Items/shields.i
-
-# target to preprocess a source file
-src/Items/shields.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.i
-.PHONY : src/Items/shields.cpp.i
-
-src/Items/shields.s: src/Items/shields.cpp.s
-
-.PHONY : src/Items/shields.s
+.PHONY : src/TEST_ELIAS.s
 
 # target to generate assembly for a file
-src/Items/shields.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/Items/shields.cpp.s
-.PHONY : src/Items/shields.cpp.s
-
-src/TEST_Atte.o: src/TEST_Atte.cpp.o
-
-.PHONY : src/TEST_Atte.o
-
-# target to build an object file
-src/TEST_Atte.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Atte.cpp.o
-.PHONY : src/TEST_Atte.cpp.o
-
-src/TEST_Atte.i: src/TEST_Atte.cpp.i
-
-.PHONY : src/TEST_Atte.i
-
-# target to preprocess a source file
-src/TEST_Atte.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Atte.cpp.i
-.PHONY : src/TEST_Atte.cpp.i
-
-src/TEST_Atte.s: src/TEST_Atte.cpp.s
-
-.PHONY : src/TEST_Atte.s
-
-# target to generate assembly for a file
-src/TEST_Atte.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Atte.cpp.s
-.PHONY : src/TEST_Atte.cpp.s
-
-src/TEST_Binh.o: src/TEST_Binh.cpp.o
-
-.PHONY : src/TEST_Binh.o
-
-# target to build an object file
-src/TEST_Binh.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Binh.cpp.o
-.PHONY : src/TEST_Binh.cpp.o
-
-src/TEST_Binh.i: src/TEST_Binh.cpp.i
-
-.PHONY : src/TEST_Binh.i
-
-# target to preprocess a source file
-src/TEST_Binh.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Binh.cpp.i
-.PHONY : src/TEST_Binh.cpp.i
-
-src/TEST_Binh.s: src/TEST_Binh.cpp.s
-
-.PHONY : src/TEST_Binh.s
-
-# target to generate assembly for a file
-src/TEST_Binh.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Binh.cpp.s
-.PHONY : src/TEST_Binh.cpp.s
-
-src/TEST_EXAMPLE.o: src/TEST_EXAMPLE.cpp.o
-
-.PHONY : src/TEST_EXAMPLE.o
-
-# target to build an object file
-src/TEST_EXAMPLE.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_EXAMPLE.cpp.o
-.PHONY : src/TEST_EXAMPLE.cpp.o
-
-src/TEST_EXAMPLE.i: src/TEST_EXAMPLE.cpp.i
-
-.PHONY : src/TEST_EXAMPLE.i
-
-# target to preprocess a source file
-src/TEST_EXAMPLE.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_EXAMPLE.cpp.i
-.PHONY : src/TEST_EXAMPLE.cpp.i
-
-src/TEST_EXAMPLE.s: src/TEST_EXAMPLE.cpp.s
-
-.PHONY : src/TEST_EXAMPLE.s
-
-# target to generate assembly for a file
-src/TEST_EXAMPLE.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_EXAMPLE.cpp.s
-.PHONY : src/TEST_EXAMPLE.cpp.s
-
-src/TEST_Elias.o: src/TEST_Elias.cpp.o
-
-.PHONY : src/TEST_Elias.o
-
-# target to build an object file
-src/TEST_Elias.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.o
-.PHONY : src/TEST_Elias.cpp.o
-
-src/TEST_Elias.i: src/TEST_Elias.cpp.i
-
-.PHONY : src/TEST_Elias.i
-
-# target to preprocess a source file
-src/TEST_Elias.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.i
-.PHONY : src/TEST_Elias.cpp.i
-
-src/TEST_Elias.s: src/TEST_Elias.cpp.s
-
-.PHONY : src/TEST_Elias.s
-
-# target to generate assembly for a file
-src/TEST_Elias.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Elias.cpp.s
-.PHONY : src/TEST_Elias.cpp.s
-
-src/TEST_Selin.o: src/TEST_Selin.cpp.o
-
-.PHONY : src/TEST_Selin.o
-
-# target to build an object file
-src/TEST_Selin.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Selin.cpp.o
-.PHONY : src/TEST_Selin.cpp.o
-
-src/TEST_Selin.i: src/TEST_Selin.cpp.i
-
-.PHONY : src/TEST_Selin.i
-
-# target to preprocess a source file
-src/TEST_Selin.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Selin.cpp.i
-.PHONY : src/TEST_Selin.cpp.i
-
-src/TEST_Selin.s: src/TEST_Selin.cpp.s
-
-.PHONY : src/TEST_Selin.s
-
-# target to generate assembly for a file
-src/TEST_Selin.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_Selin.cpp.s
-.PHONY : src/TEST_Selin.cpp.s
-
-src/main.o: src/main.cpp.o
-
-.PHONY : src/main.o
-
-# target to build an object file
-src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
-
-src/main.i: src/main.cpp.i
-
-.PHONY : src/main.i
-
-# target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
-
-src/main.s: src/main.cpp.s
-
-.PHONY : src/main.s
-
-# target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/TEST_ELIAS.cpp.s:
+	$(MAKE) -f CMakeFiles/DungeonCrawler.dir/build.make CMakeFiles/DungeonCrawler.dir/src/TEST_ELIAS.cpp.s
+.PHONY : src/TEST_ELIAS.cpp.s
 
 # Help Target
 help:
@@ -612,36 +369,9 @@ help:
 	@echo "... src/Items/item.o"
 	@echo "... src/Items/item.i"
 	@echo "... src/Items/item.s"
-	@echo "... src/Items/meleeweapons.o"
-	@echo "... src/Items/meleeweapons.i"
-	@echo "... src/Items/meleeweapons.s"
-	@echo "... src/Items/potions.o"
-	@echo "... src/Items/potions.i"
-	@echo "... src/Items/potions.s"
-	@echo "... src/Items/rangedweapons.o"
-	@echo "... src/Items/rangedweapons.i"
-	@echo "... src/Items/rangedweapons.s"
-	@echo "... src/Items/shields.o"
-	@echo "... src/Items/shields.i"
-	@echo "... src/Items/shields.s"
-	@echo "... src/TEST_Atte.o"
-	@echo "... src/TEST_Atte.i"
-	@echo "... src/TEST_Atte.s"
-	@echo "... src/TEST_Binh.o"
-	@echo "... src/TEST_Binh.i"
-	@echo "... src/TEST_Binh.s"
-	@echo "... src/TEST_EXAMPLE.o"
-	@echo "... src/TEST_EXAMPLE.i"
-	@echo "... src/TEST_EXAMPLE.s"
-	@echo "... src/TEST_Elias.o"
-	@echo "... src/TEST_Elias.i"
-	@echo "... src/TEST_Elias.s"
-	@echo "... src/TEST_Selin.o"
-	@echo "... src/TEST_Selin.i"
-	@echo "... src/TEST_Selin.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src/TEST_ELIAS.o"
+	@echo "... src/TEST_ELIAS.i"
+	@echo "... src/TEST_ELIAS.s"
 .PHONY : help
 
 

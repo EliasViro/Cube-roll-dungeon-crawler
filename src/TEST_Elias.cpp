@@ -73,7 +73,7 @@ void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec, std::vector<Char
     }
 }
 
-int main() {
+int main_X() {
     int sidelength = 2;
     DungeonLevel* level = new DungeonLevel(sidelength);
     Item* testitem = nullptr;

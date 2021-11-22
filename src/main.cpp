@@ -172,7 +172,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level) {
 
 //#############################################################################################################
 // This function loops through the six levels of one game instance.
-void LevelLoop(sf::RenderWindow& window) {
+bool LevelLoop(sf::RenderWindow& window) {
     
     auto const levels = {1, 2, 3, 4, 5, 6};
     int sidelength;
@@ -187,6 +187,7 @@ void LevelLoop(sf::RenderWindow& window) {
 		DungeonLevel level(sidelength);
 		std::cout << "level " << i << std::endl;
 		}
+	return true;
 }
 
 
@@ -250,13 +251,13 @@ int main() {
 				}
 				else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "Start button pressed" << std::endl;
-					LevelLoop(window);
-					/*
+					//LevelLoop(window);
+					
 					bool returned = false;
 					while (!returned) {
 						returned = LevelLoop(window);
 					}
-					*/
+					
 				}
 				else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "Instructions button pressed" << std::endl;

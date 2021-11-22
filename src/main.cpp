@@ -2,6 +2,10 @@
 // C++ standard libraries
 #include <iostream>
 #include <vector>
+#include <thread>
+#include <future>
+#include <mutex>
+#include <chrono>
 
 // SFML
 #include <SFML/System.hpp>
@@ -118,7 +122,9 @@ void RenderRoom(sf::RenderWindow& window, DungeonRoom* room) {
 /*
 This function holds a game loop for one room in a dungeon.
 */
-void Level(sf::RenderWindow& window, DungeonLevel level) {
+bool Level(sf::RenderWindow& window, DungeonLevel level) {
+	std::cout << "levelissä ollaan" << std::endl;
+	return true;
     // Game view items
     sf::Texture game_texture;
     game_texture.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
@@ -143,7 +149,7 @@ void Level(sf::RenderWindow& window, DungeonLevel level) {
 			else if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
 				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 				if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					return;
+					return true;
 				}
 			}
         }
@@ -161,16 +167,20 @@ void Level(sf::RenderWindow& window, DungeonLevel level) {
         window.display();
     }
 
-        return;
+        return true;
 }
 
 
 
-
-
+std::mutex m;
+DungeonLevel initlevel(int sidelength) {
+	std::lock_guard<std::mutex> lk(m);
+	DungeonLevel level(sidelength);
+	return level;
+}
 //#############################################################################################################
 // This function loops through the six levels of one game instance.
-void LevelLoop(sf::RenderWindow& window) {
+bool LevelLoop(sf::RenderWindow& window) {
     
     auto const levels = {1, 2, 3, 4, 5, 6};
     int sidelength;
@@ -179,13 +189,26 @@ void LevelLoop(sf::RenderWindow& window) {
         if (i == 1) sidelength = 2;
         else if (1 < i < 6) sidelength = 3;
         else sidelength = 4;
+		std::cout << "moi" << std::endl;
 
-        DungeonLevel level(sidelength);
-		
-        //Level(window, level);
-    }
+		auto level = new DungeonLevel(sidelength);
 
-    return;
+		//bool returned = false;
+		//while (!returned) {
+			
+			/*auto initlevel = [](int sidelength){
+				DungeonLevel level(sidelength);
+				return level;
+			};*/
+
+			//auto future = std::async(std::launch::async, initlevel, sidelength);
+			//DungeonLevel level = future.get();
+
+			//DungeonLevel level(sidelength);
+			//returned = Level(window, initlevel);
+		}
+
+    return true;
 }
 
 
@@ -194,7 +217,7 @@ void LevelLoop(sf::RenderWindow& window) {
 
 //#################################################################################################################
 // This is a main function that launches the game i.e. initiates a render window in which a start menu is displayed.
-int main_INACTIVE() {
+int main_X() {
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Dungeon Crawler", sf::Style::Close);
     
     // Start menu items
@@ -226,8 +249,16 @@ int main_INACTIVE() {
     /*
     sf::Music start_music;
     start_music.openFromFile("../src/Sounds/Music/Placeholder.ogg");
+	start_music.play();
     */
+   	auto level = new DungeonLevel(3);
+	std::cout << "testi" << std::endl;
 
+   	window.clear();
+	window.draw(menu_sprite);
+	window.display();	
+
+	// The main application loop
     while (window.isOpen())
     {
         sf::Event event;
@@ -236,43 +267,27 @@ int main_INACTIVE() {
             if (event.type == sf::Event::Closed)
                 window.close();
 
-			/*else if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
+			else if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
 				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 				if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					window.close();
 				}
 				else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "Start button pressed" << std::endl;
-					LevelLoop(window);
+					bool returned = false;
+					while (!returned) {
+						returned = LevelLoop(window);
+					}
 				}
 				else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "Instructions button pressed" << std::endl;
 				}
-			}*/
+			}
         }
-
-		sf::Event event2;
-		while (window.pollEvent(event2)) {
-			if (event2.type == event2.MouseButtonReleased && event2.mouseButton.button == sf::Mouse::Left) {
-					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-					if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						window.close();
-					}
-					else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "Start button pressed" << std::endl;
-						LevelLoop(window);
-					}
-					else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "Instructions button pressed" << std::endl;
-					}
-				}
-		}
         
-        window.clear();
-        window.draw(menu_sprite);
-        window.display();
+        
 
-        //start_music.play();
+        
     }
 
     return 0;
@@ -283,7 +298,6 @@ int main_INACTIVE() {
 
 
 //A function that generates a vector of five enemies depending on the level the player is on.
-
 std::vector<Character*> GenerateRoomEnemies(int level) {
 	if (level == 1) {
 		int randomnumber = rand() % 3 + 1;

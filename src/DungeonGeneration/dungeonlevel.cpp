@@ -115,24 +115,29 @@ std::vector<std::vector<DungeonRoom*>> GenerateRooms(int sidelength, std::pair<i
     Visit(startPos, sidelength, roomsVisited, orient, exits, neighbors, rooms);
     
     // Calculate room orientations
+    std::vector<std::pair<RoomType, DoorOrientation>> tempvector;  
     for (int row = 0; row < sidelength; row++){
         for (int col = 0; col < sidelength; col++){
-            auto orientation = RoomOrient(exits[col][row]);
-            orient[col][row] = orientation; 
+            tempvector.push_back(RoomOrient(exits[col][row])); 
         }
+        orient.push_back(tempvector);
+        tempvector.clear();
     }
     
 
     // Initialize rooms in the level and add information of neighbors for each room
+    std::vector<DungeonRoom*> tempvector2;
     for (int row = 0; row < sidelength; row++){
         for (int col = 0; col < sidelength; col++){
             auto indexinlevel = std::make_pair(col,row);
             RoomType roomtype = orient[col][row].first;
             DoorOrientation doororientation = orient[col][row].second;
-            bool isStart = col == startPos.first && row == startPos.second;           
+            bool isStart = (col == startPos.first && row == startPos.second);           
             auto room = new DungeonRoom(indexinlevel, roomtype, doororientation, nullptr, isStart);
-            rooms[col][row]; // add the room
+            tempvector2.push_back(room);
         }
+        rooms.push_back(tempvector2);
+        tempvector2.clear();
     }
     
     // Set the neighbors of each room

@@ -69,12 +69,12 @@ void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec, std::vector<Char
     }
     if (player != nullptr) {
         std::cout << " PLAYER HP: " << player->GetHealthPoints();
-        std::cout << std::endl;
     }
+    std::cout << std::endl;
 }
 
 int main() {
-    int sidelength = 2;
+    int sidelength = 4;
     DungeonLevel* level = new DungeonLevel(sidelength);
     Item* testitem = nullptr;
     std::vector<std::vector<DungeonTile *>> alltiles;

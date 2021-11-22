@@ -81,21 +81,21 @@ void Visit(std::pair<int, int>& room, int sidelength,
     std::vector<std::vector<std::pair<RoomType, DoorOrientation>>>& orient,
     std::vector<std::vector<std::vector<Direction>>> exits,
     std::vector<std::vector<std::vector<std::pair<int,int>>>> neighbors,
-    std::vector<std::vector<DungeonRoom*>> rooms){
+    std::vector<std::vector<DungeonRoom*>> rooms) {
     auto rng = std::default_random_engine {};
         roomsVisited.push_back(room);
         std::vector<Direction> dirs = DirsAvailable(room, sidelength);
         std::shuffle(std::begin(dirs), std::end(dirs), rng);
-        for (auto direction : dirs){
-        std::pair<int,int> neighbor = RoomInDirection(room, direction);
-        if (find(roomsVisited.begin(), roomsVisited.end(), neighbor) != roomsVisited.end()){
-           exits[room.second][room.first].push_back(direction);
-           exits[neighbor.second][neighbor.first].push_back(Opposite(direction));
-           neighbors[room.second][room.first].push_back(neighbor);
-           neighbors[neighbor.second][neighbor.first].push_back(room);
-            Visit(neighbor, sidelength, roomsVisited, orient, exits, neighbors, rooms);
+        for (auto direction : dirs) {
+            std::pair<int,int> neighbor = RoomInDirection(room, direction);
+            if (find(roomsVisited.begin(), roomsVisited.end(), neighbor) != roomsVisited.end()){
+                exits[room.second][room.first].push_back(direction);
+                exits[neighbor.second][neighbor.first].push_back(Opposite(direction));
+                neighbors[room.second][room.first].push_back(neighbor);
+                neighbors[neighbor.second][neighbor.first].push_back(room);
+                Visit(neighbor, sidelength, roomsVisited, orient, exits, neighbors, rooms);
+            }
         }
-      }
     }
 
 // Depth first search maze generator
@@ -141,10 +141,47 @@ std::vector<std::vector<DungeonRoom*>> GenerateRooms(int sidelength, std::pair<i
     }
     
     // Set the neighbors of each room
-    for (int row = 0; row < sidelength; row++){
-        for (int col = 0; col < sidelength; col++){
-            for (auto index : neighbors[col][row]){
-                rooms[col][row]->AddNeighbor(rooms[index.second][index.first]);
+    for (int row = 0; row < sidelength; row++) {
+        for (int col = 0; col < sidelength; col++) {
+            //Add North neighbor
+            if (row == 0) {
+                rooms[col][row]->AddNeighbor(nullptr);
+            }
+            else if (row == sidelength - 1) {
+                rooms[col][row]->AddNeighbor(rooms[col][row - 1]);
+            }
+            else {
+                rooms[col][row]->AddNeighbor(rooms[col][row - 1]);
+            }
+            //Add East neighbor
+            if (col == 0) {
+                rooms[col][row]->AddNeighbor(rooms[col + 1][row]);
+            }
+            else if (col == sidelength - 1) {
+                rooms[col][row]->AddNeighbor(nullptr);
+            }
+            else {
+                rooms[col][row]->AddNeighbor(rooms[col + 1][row]);
+            }
+            //Add West neighbor
+            if (col == 0) {
+                rooms[col][row]->AddNeighbor(nullptr);
+            }
+            else if (col == sidelength - 1) {
+                rooms[col][row]->AddNeighbor(rooms[col + 1][row]);
+            }
+            else {
+                rooms[col][row]->AddNeighbor(rooms[col + 1][row]);
+            }
+            //Add South neighbor
+            if (row == 0) {
+                rooms[col][row]->AddNeighbor(rooms[col][row + 1]);
+            }
+            else if (row == sidelength - 1) {
+                rooms[col][row]->AddNeighbor(nullptr);
+            }
+            else {
+                rooms[col][row]->AddNeighbor(rooms[col][row + 1]);
             }
         }
     }

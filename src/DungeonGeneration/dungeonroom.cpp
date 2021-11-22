@@ -11,7 +11,7 @@
 
 //Randomizes the name of the file in order to allow reading a random room file.
 std::string RandomizeFileName(RoomType roomtype) {
-    std::string filename = "RoomStorage/";
+    std::string filename = "../src/DungeonGeneration/RoomStorage/";
     unsigned int randomnumber = 0;
     if (roomtype == _1DoorRoom) {
         filename += "1DoorRooms/";

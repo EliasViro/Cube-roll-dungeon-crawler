@@ -1,11 +1,11 @@
 /*
+#include "../DungeonGeneration/dungeonlevel.hpp"
 #include "../DungeonGeneration/dungeonroom.hpp"
 #include "../Characters/characterplayer.hpp"
 #include "../Characters/enemy.hpp"
 #include <iostream>
 
 
-/*
 void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec, std::vector<Character*> enemyvec, Character* player) {
     for (auto i : roomvec) {
         for (auto j : i) {
@@ -67,10 +67,32 @@ void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec, std::vector<Char
         }
         std::cout << std::endl;
     }
-    std::cout << " PLAYER HP: " << player->GetHealthPoints();
-    std::cout << std::endl;
+    if (player != nullptr) {
+        std::cout << " PLAYER HP: " << player->GetHealthPoints();
+        std::cout << std::endl;
+    }
 }
 
+int main() {
+    int sidelength = 2;
+    DungeonLevel* level = new DungeonLevel(sidelength);
+    Item* testitem = nullptr;
+    std::vector<std::vector<DungeonTile *>> alltiles;
+    std::vector<Character*> enemyvec = {nullptr, nullptr, nullptr, nullptr, nullptr};
+    Character* player = nullptr;
+    auto levelroomvec = level->GetRooms();
+    for (auto vec : levelroomvec) {
+        for (auto room : vec) {
+            PrintTiles(room->GetAllTiles(), enemyvec, player);
+        }
+    }
+
+    std::cout << "Test done." << std::endl;
+
+    return 1;
+}
+
+/*
 int main() {
 
     Item* testitem = nullptr;

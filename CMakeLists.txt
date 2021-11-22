@@ -29,5 +29,3 @@ set(CMAKE_BUILD_TYPE Debug)
 find_package(SFML 2.5 COMPONENTS audio graphics window system REQUIRED)
 target_link_libraries(DungeonCrawler sfml-audio sfml-graphics sfml-window sfml-system)
 target_include_directories(DungeonCrawler PUBLIC ${HEADER_FILES})
-
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")

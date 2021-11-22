@@ -172,7 +172,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level) {
 
 //#############################################################################################################
 // This function loops through the six levels of one game instance.
-bool LevelLoop(sf::RenderWindow& window) {
+void LevelLoop(sf::RenderWindow& window) {
     
     auto const levels = {1, 2, 3, 4, 5, 6};
     int sidelength;
@@ -182,10 +182,11 @@ bool LevelLoop(sf::RenderWindow& window) {
         else if (1 < i < 6) sidelength = 3;
         else sidelength = 4;
 
-		auto level = new DungeonLevel(sidelength);
+		std::cout << "pylly" << std::endl;
+		std::cout << sidelength << std::endl;
+		DungeonLevel level(sidelength);
+		std::cout << "level " << i << std::endl;
 		}
-
-    return true;
 }
 
 
@@ -194,7 +195,7 @@ bool LevelLoop(sf::RenderWindow& window) {
 
 //#################################################################################################################
 // This is a main function that launches the game i.e. initiates a render window in which a start menu is displayed.
-int main_X() {
+int main() {
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Dungeon Crawler", sf::Style::Close);
     
     // Start menu items
@@ -249,6 +250,7 @@ int main_X() {
 				}
 				else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "Start button pressed" << std::endl;
+					LevelLoop(window);
 					/*
 					bool returned = false;
 					while (!returned) {

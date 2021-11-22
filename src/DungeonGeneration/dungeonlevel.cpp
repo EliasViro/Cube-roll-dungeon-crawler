@@ -1,7 +1,6 @@
 #include "dungeonlevel.hpp"
 
 
-
 // Outside DungeonLevel class helper functions 
 
 // Define the boundary of the rooms

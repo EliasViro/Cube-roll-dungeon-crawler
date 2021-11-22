@@ -2,10 +2,6 @@
 // C++ standard libraries
 #include <iostream>
 #include <vector>
-#include <thread>
-#include <future>
-#include <mutex>
-#include <chrono>
 
 // SFML
 #include <SFML/System.hpp>
@@ -172,12 +168,8 @@ bool Level(sf::RenderWindow& window, DungeonLevel level) {
 
 
 
-std::mutex m;
-DungeonLevel initlevel(int sidelength) {
-	std::lock_guard<std::mutex> lk(m);
-	DungeonLevel level(sidelength);
-	return level;
-}
+
+
 //#############################################################################################################
 // This function loops through the six levels of one game instance.
 bool LevelLoop(sf::RenderWindow& window) {
@@ -189,23 +181,8 @@ bool LevelLoop(sf::RenderWindow& window) {
         if (i == 1) sidelength = 2;
         else if (1 < i < 6) sidelength = 3;
         else sidelength = 4;
-		std::cout << "moi" << std::endl;
 
 		auto level = new DungeonLevel(sidelength);
-
-		//bool returned = false;
-		//while (!returned) {
-			
-			/*auto initlevel = [](int sidelength){
-				DungeonLevel level(sidelength);
-				return level;
-			};*/
-
-			//auto future = std::async(std::launch::async, initlevel, sidelength);
-			//DungeonLevel level = future.get();
-
-			//DungeonLevel level(sidelength);
-			//returned = Level(window, initlevel);
 		}
 
     return true;
@@ -251,8 +228,6 @@ int main_X() {
     start_music.openFromFile("../src/Sounds/Music/Placeholder.ogg");
 	start_music.play();
     */
-   	auto level = new DungeonLevel(3);
-	std::cout << "testi" << std::endl;
 
    	window.clear();
 	window.draw(menu_sprite);
@@ -274,20 +249,18 @@ int main_X() {
 				}
 				else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "Start button pressed" << std::endl;
+					/*
 					bool returned = false;
 					while (!returned) {
 						returned = LevelLoop(window);
 					}
+					*/
 				}
 				else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "Instructions button pressed" << std::endl;
 				}
 			}
         }
-        
-        
-
-        
     }
 
     return 0;

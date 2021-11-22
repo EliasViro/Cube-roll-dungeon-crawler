@@ -113,20 +113,17 @@ std::vector<std::vector<DungeonRoom*>> GenerateRooms(int sidelength, std::pair<i
     std::vector<std::vector<DungeonRoom*>> rooms(sidelength, std::vector<DungeonRoom*> (sidelength)); // rooms generated after maze generation
 
     Visit(startPos, sidelength, roomsVisited, orient, exits, neighbors, rooms);
-    
+
     // Calculate room orientations
-    std::vector<std::pair<RoomType, DoorOrientation>> tempvector;  
     for (int row = 0; row < sidelength; row++){
         for (int col = 0; col < sidelength; col++){
-            tempvector.push_back(RoomOrient(exits[col][row])); 
+            auto orientation = RoomOrient(exits[col][row]);
+            orient[col][row] = orientation; 
         }
-        orient.push_back(tempvector);
-        tempvector.clear();
     }
     
-
+ 
     // Initialize rooms in the level and add information of neighbors for each room
-    std::vector<DungeonRoom*> tempvector2;
     for (int row = 0; row < sidelength; row++){
         for (int col = 0; col < sidelength; col++){
             auto indexinlevel = std::make_pair(col,row);
@@ -134,10 +131,8 @@ std::vector<std::vector<DungeonRoom*>> GenerateRooms(int sidelength, std::pair<i
             DoorOrientation doororientation = orient[col][row].second;
             bool isStart = (col == startPos.first && row == startPos.second);           
             auto room = new DungeonRoom(indexinlevel, roomtype, doororientation, nullptr, isStart);
-            tempvector2.push_back(room);
+            rooms[col][row] = room; // add the room
         }
-        rooms.push_back(tempvector2);
-        tempvector2.clear();
     }
     
     // Set the neighbors of each room
@@ -168,10 +163,10 @@ std::vector<std::vector<DungeonRoom*>> GenerateRooms(int sidelength, std::pair<i
                 rooms[col][row]->AddNeighbor(nullptr);
             }
             else if (col == sidelength - 1) {
-                rooms[col][row]->AddNeighbor(rooms[col + 1][row]);
+                rooms[col][row]->AddNeighbor(rooms[col - 1][row]);
             }
             else {
-                rooms[col][row]->AddNeighbor(rooms[col + 1][row]);
+                rooms[col][row]->AddNeighbor(rooms[col - 1][row]);
             }
             //Add South neighbor
             if (row == 0) {

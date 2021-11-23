@@ -313,6 +313,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 			else if (tiletype == Wall) {
 				sprite_wall.setPosition(static_cast<float>(x), static_cast<float>(y));
 				window.draw(sprite_wall);
+				//ROTATE WALL TEXTURE RANDOMLY
 			}
 			else if (tiletype == Pit) {
 				sprite_pit.setPosition(static_cast<float>(x), static_cast<float>(y));

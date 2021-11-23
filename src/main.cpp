@@ -258,57 +258,231 @@ std::vector<std::vector<Item*>> CreateLoot() {
 
 
 // This function draws a new room in its initial state.
-void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*>> tile_matrix, bool islastroominlevel, std::vector<Character*> enemyvec, Character* player) {
+void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*>> tile_matrix, bool islastroominlevel, std::vector<Character*> enemyvec, Character* player, int currentlevel) {
 
 	//FIRST, CLEAR WINDOW, THEN DRAW UI SPRITE
-
+	
 	// Create all sprites
 	sf::Texture door_closed_t;
-	door_closed_t.loadFromFile("../src/Graphics/TileSprites/DoorClosed.png");
+	door_closed_t.loadFromFile("../src/Graphics/TileSprites/DoorClosed.png"); //Closed door
 	sf::Sprite sprite_door_closed(door_closed_t);
 
 	sf::Texture floor_t;
-	floor_t.loadFromFile("../src/Graphics/TileSprites/Floor.png");
+	floor_t.loadFromFile("../src/Graphics/TileSprites/Floor.png"); //Floor
 	sf::Sprite sprite_floor(floor_t);
 	
 	sf::Texture levelexitclosed_t;
-	levelexitclosed_t.loadFromFile("../src/Graphics/TileSprites/LevelExitClosed.png");
+	levelexitclosed_t.loadFromFile("../src/Graphics/TileSprites/LevelExitClosed.png"); //Closed level exit
 	sf::Sprite sprite_levelexitclosed(levelexitclosed_t);
 
+	sf::Texture levelexitopen_t;
+	levelexitopen_t.loadFromFile("../src/Graphics/TileSprites/LevelExitOpen.png"); //Open level exit
+	sf::Sprite sprite_levelexitopen(levelexitopen_t);
+
 	sf::Texture pit_t;
-	pit_t.loadFromFile("../src/Graphics/TileSprites/Pit.png");
+	pit_t.loadFromFile("../src/Graphics/TileSprites/Pit.png"); //Pit
 	sf::Sprite sprite_pit(pit_t);
 
 	sf::Texture trap1_t;
-	trap1_t.loadFromFile("../src/Graphics/TileSprites/Trap1.png");
+	trap1_t.loadFromFile("../src/Graphics/TileSprites/Trap1.png"); //Trap in Dormant state
 	sf::Sprite sprite_trap1(trap1_t);
 
 	sf::Texture trap2_t;
-	trap2_t.loadFromFile("../src/Graphics/TileSprites/Trap2.png");
+	trap2_t.loadFromFile("../src/Graphics/TileSprites/Trap2.png"); //Trap in Emerging state
 	sf::Sprite sprite_trap2(trap2_t);
 
 	sf::Texture trap3_t;
-	trap3_t.loadFromFile("../src/Graphics/TileSprites/Trap3.png");
+	trap3_t.loadFromFile("../src/Graphics/TileSprites/Trap3.png"); //Trap in Spikes state
 	sf::Sprite sprite_trap3(trap3_t);
 
 	sf::Texture wall_t;
-	wall_t.loadFromFile("../src/Graphics/TileSprites/Wall.png");
+	wall_t.loadFromFile("../src/Graphics/TileSprites/Wall.png"); //Wall
 	sf::Sprite sprite_wall(wall_t);
 
-	sf::Texture levelexitopen_t;
-	levelexitopen_t.loadFromFile("../src/Graphics/TileSprites/LevelExitOpen.png");
-	sf::Sprite sprite_levelexitopen(levelexitopen_t);
+	sf::Texture healthpotion_t;
+	healthpotion_t.loadFromFile("../src/Graphics/ItemSprites/HealthPotion.png"); //Potion of healing
+	sf::Sprite sprite_healthpotion(healthpotion_t);
+
+	sf::Texture staminapotion_t;
+	staminapotion_t.loadFromFile("../src/Graphics/ItemSprites/StaminaPotion.png"); //Potion of stamina
+	sf::Sprite sprite_staminapotion(staminapotion_t);
+
+	sf::Texture shortsword_t;
+	shortsword_t.loadFromFile("../src/Graphics/ItemSprites/ShortSword.png"); //Shortsword
+	sf::Sprite sprite_shortsword(shortsword_t);
+
+	sf::Texture armingsword_t;
+	armingsword_t.loadFromFile("../src/Graphics/ItemSprites/ArmingSword.png"); //Arming sword
+	sf::Sprite sprite_armingsword(armingsword_t);
+
+	sf::Texture longsword_t;
+	longsword_t.loadFromFile("../src/Graphics/ItemSprites/LongSword.png"); //Longsword
+	sf::Sprite sprite_longsword(longsword_t);
+
+	sf::Texture hatchet_t;
+	hatchet_t.loadFromFile("../src/Graphics/ItemSprites/Hatchet.png"); //Hatchet
+	sf::Sprite sprite_hatchet(hatchet_t);
+
+	sf::Texture battleaxe_t;
+	battleaxe_t.loadFromFile("../src/Graphics/ItemSprites/BattleAxe.png"); //Battleaxe
+	sf::Sprite sprite_battleaxe(battleaxe_t);
+
+	sf::Texture mace_t;
+	mace_t.loadFromFile("../src/Graphics/ItemSprites/Mace.png"); //Mace
+	sf::Sprite sprite_mace(mace_t);
+
+	sf::Texture warhammer_t;
+	warhammer_t.loadFromFile("../src/Graphics/ItemSprites/WarHammer.png"); //Warhammer
+	sf::Sprite sprite_warhammer(warhammer_t);
+
+	sf::Texture roundshield_t;
+	roundshield_t.loadFromFile("../src/Graphics/ItemSprites/RoundShield.png"); //Round shield
+	sf::Sprite sprite_roundshield(roundshield_t);
+
+	sf::Texture heatershield_t;
+	heatershield_t.loadFromFile("../src/Graphics/ItemSprites/HeaterShield.png"); //Heater shield
+	sf::Sprite sprite_heatershield(heatershield_t);
+
+	sf::Texture kiteshield_t;
+	kiteshield_t.loadFromFile("../src/Graphics/ItemSprites/KiteShield.png"); //Kite shield
+	sf::Sprite sprite_kiteshield(kiteshield_t);
+
+	sf::Texture towershield_t;
+	towershield_t.loadFromFile("../src/Graphics/ItemSprites/TowerShield.png"); //Tower shield
+	sf::Sprite sprite_towershield(towershield_t);
+
+	sf::Texture sling_t;
+	sling_t.loadFromFile("../src/Graphics/ItemSprites/Sling.png"); //Sling
+	sf::Sprite sprite_sling(sling_t);
+
+	sf::Texture bolas_t;
+	bolas_t.loadFromFile("../src/Graphics/ItemSprites/Bolas.png"); //Bolas
+	sf::Sprite sprite_bolas(bolas_t);
+
+	sf::Texture javelin_t;
+	javelin_t.loadFromFile("../src/Graphics/ItemSprites/Javelin.png"); //Javelin
+	sf::Sprite sprite_javelin(javelin_t);
+
+	sf::Texture aiaggressive_t;
+	aiaggressive_t.loadFromFile("../src/Graphics/ItemSprites/AI_Aggressive.png"); //Aggressive AI
+	sf::Sprite sprite_aiaggressive(aiaggressive_t);
+
+	sf::Texture aicareful_t;
+	aicareful_t.loadFromFile("../src/Graphics/ItemSprites/AI_Careful.png"); //Careful AI
+	sf::Sprite sprite_aicareful(aicareful_t);
+
+	sf::Texture aiboss_t;
+	aiboss_t.loadFromFile("../src/Graphics/ItemSprites/AI_Boss.png"); //Boss AI
+	sf::Sprite sprite_aiboss(aiboss_t);
+
+	sf::Texture airandom_t;
+	airandom_t.loadFromFile("../src/Graphics/ItemSprites/AI_Random.png"); //Random AI
+	sf::Sprite sprite_airandom(airandom_t);
+
+	sf::Texture aistunned_t;
+	aistunned_t.loadFromFile("../src/Graphics/ItemSprites/AI_Stunned.png"); //Stunned character
+	sf::Sprite sprite_aistunned(aistunned_t);
+
+	sf::Texture defense1_t;
+	defense1_t.loadFromFile("../src/Graphics/ItemSprites/Defense1.png"); //Defense 1
+	sf::Sprite sprite_defense1(defense1_t);
+
+	sf::Texture defense2_t;
+	defense2_t.loadFromFile("../src/Graphics/ItemSprites/Defense2.png"); //Defense 2
+	sf::Sprite sprite_defense2(defense2_t);
+
+	sf::Texture defense3_t;
+	defense3_t.loadFromFile("../src/Graphics/ItemSprites/Defense3.png"); //Defense 3
+	sf::Sprite sprite_defense3(defense3_t);
+
+	sf::Texture melee1_t;
+	melee1_t.loadFromFile("../src/Graphics/ItemSprites/Melee1.png"); //Melee 1
+	sf::Sprite sprite_melee1(melee1_t);
+
+	sf::Texture melee2_t;
+	melee2_t.loadFromFile("../src/Graphics/ItemSprites/Melee2.png"); //Melee 2
+	sf::Sprite sprite_melee2(melee2_t);
+
+	sf::Texture melee3_t;
+	melee3_t.loadFromFile("../src/Graphics/ItemSprites/Melee3.png"); //Melee 3
+	sf::Sprite sprite_melee3(melee3_t);
+
+	sf::Texture ranged1_t;
+	ranged1_t.loadFromFile("../src/Graphics/ItemSprites/Ranged1.png"); //Ranged 1
+	sf::Sprite sprite_ranged1(ranged1_t);
+
+	sf::Texture ranged2_t;
+	ranged2_t.loadFromFile("../src/Graphics/ItemSprites/Ranged2.png"); //Ranged 2
+	sf::Sprite sprite_ranged2(ranged2_t);
+
+	sf::Texture ranged3_t;
+	ranged3_t.loadFromFile("../src/Graphics/ItemSprites/Ranged3.png"); //Ranged 3
+	sf::Sprite sprite_ranged3(ranged3_t);
+
+	sf::Texture emptyaction_t;
+	emptyaction_t.loadFromFile("../src/Graphics/ItemSprites/Empty.png"); //Empty action
+	sf::Sprite sprite_emptyaction(emptyaction_t);
+
+	sf::Texture enemybase_t;
+	enemybase_t.loadFromFile("../src/Graphics/ItemSprites/Enemy.png"); //Enemy base tile
+	sf::Sprite sprite_enemybase(enemybase_t);
+
+	sf::Texture playerbase_t;
+	playerbase_t.loadFromFile("../src/Graphics/ItemSprites/Player.png"); //Player base tile
+	sf::Sprite sprite_playerbase(playerbase_t);
+
+	sf::Texture depth1_t;
+	depth1_t.loadFromFile("../src/Graphics/ItemSprites/Depth1.png"); //Depth 1 indicator
+	sf::Sprite sprite_depth1(depth1_t);
+
+	sf::Texture depth2_t;
+	depth2_t.loadFromFile("../src/Graphics/ItemSprites/Depth2.png"); //Depth 2 indicator
+	sf::Sprite sprite_depth2(depth2_t);
+
+	sf::Texture depth3_t;
+	depth3_t.loadFromFile("../src/Graphics/ItemSprites/Depth3.png"); //Depth 3 indicator
+	sf::Sprite sprite_depth3(depth3_t);
+
+	sf::Texture depth4_t;
+	depth4_t.loadFromFile("../src/Graphics/ItemSprites/Depth4.png"); //Depth 4 indicator
+	sf::Sprite sprite_depth4(depth4_t);
+
+	sf::Texture depth5_t;
+	depth5_t.loadFromFile("../src/Graphics/ItemSprites/Depth5.png"); //Depth 5 indicator
+	sf::Sprite sprite_depth5(depth5_t);
+
+	sf::Texture depth6_t;
+	depth6_t.loadFromFile("../src/Graphics/ItemSprites/Depth6.png"); //Depth 6 indicator
+	sf::Sprite sprite_depth6(depth6_t);
+
+	sf::Texture health0_t;
+	health0_t.loadFromFile("../src/Graphics/ItemSprites/Health0.png"); //Health 0 indicator
+	sf::Sprite sprite_health0(health0_t);
+
+	sf::Texture health1_t;
+	health1_t.loadFromFile("../src/Graphics/ItemSprites/Health1.png"); //Health 1 indicator
+	sf::Sprite sprite_health1(health1_t);
+
+	sf::Texture health2_t;
+	health2_t.loadFromFile("../src/Graphics/ItemSprites/Health2.png"); //Health 2 indicator
+	sf::Sprite sprite_health2(health2_t);
+
+	sf::Texture health3_t;
+	health3_t.loadFromFile("../src/Graphics/ItemSprites/Health3.png"); //Health 3 indicator
+	sf::Sprite sprite_health3(health3_t);
+
+	sf::Texture health4_t;
+	health4_t.loadFromFile("../src/Graphics/ItemSprites/Health4.png"); //Health 4 indicator
+	sf::Sprite sprite_health4(health4_t);
 
 	int x_orig = 65;
 	int y_orig = 67;
 	
 	for (std::vector<DungeonTile*> i : tile_matrix) {
 		for (DungeonTile* tile : i) {
-			int i_coord = tile->GetYCoord();
-			int j_coord = tile->GetXCoord();
-			std::cout << "i: " << i_coord << ", j: " << j_coord << std::endl;
-			int x = x_orig + (j_coord)*64;
-			int y = y_orig + (i_coord)*64;
+			std::cout << "i: " << tile->GetYCoord() << ", j: " << tile->GetXCoord() << std::endl;
+			int x = x_orig + (tile->GetYCoord())*64;
+			int y = y_orig + (tile->GetXCoord())*64;
 
 			TileType tiletype = tile->GetTileType();
 			if (tiletype == Floor || tiletype == Spawner || tiletype == Entrance || tiletype == Loot) {
@@ -318,7 +492,18 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 			else if (tiletype == Wall) {
 				sprite_wall.setPosition(static_cast<float>(x), static_cast<float>(y));
 				window.draw(sprite_wall);
-				//ROTATE WALL TEXTURE RANDOMLY
+				int randomnumber = rand() % 4;
+				if (randomnumber == 1) {
+					//Rotate 90 degrees
+				}
+				if (randomnumber == 2) {
+					//Rotate 180 degrees
+				}
+				if (randomnumber == 3) {
+					//Rotate 270 degrees
+				}
+		
+				//TODO: ROTATE WALL TEXTURE RANDOMLY !!!
 			}
 			else if (tiletype == Pit) {
 				sprite_pit.setPosition(static_cast<float>(x), static_cast<float>(y));
@@ -364,6 +549,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 					window.draw(sprite_floor);
 				}
 			}
+
 			if (tile->GetItem() != nullptr) {
 				auto item = tile->GetItem();
 				if (item->GetName() == "Potion of healing") {
@@ -478,7 +664,42 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 		int playerxcoord = player->GetXCoordinate();
 		int playerycoord = player->GetYCoordinate();
 		auto inventory = player->GetInventory();
-		//Draw the player character
+		int playerhp = player->GetHealthPoints();
+		if (playerhp == 0) {
+			//Draw the health indicator
+		}
+		else if (playerhp == 1) {
+			//Draw the health indicator
+		}
+		else if (playerhp == 2) {
+			//Draw the health indicator
+		}
+		else if (playerhp == 3) {
+			//Draw the health indicator
+		}
+		else {
+			//Draw the health indicator
+		}
+
+		if (currentlevel == 1) {
+			//Draw the level indicator
+		}
+		else if (currentlevel == 2) {
+			//Draw the level indicator
+		}
+		else if (currentlevel == 3) {
+			//Draw the level indicator
+		}
+		else if (currentlevel == 4) {
+			//Draw the level indicator
+		}
+		else if (currentlevel == 5) {
+			//Draw the level indicator
+		}
+		else {
+			//Draw the level indicator
+		}
+		
 		if (!inventory[0]->IsEmpty()) {
 			auto invitem = inventory[0]->GetItem();
 			if (invitem->GetName() == "Potion of healing") {
@@ -803,7 +1024,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level) {
 
 	std::vector<std::vector<DungeonRoom*>> rooms = level.GetRooms();
 	DungeonRoom* starting_room = rooms[level.GetStartPos().first][level.GetStartPos().second];
-	RenderScreen(window, starting_room->GetAllTiles(), false, {nullptr}, nullptr);
+	RenderScreen(window, starting_room->GetAllTiles(), false, {nullptr}, nullptr, 1);
 
 	return false;
 }

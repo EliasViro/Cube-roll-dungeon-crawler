@@ -42,6 +42,8 @@ class Enemy : public Character {
 
     std::string GetDescription() const; //Returns the description of the enemy.
 
+    std::vector<InventorySlot*> GetInventory() const {return {nullptr};};
+
     protected:
     EnemyAI enemyai_; //The behavior type of the enemy.
     std::vector<ActionType> actionvector_; //The vector that the enemy will proceed through whenever it takes a turn.

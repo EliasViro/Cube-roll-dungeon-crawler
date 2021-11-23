@@ -258,6 +258,9 @@ std::vector<std::vector<Item*>> CreateLoot() {
 
 // This function draws a new room in its initial state.
 void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*>> tile_matrix, bool islastroominlevel, std::vector<Character*> enemyvec, Character* player) {
+
+	//FIRST, CLEAR WINDOW, THEN DRAW UI SPRITE
+
 	// Create all sprites
 	sf::Texture door_closed_t;
 	door_closed_t.loadFromFile("../src/Graphics/TileSprites/DoorClosed.png");

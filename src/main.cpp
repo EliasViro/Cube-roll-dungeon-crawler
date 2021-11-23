@@ -23,6 +23,8 @@
 #include "Items/shields.hpp"
 #include "Items/potions.hpp"
 
+#include "Graphics/spritecontainer.hpp"
+
 
 // User-specific local paths
 //############################
@@ -256,8 +258,76 @@ std::vector<std::vector<Item*>> CreateLoot() {
 }
 
 
+<<<<<<< HEAD
+    //Create all sprites
+
+    int x_orig = 65;
+    int y_orig = 67;
+
+    for (auto enemy : enemyvec) {
+		if (enemy != nullptr) {
+			int xcoord = enemy->GetXCoordinate();
+			int ycoord = enemy->GetYCoordinate();
+			int x = x_orig + (xcoord - 1) * 64;
+			int y = y_orig + (ycoord - 1) * 64;
+			ActionType currentaction = enemy->GetCurrentAction();
+			EnemyAI currentAI = enemy->GetEnemyAI();
+
+			//Draw the basic black enemy sprite here, the rest is drawn on top of it.
+
+			if (currentaction == Melee_1) {
+				//Draw the sword
+			}
+			else if (currentaction == Melee_2) {
+				//Draw the warhammer
+			}
+			else if (currentaction == Melee_3) {
+				//Draw the axe
+			}
+			else if (currentaction == Ranged_1) {
+				//Draw the smallest bow
+			}
+			else if (currentaction == Ranged_2) {
+				//Draw the medium sized bow
+			}
+			else if (currentaction == Ranged_3) {
+				//Draw the largest bow
+			}
+			else if (currentaction == Defend_1) {
+				//Draw the shield with number 1
+			}
+			else if (currentaction == Defend_2) {
+				//Draw the shield with number 2
+			}
+			else if (currentaction == Defend_3) {
+				//Draw the shield with number 3
+			}
+			else {
+				//Draw the empty enemy sprite (has zero at top right corner)
+			}
+
+			if (enemy->IsStunned()) {
+				//Draw the Stunned AI symbol
+			}
+			else if (currentAI == Aggressive) {
+				//Draw the Aggressive AI symbol
+			}
+			else if (currentAI == Careful) {
+				//Draw the Careful AI symbol
+			}
+			else if (currentAI == Random) {
+				//Draw the Random AI symbol
+			}
+			else {
+				//Draw the Boss AI symbol
+			}
+		}
+    }
+}
+=======
 // This function draws a new room in its initial state.
 void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*>> tile_matrix, bool islastroominlevel, std::vector<Character*> enemyvec, Character* player) {
+>>>>>>> 133d0f772ba7415e56d9b163f6a4cf35636ce3c2
 
 	//FIRST, CLEAR WINDOW, THEN DRAW UI SPRITE
 
@@ -876,8 +946,12 @@ int main() {
 	start_music.play();
     */
 
+   	sf::Sprite test = SpriteContainer::ai_aggressive();
+	//test.setPosition(sf::Vector2f(200, 200));
+
    	window.clear();
 	window.draw(main_menu);
+	window.draw(test);
 	window.display();
 
 	enum AppState {

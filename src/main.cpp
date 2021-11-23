@@ -32,7 +32,71 @@
 std::string fff_forward_path = "/home/atte/.local/share/fonts/Unknown Vendor/TrueType/FFF Forward/FFF_Forward_Regular.ttf";
 //############################
 
+void RenderEnemies(std::vector<Character*> enemyvec) { //Renders the graphics for all enemies in the vector given as parameter.
 
+    //Create all sprites
+
+    int x_orig = 65;
+    int y_orig = 67;
+
+    for (auto enemy : enemyvec) {
+        int xcoord = enemy->GetXCoordinate();
+        int ycoord = enemy->GetYCoordinate();
+        int x = x_orig + (xcoord - 1) * 64;
+        int x = x_orig + (ycoord - 1) * 64;
+		ActionType currentaction = enemy->GetCurrentAction();
+        EnemyAI currentAI = enemy->GetEnemyAI();
+
+        //Draw the basic black enemy sprite here, the rest is drawn on top of it.
+
+        if (currentaction == Melee_1) {
+            //Draw the sword
+        }
+        else if (currentaction == Melee_2) {
+            //Draw the warhammer
+        }
+        else if (currentaction == Melee_3) {
+            //Draw the axe
+        }
+        else if (currentaction == Ranged_1) {
+            //Draw the smallest bow
+        }
+        else if (currentaction == Ranged_2) {
+            //Draw the medium sized bow
+        }
+        else if (currentaction == Ranged_3) {
+            //Draw the largest bow
+        }
+        else if (currentaction == Defend_1) {
+            //Draw the shield with number 1
+        }
+        else if (currentaction == Defend_2) {
+            //Draw the shield with number 2
+        }
+        else if (currentaction == Defend_3) {
+            //Draw the shield with number 3
+        }
+        else {
+            //Draw the empty enemy sprite (has zero at top right corner)
+        }
+
+        if (enemy->IsStunned()) {
+            //Draw the Stunned AI symbol
+        }
+        else if (currentAI == Aggressive) {
+            //Draw the Aggressive AI symbol
+        }
+        else if (currentAI == Careful) {
+            //Draw the Careful AI symbol
+        }
+        else if (currentAI == Random) {
+            //Draw the Random AI symbol
+        }
+        else {
+            //Draw the Boss AI symbol
+        }
+    }
+}
 
 
 // This function draws a new room in its initial state.

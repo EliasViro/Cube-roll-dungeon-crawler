@@ -52,7 +52,7 @@ ArmingSword::ArmingSword() : MeleeWeapon("Arming sword", "A medium sized single-
 LongSword::LongSword() : MeleeWeapon("Longsword", "A large two-handed sword that can cut down multiple enemies with a single wide swing.", 999, 6, 2, 1, false, true) {}
 
 //Cooldown 5, Damage 2.
-HandAxe::HandAxe() : MeleeWeapon("Handaxe", "A simple one-handed axe. Quite hefty.", 999, 5, 2, 1, false, false) {}
+HandAxe::HandAxe() : MeleeWeapon("Hatchet", "A simple one-handed axe. Quite hefty.", 999, 5, 2, 1, false, false) {}
 
 //Cooldown 6, Damage 3.
 BattleAxe::BattleAxe() : MeleeWeapon("Battleaxe", "A large axe with a massive head and a long handle. Cuts through almost anything.", 999, 6, 3, 1, false, false) {}

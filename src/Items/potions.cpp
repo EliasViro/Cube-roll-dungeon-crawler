@@ -27,8 +27,8 @@ int Potion::GetEffect() const {
 
 
 //Effect 1 - Restores one point of health to the player. Can only be used if the player is missing health.
-HealthPotion::HealthPotion() : Potion("Healing potion", "A small vial with some red liquid inside. It will restore one health point upon drinking.", 1) {}
+HealthPotion::HealthPotion() : Potion("Potion of healing", "A small vial with some red liquid inside. It will restore one health point upon drinking.", 1) {}
 
 
 //Effect 2 - Restores all item cooldowns. Can be used only when an item is on cooldown AND there are enemies in the same room as the player.
-StaminaPotion::StaminaPotion() : Potion("Stamina potion", "A small vial with some blue liquid inside. It will restore all item cooldowns upon drinking.", 2) {}
+StaminaPotion::StaminaPotion() : Potion("Potion of stamina", "A small vial with some blue liquid inside. It will restore all item cooldowns upon drinking.", 2) {}

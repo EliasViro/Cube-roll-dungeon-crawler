@@ -2,54 +2,6 @@
 
 
 
-//A class that represents one of the six slots in the player inventory. Holds an Item.
-
-InventorySlot::InventorySlot(Item* item) : item_(item) {}
-
-bool InventorySlot::IsEmpty() const {
-    if (item_ == nullptr) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-Item* InventorySlot::GetItem() const {
-    return item_;
-}
-
-bool InventorySlot::AddItem(Item* item) {
-    if (IsEmpty()) {
-        item_ = item;
-        item_->PickUp();
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-void InventorySlot::DropItem() {
-    item_->Drop();
-    item_ = nullptr;
-}
-
-int InventorySlot::UseItem() {
-    int returned = 0;
-    if (item_ != nullptr) {
-        int returned = item_->Use();
-        if (returned != 0) {
-            if (item_->GetDurability() == 0) {
-                item_ = nullptr;
-            }
-        }
-    }
-    return returned;
-}
-
-
-
 //The character that represents the player on the game board.
 //Moving will roll the player inventory along with the cube.
 //After moving attempts to use the item on the top inventory tile
@@ -135,7 +87,7 @@ int Player::MoveToDirection(std::string direction) {
         auto itemintopslot = inventory_[0]->GetItem();
         int itemreturnval = 0;
         if (itemintopslot != nullptr) {
-            if (itemintopslot->GetName() == "Healing potion" && healthpoints_ < 4) {
+            if (itemintopslot->GetName() == "Potion of healing" && healthpoints_ < 4) {
                 itemreturnval = itemintopslot->Use();
                 if (itemreturnval > 0) {
                     healthpoints_++;
@@ -150,7 +102,7 @@ int Player::MoveToDirection(std::string direction) {
                     }
                 }
             }
-            if (itemintopslot->GetName() == "Stamina potion" && itemoncooldown) {
+            if (itemintopslot->GetName() == "Potion of healing" && itemoncooldown) {
                 itemreturnval = itemintopslot->Use();
                 if (itemreturnval > 0) {
                     for (auto slot2 : inventory_) {

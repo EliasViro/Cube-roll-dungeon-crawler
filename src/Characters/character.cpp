@@ -55,6 +55,10 @@ void Character::UnStun() {
     }
 }
 
+bool Character::IsStunned() const {
+    return isstunned_;
+}
+
 void Character::MoveToTile(DungeonTile* tile) {
     currenttile_ = tile;
 }

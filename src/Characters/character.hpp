@@ -66,6 +66,8 @@ class Character {
 
     void UnStun(); //Reduces stunned status.
 
+    bool IsStunned() const; //Returns true if the character is stunned.
+
     virtual int MoveToDirection(std::string direction) {return -1;}; //Attempts to move the character on the neighboring tile in the given direction. 
     //Returns -1 if did not succeed, otherwise positive.
 

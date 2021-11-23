@@ -69,17 +69,18 @@ void RenderRoom(sf::RenderWindow& window, DungeonRoom* room) {
 	sf::Texture wall_t;
 	wall_t.loadFromFile("../src/Graphics/TileSprites/Wall.png");
 	sf::Sprite sprite_wall(wall_t);
-	
-	// Render room
+
 	int x_orig = 65;
-	int y_orig = 65;
+	int y_orig = 67;
+	
 	std::vector<std::vector<DungeonTile*>> tile_matrix = room->GetAllTiles();
 	for (std::vector<DungeonTile*> i : tile_matrix) {
 		for (DungeonTile* tile : i) {
 			int i_coord = tile->GetYCoord();
 			int j_coord = tile->GetXCoord();
-			int x = x_orig + (j_coord - 1)*64;
-			int y = y_orig + (i_coord - 1)*64;
+			std::cout << "i: " << i_coord << ", j: " << j_coord << std::endl;
+			int x = x_orig + (j_coord)*64;
+			int y = y_orig + (i_coord)*64;
 
 			TileType tiletype = tile->GetTileType();
 			if (tiletype == Floor || tiletype == Spawner || tiletype == Entrance || tiletype == Loot) {
@@ -108,6 +109,7 @@ void RenderRoom(sf::RenderWindow& window, DungeonRoom* room) {
 			}
 		}
 	}
+	window.display();
 }
 
 
@@ -120,50 +122,12 @@ This function holds a game loop for one room in a dungeon.
 */
 bool Level(sf::RenderWindow& window, DungeonLevel level) {
 	std::cout << "levelissä ollaan" << std::endl;
-	return true;
-    // Game view items
-    sf::Texture game_texture;
-    game_texture.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
-    sf::Sprite game_sprite(game_texture);
-
-    sf::RectangleShape end_game_button(sf::Vector2f(115, 115));
-    end_game_button.setPosition(1415, 712);
 
 	std::vector<std::vector<DungeonRoom*>> rooms = level.GetRooms();
 	DungeonRoom* starting_room = rooms[level.GetStartPos().first][level.GetStartPos().second];
 	RenderRoom(window, starting_room);
 
-    // Game loop
-    while (window.isOpen()) {
-
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-
-			else if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-				if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					return true;
-				}
-			}
-        }
-		/*
-        if (sf::Mouse::is(sf::Mouse::Left)) {
-            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-            if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-                return;
-            }
-
-        }
-		*/
-        window.clear();
-        window.draw(game_sprite);
-        window.display();
-    }
-
-        return true;
+	return false;
 }
 
 
@@ -172,7 +136,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level) {
 
 //#############################################################################################################
 // This function loops through the six levels of one game instance.
-bool LevelLoop(sf::RenderWindow& window) {
+void LevelLoop(sf::RenderWindow& window) {
     
     auto const levels = {1, 2, 3, 4, 5, 6};
     int sidelength;
@@ -182,12 +146,11 @@ bool LevelLoop(sf::RenderWindow& window) {
         else if (1 < i < 6) sidelength = 3;
         else sidelength = 4;
 
-		std::cout << "pylly" << std::endl;
-		std::cout << sidelength << std::endl;
 		DungeonLevel level(sidelength);
 		std::cout << "level " << i << std::endl;
-		}
-	return true;
+		bool keeprunning = Level(window, level);
+		if (!keeprunning) break;
+	}
 }
 
 
@@ -195,14 +158,18 @@ bool LevelLoop(sf::RenderWindow& window) {
 
 
 //#################################################################################################################
-// This is a main function that launches the game i.e. initiates a render window in which a start menu is displayed.
+// This is a main function that creates the renderwindow and holds the application loop
 int main() {
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Dungeon Crawler", sf::Style::Close);
+
+	auto desktop = sf::VideoMode::getDesktopMode();
+	sf::Vector2i posvec(desktop.width/2 - window.getSize().x/2, desktop.height/2 - window.getSize().y/2);
+	window.setPosition(posvec);
     
     // Start menu items
     sf::Texture menu_texture;
     menu_texture.loadFromFile("../src/Graphics/GUI_Sprites/MainMenu.png");
-    sf::Sprite menu_sprite(menu_texture);
+    sf::Sprite main_menu(menu_texture);
 
     sf::ConvexShape quit_button;
     quit_button.setPointCount(4);
@@ -225,6 +192,14 @@ int main() {
     instructions_button.setPoint(2, sf::Vector2f(1085, 235));
     instructions_button.setPoint(3, sf::Vector2f(799, 375));
 
+	// Game view items
+	sf::Texture game_texture;
+    game_texture.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
+    sf::Sprite game_view(game_texture);
+
+	sf::RectangleShape end_game_button(sf::Vector2f(115, 115));
+    end_game_button.setPosition(1415, 712);
+
     /*
     sf::Music start_music;
     start_music.openFromFile("../src/Sounds/Music/Placeholder.ogg");
@@ -232,8 +207,15 @@ int main() {
     */
 
    	window.clear();
-	window.draw(menu_sprite);
-	window.display();	
+	window.draw(main_menu);
+	window.display();
+
+	enum AppState {
+		MainMenu,
+		Game
+	};
+
+	AppState state = MainMenu;
 
 	// The main application loop
     while (window.isOpen())
@@ -244,27 +226,40 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
 
-			else if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-				if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					window.close();
-				}
-				else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "Start button pressed" << std::endl;
-					//LevelLoop(window);
-					
-					bool returned = false;
-					while (!returned) {
-						returned = LevelLoop(window);
+			if (state == MainMenu) {
+				if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
+					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+					if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						window.close();
 					}
-					
-				}
-				else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "Instructions button pressed" << std::endl;
+					else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "Start button pressed" << std::endl;
+						state = Game;
+						window.clear();
+						window.draw(game_view);
+						auto orig = game_view.getOrigin();
+						std::cout << orig.x << " " << orig.y << std::endl;
+						window.display();
+						LevelLoop(window);
+						//window.clear();
+						//window.draw(main_menu);
+						//state = MainMenu;
+					}
+					else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "Instructions button pressed" << std::endl;
+					}
 				}
 			}
-        }
-    }
+			else if (state == Game) {
+				if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
+					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+					if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						return false;
+					}
+        		}
+    		}
+		}
+	}
 
     return 0;
 }
@@ -272,7 +267,7 @@ int main() {
 
 
 
-
+/*
 //A function that generates a vector of five enemies depending on the level the player is on.
 std::vector<Character*> GenerateRoomEnemies(int level) {
 	if (level == 1) {
@@ -491,7 +486,7 @@ std::vector<std::vector<Item*>> CreateLoot() {
 	lootvector.push_back(level6lootvector);
 	return lootvector;
 }
-
+*/
 
 
 
@@ -550,5 +545,3 @@ IF THE ITEM IS A RANGED WEAPON, RETURN VALUE IS 10
     start_text.setPosition(start_button.getPosition());
     */
    // ####################################################################################################
-
- 

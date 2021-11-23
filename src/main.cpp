@@ -259,64 +259,108 @@ void RenderEnemies(std::vector<Character*> enemyvec) { //Renders the graphics fo
     int y_orig = 67;
 
     for (auto enemy : enemyvec) {
-        int xcoord = enemy->GetXCoordinate();
-        int ycoord = enemy->GetYCoordinate();
-        int x = x_orig + (xcoord - 1) * 64;
-        int x = x_orig + (ycoord - 1) * 64;
-		ActionType currentaction = enemy->GetCurrentAction();
-        EnemyAI currentAI = enemy->GetEnemyAI();
+		if (enemy != nullptr) {
+			int xcoord = enemy->GetXCoordinate();
+			int ycoord = enemy->GetYCoordinate();
+			int x = x_orig + (xcoord - 1) * 64;
+			int x = x_orig + (ycoord - 1) * 64;
+			ActionType currentaction = enemy->GetCurrentAction();
+			EnemyAI currentAI = enemy->GetEnemyAI();
 
-        //Draw the basic black enemy sprite here, the rest is drawn on top of it.
+			//Draw the basic black enemy sprite here, the rest is drawn on top of it.
 
-        if (currentaction == Melee_1) {
-            //Draw the sword
+			if (currentaction == Melee_1) {
+				//Draw the sword
+			}
+			else if (currentaction == Melee_2) {
+				//Draw the warhammer
+			}
+			else if (currentaction == Melee_3) {
+				//Draw the axe
+			}
+			else if (currentaction == Ranged_1) {
+				//Draw the smallest bow
+			}
+			else if (currentaction == Ranged_2) {
+				//Draw the medium sized bow
+			}
+			else if (currentaction == Ranged_3) {
+				//Draw the largest bow
+			}
+			else if (currentaction == Defend_1) {
+				//Draw the shield with number 1
+			}
+			else if (currentaction == Defend_2) {
+				//Draw the shield with number 2
+			}
+			else if (currentaction == Defend_3) {
+				//Draw the shield with number 3
+			}
+			else {
+				//Draw the empty enemy sprite (has zero at top right corner)
+			}
+
+			if (enemy->IsStunned()) {
+				//Draw the Stunned AI symbol
+			}
+			else if (currentAI == Aggressive) {
+				//Draw the Aggressive AI symbol
+			}
+			else if (currentAI == Careful) {
+				//Draw the Careful AI symbol
+			}
+			else if (currentAI == Random) {
+				//Draw the Random AI symbol
+			}
+			else {
+				//Draw the Boss AI symbol
+			}
+		}
+    }
+}
+
+void RenderTrapTiles(std::vector<DungeonTile*> traptiles) {
+    for (auto traptile : traptiles) {
+        int xcoord = traptile->GetXCoord();
+        int ycoord = traptile->GetYCoord();
+        if (traptile->GetTrapState() == Dormant) {
+            //Print the trap with its spikes down
         }
-        else if (currentaction == Melee_2) {
-            //Draw the warhammer
-        }
-        else if (currentaction == Melee_3) {
-            //Draw the axe
-        }
-        else if (currentaction == Ranged_1) {
-            //Draw the smallest bow
-        }
-        else if (currentaction == Ranged_2) {
-            //Draw the medium sized bow
-        }
-        else if (currentaction == Ranged_3) {
-            //Draw the largest bow
-        }
-        else if (currentaction == Defend_1) {
-            //Draw the shield with number 1
-        }
-        else if (currentaction == Defend_2) {
-            //Draw the shield with number 2
-        }
-        else if (currentaction == Defend_3) {
-            //Draw the shield with number 3
+        else if (traptile->GetTrapState() == Emerging) {
+            //Print the trap with its spikes emerging
         }
         else {
-            //Draw the empty enemy sprite (has zero at top right corner)
-        }
-
-        if (enemy->IsStunned()) {
-            //Draw the Stunned AI symbol
-        }
-        else if (currentAI == Aggressive) {
-            //Draw the Aggressive AI symbol
-        }
-        else if (currentAI == Careful) {
-            //Draw the Careful AI symbol
-        }
-        else if (currentAI == Random) {
-            //Draw the Random AI symbol
-        }
-        else {
-            //Draw the Boss AI symbol
+            //Print the trap with its spikes up
         }
     }
 }
 
+void RenderDoorState(std::vector<std::vector<DungeonTile*>> alltiles, bool playerinlastroom, DungeonTile* exit) {
+	if (alltiles[0][5]->IsOpen() && alltiles[0][5]->GetTileType() == Door && alltiles[0][6]->IsOpen() && alltiles[0][6]->GetTileType() == Door) {
+		//Draw floor texture in (0,5) and (0,6)
+	}
+	else {
+		//Draw closed door texture in (0,5) and (0,6)
+	}
+	if (alltiles[5][0]->IsOpen() && alltiles[5][0]->GetTileType() == Door && alltiles[6][0]->IsOpen() && alltiles[6][0]->GetTileType() == Door) {
+		//Draw floor texture in (5,0) and (6,0)
+	}
+	else {
+		//Draw closed door texture in (5,0) and (6,0)
+	}
+	if (alltiles[5][11]->IsOpen() && alltiles[5][11]->GetTileType() == Door && alltiles[6][11]->IsOpen() && alltiles[6][11]->GetTileType() == Door) {
+		//Draw floor texture in (5,11) and (6,11)
+	}
+	else {
+		//Draw closed door texture in (5,11) and (6,11)
+	}
+	if (alltiles[11][5]->IsOpen() && alltiles[11][5]->GetTileType() == Door && alltiles[11][6]->IsOpen() && alltiles[11][6]->GetTileType() == Door) {
+		//Draw floor texture in (11,5) and (11,6)
+	}
+	else {
+		//Draw closed door texture in (11,5) and (11,6)
+	}
+}
 
 // This function draws a new room in its initial state.
 void RenderRoom(sf::RenderWindow& window, DungeonRoom* room) {
@@ -383,8 +427,18 @@ void RenderRoom(sf::RenderWindow& window, DungeonRoom* room) {
 				window.draw(sprite_door_closed);
 			}
 			else if (tiletype == Trap) {
-				sprite_trap1.setPosition(static_cast<float>(x), static_cast<float>(y));
-				window.draw(sprite_trap1);
+				if (tile->GetTrapState() == Dormant) {
+					sprite_trap1.setPosition(static_cast<float>(x), static_cast<float>(y));
+					window.draw(sprite_trap1);
+				}
+				else if (tile->GetTrapState() == Emerging) {
+					sprite_trap2.setPosition(static_cast<float>(x), static_cast<float>(y));
+					window.draw(sprite_trap2);
+				}
+				else {
+					sprite_trap3.setPosition(static_cast<float>(x), static_cast<float>(y));
+					window.draw(sprite_trap3);
+				}
 			}
 			else if (tiletype == Exit) {
 				sprite_levelexitclosed.setPosition(static_cast<float>(x), static_cast<float>(y));

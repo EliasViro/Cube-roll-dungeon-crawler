@@ -119,6 +119,9 @@ int main() {
 }
 
 
+
+
+
 void PrintEnemies(std::vector<Character*> enemyvec) {
 
     //Create all sprites
@@ -181,6 +184,22 @@ void PrintEnemies(std::vector<Character*> enemyvec) {
         }
         else {
             //Draw the Boss AI symbol
+        }
+    }
+}
+
+void PrintTrapTiles(std::vector<DungeonTile*> traptiles) {
+    for (auto traptile : traptiles) {
+        int xcoord = traptile->GetXCoord();
+        int ycoord = traptile->GetYCoord();
+        if (traptile->GetTrapState() == Dormant) {
+            //Print the trap with its spikes down
+        }
+        else if (traptile->GetTrapState() == Emerging) {
+            //Print the trap with its spikes emerging
+        }
+        else {
+            //Print the trap with its spikes up
         }
     }
 }

@@ -122,7 +122,6 @@ std::vector<std::vector<DungeonRoom*>> GenerateRooms(int sidelength, std::pair<i
             orient[col][row] = orientation; 
         }
     }
-    
  
     // Initialize rooms in the level and add information of neighbors for each room
     for (int row = 0; row < sidelength; row++){
@@ -191,8 +190,8 @@ std::vector<std::vector<DungeonRoom*>> GenerateRooms(int sidelength, std::pair<i
 //A level consists of nine rooms connected by doors on a 3 x 3 grid.
 
 DungeonLevel::DungeonLevel(int sidelength) : sidelength_(sidelength) {
-    int startRow = (std::rand() % sidelength) ; // Generate rand number between 1 to level side length
-    int startCol = (std::rand() % sidelength) ; // Generate rand number between 1 to level side length
+    int startRow = (std::rand() % sidelength) ; // Generate rand number between 0 to level side length - 1
+    int startCol = (std::rand() % sidelength) ; // Generate rand number between 0 to level side length - 1
     std::pair<int,int> startPos = std::make_pair(startCol, startRow); // (col, row) due to graphics reason
     startPos_ = startPos; // Starting room
     rooms_ = GenerateRooms(sidelength, startPos); // Generated rooms

@@ -32,6 +32,10 @@
 std::string fff_forward_path = "/home/atte/.local/share/fonts/Unknown Vendor/TrueType/FFF Forward/FFF_Forward_Regular.ttf";
 //############################
 
+// Global variables
+const int gameboard_orig_x = 65;
+const int gameboard_orig_y = 67;
+
 //A function that generates a vector of five enemies depending on the level the player is on.
 std::vector<Character*> GenerateRoomEnemies(int level) {
 	if (level == 1) {
@@ -262,7 +266,7 @@ void RenderEnemies(std::vector<Character*> enemyvec) { //Renders the graphics fo
         int xcoord = enemy->GetXCoordinate();
         int ycoord = enemy->GetYCoordinate();
         int x = x_orig + (xcoord - 1) * 64;
-        int x = x_orig + (ycoord - 1) * 64;
+        int y = y_orig + (ycoord - 1) * 64;
 		ActionType currentaction = enemy->GetCurrentAction();
         EnemyAI currentAI = enemy->GetEnemyAI();
 

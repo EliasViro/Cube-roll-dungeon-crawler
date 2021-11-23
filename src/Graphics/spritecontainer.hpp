@@ -1,8 +1,10 @@
-/*#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 class SpriteContainer {
 public:
-    SpriteContainer();
-private:
-    sf::Sprite
-};*/
+    static sf::Sprite ai_aggressive() {
+        sf::Texture t;
+        t.loadFromFile("../src/Graphics/CharacterSprites/AI_Aggressive.png");
+        return sf::Sprite(t);
+    }
+};

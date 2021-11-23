@@ -8,7 +8,7 @@ file(GLOB SOURCES
     "src/Items/*.cpp"
 )
 
-set(HEADER_FILES src/Characters src/DungeonGeneration src/Items)
+set(HEADER_FILES src/Characters src/DungeonGeneration src/Items src/Graphics)
 
 # test_instructions.txt
 # Use the line 'add_executable' below to configure CMake for your test setting.
@@ -26,6 +26,8 @@ add_executable(DungeonCrawler ${SOURCES} ${HEADER_FILES})
 
 set(CMAKE_BUILD_TYPE Debug)
 
+find_package(OpenGL COMPONENTS OpenGL REQUIRED)
+set(OpenGL_GL_PREFERENCE GLVND)
 find_package(SFML 2.5 COMPONENTS audio graphics window system REQUIRED)
-target_link_libraries(DungeonCrawler sfml-audio sfml-graphics sfml-window sfml-system)
+target_link_libraries(DungeonCrawler sfml-audio sfml-graphics sfml-window sfml-system OpenGL)
 target_include_directories(DungeonCrawler PUBLIC ${HEADER_FILES})

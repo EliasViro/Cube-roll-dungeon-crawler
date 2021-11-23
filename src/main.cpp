@@ -23,6 +23,8 @@
 #include "Items/shields.hpp"
 #include "Items/potions.hpp"
 
+#include "Graphics/spritecontainer.hpp"
+
 
 // User-specific local paths
 //############################
@@ -267,7 +269,7 @@ void RenderEnemies(std::vector<Character*> enemyvec) { //Renders the graphics fo
 			int xcoord = enemy->GetXCoordinate();
 			int ycoord = enemy->GetYCoordinate();
 			int x = x_orig + (xcoord - 1) * 64;
-			int x = x_orig + (ycoord - 1) * 64;
+			int y = y_orig + (ycoord - 1) * 64;
 			ActionType currentaction = enemy->GetCurrentAction();
 			EnemyAI currentAI = enemy->GetEnemyAI();
 
@@ -547,8 +549,12 @@ int main() {
 	start_music.play();
     */
 
+   	sf::Sprite test = SpriteContainer::ai_aggressive();
+	//test.setPosition(sf::Vector2f(200, 200));
+
    	window.clear();
 	window.draw(main_menu);
+	window.draw(test);
 	window.display();
 
 	enum AppState {

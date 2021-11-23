@@ -23,7 +23,6 @@
 #include "Items/shields.hpp"
 #include "Items/potions.hpp"
 
-#include "Graphics/spritecontainer.hpp"
 
 
 // User-specific local paths
@@ -258,76 +257,8 @@ std::vector<std::vector<Item*>> CreateLoot() {
 }
 
 
-<<<<<<< HEAD
-    //Create all sprites
-
-    int x_orig = 65;
-    int y_orig = 67;
-
-    for (auto enemy : enemyvec) {
-		if (enemy != nullptr) {
-			int xcoord = enemy->GetXCoordinate();
-			int ycoord = enemy->GetYCoordinate();
-			int x = x_orig + (xcoord - 1) * 64;
-			int y = y_orig + (ycoord - 1) * 64;
-			ActionType currentaction = enemy->GetCurrentAction();
-			EnemyAI currentAI = enemy->GetEnemyAI();
-
-			//Draw the basic black enemy sprite here, the rest is drawn on top of it.
-
-			if (currentaction == Melee_1) {
-				//Draw the sword
-			}
-			else if (currentaction == Melee_2) {
-				//Draw the warhammer
-			}
-			else if (currentaction == Melee_3) {
-				//Draw the axe
-			}
-			else if (currentaction == Ranged_1) {
-				//Draw the smallest bow
-			}
-			else if (currentaction == Ranged_2) {
-				//Draw the medium sized bow
-			}
-			else if (currentaction == Ranged_3) {
-				//Draw the largest bow
-			}
-			else if (currentaction == Defend_1) {
-				//Draw the shield with number 1
-			}
-			else if (currentaction == Defend_2) {
-				//Draw the shield with number 2
-			}
-			else if (currentaction == Defend_3) {
-				//Draw the shield with number 3
-			}
-			else {
-				//Draw the empty enemy sprite (has zero at top right corner)
-			}
-
-			if (enemy->IsStunned()) {
-				//Draw the Stunned AI symbol
-			}
-			else if (currentAI == Aggressive) {
-				//Draw the Aggressive AI symbol
-			}
-			else if (currentAI == Careful) {
-				//Draw the Careful AI symbol
-			}
-			else if (currentAI == Random) {
-				//Draw the Random AI symbol
-			}
-			else {
-				//Draw the Boss AI symbol
-			}
-		}
-    }
-}
-=======
 // This function draws a new room in its initial state.
 void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*>> tile_matrix, bool islastroominlevel, std::vector<Character*> enemyvec, Character* player) {
->>>>>>> 133d0f772ba7415e56d9b163f6a4cf35636ce3c2
 
 	//FIRST, CLEAR WINDOW, THEN DRAW UI SPRITE
 
@@ -339,7 +270,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 	sf::Texture floor_t;
 	floor_t.loadFromFile("../src/Graphics/TileSprites/Floor.png");
 	sf::Sprite sprite_floor(floor_t);
-
+	
 	sf::Texture levelexitclosed_t;
 	levelexitclosed_t.loadFromFile("../src/Graphics/TileSprites/LevelExitClosed.png");
 	sf::Sprite sprite_levelexitclosed(levelexitclosed_t);
@@ -363,6 +294,10 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 	sf::Texture wall_t;
 	wall_t.loadFromFile("../src/Graphics/TileSprites/Wall.png");
 	sf::Sprite sprite_wall(wall_t);
+
+	sf::Texture levelexitopen_t;
+	levelexitopen_t.loadFromFile("../src/Graphics/TileSprites/LevelExitOpen.png");
+	sf::Sprite sprite_levelexitopen(levelexitopen_t);
 
 	int x_orig = 65;
 	int y_orig = 67;
@@ -487,7 +422,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 			int xcoord = enemy->GetXCoordinate();
 			int ycoord = enemy->GetYCoordinate();
 			int x = x_orig + (xcoord - 1) * 64;
-			int x = x_orig + (ycoord - 1) * 64;
+			int y = y_orig + (ycoord - 1) * 64;
 			ActionType currentaction = enemy->GetCurrentAction();
 			EnemyAI currentAI = enemy->GetEnemyAI();
 			//Draw the basic black enemy sprite here, the rest is drawn on top of it.
@@ -539,316 +474,319 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 			}
 		}
 	}
-	int playerxcoord = player->GetXCoordinate();
-	int playerycoord = player->GetYCoordinate();
-	auto inventory = player->GetInventory();
-	//Draw the player character
-	if (!inventory[0]->IsEmpty()) {
-		auto invitem = inventory[0]->GetItem();
-		if (invitem->GetName() == "Potion of healing") {
-			//Draw a health potion on the player and in the middle inventory slot
+	if (player != nullptr) {
+		int playerxcoord = player->GetXCoordinate();
+		int playerycoord = player->GetYCoordinate();
+		auto inventory = player->GetInventory();
+		//Draw the player character
+		if (!inventory[0]->IsEmpty()) {
+			auto invitem = inventory[0]->GetItem();
+			if (invitem->GetName() == "Potion of healing") {
+				//Draw a health potion on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Potion of stamina") {
+				//Draw a stamina potion on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Javelin") {
+				//Draw a javelin on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Bolas") {
+				//Draw bolas on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Sling") {
+				//Draw a sling on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Round shield") {
+				//Draw a round shield on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Heater shield") {
+				//Draw a heater shield on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Kite shield") {
+				//Draw a kite shield on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Tower shield") {
+				//Draw a tower shield on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Shortsword") {
+				//Draw a shortsword on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Arming sword") {
+				//Draw an arming sword on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Longsword") {
+				//Draw a longsword on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Hatchet") {
+				//Draw a hatchet on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Battleaxe") {
+				//Draw a battleaxe on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Mace") {
+				//Draw a mace on the player and in the middle inventory slot
+			}
+			else if (invitem->GetName() == "Warhammer") {
+				//Draw a warhammer on the player and in the middle inventory slot
+			}
 		}
-		else if (invitem->GetName() == "Potion of stamina") {
-			//Draw a stamina potion on the player and in the middle inventory slot
+		if (!inventory[1]->IsEmpty()) {
+			auto itemnorth = inventory[2]->GetItem();
+			if (itemnorth->GetName() == "Potion of healing") {
+				//Draw a health potion in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Potion of stamina") {
+				//Draw a stamina potion in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Javelin") {
+				//Draw a javelin in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Bolas") {
+				//Draw bolas in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Sling") {
+				//Draw a sling in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Round shield") {
+				//Draw a round shield in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Heater shield") {
+				//Draw a heater shield in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Kite shield") {
+				//Draw a kite shield in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Tower shield") {
+				//Draw a tower shield in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Shortsword") {
+				//Draw a shortsword in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Arming sword") {
+				//Draw an arming sword in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Longsword") {
+				//Draw a longsword in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Hatchet") {
+				//Draw a hatchet in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Battleaxe") {
+				//Draw a battleaxe in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Mace") {
+				//Draw a mace in the north inventory slot
+			}
+			else if (itemnorth->GetName() == "Warhammer") {
+				//Draw a warhammer in the east inventory slot
+			}
 		}
-		else if (invitem->GetName() == "Javelin") {
-			//Draw a javelin on the player and in the middle inventory slot
+		if (!inventory[2]->IsEmpty()) {
+			auto itemeast = inventory[2]->GetItem();
+			if (itemeast->GetName() == "Potion of healing") {
+				//Draw a health potion in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Potion of stamina") {
+				//Draw a stamina potion in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Javelin") {
+				//Draw a javelin in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Bolas") {
+				//Draw bolas in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Sling") {
+				//Draw a sling in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Round shield") {
+				//Draw a round shield in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Heater shield") {
+				//Draw a heater shield in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Kite shield") {
+				//Draw a kite shield in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Tower shield") {
+				//Draw a tower shield in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Shortsword") {
+				//Draw a shortsword in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Arming sword") {
+				//Draw an arming sword in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Longsword") {
+				//Draw a longsword in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Hatchet") {
+				//Draw a hatchet in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Battleaxe") {
+				//Draw a battleaxe in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Mace") {
+				//Draw a mace in the east inventory slot
+			}
+			else if (itemeast->GetName() == "Warhammer") {
+				//Draw a warhammer in the east inventory slot
+			}
 		}
-		else if (invitem->GetName() == "Bolas") {
-			//Draw bolas on the player and in the middle inventory slot
+		if (!inventory[3]->IsEmpty()) {
+			auto itemwest = inventory[3]->GetItem();
+			if (itemwest->GetName() == "Potion of healing") {
+				//Draw a health potion in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Potion of stamina") {
+				//Draw a stamina potion in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Javelin") {
+				//Draw a javelin in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Bolas") {
+				//Draw bolas in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Sling") {
+				//Draw a sling in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Round shield") {
+				//Draw a round shield in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Heater shield") {
+				//Draw a heater shield in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Kite shield") {
+				//Draw a kite shield in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Tower shield") {
+				//Draw a tower shield in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Shortsword") {
+				//Draw a shortsword in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Arming sword") {
+				//Draw an arming sword in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Longsword") {
+				//Draw a longsword in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Hatchet") {
+				//Draw a hatchet in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Battleaxe") {
+				//Draw a battleaxe in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Mace") {
+				//Draw a mace in the west inventory slot
+			}
+			else if (itemwest->GetName() == "Warhammer") {
+				//Draw a warhammer in the west inventory slot
+			}
 		}
-		else if (invitem->GetName() == "Sling") {
-			//Draw a sling on the player and in the middle inventory slot
+		if (!inventory[4]->IsEmpty()) {
+			auto itemsouth = inventory[4]->GetItem();
+			if (itemsouth->GetName() == "Potion of healing") {
+				//Draw a health potion in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Potion of stamina") {
+				//Draw a stamina potion in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Javelin") {
+				//Draw a javelin in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Bolas") {
+				//Draw bolas in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Sling") {
+				//Draw a sling in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Round shield") {
+				//Draw a round shield in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Heater shield") {
+				//Draw a heater shield in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Kite shield") {
+				//Draw a kite shield in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Tower shield") {
+				//Draw a tower shield in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Shortsword") {
+				//Draw a shortsword in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Arming sword") {
+				//Draw an arming sword in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Longsword") {
+				//Draw a longsword in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Hatchet") {
+				//Draw a hatchet in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Battleaxe") {
+				//Draw a battleaxe in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Mace") {
+				//Draw a mace in the south inventory slot
+			}
+			else if (itemsouth->GetName() == "Warhammer") {
+				//Draw a warhammer in the south inventory slot
+			}
 		}
-		else if (invitem->GetName() == "Round shield") {
-			//Draw a round shield on the player and in the middle inventory slot
-		}
-		else if (invitem->GetName() == "Heater shield") {
-			//Draw a heater shield on the player and in the middle inventory slot
-		}
-		else if (invitem->GetName() == "Kite shield") {
-			//Draw a kite shield on the player and in the middle inventory slot
-		}
-		else if (invitem->GetName() == "Tower shield") {
-			//Draw a tower shield on the player and in the middle inventory slot
-		}
-		else if (invitem->GetName() == "Shortsword") {
-			//Draw a shortsword on the player and in the middle inventory slot
-		}
-		else if (invitem->GetName() == "Arming sword") {
-			//Draw an arming sword on the player and in the middle inventory slot
-		}
-		else if (invitem->GetName() == "Longsword") {
-			//Draw a longsword on the player and in the middle inventory slot
-		}
-		else if (invitem->GetName() == "Hatchet") {
-			//Draw a hatchet on the player and in the middle inventory slot
-		}
-		else if (invitem->GetName() == "Battleaxe") {
-			//Draw a battleaxe on the player and in the middle inventory slot
-		}
-		else if (invitem->GetName() == "Mace") {
-			//Draw a mace on the player and in the middle inventory slot
-		}
-		else if (invitem->GetName() == "Warhammer") {
-			//Draw a warhammer on the player and in the middle inventory slot
+		if (!inventory[5]->IsEmpty()) {
+			auto itembottom = inventory[5]->GetItem();
+			if (itembottom->GetName() == "Potion of healing") {
+				//Draw a health potion in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Potion of stamina") {
+				//Draw a stamina potion in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Javelin") {
+				//Draw a javelin in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Bolas") {
+				//Draw bolas in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Sling") {
+				//Draw a sling in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Round shield") {
+				//Draw a round shield in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Heater shield") {
+				//Draw a heater shield in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Kite shield") {
+				//Draw a kite shield in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Tower shield") {
+				//Draw a tower shield in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Shortsword") {
+				//Draw a shortsword in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Arming sword") {
+				//Draw an arming sword in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Longsword") {
+				//Draw a longsword in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Hatchet") {
+				//Draw a hatchet in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Battleaxe") {
+				//Draw a battleaxe in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Mace") {
+				//Draw a mace in the bottom inventory slot
+			}
+			else if (itembottom->GetName() == "Warhammer") {
+				//Draw a warhammer in the bottom inventory slot
+			}
 		}
 	}
-	if (!inventory[1]->IsEmpty()) {
-		auto itemnorth = inventory[2]->GetItem();
-		if (itemnorth->GetName() == "Potion of healing") {
-			//Draw a health potion in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Potion of stamina") {
-			//Draw a stamina potion in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Javelin") {
-			//Draw a javelin in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Bolas") {
-			//Draw bolas in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Sling") {
-			//Draw a sling in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Round shield") {
-			//Draw a round shield in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Heater shield") {
-			//Draw a heater shield in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Kite shield") {
-			//Draw a kite shield in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Tower shield") {
-			//Draw a tower shield in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Shortsword") {
-			//Draw a shortsword in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Arming sword") {
-			//Draw an arming sword in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Longsword") {
-			//Draw a longsword in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Hatchet") {
-			//Draw a hatchet in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Battleaxe") {
-			//Draw a battleaxe in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Mace") {
-			//Draw a mace in the north inventory slot
-		}
-		else if (itemnorth->GetName() == "Warhammer") {
-			//Draw a warhammer in the east inventory slot
-		}
-	}
-	if (!inventory[2]->IsEmpty()) {
-		auto itemeast = inventory[2]->GetItem();
-		if (itemeast->GetName() == "Potion of healing") {
-			//Draw a health potion in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Potion of stamina") {
-			//Draw a stamina potion in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Javelin") {
-			//Draw a javelin in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Bolas") {
-			//Draw bolas in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Sling") {
-			//Draw a sling in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Round shield") {
-			//Draw a round shield in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Heater shield") {
-			//Draw a heater shield in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Kite shield") {
-			//Draw a kite shield in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Tower shield") {
-			//Draw a tower shield in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Shortsword") {
-			//Draw a shortsword in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Arming sword") {
-			//Draw an arming sword in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Longsword") {
-			//Draw a longsword in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Hatchet") {
-			//Draw a hatchet in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Battleaxe") {
-			//Draw a battleaxe in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Mace") {
-			//Draw a mace in the east inventory slot
-		}
-		else if (itemeast->GetName() == "Warhammer") {
-			//Draw a warhammer in the east inventory slot
-		}
-	}
-	if (!inventory[3]->IsEmpty()) {
-		auto itemwest = inventory[3]->GetItem();
-		if (itemwest->GetName() == "Potion of healing") {
-			//Draw a health potion in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Potion of stamina") {
-			//Draw a stamina potion in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Javelin") {
-			//Draw a javelin in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Bolas") {
-			//Draw bolas in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Sling") {
-			//Draw a sling in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Round shield") {
-			//Draw a round shield in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Heater shield") {
-			//Draw a heater shield in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Kite shield") {
-			//Draw a kite shield in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Tower shield") {
-			//Draw a tower shield in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Shortsword") {
-			//Draw a shortsword in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Arming sword") {
-			//Draw an arming sword in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Longsword") {
-			//Draw a longsword in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Hatchet") {
-			//Draw a hatchet in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Battleaxe") {
-			//Draw a battleaxe in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Mace") {
-			//Draw a mace in the west inventory slot
-		}
-		else if (itemwest->GetName() == "Warhammer") {
-			//Draw a warhammer in the west inventory slot
-		}
-	}
-	if (!inventory[4]->IsEmpty()) {
-		auto itemsouth = inventory[4]->GetItem();
-		if (itemsouth->GetName() == "Potion of healing") {
-			//Draw a health potion in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Potion of stamina") {
-			//Draw a stamina potion in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Javelin") {
-			//Draw a javelin in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Bolas") {
-			//Draw bolas in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Sling") {
-			//Draw a sling in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Round shield") {
-			//Draw a round shield in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Heater shield") {
-			//Draw a heater shield in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Kite shield") {
-			//Draw a kite shield in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Tower shield") {
-			//Draw a tower shield in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Shortsword") {
-			//Draw a shortsword in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Arming sword") {
-			//Draw an arming sword in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Longsword") {
-			//Draw a longsword in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Hatchet") {
-			//Draw a hatchet in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Battleaxe") {
-			//Draw a battleaxe in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Mace") {
-			//Draw a mace in the south inventory slot
-		}
-		else if (itemsouth->GetName() == "Warhammer") {
-			//Draw a warhammer in the south inventory slot
-		}
-	}
-	if (!inventory[5]->IsEmpty()) {
-		auto itembottom = inventory[5]->GetItem();
-		if (itembottom->GetName() == "Potion of healing") {
-			//Draw a health potion in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Potion of stamina") {
-			//Draw a stamina potion in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Javelin") {
-			//Draw a javelin in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Bolas") {
-			//Draw bolas in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Sling") {
-			//Draw a sling in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Round shield") {
-			//Draw a round shield in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Heater shield") {
-			//Draw a heater shield in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Kite shield") {
-			//Draw a kite shield in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Tower shield") {
-			//Draw a tower shield in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Shortsword") {
-			//Draw a shortsword in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Arming sword") {
-			//Draw an arming sword in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Longsword") {
-			//Draw a longsword in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Hatchet") {
-			//Draw a hatchet in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Battleaxe") {
-			//Draw a battleaxe in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Mace") {
-			//Draw a mace in the bottom inventory slot
-		}
-		else if (itembottom->GetName() == "Warhammer") {
-			//Draw a warhammer in the bottom inventory slot
-		}
-	}
+	
 	window.display();
 }
 
@@ -865,7 +803,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level) {
 
 	std::vector<std::vector<DungeonRoom*>> rooms = level.GetRooms();
 	DungeonRoom* starting_room = rooms[level.GetStartPos().first][level.GetStartPos().second];
-	RenderRoom(window, starting_room);
+	RenderScreen(window, starting_room->GetAllTiles(), false, {nullptr}, nullptr);
 
 	return false;
 }
@@ -946,12 +884,8 @@ int main() {
 	start_music.play();
     */
 
-   	sf::Sprite test = SpriteContainer::ai_aggressive();
-	//test.setPosition(sf::Vector2f(200, 200));
-
    	window.clear();
 	window.draw(main_menu);
-	window.draw(test);
 	window.display();
 
 	enum AppState {

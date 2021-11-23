@@ -11,30 +11,30 @@
 
 //Randomizes the name of the file in order to allow reading a random room file.
 std::string RandomizeFileName(RoomType roomtype) {
-    std::string filename = "../src/DungeonGeneration/RoomStorage/";
+    std::string filename;
     unsigned int randomnumber = 0;
     if (roomtype == _1DoorRoom) {
-        filename += "1DoorRooms/";
+        filename = "1DoorRooms/";
         randomnumber = rand() % 3 + 1; //Random number between 1 and the amount of rooms in 1DoorRooms storage folder
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else if (roomtype == _2DoorRoomCorner) {
-        filename += "2DoorRoomsCorner/";
+        filename = "2DoorRoomsCorner/";
         randomnumber = rand() % 3 + 1; //Random number between 1 and the amount of rooms in 2DoorRoomsCorner storage folder
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else if (roomtype == _2DoorRoomOpposite) {
-        filename += "2DoorRoomsOpposite/";
+        filename = "2DoorRoomsOpposite/";
         randomnumber = rand() % 3 + 1; //Random number between 1 and the amount of rooms in 2DoorRoomsOpposite storage folder
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else if (roomtype == _3DoorRoom) {
-        filename += "3DoorRooms/";
+        filename = "3DoorRooms/";
         randomnumber = rand() % 3 + 1; //Random number between 1 and the amount of rooms in 3DoorRooms storage folder
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else {
-        filename += "4DoorRooms/1"; //There will be only one type of four door rooms.
+        filename = "4DoorRooms/1"; //There will be only one type of four door rooms.
     }
     return filename;
 }
@@ -211,10 +211,15 @@ DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, RoomType roomtype, Doo
         srand(time(NULL));
         std::vector<DungeonRoom*> neighbors_;
         std::fstream roomfile;
-        roomfile.open(RandomizeFileName(roomtype) + ".txt", std::ios::in);
+        std::string filename = "../src/DungeonGeneration/RoomStorage/";
+        roomfile.open((filename += (RandomizeFileName(roomtype) + ".txt")), std::ios::in);
         if (!roomfile) {
-            std::cout << "ERROR" << std::endl;
-            throw;
+            filename = "RoomStorage/";
+            roomfile.open((filename += (RandomizeFileName(roomtype) + ".txt")), std::ios::in);
+            if (!roomfile) {
+                std::cout << "ERROR: File opening in RoomStorage failed. The opening path in dungeonroom.cpp may be incorrect.\nRunning the program and debugging it require different paths." << std::endl;
+                throw;
+            }
         }
         std::string readline;
         std::vector<std::string> roomvector;

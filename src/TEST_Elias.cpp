@@ -1,4 +1,4 @@
-
+/*
 #include "../DungeonGeneration/dungeonlevel.hpp"
 #include "../DungeonGeneration/dungeonroom.hpp"
 #include "../Characters/characterplayer.hpp"
@@ -73,13 +73,8 @@ void PrintTiles(std::vector<std::vector<DungeonTile*>> roomvec, std::vector<Char
     std::cout << std::endl;
 }
 
-<<<<<<< HEAD
 int main() {
-    int sidelength = 4;
-=======
-int main_X() {
-    int sidelength = 2;
->>>>>>> 08a3d2b5876821a4c023236e617dd46bf3f8a873
+    int sidelength = 3;
     DungeonLevel* level = new DungeonLevel(sidelength);
     Item* testitem = nullptr;
     std::vector<std::vector<DungeonTile *>> alltiles;

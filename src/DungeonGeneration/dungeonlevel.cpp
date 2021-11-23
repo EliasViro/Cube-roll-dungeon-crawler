@@ -76,18 +76,20 @@ std::pair<RoomType, DoorOrientation> RoomOrient(std::vector<Direction> exits){
 
 // DFS recursion
 void Visit(std::pair<int, int>& room, int sidelength,
-    std::vector<std::pair<int,int>> roomsVisited,
+    std::vector<std::pair<int,int>> &roomsVisited,
     std::vector<std::vector<std::pair<RoomType, DoorOrientation>>>& orient,
-    std::vector<std::vector<std::vector<Direction>>> exits,
-    std::vector<std::vector<std::vector<std::pair<int,int>>>> neighbors,
-    std::vector<std::vector<DungeonRoom*>> rooms) {
+    std::vector<std::vector<std::vector<Direction>>> &exits,
+    std::vector<std::vector<std::vector<std::pair<int,int>>>>& neighbors,
+    std::vector<std::vector<DungeonRoom*>> &rooms) {
     auto rng = std::default_random_engine {};
         roomsVisited.push_back(room);
         std::vector<Direction> dirs = DirsAvailable(room, sidelength);
         std::shuffle(std::begin(dirs), std::end(dirs), rng);
         for (auto direction : dirs) {
             std::pair<int,int> neighbor = RoomInDirection(room, direction);
-            if (find(roomsVisited.begin(), roomsVisited.end(), neighbor) != roomsVisited.end()){
+            auto tempval = find(roomsVisited.begin(), roomsVisited.end(), neighbor);
+            auto iter = roomsVisited.end();
+            if (tempval == iter) {
                 exits[room.second][room.first].push_back(direction);
                 exits[neighbor.second][neighbor.first].push_back(Opposite(direction));
                 neighbors[room.second][room.first].push_back(neighbor);
@@ -120,7 +122,6 @@ std::vector<std::vector<DungeonRoom*>> GenerateRooms(int sidelength, std::pair<i
             orient[col][row] = orientation; 
         }
     }
-    
  
     // Initialize rooms in the level and add information of neighbors for each room
     for (int row = 0; row < sidelength; row++){
@@ -189,8 +190,8 @@ std::vector<std::vector<DungeonRoom*>> GenerateRooms(int sidelength, std::pair<i
 //A level consists of nine rooms connected by doors on a 3 x 3 grid.
 
 DungeonLevel::DungeonLevel(int sidelength) : sidelength_(sidelength) {
-    int startRow = (std::rand() % sidelength) ; // Generate rand number between 1 to level side length
-    int startCol = (std::rand() % sidelength) ; // Generate rand number between 1 to level side length
+    int startRow = (std::rand() % sidelength) ; // Generate rand number between 0 to level side length - 1
+    int startCol = (std::rand() % sidelength) ; // Generate rand number between 0 to level side length - 1
     std::pair<int,int> startPos = std::make_pair(startCol, startRow); // (col, row) due to graphics reason
     startPos_ = startPos; // Starting room
     rooms_ = GenerateRooms(sidelength, startPos); // Generated rooms

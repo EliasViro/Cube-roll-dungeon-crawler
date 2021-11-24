@@ -883,6 +883,31 @@ int main() {
 	sf::RectangleShape button5(sf::Vector2f(115, 115));
     button5.setPosition(966, 712);
 
+	sf::ConvexShape north;
+    north.setPointCount(3);
+    north.setPoint(0, sf::Vector2f(448, 13));
+    north.setPoint(1, sf::Vector2f(482, 50));
+	north.setPoint(2, sf::Vector2f(414, 50));
+
+	sf::ConvexShape west;
+    west.setPointCount(3);
+    west.setPoint(0, sf::Vector2f(884, 448));
+    west.setPoint(1, sf::Vector2f(848, 484));
+	west.setPoint(2, sf::Vector2f(846, 414));
+
+	sf::ConvexShape south;
+    south.setPointCount(3);
+    south.setPoint(0, sf::Vector2f(448, 886));
+    south.setPoint(1, sf::Vector2f(412, 847));
+	south.setPoint(2, sf::Vector2f(482, 849));
+
+	sf::ConvexShape east;
+    east.setPointCount(3);
+    east.setPoint(0, sf::Vector2f(12, 448));
+    east.setPoint(1, sf::Vector2f(48, 414));
+	east.setPoint(2, sf::Vector2f(48, 482));
+
+
     /*
     sf::Music start_music;
     start_music.openFromFile("../src/Sounds/Music/Placeholder.ogg");
@@ -936,6 +961,7 @@ int main() {
 				if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
 					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 					if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "game exit button pressed" << std::endl;
 						return false;
 					}
 					else if (button1.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
@@ -952,6 +978,18 @@ int main() {
 					}
 					else if (button5.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 						std::cout << "button5 pressed" << std::endl;
+					}
+					else if (north.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "north pressed" << std::endl;
+					}
+					else if (east.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "east pressed" << std::endl;
+					}
+					else if (south.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "south pressed" << std::endl;
+					}
+					else if (west.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "west pressed" << std::endl;
 					}
         		}
     		}

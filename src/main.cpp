@@ -496,17 +496,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 				sprite = sprite_floor;
 			}
 			else if (tiletype == Wall) {
-				sprite = sprite_wall;			
-				int randomnumber = rand() % 4;
-				if (randomnumber == 1) {
-					sprite.rotate(90);
-				}
-				if (randomnumber == 2) {
-					sprite.rotate(180);
-				}
-				if (randomnumber == 3) {
-					sprite.rotate(270);
-				}	
+				sprite = sprite_wall;				
 			}
 			else if (tiletype == Pit) {
 				sprite = sprite_pit;
@@ -705,7 +695,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 		else {
 			healthsprite = sprite_health4;
 		}
-		healthsprite.setPosition(static_cast<float>(x), static_cast<float>(y));
+		healthsprite.setPosition(972, 78);
 		window.draw(healthsprite);
 
 		if (currentlevel == 1) {
@@ -726,8 +716,11 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 		else {
 			lvlsprite = sprite_depth6;
 		}
-		lvlsprite.setPosition(static_cast<float>(x), static_cast<float>(y));
+		lvlsprite.setPosition(1421, 78);
 		window.draw(lvlsprite);
+
+		sprite_playerbase.setPosition(x, y);
+		window.draw(sprite_playerbase);
 		
 		for (int inventoryindex = 0; inventoryindex < 6; inventoryindex++) {
 			sf::Sprite item;
@@ -824,9 +817,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 
 
 //#####################################################################################################
-
 //This function holds a game loop for one room in a dungeon.
-
 bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* player, std::vector<std::vector<Item*>> lootvector) {
 	std::vector<std::vector<DungeonRoom*>> rooms = level.GetRooms();
 	DungeonRoom* currentroom = rooms[level.GetStartPos().first][level.GetStartPos().second];
@@ -865,7 +856,96 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
         }
     }
 	RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
-    //ASK FOR PLAYER INPUT
+    
+	// FOO
+	// Define all game view buttons
+	sf::RectangleShape end_game_button(sf::Vector2f(115, 115));
+    end_game_button.setPosition(1415, 712);
+
+	sf::RectangleShape button1(sf::Vector2f(115, 115));
+    button1.setPosition(966, 72);
+
+	sf::RectangleShape button2(sf::Vector2f(115, 115));
+    button2.setPosition(1414, 72);
+
+	sf::RectangleShape button3(sf::Vector2f(115, 115));
+    button3.setPosition(966, 519);
+
+	sf::RectangleShape button4(sf::Vector2f(115, 115));
+    button4.setPosition(1414, 519);
+
+	sf::RectangleShape button5(sf::Vector2f(115, 115));
+    button5.setPosition(966, 712);
+
+	sf::ConvexShape north;
+    north.setPointCount(3);
+    north.setPoint(0, sf::Vector2f(448, 13));
+    north.setPoint(1, sf::Vector2f(482, 50));
+	north.setPoint(2, sf::Vector2f(414, 50));
+
+	sf::ConvexShape west;
+    west.setPointCount(3);
+    west.setPoint(0, sf::Vector2f(884, 448));
+    west.setPoint(1, sf::Vector2f(848, 484));
+	west.setPoint(2, sf::Vector2f(846, 414));
+
+	sf::ConvexShape south;
+    south.setPointCount(3);
+    south.setPoint(0, sf::Vector2f(448, 886));
+    south.setPoint(1, sf::Vector2f(412, 847));
+	south.setPoint(2, sf::Vector2f(482, 849));
+
+	sf::ConvexShape east;
+    east.setPointCount(3);
+    east.setPoint(0, sf::Vector2f(12, 448));
+    east.setPoint(1, sf::Vector2f(48, 414));
+	east.setPoint(2, sf::Vector2f(48, 482));
+
+	// Game loop
+	bool run = true;
+	while (run) {
+
+		// Player input loop
+		bool validmove = false;
+		while (!validmove) {
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+				while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+
+				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "game exit button pressed" << std::endl;
+					return false;
+				}
+				else if (button1.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "button1 pressed" << std::endl;
+				}
+				else if (button2.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "button2 pressed" << std::endl;
+				}
+				else if (button3.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "button3 pressed" << std::endl;
+				}
+				else if (button4.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "button4 pressed" << std::endl;
+				}
+				else if (button5.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "button5 pressed" << std::endl;
+				}
+				else if (north.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "north pressed" << std::endl;	
+				}
+				else if (east.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "east pressed" << std::endl;
+				}
+				else if (south.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "south pressed" << std::endl;
+				}
+				else if (west.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "west pressed" << std::endl;
+				}
+			}
+		}
+	}
 
     //After moving, check if the player is on a door tile. This will move the player to the next room in that direction.
     if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][5] || player->GetCurrentTile() == currentroom->GetAllTiles()[0][6] ||
@@ -983,7 +1063,35 @@ void LevelLoop(sf::RenderWindow& window) {
 }
 
 
+void testsignal(sf::RenderWindow& window) {
+	sf::RectangleShape test_button(sf::Vector2f(115, 115));
+    test_button.setPosition(1,1);
 
+	sf::ConvexShape quit_button;
+    quit_button.setPointCount(4);
+    quit_button.setPoint(0, sf::Vector2f(500, 261));
+    quit_button.setPoint(1, sf::Vector2f(782, 399));
+    quit_button.setPoint(2, sf::Vector2f(782, 743));
+    quit_button.setPoint(3, sf::Vector2f(500, 597));
+	
+	bool run = true;
+	while (run) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+
+			sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+			if (test_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				std::cout << "test button pressed" << std::endl;
+			}
+			else if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				std::cout << "quit button pressed" << std::endl;
+				break;
+		}
+	}
+
+}
+return;
+}
 
 
 //#################################################################################################################
@@ -1026,48 +1134,6 @@ int main() {
     game_texture.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
     sf::Sprite game_view(game_texture);*/
 
-	sf::RectangleShape end_game_button(sf::Vector2f(115, 115));
-    end_game_button.setPosition(1415, 712);
-
-	sf::RectangleShape button1(sf::Vector2f(115, 115));
-    button1.setPosition(966, 72);
-
-	sf::RectangleShape button2(sf::Vector2f(115, 115));
-    button2.setPosition(1414, 72);
-
-	sf::RectangleShape button3(sf::Vector2f(115, 115));
-    button3.setPosition(966, 519);
-
-	sf::RectangleShape button4(sf::Vector2f(115, 115));
-    button4.setPosition(1414, 519);
-
-	sf::RectangleShape button5(sf::Vector2f(115, 115));
-    button5.setPosition(966, 712);
-
-	sf::ConvexShape north;
-    north.setPointCount(3);
-    north.setPoint(0, sf::Vector2f(448, 13));
-    north.setPoint(1, sf::Vector2f(482, 50));
-	north.setPoint(2, sf::Vector2f(414, 50));
-
-	sf::ConvexShape west;
-    west.setPointCount(3);
-    west.setPoint(0, sf::Vector2f(884, 448));
-    west.setPoint(1, sf::Vector2f(848, 484));
-	west.setPoint(2, sf::Vector2f(846, 414));
-
-	sf::ConvexShape south;
-    south.setPointCount(3);
-    south.setPoint(0, sf::Vector2f(448, 886));
-    south.setPoint(1, sf::Vector2f(412, 847));
-	south.setPoint(2, sf::Vector2f(482, 849));
-
-	sf::ConvexShape east;
-    east.setPointCount(3);
-    east.setPoint(0, sf::Vector2f(12, 448));
-    east.setPoint(1, sf::Vector2f(48, 414));
-	east.setPoint(2, sf::Vector2f(48, 482));
-
 
     /*
     sf::Music start_music;
@@ -1085,6 +1151,34 @@ int main() {
 	};
 
 	AppState state = MainMenu;
+	
+
+
+
+	//##################
+	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+		if (test_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+			bool pressed = true;
+			while (pressed) {
+				if (pressed) continue;
+				else
+				{
+					std::cout << "haha" << std::endl;
+					pressed = true;
+					std::cout << pressed;
+				}
+				continue;
+			}
+			pressed = false;
+		}
+		        
+    }*/
+    
+	
+	//##################
+
+
 
 	// The main application loop
     while (window.isOpen())
@@ -1095,30 +1189,30 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
 
-			if (state == MainMenu) {
-				if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-					if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						window.close();
-					}
-					else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "Start button pressed" << std::endl;
-						state = Game;
-						//window.clear();
-						//window.draw(game_view);
-						//window.display();
-						LevelLoop(window);
-						window.clear();
-						window.draw(main_menu);
-						window.display();
-						state = MainMenu;
-					}
-					else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "Instructions button pressed" << std::endl;
-					}
+			if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left && state == MainMenu) {
+				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					window.close();
+				}
+				else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "Start button pressed" << std::endl;
+					//testsignal(window);
+					state = Game;
+					window.clear();
+					//window.draw(game_view);
+					//window.display();
+					LevelLoop(window);
+					window.clear();
+					window.draw(main_menu);
+					window.display();
+					state = MainMenu;
+				}
+				else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "Instructions button pressed" << std::endl;
 				}
 			}
-			else if (state == Game) {
+			
+			/*else if (state == Game) {
 				if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
 					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 					if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
@@ -1142,6 +1236,7 @@ int main() {
 					}
 					else if (north.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 						std::cout << "north pressed" << std::endl;
+						
 					}
 					else if (east.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 						std::cout << "east pressed" << std::endl;
@@ -1153,7 +1248,7 @@ int main() {
 						std::cout << "west pressed" << std::endl;
 					}
         		}
-    		}
+    		}*/
 		}
 	}
 

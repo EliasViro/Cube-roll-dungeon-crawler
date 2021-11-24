@@ -261,7 +261,13 @@ std::vector<std::vector<Item*>> CreateLoot() {
 void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*>> tile_matrix, bool islastroominlevel, std::vector<Character*> enemyvec, Character* player, int currentlevel) {
 
 	//FIRST, CLEAR WINDOW, THEN DRAW UI SPRITE
+	sf::Texture game_texture;
+    game_texture.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
+    sf::Sprite game_view(game_texture);
 	
+	window.clear();
+	window.draw(game_view);
+
 	// Create all sprites
 	sf::Texture door_closed_t;
 	door_closed_t.loadFromFile("../src/Graphics/TileSprites/DoorClosed.png"); //Closed door
@@ -364,115 +370,115 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 	sf::Sprite sprite_javelin(javelin_t);
 
 	sf::Texture aiaggressive_t;
-	aiaggressive_t.loadFromFile("../src/Graphics/ItemSprites/AI_Aggressive.png"); //Aggressive AI
+	aiaggressive_t.loadFromFile("../src/Graphics/CharacterSprites/AI_Aggressive.png"); //Aggressive AI
 	sf::Sprite sprite_aiaggressive(aiaggressive_t);
 
 	sf::Texture aicareful_t;
-	aicareful_t.loadFromFile("../src/Graphics/ItemSprites/AI_Careful.png"); //Careful AI
+	aicareful_t.loadFromFile("../src/Graphics/CharacterSprites/AI_Careful.png"); //Careful AI
 	sf::Sprite sprite_aicareful(aicareful_t);
 
 	sf::Texture aiboss_t;
-	aiboss_t.loadFromFile("../src/Graphics/ItemSprites/AI_Boss.png"); //Boss AI
+	aiboss_t.loadFromFile("../src/Graphics/CharacterSprites/AI_Boss.png"); //Boss AI
 	sf::Sprite sprite_aiboss(aiboss_t);
 
 	sf::Texture airandom_t;
-	airandom_t.loadFromFile("../src/Graphics/ItemSprites/AI_Random.png"); //Random AI
+	airandom_t.loadFromFile("../src/Graphics/CharacterSprites/AI_Random.png"); //Random AI
 	sf::Sprite sprite_airandom(airandom_t);
 
 	sf::Texture aistunned_t;
-	aistunned_t.loadFromFile("../src/Graphics/ItemSprites/AI_Stunned.png"); //Stunned character
+	aistunned_t.loadFromFile("../src/Graphics/CharacterSprites/AI_Stunned.png"); //Stunned character
 	sf::Sprite sprite_aistunned(aistunned_t);
 
 	sf::Texture defense1_t;
-	defense1_t.loadFromFile("../src/Graphics/ItemSprites/Defense1.png"); //Defense 1
+	defense1_t.loadFromFile("../src/Graphics/CharacterSprites/Defense1.png"); //Defense 1
 	sf::Sprite sprite_defense1(defense1_t);
 
 	sf::Texture defense2_t;
-	defense2_t.loadFromFile("../src/Graphics/ItemSprites/Defense2.png"); //Defense 2
+	defense2_t.loadFromFile("../src/Graphics/CharacterSprites/Defense2.png"); //Defense 2
 	sf::Sprite sprite_defense2(defense2_t);
 
 	sf::Texture defense3_t;
-	defense3_t.loadFromFile("../src/Graphics/ItemSprites/Defense3.png"); //Defense 3
+	defense3_t.loadFromFile("../src/Graphics/CharacterSprites/Defense3.png"); //Defense 3
 	sf::Sprite sprite_defense3(defense3_t);
 
 	sf::Texture melee1_t;
-	melee1_t.loadFromFile("../src/Graphics/ItemSprites/Melee1.png"); //Melee 1
+	melee1_t.loadFromFile("../src/Graphics/CharacterSprites/Melee1.png"); //Melee 1
 	sf::Sprite sprite_melee1(melee1_t);
 
 	sf::Texture melee2_t;
-	melee2_t.loadFromFile("../src/Graphics/ItemSprites/Melee2.png"); //Melee 2
+	melee2_t.loadFromFile("../src/Graphics/CharacterSprites/Melee2.png"); //Melee 2
 	sf::Sprite sprite_melee2(melee2_t);
 
 	sf::Texture melee3_t;
-	melee3_t.loadFromFile("../src/Graphics/ItemSprites/Melee3.png"); //Melee 3
+	melee3_t.loadFromFile("../src/Graphics/CharacterSprites/Melee3.png"); //Melee 3
 	sf::Sprite sprite_melee3(melee3_t);
 
 	sf::Texture ranged1_t;
-	ranged1_t.loadFromFile("../src/Graphics/ItemSprites/Ranged1.png"); //Ranged 1
+	ranged1_t.loadFromFile("../src/Graphics/CharacterSprites/Ranged1.png"); //Ranged 1
 	sf::Sprite sprite_ranged1(ranged1_t);
 
 	sf::Texture ranged2_t;
-	ranged2_t.loadFromFile("../src/Graphics/ItemSprites/Ranged2.png"); //Ranged 2
+	ranged2_t.loadFromFile("../src/Graphics/CharacterSprites/Ranged2.png"); //Ranged 2
 	sf::Sprite sprite_ranged2(ranged2_t);
 
 	sf::Texture ranged3_t;
-	ranged3_t.loadFromFile("../src/Graphics/ItemSprites/Ranged3.png"); //Ranged 3
+	ranged3_t.loadFromFile("../src/Graphics/CharacterSprites/Ranged3.png"); //Ranged 3
 	sf::Sprite sprite_ranged3(ranged3_t);
 
 	sf::Texture emptyaction_t;
-	emptyaction_t.loadFromFile("../src/Graphics/ItemSprites/Empty.png"); //Empty action
+	emptyaction_t.loadFromFile("../src/Graphics/CharacterSprites/Empty.png"); //Empty action
 	sf::Sprite sprite_emptyaction(emptyaction_t);
 
 	sf::Texture enemybase_t;
-	enemybase_t.loadFromFile("../src/Graphics/ItemSprites/Enemy.png"); //Enemy base tile
+	enemybase_t.loadFromFile("../src/Graphics/CharacterSprites/Enemy.png"); //Enemy base tile
 	sf::Sprite sprite_enemybase(enemybase_t);
 
 	sf::Texture playerbase_t;
-	playerbase_t.loadFromFile("../src/Graphics/ItemSprites/Player.png"); //Player base tile
+	playerbase_t.loadFromFile("../src/Graphics/CharacterSprites/Player.png"); //Player base tile
 	sf::Sprite sprite_playerbase(playerbase_t);
 
 	sf::Texture depth1_t;
-	depth1_t.loadFromFile("../src/Graphics/ItemSprites/Depth1.png"); //Depth 1 indicator
+	depth1_t.loadFromFile("../src/Graphics/GUI_Sprites/Depth1.png"); //Depth 1 indicator
 	sf::Sprite sprite_depth1(depth1_t);
 
 	sf::Texture depth2_t;
-	depth2_t.loadFromFile("../src/Graphics/ItemSprites/Depth2.png"); //Depth 2 indicator
+	depth2_t.loadFromFile("../src/Graphics/GUI_Sprites/Depth2.png"); //Depth 2 indicator
 	sf::Sprite sprite_depth2(depth2_t);
 
 	sf::Texture depth3_t;
-	depth3_t.loadFromFile("../src/Graphics/ItemSprites/Depth3.png"); //Depth 3 indicator
+	depth3_t.loadFromFile("../src/Graphics/GUI_Sprites/Depth3.png"); //Depth 3 indicator
 	sf::Sprite sprite_depth3(depth3_t);
 
 	sf::Texture depth4_t;
-	depth4_t.loadFromFile("../src/Graphics/ItemSprites/Depth4.png"); //Depth 4 indicator
+	depth4_t.loadFromFile("../src/Graphics/GUI_Sprites/Depth4.png"); //Depth 4 indicator
 	sf::Sprite sprite_depth4(depth4_t);
 
 	sf::Texture depth5_t;
-	depth5_t.loadFromFile("../src/Graphics/ItemSprites/Depth5.png"); //Depth 5 indicator
+	depth5_t.loadFromFile("../src/Graphics/GUI_Sprites/Depth5.png"); //Depth 5 indicator
 	sf::Sprite sprite_depth5(depth5_t);
 
 	sf::Texture depth6_t;
-	depth6_t.loadFromFile("../src/Graphics/ItemSprites/Depth6.png"); //Depth 6 indicator
+	depth6_t.loadFromFile("../src/Graphics/GUI_Sprites/Depth6.png"); //Depth 6 indicator
 	sf::Sprite sprite_depth6(depth6_t);
 
 	sf::Texture health0_t;
-	health0_t.loadFromFile("../src/Graphics/ItemSprites/Health0.png"); //Health 0 indicator
+	health0_t.loadFromFile("../src/Graphics/GUI_Sprites/Health0.png"); //Health 0 indicator
 	sf::Sprite sprite_health0(health0_t);
 
 	sf::Texture health1_t;
-	health1_t.loadFromFile("../src/Graphics/ItemSprites/Health1.png"); //Health 1 indicator
+	health1_t.loadFromFile("../src/Graphics/GUI_Sprites/Health1.png"); //Health 1 indicator
 	sf::Sprite sprite_health1(health1_t);
 
 	sf::Texture health2_t;
-	health2_t.loadFromFile("../src/Graphics/ItemSprites/Health2.png"); //Health 2 indicator
+	health2_t.loadFromFile("../src/Graphics/GUI_Sprites/Health2.png"); //Health 2 indicator
 	sf::Sprite sprite_health2(health2_t);
 
 	sf::Texture health3_t;
-	health3_t.loadFromFile("../src/Graphics/ItemSprites/Health3.png"); //Health 3 indicator
+	health3_t.loadFromFile("../src/Graphics/GUI_Sprites/Health3.png"); //Health 3 indicator
 	sf::Sprite sprite_health3(health3_t);
 
 	sf::Texture health4_t;
-	health4_t.loadFromFile("../src/Graphics/ItemSprites/Health4.png"); //Health 4 indicator
+	health4_t.loadFromFile("../src/Graphics/GUI_Sprites/Health4.png"); //Health 4 indicator
 	sf::Sprite sprite_health4(health4_t);
 
 	int x_orig = 65;
@@ -480,7 +486,6 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 	
 	for (std::vector<DungeonTile*> i : tile_matrix) {
 		for (DungeonTile* tile : i) {
-			std::cout << "i: " << tile->GetYCoord() << ", j: " << tile->GetXCoord() << std::endl;
 			int x = x_orig + (tile->GetYCoord())*64;
 			int y = y_orig + (tile->GetXCoord())*64;
 
@@ -700,310 +705,77 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 			//Draw the level indicator
 		}
 		
-		if (!inventory[0]->IsEmpty()) {
-			auto invitem = inventory[0]->GetItem();
-			if (invitem->GetName() == "Potion of healing") {
-				//Draw a health potion on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Potion of stamina") {
-				//Draw a stamina potion on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Javelin") {
-				//Draw a javelin on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Bolas") {
-				//Draw bolas on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Sling") {
-				//Draw a sling on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Round shield") {
-				//Draw a round shield on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Heater shield") {
-				//Draw a heater shield on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Kite shield") {
-				//Draw a kite shield on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Tower shield") {
-				//Draw a tower shield on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Shortsword") {
-				//Draw a shortsword on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Arming sword") {
-				//Draw an arming sword on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Longsword") {
-				//Draw a longsword on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Hatchet") {
-				//Draw a hatchet on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Battleaxe") {
-				//Draw a battleaxe on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Mace") {
-				//Draw a mace on the player and in the middle inventory slot
-			}
-			else if (invitem->GetName() == "Warhammer") {
-				//Draw a warhammer on the player and in the middle inventory slot
-			}
-		}
-		if (!inventory[1]->IsEmpty()) {
-			auto itemnorth = inventory[2]->GetItem();
-			if (itemnorth->GetName() == "Potion of healing") {
-				//Draw a health potion in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Potion of stamina") {
-				//Draw a stamina potion in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Javelin") {
-				//Draw a javelin in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Bolas") {
-				//Draw bolas in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Sling") {
-				//Draw a sling in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Round shield") {
-				//Draw a round shield in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Heater shield") {
-				//Draw a heater shield in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Kite shield") {
-				//Draw a kite shield in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Tower shield") {
-				//Draw a tower shield in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Shortsword") {
-				//Draw a shortsword in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Arming sword") {
-				//Draw an arming sword in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Longsword") {
-				//Draw a longsword in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Hatchet") {
-				//Draw a hatchet in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Battleaxe") {
-				//Draw a battleaxe in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Mace") {
-				//Draw a mace in the north inventory slot
-			}
-			else if (itemnorth->GetName() == "Warhammer") {
-				//Draw a warhammer in the east inventory slot
-			}
-		}
-		if (!inventory[2]->IsEmpty()) {
-			auto itemeast = inventory[2]->GetItem();
-			if (itemeast->GetName() == "Potion of healing") {
-				//Draw a health potion in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Potion of stamina") {
-				//Draw a stamina potion in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Javelin") {
-				//Draw a javelin in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Bolas") {
-				//Draw bolas in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Sling") {
-				//Draw a sling in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Round shield") {
-				//Draw a round shield in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Heater shield") {
-				//Draw a heater shield in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Kite shield") {
-				//Draw a kite shield in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Tower shield") {
-				//Draw a tower shield in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Shortsword") {
-				//Draw a shortsword in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Arming sword") {
-				//Draw an arming sword in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Longsword") {
-				//Draw a longsword in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Hatchet") {
-				//Draw a hatchet in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Battleaxe") {
-				//Draw a battleaxe in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Mace") {
-				//Draw a mace in the east inventory slot
-			}
-			else if (itemeast->GetName() == "Warhammer") {
-				//Draw a warhammer in the east inventory slot
-			}
-		}
-		if (!inventory[3]->IsEmpty()) {
-			auto itemwest = inventory[3]->GetItem();
-			if (itemwest->GetName() == "Potion of healing") {
-				//Draw a health potion in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Potion of stamina") {
-				//Draw a stamina potion in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Javelin") {
-				//Draw a javelin in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Bolas") {
-				//Draw bolas in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Sling") {
-				//Draw a sling in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Round shield") {
-				//Draw a round shield in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Heater shield") {
-				//Draw a heater shield in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Kite shield") {
-				//Draw a kite shield in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Tower shield") {
-				//Draw a tower shield in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Shortsword") {
-				//Draw a shortsword in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Arming sword") {
-				//Draw an arming sword in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Longsword") {
-				//Draw a longsword in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Hatchet") {
-				//Draw a hatchet in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Battleaxe") {
-				//Draw a battleaxe in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Mace") {
-				//Draw a mace in the west inventory slot
-			}
-			else if (itemwest->GetName() == "Warhammer") {
-				//Draw a warhammer in the west inventory slot
-			}
-		}
-		if (!inventory[4]->IsEmpty()) {
-			auto itemsouth = inventory[4]->GetItem();
-			if (itemsouth->GetName() == "Potion of healing") {
-				//Draw a health potion in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Potion of stamina") {
-				//Draw a stamina potion in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Javelin") {
-				//Draw a javelin in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Bolas") {
-				//Draw bolas in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Sling") {
-				//Draw a sling in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Round shield") {
-				//Draw a round shield in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Heater shield") {
-				//Draw a heater shield in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Kite shield") {
-				//Draw a kite shield in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Tower shield") {
-				//Draw a tower shield in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Shortsword") {
-				//Draw a shortsword in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Arming sword") {
-				//Draw an arming sword in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Longsword") {
-				//Draw a longsword in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Hatchet") {
-				//Draw a hatchet in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Battleaxe") {
-				//Draw a battleaxe in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Mace") {
-				//Draw a mace in the south inventory slot
-			}
-			else if (itemsouth->GetName() == "Warhammer") {
-				//Draw a warhammer in the south inventory slot
-			}
-		}
-		if (!inventory[5]->IsEmpty()) {
-			auto itembottom = inventory[5]->GetItem();
-			if (itembottom->GetName() == "Potion of healing") {
-				//Draw a health potion in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Potion of stamina") {
-				//Draw a stamina potion in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Javelin") {
-				//Draw a javelin in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Bolas") {
-				//Draw bolas in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Sling") {
-				//Draw a sling in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Round shield") {
-				//Draw a round shield in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Heater shield") {
-				//Draw a heater shield in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Kite shield") {
-				//Draw a kite shield in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Tower shield") {
-				//Draw a tower shield in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Shortsword") {
-				//Draw a shortsword in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Arming sword") {
-				//Draw an arming sword in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Longsword") {
-				//Draw a longsword in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Hatchet") {
-				//Draw a hatchet in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Battleaxe") {
-				//Draw a battleaxe in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Mace") {
-				//Draw a mace in the bottom inventory slot
-			}
-			else if (itembottom->GetName() == "Warhammer") {
-				//Draw a warhammer in the bottom inventory slot
+		for (int inventoryindex = 0; inventoryindex < 6; inventoryindex++) {
+			if (!inventory[inventoryindex]->IsEmpty()) {
+				auto invitem = inventory[0]->GetItem();
+				if (invitem->GetName() == "Potion of healing") {
+					//Draw a health potion on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Potion of stamina") {
+					//Draw a stamina potion on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Javelin") {
+					//Draw a javelin on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Bolas") {
+					//Draw bolas on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Sling") {
+					//Draw a sling on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Round shield") {
+					//Draw a round shield on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Heater shield") {
+					//Draw a heater shield on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Kite shield") {
+					//Draw a kite shield on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Tower shield") {
+					//Draw a tower shield on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Shortsword") {
+					//Draw a shortsword on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Arming sword") {
+					//Draw an arming sword on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Longsword") {
+					//Draw a longsword on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Hatchet") {
+					//Draw a hatchet on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Battleaxe") {
+					//Draw a battleaxe on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Mace") {
+					//Draw a mace on the player and in the middle inventory slot
+				}
+				else if (invitem->GetName() == "Warhammer") {
+					//Draw a warhammer on the player and in the middle inventory slot
+				}
+				
+				if (inventoryindex == 0) {
+				// Top & player tile
+				}
+				else if (inventoryindex == 1) {
+				// N	
+				}
+				else if (inventoryindex == 2) {
+				// E
+				}
+				else if (inventoryindex == 3) {
+				// W
+				}
+				else if (inventoryindex == 4) {
+				// S
+				}
+				else {
+				// Bottom
+				}
+				// which index --> position --> sprite
 			}
 		}
 	}
@@ -1020,13 +792,11 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 This function holds a game loop for one room in a dungeon.
 */
 bool Level(sf::RenderWindow& window, DungeonLevel level) {
-	std::cout << "levelissä ollaan" << std::endl;
-
 	std::vector<std::vector<DungeonRoom*>> rooms = level.GetRooms();
 	DungeonRoom* starting_room = rooms[level.GetStartPos().first][level.GetStartPos().second];
 	RenderScreen(window, starting_room->GetAllTiles(), false, {nullptr}, nullptr, 1);
 
-	return false;
+	return true;
 }
 
 
@@ -1046,7 +816,6 @@ void LevelLoop(sf::RenderWindow& window) {
         else sidelength = 4;
 
 		DungeonLevel level(sidelength);
-		std::cout << "level " << i << std::endl;
 		bool keeprunning = Level(window, level);
 		if (!keeprunning) break;
 	}
@@ -1092,12 +861,27 @@ int main() {
     instructions_button.setPoint(3, sf::Vector2f(799, 375));
 
 	// Game view items
-	sf::Texture game_texture;
+	/*sf::Texture game_texture;
     game_texture.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
-    sf::Sprite game_view(game_texture);
+    sf::Sprite game_view(game_texture);*/
 
 	sf::RectangleShape end_game_button(sf::Vector2f(115, 115));
     end_game_button.setPosition(1415, 712);
+
+	sf::RectangleShape button1(sf::Vector2f(115, 115));
+    button1.setPosition(966, 72);
+
+	sf::RectangleShape button2(sf::Vector2f(115, 115));
+    button2.setPosition(1414, 72);
+
+	sf::RectangleShape button3(sf::Vector2f(115, 115));
+    button3.setPosition(966, 519);
+
+	sf::RectangleShape button4(sf::Vector2f(115, 115));
+    button4.setPosition(1414, 519);
+
+	sf::RectangleShape button5(sf::Vector2f(115, 115));
+    button5.setPosition(966, 712);
 
     /*
     sf::Music start_music;
@@ -1134,15 +918,14 @@ int main() {
 					else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 						std::cout << "Start button pressed" << std::endl;
 						state = Game;
-						window.clear();
-						window.draw(game_view);
-						auto orig = game_view.getOrigin();
-						std::cout << orig.x << " " << orig.y << std::endl;
-						window.display();
-						LevelLoop(window);
 						//window.clear();
-						//window.draw(main_menu);
-						//state = MainMenu;
+						//window.draw(game_view);
+						//window.display();
+						LevelLoop(window);
+						window.clear();
+						window.draw(main_menu);
+						window.display();
+						state = MainMenu;
 					}
 					else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 						std::cout << "Instructions button pressed" << std::endl;
@@ -1154,6 +937,21 @@ int main() {
 					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 					if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 						return false;
+					}
+					else if (button1.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "button1 pressed" << std::endl;
+					}
+					else if (button2.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "button2 pressed" << std::endl;
+					}
+					else if (button3.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "button3 pressed" << std::endl;
+					}
+					else if (button4.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "button4 pressed" << std::endl;
+					}
+					else if (button5.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						std::cout << "button5 pressed" << std::endl;
 					}
         		}
     		}
@@ -1193,7 +991,8 @@ enemies being in range of a weapon that can only target one enemy at a time. Gra
 8. When all enemies have been defeated, spawn the appropriate loot item from the loot vector if the next item in it isn't a nullptr.
 9. When the player enters the last room of a level, make the level exit visible.
 10. When the enemies of the last room on a level are defeated, open the level exit.
-11. Change the player tile to a storage tile, delete the level and resume loop from step 1.
+
+(11. Change the player tile to a storage tile, delete the level and resume loop from step 1.)
 
 REMEMBER TO CHECK INVENTORY SLOT ITEM RETURN VALUE FOR RANGED & MELEE WEAPONS
 IF THE ITEM IS A RANGED WEAPON, RETURN VALUE IS 10

@@ -486,297 +486,333 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 	
 	for (std::vector<DungeonTile*> i : tile_matrix) {
 		for (DungeonTile* tile : i) {
-			int x = x_orig + (tile->GetYCoord())*64;
-			int y = y_orig + (tile->GetXCoord())*64;
+			sf::Sprite sprite;
+			sf::Sprite itemsprite;
+			int x = x_orig + (tile->GetXCoord())*64;
+			int y = y_orig + (tile->GetYCoord())*64;
 
 			TileType tiletype = tile->GetTileType();
 			if (tiletype == Floor || tiletype == Spawner || tiletype == Entrance || tiletype == Loot) {
-				sprite_floor.setPosition(static_cast<float>(x), static_cast<float>(y));
-				window.draw(sprite_floor);
+				sprite = sprite_floor;
 			}
 			else if (tiletype == Wall) {
-				sprite_wall.setPosition(static_cast<float>(x), static_cast<float>(y));
-				window.draw(sprite_wall);
+				sprite = sprite_wall;			
 				int randomnumber = rand() % 4;
 				if (randomnumber == 1) {
-					//Rotate 90 degrees
+					sprite.rotate(90);
 				}
 				if (randomnumber == 2) {
-					//Rotate 180 degrees
+					sprite.rotate(180);
 				}
 				if (randomnumber == 3) {
-					//Rotate 270 degrees
-				}
-		
-				//TODO: ROTATE WALL TEXTURE RANDOMLY !!!
+					sprite.rotate(270);
+				}	
 			}
 			else if (tiletype == Pit) {
-				sprite_pit.setPosition(static_cast<float>(x), static_cast<float>(y));
-				window.draw(sprite_pit);
+				sprite = sprite_pit;
 			}
 			else if (tiletype == Door) {
 				if (!tile->IsOpen()) {
-					sprite_door_closed.setPosition(static_cast<float>(x), static_cast<float>(y));
-					window.draw(sprite_door_closed);
+					sprite = sprite_door_closed;
 				}
 				else {
-					sprite_floor.setPosition(static_cast<float>(x), static_cast<float>(y));
-					window.draw(sprite_floor);
+					sprite = sprite_floor;
 				}
 			}
 			else if (tiletype == Trap) {
 				if (tile->GetTrapState() == Dormant) {
-					sprite_trap1.setPosition(static_cast<float>(x), static_cast<float>(y));
-					window.draw(sprite_trap1);
+					sprite = sprite_trap1;
 				}
 				else if (tile->GetTrapState() == Emerging) {
-					sprite_trap2.setPosition(static_cast<float>(x), static_cast<float>(y));
-					window.draw(sprite_trap2);
+					sprite = sprite_trap2;
 				}
 				else {
-					sprite_trap3.setPosition(static_cast<float>(x), static_cast<float>(y));
-					window.draw(sprite_trap3);
+					sprite = sprite_trap3;
 				}
 			}
 			else if (tiletype == Exit) {
 				if (islastroominlevel) {
 					if (!tile->IsOpen()) {
-						sprite_levelexitclosed.setPosition(static_cast<float>(x), static_cast<float>(y));
-						window.draw(sprite_levelexitclosed);
+						sprite = sprite_levelexitclosed;
 					}
 					else {
-						sprite_levelexitopen.setPosition(static_cast<float>(x), static_cast<float>(y));
-						window.draw(sprite_levelexitopen);
+						sprite = sprite_levelexitopen;
 					}
 				}
 				else {
-					sprite_floor.setPosition(static_cast<float>(x), static_cast<float>(y));
-					window.draw(sprite_floor);
+					sprite = sprite_floor;
 				}
 			}
+			sprite.setPosition(static_cast<float>(x), static_cast<float>(y));
+			window.draw(sprite);
 
 			if (tile->GetItem() != nullptr) {
 				auto item = tile->GetItem();
 				if (item->GetName() == "Potion of healing") {
-					//Draw a health potion on the tile
+					itemsprite = sprite_healthpotion;
 				}
 				else if (item->GetName() == "Potion of stamina") {
-					//Draw a stamina potion on the tile
+					itemsprite = sprite_staminapotion;
 				}
 				else if (item->GetName() == "Javelin") {
-					//Draw a javelin on the tile
+					itemsprite = sprite_javelin;
 				}
 				else if (item->GetName() == "Bolas") {
-					//Draw bolas on the tile
+					itemsprite = sprite_bolas;
 				}
 				else if (item->GetName() == "Sling") {
-					//Draw a sling on the tile
+					itemsprite = sprite_sling;
 				}
 				else if (item->GetName() == "Round shield") {
-					//Draw a round shield on the tile
+					itemsprite = sprite_roundshield;
 				}
 				else if (item->GetName() == "Heater shield") {
-					//Draw a heater shield on the tile
+					itemsprite = sprite_heatershield;
 				}
 				else if (item->GetName() == "Kite shield") {
-					//Draw a kite shield on the tile
+					itemsprite = sprite_kiteshield;
 				}
 				else if (item->GetName() == "Tower shield") {
-					//Draw a tower shield on the tile
+					itemsprite = sprite_towershield;
 				}
 				else if (item->GetName() == "Shortsword") {
-					//Draw a shortsword on the tile
+					itemsprite = sprite_shortsword;
 				}
 				else if (item->GetName() == "Arming sword") {
-					//Draw an arming sword on the tile
+					itemsprite = sprite_armingsword;
 				}
 				else if (item->GetName() == "Longsword") {
-					//Draw a longsword on the tile
+					itemsprite = sprite_longsword;
 				}
 				else if (item->GetName() == "Hatchet") {
-					//Draw a hatchet on the tile
+					itemsprite = sprite_hatchet;
 				}
 				else if (item->GetName() == "Battleaxe") {
-					//Draw a battleaxe on the tile
+					itemsprite = sprite_battleaxe;
 				}
 				else if (item->GetName() == "Mace") {
-					//Draw a mace on the tile
+					itemsprite = sprite_mace;
 				}
 				else if (item->GetName() == "Warhammer") {
-					//Draw a warhammer on the tile
+					itemsprite = sprite_warhammer;	
 				}
+				itemsprite.setPosition(static_cast<float>(x), static_cast<float>(y));
+				window.draw(itemsprite);
 			}
 		}
 	}
     for (auto enemy : enemyvec) {
+		sf::Sprite enemysprite = sprite_enemybase;
+		sf::Sprite weaponsprite;
+		sf::Sprite statussprite;
 		if (enemy != nullptr) {
 			int xcoord = enemy->GetXCoordinate();
 			int ycoord = enemy->GetYCoordinate();
-			int x = x_orig + (xcoord - 1) * 64;
-			int y = y_orig + (ycoord - 1) * 64;
+			int x = x_orig + (xcoord) * 64;
+			int y = y_orig + (ycoord) * 64;
 			ActionType currentaction = enemy->GetCurrentAction();
 			EnemyAI currentAI = enemy->GetEnemyAI();
 			//Draw the basic black enemy sprite here, the rest is drawn on top of it.
 			if (currentaction == Melee_1) {
 				//Draw the sword
+				weaponsprite = sprite_melee1;
 			}
 			else if (currentaction == Melee_2) {
 				//Draw the warhammer
+				weaponsprite = sprite_melee2;
 			}
 			else if (currentaction == Melee_3) {
 				//Draw the axe
+				weaponsprite = sprite_melee3;
 			}
 			else if (currentaction == Ranged_1) {
 				//Draw the smallest bow
+				weaponsprite = sprite_ranged1;
 			}
 			else if (currentaction == Ranged_2) {
 				//Draw the medium sized bow
+				weaponsprite = sprite_ranged2;
 			}
 			else if (currentaction == Ranged_3) {
 				//Draw the largest bow
+				weaponsprite = sprite_ranged3;
 			}
 			else if (currentaction == Defend_1) {
 				//Draw the shield with number 1
+				weaponsprite = sprite_defense1;
 			}
 			else if (currentaction == Defend_2) {
 				//Draw the shield with number 2
+				weaponsprite = sprite_defense2;
 			}
 			else if (currentaction == Defend_3) {
 				//Draw the shield with number 3
+				weaponsprite = sprite_defense3;
 			}
 			else {
 				//Draw the empty enemy sprite (has zero at top right corner)
+				weaponsprite = sprite_emptyaction;
 			}
 
 			if (enemy->IsStunned()) {
 				//Draw the Stunned AI symbol
+				statussprite = sprite_aistunned;
 			}
 			else if (currentAI == Aggressive) {
 				//Draw the Aggressive AI symbol
+				statussprite = sprite_aiaggressive;
 			}
 			else if (currentAI == Careful) {
 				//Draw the Careful AI symbol
+				statussprite = sprite_aicareful;
 			}
 			else if (currentAI == Random) {
 				//Draw the Random AI symbol
+				statussprite = sprite_airandom;
 			}
 			else {
 				//Draw the Boss AI symbol
+				statussprite = sprite_aiboss;
+			}
+
+			for (auto sprite : {enemysprite, weaponsprite, statussprite}) {
+				sprite.setPosition(static_cast<float>(x), static_cast<float>(y));
+				window.draw(sprite);
 			}
 		}
 	}
 	if (player != nullptr) {
+		sf::Sprite healthsprite;
+		sf::Sprite lvlsprite;
 		int playerxcoord = player->GetXCoordinate();
 		int playerycoord = player->GetYCoordinate();
+		int x = x_orig + (playerxcoord) * 64;
+		int y = y_orig + (playerycoord) * 64;
 		auto inventory = player->GetInventory();
 		int playerhp = player->GetHealthPoints();
 		if (playerhp == 0) {
-			//Draw the health indicator
+			healthsprite = sprite_health0;
 		}
 		else if (playerhp == 1) {
-			//Draw the health indicator
+			healthsprite = sprite_health1;
 		}
 		else if (playerhp == 2) {
-			//Draw the health indicator
+			healthsprite = sprite_health2;
 		}
 		else if (playerhp == 3) {
-			//Draw the health indicator
+			healthsprite = sprite_health3;
 		}
 		else {
-			//Draw the health indicator
+			healthsprite = sprite_health4;
 		}
+		healthsprite.setPosition(static_cast<float>(x), static_cast<float>(y));
+		window.draw(healthsprite);
 
 		if (currentlevel == 1) {
-			//Draw the level indicator
+			lvlsprite = sprite_depth1;
 		}
 		else if (currentlevel == 2) {
-			//Draw the level indicator
+			lvlsprite = sprite_depth2;
 		}
 		else if (currentlevel == 3) {
-			//Draw the level indicator
+			lvlsprite = sprite_depth3;
 		}
 		else if (currentlevel == 4) {
-			//Draw the level indicator
+			lvlsprite = sprite_depth4;
 		}
 		else if (currentlevel == 5) {
-			//Draw the level indicator
+			lvlsprite = sprite_depth5;
 		}
 		else {
-			//Draw the level indicator
+			lvlsprite = sprite_depth6;
 		}
+		lvlsprite.setPosition(static_cast<float>(x), static_cast<float>(y));
+		window.draw(lvlsprite);
 		
 		for (int inventoryindex = 0; inventoryindex < 6; inventoryindex++) {
+			sf::Sprite item;
 			if (!inventory[inventoryindex]->IsEmpty()) {
-				auto invitem = inventory[0]->GetItem();
+				auto invitem = inventory[inventoryindex]->GetItem();
 				if (invitem->GetName() == "Potion of healing") {
-					//Draw a health potion on the player and in the middle inventory slot
+					item = sprite_healthpotion;
 				}
 				else if (invitem->GetName() == "Potion of stamina") {
-					//Draw a stamina potion on the player and in the middle inventory slot
+					item = sprite_staminapotion;
 				}
 				else if (invitem->GetName() == "Javelin") {
-					//Draw a javelin on the player and in the middle inventory slot
+					item = sprite_javelin;
 				}
 				else if (invitem->GetName() == "Bolas") {
-					//Draw bolas on the player and in the middle inventory slot
+					item = sprite_bolas;
 				}
 				else if (invitem->GetName() == "Sling") {
-					//Draw a sling on the player and in the middle inventory slot
+					item = sprite_sling;
 				}
 				else if (invitem->GetName() == "Round shield") {
-					//Draw a round shield on the player and in the middle inventory slot
+					item = sprite_roundshield;
 				}
 				else if (invitem->GetName() == "Heater shield") {
-					//Draw a heater shield on the player and in the middle inventory slot
+					item = sprite_heatershield;
 				}
 				else if (invitem->GetName() == "Kite shield") {
-					//Draw a kite shield on the player and in the middle inventory slot
+					item = sprite_kiteshield;
 				}
 				else if (invitem->GetName() == "Tower shield") {
-					//Draw a tower shield on the player and in the middle inventory slot
+					item = sprite_towershield;
 				}
 				else if (invitem->GetName() == "Shortsword") {
-					//Draw a shortsword on the player and in the middle inventory slot
+					item = sprite_shortsword;
 				}
 				else if (invitem->GetName() == "Arming sword") {
-					//Draw an arming sword on the player and in the middle inventory slot
+					item = sprite_armingsword;
 				}
 				else if (invitem->GetName() == "Longsword") {
-					//Draw a longsword on the player and in the middle inventory slot
+					item = sprite_longsword;
 				}
 				else if (invitem->GetName() == "Hatchet") {
-					//Draw a hatchet on the player and in the middle inventory slot
+					item = sprite_hatchet;
 				}
 				else if (invitem->GetName() == "Battleaxe") {
-					//Draw a battleaxe on the player and in the middle inventory slot
+					item = sprite_battleaxe;
 				}
 				else if (invitem->GetName() == "Mace") {
-					//Draw a mace on the player and in the middle inventory slot
+					item = sprite_mace;
 				}
-				else if (invitem->GetName() == "Warhammer") {
-					//Draw a warhammer on the player and in the middle inventory slot
+				else {
+					item = sprite_warhammer;
 				}
 				
 				if (inventoryindex == 0) {
-				// Top & player tile
+					// Top & player tile
+					item.setPosition(1216, 322);
+					sf::Sprite item2 = item;
+					int x = x_orig + (player->GetXCoordinate())*64;
+					int y = y_orig + (player->GetYCoordinate())*64;
+					item2.setPosition(x, y);
 				}
 				else if (inventoryindex == 1) {
-				// N	
+					// N
+					item.setPosition(1216, 131);	
 				}
 				else if (inventoryindex == 2) {
-				// E
+					// E
+					item.setPosition(1408, 322);
 				}
 				else if (inventoryindex == 3) {
-				// W
+					// W
+					item.setPosition(1024, 322);
 				}
 				else if (inventoryindex == 4) {
-				// S
+					// S
+					item.setPosition(1216, 515);
 				}
 				else {
-				// Bottom
+					// Bottom
+					item.setPosition(1216, 706);
 				}
 				// which index --> position --> sprite
 			}
+			window.draw(item);
 		}
 	}
 	

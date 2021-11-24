@@ -70,11 +70,21 @@ DungeonTile* Character::GetCurrentTile() const {
 }
 
 int Character::GetXCoordinate() const {
-    return currenttile_->GetXCoord();
+    if (currenttile_ != nullptr) {
+        return currenttile_->GetXCoord();
+    }
+    else {
+        return -1;
+    }
 }
 
 int Character::GetYCoordinate() const {
-    return currenttile_->GetYCoord();
+    if (currenttile_ != nullptr) {
+        return currenttile_->GetYCoord();
+    }
+    else {
+        return -1;
+    }
 }
 
 int Character::GetHealthPoints() const {
@@ -109,4 +119,5 @@ bool Character::IsStunned() const {
 
 void Character::MoveToTile(DungeonTile* tile) {
     currenttile_ = tile;
+    currenttile_->SetCharacter();
 }

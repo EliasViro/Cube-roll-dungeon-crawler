@@ -45,7 +45,6 @@ DungeonTile::DungeonTile(TileType tiletype, int xcoord, int ycoord)
         trapstate_ = Dormant;
     }
     else {
-        srand(time(NULL));
         int randomnumber = rand() % 3 + 1;
         if (randomnumber == 1) {
             trapstate_ = Dormant;

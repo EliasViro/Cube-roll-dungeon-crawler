@@ -204,3 +204,189 @@ void PrintTrapTiles(std::vector<DungeonTile*> traptiles) {
     }
 }
 */
+
+
+//#####################################################################################################
+/*
+This function holds a game loop for one room in a dungeon.
+
+bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* player, std::vector<std::vector<Item*>> lootvector) {
+	std::vector<std::vector<DungeonRoom*>> rooms = level.GetRooms();
+	DungeonRoom* currentroom = rooms[level.GetStartPos().first][level.GetStartPos().second];
+    bool lootgiven = false;
+    int randomnumberx = rand() % (level.GetSideLength()); //Random number for loot placement
+    int randomnumbery = rand() % (level.GetSideLength()); //Random number for loot placement
+    for (auto loot : lootvector[depth]) { //Give random rooms loot.
+        while (!lootgiven) {
+            randomnumberx = rand() % (level.GetSideLength());
+            randomnumbery = rand() % (level.GetSideLength());
+            if (rooms[randomnumberx][randomnumbery]->GetIndexInLevel() != currentroom->GetIndexInLevel() && rooms[randomnumberx][randomnumbery].GetLootItem() == nullptr) {
+                rooms[randomnumberx][randomnumbery]->GiveLoot(loot);
+                lootgiven = true;
+            }
+        }
+        lootgiven = false;
+    }
+    int exploredroomscounter = 1;
+    int levelroomcount = level.GetSideLength() * level.GetSideLength();
+    int levelycoord = level.GetStartPos().first;
+    int levelxcoord = level.GetStartPos().second;
+    bool loopbreaker = false;
+    bool combat = false;
+    int enemiesalive = 0;
+    std::vector<Character*> enemyvector = {nullptr};
+    for (auto tilevec : currentroom->GetAllTiles()) {
+        for (auto tile : tilevec) {
+            if (tile->GetTileType() == Entrance) {
+                player->MoveToTile(tile);
+                loopbreaker = true;
+                break;
+            }
+        }
+        if (loopbreaker) {
+            break;
+        }
+    }
+	RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+    //ASK FOR PLAYER INPUT
+
+    //After moving, check if the player is on a door tile. This will move the player to the next room in that direction.
+    if (player->GetCurrenttile() == currentroom->GetAllTiles()[0][5] || player->GetCurrenttile() == currentroom->GetAllTiles()[0][6] ||
+    player->GetCurrenttile() == currentroom->GetAllTiles()[11][5] || player->GetCurrenttile() == currentroom->GetAllTiles()[11][6] ||
+    player->GetCurrenttile() == currentroom->GetAllTiles()[5][11] || player->GetCurrenttile() == currentroom->GetAllTiles()[6][11] ||
+    player->GetCurrenttile() == currentroom->GetAllTiles()[5][0] || player->GetCurrenttile() == currentroom->GetAllTiles()[6][0]) {
+        if (player->GetCurrenttile() == currentroom->GetAllTiles()[0][5]) {
+            player->MoveToTile(currentroom->GetNeighbors()[2]->GetAllTiles()[10][5]);
+            currentroom = currentroom->GetNeighbors()[2];
+        }
+        if (player->GetCurrenttile() == currentroom->GetAllTiles()[0][6]) {
+            player->MoveToTile(currentroom->GetNeighbors()[2]->GetAllTiles()[10][6]);
+            currentroom = currentroom->GetNeighbors()[2];
+        }
+        if (player->GetCurrenttile() == currentroom->GetAllTiles()[11][5]) {
+            player->MoveToTile(currentroom->GetNeighbors()[1]->GetAllTiles()[1][5]);
+            currentroom = currentroom->GetNeighbors()[1];
+        }
+        if (player->GetCurrenttile() == currentroom->GetAllTiles()[11][6]) {
+            player->MoveToTile(currentroom->GetNeighbors()[1]->GetAllTiles()[1][6]);
+            currentroom = currentroom->GetNeighbors()[1];
+        }
+        if (player->GetCurrenttile() == currentroom->GetAllTiles()[5][11]) {
+            player->MoveToTile(currentroom->GetNeighbors()[4]->GetAllTiles()[5][1]);
+            currentroom = currentroom->GetNeighbors()[4];
+        }
+        if (player->GetCurrenttile() == currentroom->GetAllTiles()[6][11]) {
+            player->MoveToTile(currentroom->GetNeighbors()[4]->GetAllTiles()[6][1]);
+            currentroom = currentroom->GetNeighbors()[4];
+        }
+        if (player->GetCurrenttile() == currentroom->GetAllTiles()[5][0]) {
+            player->MoveToTile(currentroom->GetNeighbors()[0]->GetAllTiles()[5][10]);
+            currentroom = currentroom->GetNeighbors()[0];
+        }
+        if (player->GetCurrenttile() == currentroom->GetAllTiles()[6][0]) {
+            player->MoveToTile(currentroom->GetNeighbors()[0]->GetAllTiles()[6][10]);
+            currentroom = currentroom->GetNeighbors()[0];
+        }
+    
+        if (!currentroom->IsExplored()) {
+            exploredroomscounter++;
+            enemyvector.clear();
+            enemyvector = GenerateRoomEnemies(depth);
+            currentroom->SpawnEnemies(enemyvector); //Enemies may be spawned and doors close if there are enemies present.
+            for (auto enemyinvec : enemyvector) {
+                if (enemyinvec != nullptr) {
+                    combat = true; //Combat value is set to true.
+                    enemiesalive++;
+                }
+            }
+        }
+    }
+
+    RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+    if (enemiesalive == 0) {
+        currentroom->OpenDoors();
+        combat = false;
+    }
+
+
+    if (exploredroomscounter == levelroomcount && enemiesalive == 0 && player->GetCurrentTile()->GetTileType() != Exit) {
+        for (auto dungeontilevec : currentroom->GetAllTiles()) {
+            for (auto exittile : dungeontilevec) {
+                if (exittile->GetTileType() == Exit) {
+                    exittile->Open();
+                }
+            }
+        }
+    } //Open level exit
+
+    for (auto traptilevec : currentroom->GetAllTiles()) {
+        for (auto trap : traptilevec) {
+            trap->ProceedTrapState();
+        }
+    }
+
+    RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+
+    for (auto enemy : enemyvector) {
+        if (enemy != nullptr) {
+            if (enemy->GetHealthPoints > 0) {
+                enemy->TakeAction(player);
+            }
+        }
+    }
+    
+    RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+
+
+	return true;
+}
+
+
+
+
+
+//#############################################################################################################
+// This function loops through the six levels of one game instance.
+void LevelLoop(sf::RenderWindow& window) {
+    
+    auto const levels = {1, 2, 3, 4, 5, 6};
+    int sidelength;
+    std::vector<std::vector<Item*>> lootvector = CreateLoot();
+    Character* player = new Player(nullptr);
+    
+    for (int i : levels) {
+        if (i == 1) sidelength = 2;
+        else if (1 < i < 6) sidelength = 3;
+        else sidelength = 4;
+
+		DungeonLevel level(sidelength);
+		bool keeprunning = Level(window, level, i, player, lootvector);
+		if (!keeprunning) break;
+	}
+}
+*/
+/*
+Main game:
+
+1. Create the player character and a pointer to it. Remember starting items.
+3. Create loot vectors of items for each level.
+
+Loop starts from here:
+1. Generate a level
+2. Place the player on the level entrance tile in the starting room. Update graphics.
+3. Ask for player input and move the player accordingly, or allow interacting with the inventory, open the level map etc.
+4. When the player walks to a door tile, move the player to the next room, and if the size of the enemy group next in the enemy vector is larger than zero, spawn enemies and close doors. 
+Update Graphics.
+5. Player moves first (can't walk to inpassable tiles), graphics are updated. The top item is checked for using conditions and possibly used. Player input might be needed in case of multiple
+enemies being in range of a weapon that can only target one enemy at a time. Graphics are updated again.
+6. Traps cycle one step, check if the player tile trap state is Spikes and deal 1 damage if it is. If the player health is reduced to zero, play trap sound and game over. Reduce all item cooldowns.
+7. Enemies move, and after all of them have moved, update graphics and play sounds, including traps. If the player health is reduced to zero, game over.
+8. When all enemies have been defeated, spawn the appropriate loot item from the loot vector if the next item in it isn't a nullptr.
+9. When the player enters the last room of a level, make the level exit visible.
+10. When the enemies of the last room on a level are defeated, open the level exit.
+
+(11. Change the player tile to a storage tile, delete the level and resume loop from step 1.)
+
+REMEMBER TO CHECK INVENTORY SLOT ITEM RETURN VALUE FOR RANGED & MELEE WEAPONS
+IF THE ITEM IS A RANGED WEAPON, RETURN VALUE IS 10
+*/

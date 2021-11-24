@@ -52,6 +52,8 @@ class DungeonRoom {
 
     void GiveLoot(Item* lootitem); //Assigns a new loot item to the room.
 
+    Item* GetLootItem() const; //Returns the room loot item.
+
     void SpawnLoot(); //Spawns loot on a loot tile if the room was given loot when it was created.
 
     void CloseDoors(); //Closes the doors of the room until all enemies have been defeated.

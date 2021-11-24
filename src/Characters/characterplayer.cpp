@@ -10,7 +10,9 @@
 Player::Player(DungeonTile* tile) 
     : Character(PlayerCharacter, 4, tile) {
     inventory_ = {new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr)};
-    tile->SetCharacter();
+    if (tile != nullptr) {
+        tile->SetCharacter();
+    }
 }
 
 std::vector<InventorySlot*> Player::GetInventory() const {
@@ -102,7 +104,7 @@ int Player::MoveToDirection(std::string direction) {
                     }
                 }
             }
-            if (itemintopslot->GetName() == "Potion of healing" && itemoncooldown) {
+            if (itemintopslot->GetName() == "Potion of stamina" && itemoncooldown) {
                 itemreturnval = itemintopslot->Use();
                 if (itemreturnval > 0) {
                     for (auto slot2 : inventory_) {

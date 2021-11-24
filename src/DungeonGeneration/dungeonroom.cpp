@@ -279,12 +279,17 @@ void DungeonRoom::GiveLoot(Item* lootitem) {
     loot_ = lootitem;
 }
 
+Item* DungeonRoom::GetLootItem() const {
+    return loot_;
+}
+
 void DungeonRoom::SpawnLoot() {
     if (loot_ != nullptr) {
         for (auto j : alltiles_) {
             for (auto i : j) {
                 if (i->GetTileType() == Loot) {
                     i->PlaceItem(loot_);
+                    loot_ = nullptr;
                 }
             }
         }

@@ -5,7 +5,7 @@
 //Potions have only one point of durability.
 
 Potion::Potion(const std::string& name, const std::string& description, int effect)
-    : Item(name, description, PotionItem, 1, 1), effect_(effect) {}
+    : Item(name, description, PotionItem, 1, 0), effect_(effect) {}
 
 bool Potion::CanBeUsed() const {
     if ((isactive_)) {

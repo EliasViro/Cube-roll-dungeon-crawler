@@ -51,8 +51,8 @@ Javelin::Javelin() : RangedWeapon("Javelin", "A hefty throwing spear with a shar
 
 
 //Cooldown 7, Damage 0. Thrown. Stunning.
-Bolas::Bolas() : RangedWeapon("Bolas", "A strange throwing weapon consisting of three stone weights attached to each other with rope. The weights wrap around and entangle the target it is thrown at and any enemies next to it, restricting their movement for a short while.", 999, 7, 0, 3, true, true) {}
+Bolas::Bolas() : RangedWeapon("Bolas", "A throwing weapon consisting of weights attached to each other with rope. It stuns the target it is thrown at and any enemies next to it.", 999, 7, 0, 3, true, true) {}
 
 
 //Cooldown 8, Damage 1.
-Sling::Sling() : RangedWeapon("Sling", "A simple piece of leather meant for slinging stones, which means that the ammunition is very plentiful. It takes a while to place a new stone in it though.", 999, 8, 1, 3, false, false) {}
+Sling::Sling() : RangedWeapon("Sling", "A simple piece of leather meant for slinging stones, which means that the ammunition is very plentiful. It takes a while to load though.", 999, 8, 1, 3, false, false) {}

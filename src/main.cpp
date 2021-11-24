@@ -481,6 +481,70 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 	health4_t.loadFromFile("../src/Graphics/GUI_Sprites/Health4.png"); //Health 4 indicator
 	sf::Sprite sprite_health4(health4_t);
 
+	sf::Texture nrzero_t;
+	nrzero_t.loadFromFile("../src/Graphics/GUI_Sprites/0.png"); //0
+	sf::Sprite sprite_nrzero(nrzero_t);
+
+	sf::Texture nrone_t;
+	nrone_t.loadFromFile("../src/Graphics/GUI_Sprites/1.png"); //1
+	sf::Sprite sprite_nrone(nrone_t);
+
+	sf::Texture nrtwo_t;
+	nrtwo_t.loadFromFile("../src/Graphics/GUI_Sprites/2.png"); //2
+	sf::Sprite sprite_nrtwo(nrtwo_t);
+
+	sf::Texture nrthree_t;
+	nrthree_t.loadFromFile("../src/Graphics/GUI_Sprites/3.png"); //3
+	sf::Sprite sprite_nrthree(nrthree_t);
+
+	sf::Texture nrfour_t;
+	nrfour_t.loadFromFile("../src/Graphics/GUI_Sprites/4.png"); //4
+	sf::Sprite sprite_nrfour(nrfour_t);
+
+	sf::Texture nrfive_t;
+	nrfive_t.loadFromFile("../src/Graphics/GUI_Sprites/5.png"); //5
+	sf::Sprite sprite_nrfive(nrfive_t);
+
+	sf::Texture nrsix_t;
+	nrsix_t.loadFromFile("../src/Graphics/GUI_Sprites/6.png"); //6
+	sf::Sprite sprite_nrsix(nrsix_t);
+
+	sf::Texture nrseven_t;
+	nrseven_t.loadFromFile("../src/Graphics/GUI_Sprites/7.png"); //7
+	sf::Sprite sprite_nrseven(nrseven_t);
+
+	sf::Texture nreight_t;
+	nreight_t.loadFromFile("../src/Graphics/GUI_Sprites/8.png"); //8
+	sf::Sprite sprite_nreight(nreight_t);
+
+	sf::Texture nrinf_t;
+	nrinf_t.loadFromFile("../src/Graphics/GUI_Sprites/Inf.png"); //Inf
+	sf::Sprite sprite_nrinf(nrinf_t);
+
+	sf::Texture att_t;
+	att_t.loadFromFile("../src/Graphics/GUI_Sprites/Att.png"); //Att
+	sf::Sprite sprite_att(att_t);
+
+	sf::Texture defse_t;
+	defse_t.loadFromFile("../src/Graphics/GUI_Sprites/Def.png"); //Def
+	sf::Sprite sprite_defse(defse_t);
+
+	sf::Texture coold_t;
+	coold_t.loadFromFile("../src/Graphics/GUI_Sprites/CD.png"); //CD
+	sf::Sprite sprite_coold(coold_t);
+
+	sf::Texture maxcoold_t;
+	maxcoold_t.loadFromFile("../src/Graphics/GUI_Sprites/TCD.png"); //TCD
+	sf::Sprite sprite_maxcoold(maxcoold_t);
+
+	sf::Texture dur_t;
+	dur_t.loadFromFile("../src/Graphics/GUI_Sprites/Dur.png"); //Dur
+	sf::Sprite sprite_dur(dur_t);
+
+	sf::Texture nonum_t;
+	nonum_t.loadFromFile("../src/Graphics/GUI_Sprites/NoNum.png"); //NoNum
+	sf::Sprite sprite_nonum(nonum_t);
+
 	int x_orig = 65;
 	int y_orig = 67;
 	
@@ -724,55 +788,179 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 		
 		for (int inventoryindex = 0; inventoryindex < 6; inventoryindex++) {
 			sf::Sprite item;
+			sf::Sprite attackdefense;
+			sf::Sprite durability;
+			sf::Sprite cooldown;
+			sf::Sprite topcooldown;
+			sf::Sprite durnumber;
+			sf::Sprite attdefnumber;
+			sf::Sprite cdnumber;
+			sf::Sprite topcdnumber;
 			if (!inventory[inventoryindex]->IsEmpty()) {
 				auto invitem = inventory[inventoryindex]->GetItem();
+				durability = sprite_dur;
+				topcooldown = sprite_maxcoold;
+				cooldown = sprite_coold;
+				attackdefense = sprite_nonum;
+				durnumber = sprite_nrinf;
+				if (invitem->GetItemType() == ShieldItem) {
+					attackdefense = sprite_defse;
+					if (invitem->GetDefense() == 0) {
+						attdefnumber = sprite_nrzero;
+					}
+					if (invitem->GetDefense() == 1) {
+						attdefnumber = sprite_nrone;
+					}
+					if (invitem->GetDefense() == 2) {
+						attdefnumber = sprite_nrtwo;
+					}
+					if (invitem->GetDefense() == 3) {
+						attdefnumber = sprite_nrthree;
+					}
+				}
+				if (invitem->GetItemType() == MeleeWeaponItem || invitem->GetItemType() == RangedWeaponItem) {
+					attackdefense = sprite_att;
+					if (invitem->GetDamage() == 0) {
+						attdefnumber = sprite_nrzero;
+					}
+					if (invitem->GetDamage() == 1) {
+						attdefnumber = sprite_nrone;
+					}
+					if (invitem->GetDamage() == 2) {
+						attdefnumber = sprite_nrtwo;
+					}
+					if (invitem->GetDamage() == 3) {
+						attdefnumber = sprite_nrthree;
+					}
+				}
+				if (invitem->GetMaxCoolDown() == 1) {
+					topcdnumber = sprite_nrone;
+				}
+				if (invitem->GetMaxCoolDown() == 2) {
+					topcdnumber = sprite_nrtwo;
+				}
+				if (invitem->GetMaxCoolDown() == 3) {
+					topcdnumber = sprite_nrthree;
+				}
+				if (invitem->GetMaxCoolDown() == 4) {
+					topcdnumber = sprite_nrfour;
+				}
+				if (invitem->GetMaxCoolDown() == 5) {
+					topcdnumber = sprite_nrfive;
+				}
+				if (invitem->GetMaxCoolDown() == 6) {
+					topcdnumber = sprite_nrsix;
+				}
+				if (invitem->GetMaxCoolDown() == 7) {
+					topcdnumber = sprite_nrseven;
+				}
+				if (invitem->GetMaxCoolDown() == 8) {
+					topcdnumber = sprite_nreight;
+				}
+				if (invitem->GetCoolDown() == 0) {
+					cdnumber = sprite_nrzero;
+				}
+				if (invitem->GetCoolDown() == 1) {
+					cdnumber = sprite_nrone;
+				}
+				if (invitem->GetCoolDown() == 2) {
+					cdnumber = sprite_nrtwo;
+				}
+				if (invitem->GetCoolDown() == 3) {
+					cdnumber = sprite_nrthree;
+				}
+				if (invitem->GetCoolDown() == 4) {
+					cdnumber = sprite_nrfour;
+				}
+				if (invitem->GetCoolDown() == 5) {
+					cdnumber = sprite_nrfive;
+				}
+				if (invitem->GetCoolDown() == 6) {
+					cdnumber = sprite_nrsix;
+				}
+				if (invitem->GetCoolDown() == 7) {
+					cdnumber = sprite_nrseven;
+				}
+				if (invitem->GetCoolDown() == 8) {
+					cdnumber = sprite_nreight;
+				}
+
 				if (invitem->GetName() == "Potion of healing") {
 					item = sprite_healthpotion;
+					durability = sprite_dur;
+					topcooldown = sprite_nonum;
+					cooldown = sprite_nonum;
+					durnumber = sprite_nrone;
+					attdefnumber = sprite_nonum;
+					cdnumber = sprite_nonum;
+					topcdnumber = sprite_nonum;
+
 				}
 				else if (invitem->GetName() == "Potion of stamina") {
 					item = sprite_staminapotion;
+					durability = sprite_dur;
+					topcooldown = sprite_nonum;
+					cooldown = sprite_nonum;
+					durnumber = sprite_nrone;
+					attdefnumber = sprite_nonum;
+					cdnumber = sprite_nonum;
+					topcdnumber = sprite_nonum;
 				}
 				else if (invitem->GetName() == "Javelin") {
 					item = sprite_javelin;
+					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Bolas") {
 					item = sprite_bolas;
+					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Sling") {
 					item = sprite_sling;
+					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Round shield") {
 					item = sprite_roundshield;
+					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Heater shield") {
 					item = sprite_heatershield;
+					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Kite shield") {
 					item = sprite_kiteshield;
+					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Tower shield") {
 					item = sprite_towershield;
+					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Shortsword") {
 					item = sprite_shortsword;
+					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Arming sword") {
 					item = sprite_armingsword;
+					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Longsword") {
 					item = sprite_longsword;
+					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Hatchet") {
 					item = sprite_hatchet;
+					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Battleaxe") {
 					item = sprite_battleaxe;
+					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Mace") {
 					item = sprite_mace;
+					durability = sprite_nrinf;
 				}
 				else {
 					item = sprite_warhammer;
+					durability = sprite_nrinf;
 				}
 				
 				if (inventoryindex == 0) {

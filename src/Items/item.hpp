@@ -44,6 +44,8 @@ class Item {
 
     virtual int GetDamage() const {return 0;};
 
+    virtual int GetDefense() const {return 0;};
+
     virtual int GetRange() const {return 0;};
 
     virtual bool IsStunning() const {return false;};

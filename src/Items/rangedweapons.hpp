@@ -32,6 +32,8 @@ class RangedWeapon : public Item {
 
     bool TargetSeveralEnemies() const {return false;};
 
+    int GetDefense() const {return 0;};
+
     protected:
     int range_; //The range of the weapon.
     int damage_; //The damage of the weapon.

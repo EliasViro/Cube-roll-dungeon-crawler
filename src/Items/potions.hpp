@@ -20,6 +20,8 @@ class Potion : public Item {
 
     int GetDamage() const {return 0;};
 
+    int GetDefense() const {return 0;};
+
     int GetRange() const {return 0;};
 
     bool IsStunning() const {return false;};

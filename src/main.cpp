@@ -1037,6 +1037,15 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 
 
 
+//#####################################################################################################
+//
+void CharacterInfo() {
+	
+}
+
+
+
+
 
 //#####################################################################################################
 //This function holds a game loop for one room in a dungeon.

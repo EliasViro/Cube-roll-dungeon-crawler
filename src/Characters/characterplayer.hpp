@@ -23,7 +23,7 @@ class Player : public Character {
 
     bool AddItemToSlot(Item* item); //Attempts to add the item to the first free inventory slot in the player inventory. Returns true if successful.
 
-    int MoveToDirection(std::string direction); //Moves the player to the given direction. Returns true if moving was successful.
+    int MoveToDirection(std::string direction); //Moves the player to the given direction. Returns non-negative value if moving was successful.
 
     void TakeDamage(int damage); //Deals damage to the player.
 

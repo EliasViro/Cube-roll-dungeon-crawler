@@ -1107,9 +1107,9 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 
 	sf::ConvexShape west;
     west.setPointCount(3);
-    west.setPoint(0, sf::Vector2f(884, 448));
-    west.setPoint(1, sf::Vector2f(848, 484));
-	west.setPoint(2, sf::Vector2f(846, 414));
+    west.setPoint(0, sf::Vector2f(12, 448));
+    west.setPoint(1, sf::Vector2f(48, 414));
+	west.setPoint(2, sf::Vector2f(48, 482));
 
 	sf::ConvexShape south;
     south.setPointCount(3);
@@ -1119,17 +1119,17 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 
 	sf::ConvexShape east;
     east.setPointCount(3);
-    east.setPoint(0, sf::Vector2f(12, 448));
-    east.setPoint(1, sf::Vector2f(48, 414));
-	east.setPoint(2, sf::Vector2f(48, 482));
+	east.setPoint(0, sf::Vector2f(884, 448));
+    east.setPoint(1, sf::Vector2f(848, 484));
+	east.setPoint(2, sf::Vector2f(846, 414));
 
 	// Game loop
 	bool run = true;
 	while (run) {
 
 		// Player input loop
-		bool validmove = false;
-		while (!validmove) {
+		int validmove = -1;
+		while (validmove < 0) {
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 				while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
 
@@ -1154,110 +1154,118 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 					std::cout << "button5 pressed" << std::endl;
 				}
 				else if (north.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "north pressed" << std::endl;	
+					std::cout << "north pressed" << std::endl;
+					validmove = player->MoveToDirection("N");
 				}
 				else if (east.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "east pressed" << std::endl;
+					validmove = player->MoveToDirection("E");
 				}
 				else if (south.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "south pressed" << std::endl;
+					validmove = player->MoveToDirection("S");
 				}
 				else if (west.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "west pressed" << std::endl;
+					validmove = player->MoveToDirection("W");				}
+			}
+		}
+
+		if (player->GetCurrentTile()->GetTileType() == Exit && player->GetCurrentTile()->IsOpen()) {
+			RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+			return true;
+		}
+
+		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+
+		//After moving, check if the player is on a door tile. This will move the player to the next room in that direction.
+		if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][5] || player->GetCurrentTile() == currentroom->GetAllTiles()[0][6] ||
+		player->GetCurrentTile() == currentroom->GetAllTiles()[11][5] || player->GetCurrentTile() == currentroom->GetAllTiles()[11][6] ||
+		player->GetCurrentTile() == currentroom->GetAllTiles()[5][11] || player->GetCurrentTile() == currentroom->GetAllTiles()[6][11] ||
+		player->GetCurrentTile() == currentroom->GetAllTiles()[5][0] || player->GetCurrentTile() == currentroom->GetAllTiles()[6][0]) {
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][5]) {
+				player->MoveToTile(currentroom->GetNeighbors()[2]->GetAllTiles()[10][5]);
+				currentroom = currentroom->GetNeighbors()[2];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][6]) {
+				player->MoveToTile(currentroom->GetNeighbors()[2]->GetAllTiles()[10][6]);
+				currentroom = currentroom->GetNeighbors()[2];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[11][5]) {
+				player->MoveToTile(currentroom->GetNeighbors()[1]->GetAllTiles()[1][5]);
+				currentroom = currentroom->GetNeighbors()[1];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[11][6]) {
+				player->MoveToTile(currentroom->GetNeighbors()[1]->GetAllTiles()[1][6]);
+				currentroom = currentroom->GetNeighbors()[1];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[5][11]) {
+				player->MoveToTile(currentroom->GetNeighbors()[4]->GetAllTiles()[5][1]);
+				currentroom = currentroom->GetNeighbors()[4];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[6][11]) {
+				player->MoveToTile(currentroom->GetNeighbors()[4]->GetAllTiles()[6][1]);
+				currentroom = currentroom->GetNeighbors()[4];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[5][0]) {
+				player->MoveToTile(currentroom->GetNeighbors()[0]->GetAllTiles()[5][10]);
+				currentroom = currentroom->GetNeighbors()[0];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[6][0]) {
+				player->MoveToTile(currentroom->GetNeighbors()[0]->GetAllTiles()[6][10]);
+				currentroom = currentroom->GetNeighbors()[0];
+			}
+		
+			if (!currentroom->IsExplored()) {
+				exploredroomscounter++;
+				enemyvector.clear();
+				enemyvector = GenerateRoomEnemies(depth);
+				currentroom->SpawnEnemies(enemyvector); //Enemies may be spawned and doors close if there are enemies present.
+				for (auto enemyinvec : enemyvector) {
+					if (enemyinvec != nullptr) {
+						combat = true; //Combat value is set to true.
+						enemiesalive++;
+					}
 				}
 			}
 		}
+
+		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+		if (enemiesalive == 0) {
+			currentroom->OpenDoors();
+			combat = false;
+		}
+
+
+		if (exploredroomscounter == levelroomcount && enemiesalive == 0 && player->GetCurrentTile()->GetTileType() != Exit) {
+			for (auto dungeontilevec : currentroom->GetAllTiles()) {
+				for (auto exittile : dungeontilevec) {
+					if (exittile->GetTileType() == Exit) {
+						exittile->Open();
+					}
+				}
+			}
+		} //Open level exit
+
+		for (auto traptilevec : currentroom->GetAllTiles()) {
+			for (auto trap : traptilevec) {
+				trap->ProceedTrapState();
+			}
+		}
+
+		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+
+		for (auto enemy : enemyvector) {
+			if (enemy != nullptr) {
+				if (enemy->GetHealthPoints() > 0) {
+					enemy->TakeAction(player, 1);
+				}
+			}
+		}
+		
+		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
 	}
-
-    //After moving, check if the player is on a door tile. This will move the player to the next room in that direction.
-    if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][5] || player->GetCurrentTile() == currentroom->GetAllTiles()[0][6] ||
-    player->GetCurrentTile() == currentroom->GetAllTiles()[11][5] || player->GetCurrentTile() == currentroom->GetAllTiles()[11][6] ||
-    player->GetCurrentTile() == currentroom->GetAllTiles()[5][11] || player->GetCurrentTile() == currentroom->GetAllTiles()[6][11] ||
-    player->GetCurrentTile() == currentroom->GetAllTiles()[5][0] || player->GetCurrentTile() == currentroom->GetAllTiles()[6][0]) {
-        if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][5]) {
-            player->MoveToTile(currentroom->GetNeighbors()[2]->GetAllTiles()[10][5]);
-            currentroom = currentroom->GetNeighbors()[2];
-        }
-        if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][6]) {
-            player->MoveToTile(currentroom->GetNeighbors()[2]->GetAllTiles()[10][6]);
-            currentroom = currentroom->GetNeighbors()[2];
-        }
-        if (player->GetCurrentTile() == currentroom->GetAllTiles()[11][5]) {
-            player->MoveToTile(currentroom->GetNeighbors()[1]->GetAllTiles()[1][5]);
-            currentroom = currentroom->GetNeighbors()[1];
-        }
-        if (player->GetCurrentTile() == currentroom->GetAllTiles()[11][6]) {
-            player->MoveToTile(currentroom->GetNeighbors()[1]->GetAllTiles()[1][6]);
-            currentroom = currentroom->GetNeighbors()[1];
-        }
-        if (player->GetCurrentTile() == currentroom->GetAllTiles()[5][11]) {
-            player->MoveToTile(currentroom->GetNeighbors()[4]->GetAllTiles()[5][1]);
-            currentroom = currentroom->GetNeighbors()[4];
-        }
-        if (player->GetCurrentTile() == currentroom->GetAllTiles()[6][11]) {
-            player->MoveToTile(currentroom->GetNeighbors()[4]->GetAllTiles()[6][1]);
-            currentroom = currentroom->GetNeighbors()[4];
-        }
-        if (player->GetCurrentTile() == currentroom->GetAllTiles()[5][0]) {
-            player->MoveToTile(currentroom->GetNeighbors()[0]->GetAllTiles()[5][10]);
-            currentroom = currentroom->GetNeighbors()[0];
-        }
-        if (player->GetCurrentTile() == currentroom->GetAllTiles()[6][0]) {
-            player->MoveToTile(currentroom->GetNeighbors()[0]->GetAllTiles()[6][10]);
-            currentroom = currentroom->GetNeighbors()[0];
-        }
-    
-        if (!currentroom->IsExplored()) {
-            exploredroomscounter++;
-            enemyvector.clear();
-            enemyvector = GenerateRoomEnemies(depth);
-            currentroom->SpawnEnemies(enemyvector); //Enemies may be spawned and doors close if there are enemies present.
-            for (auto enemyinvec : enemyvector) {
-                if (enemyinvec != nullptr) {
-                    combat = true; //Combat value is set to true.
-                    enemiesalive++;
-                }
-            }
-        }
-    }
-
-    RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
-    if (enemiesalive == 0) {
-        currentroom->OpenDoors();
-        combat = false;
-    }
-
-
-    if (exploredroomscounter == levelroomcount && enemiesalive == 0 && player->GetCurrentTile()->GetTileType() != Exit) {
-        for (auto dungeontilevec : currentroom->GetAllTiles()) {
-            for (auto exittile : dungeontilevec) {
-                if (exittile->GetTileType() == Exit) {
-                    exittile->Open();
-                }
-            }
-        }
-    } //Open level exit
-
-    for (auto traptilevec : currentroom->GetAllTiles()) {
-        for (auto trap : traptilevec) {
-            trap->ProceedTrapState();
-        }
-    }
-
-    RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
-
-    for (auto enemy : enemyvector) {
-        if (enemy != nullptr) {
-            if (enemy->GetHealthPoints() > 0) {
-                enemy->TakeAction(player, 1);
-            }
-        }
-    }
-    
-    RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
-
-
-	return true;
+	return false;
 }
 
 

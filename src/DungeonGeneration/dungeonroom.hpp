@@ -48,6 +48,10 @@ class DungeonRoom {
 
     bool IsExplored() const; //Returns true if the room has been already explored.
 
+    bool IsLastRoomInLevel() const; //Returns true if the room is the last one to be explored in a level.
+
+    void SetLastRoomInLevel(); //Sets the room as the last room in the level.
+
     void SpawnEnemies(std::vector<Character*> enemyvector); //Spawns enemies on Enemy spawning tiles if the room hasn't been explored yet and the player enters the room.
 
     void GiveLoot(Item* lootitem); //Assigns a new loot item to the room.
@@ -67,6 +71,7 @@ class DungeonRoom {
     private:
     std::pair<int, int> indexinlevel_; //The index of the room in the list of Rooms on a level.
     bool hasbeenexplored_; //True if the room has already been explored.
+    bool lastroominlevel_; //True if the room is the last one the player enters.
     Item* loot_; //A pointer to the loot item.
     std::vector<std::vector<DungeonTile*>> alltiles_; // A vector that stores all tiles in the room.
     std::vector<DungeonRoom*> neighbors_; // A vector that stores the neighboring rooms of the room in the order NEWS.

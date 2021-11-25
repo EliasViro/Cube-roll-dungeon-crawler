@@ -1055,6 +1055,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 	std::vector<std::vector<DungeonRoom*>> rooms = level.GetRooms();
 	DungeonRoom* currentroom = rooms[level.GetStartPos().first][level.GetStartPos().second];
     bool lootgiven = false;
+	bool lastroominlevelset = false;
     int randomnumberx = rand() % (level.GetSideLength()); //Random number for loot placement
     int randomnumbery = rand() % (level.GetSideLength()); //Random number for loot placement
     for (auto loot : lootvector[depth]) { //Give random rooms loot.
@@ -1088,7 +1089,6 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
             break;
         }
     }
-	RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
     
 	// Define all game view buttons
 	sf::RectangleShape end_game_button(sf::Vector2f(115, 115));
@@ -1136,7 +1136,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 	// Game loop
 	bool run = true;
 	while (run) {
-
+		RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat);
 		// Player input loop
 		int validmove = -1;
 		while (validmove < 0) {
@@ -1177,14 +1177,9 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 				}
 				else if (west.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "west pressed" << std::endl;
-					validmove = player->MoveToDirection("W");				}
+					validmove = player->MoveToDirection("W");				
+				}
 			}
-		}
-
-		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
-
-		if (player->GetCurrentTile()->GetTileType() == Exit && player->GetCurrentTile()->IsOpen()) {
-			return true;
 		}
 
 		//After moving, check if the player is on a door tile. This will move the player to the next room in that direction.
@@ -1209,12 +1204,12 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 				currentroom = currentroom->GetNeighbors()[1];
 			}
 			if (player->GetCurrentTile() == currentroom->GetAllTiles()[5][11]) {
-				player->MoveToTile(currentroom->GetNeighbors()[4]->GetAllTiles()[5][1]);
-				currentroom = currentroom->GetNeighbors()[4];
+				player->MoveToTile(currentroom->GetNeighbors()[3]->GetAllTiles()[5][1]);
+				currentroom = currentroom->GetNeighbors()[3];
 			}
 			if (player->GetCurrentTile() == currentroom->GetAllTiles()[6][11]) {
-				player->MoveToTile(currentroom->GetNeighbors()[4]->GetAllTiles()[6][1]);
-				currentroom = currentroom->GetNeighbors()[4];
+				player->MoveToTile(currentroom->GetNeighbors()[3]->GetAllTiles()[6][1]);
+				currentroom = currentroom->GetNeighbors()[3];
 			}
 			if (player->GetCurrentTile() == currentroom->GetAllTiles()[5][0]) {
 				player->MoveToTile(currentroom->GetNeighbors()[0]->GetAllTiles()[5][10]);
@@ -1237,14 +1232,23 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 					}
 				}
 			}
+			if (exploredroomscounter == levelroomcount && !lastroominlevelset) {
+				currentroom->SetLastRoomInLevel();
+				lastroominlevelset = true;
+			}
+			continue;
 		}
 
-		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+		RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat);
+
+		if (player->GetCurrentTile()->GetTileType() == Exit && player->GetCurrentTile()->IsOpen()) {
+			return true;
+		}
+
 		if (enemiesalive == 0) {
 			currentroom->OpenDoors();
 			combat = false;
 		}
-
 
 		if (exploredroomscounter == levelroomcount && enemiesalive == 0 && player->GetCurrentTile()->GetTileType() != Exit) {
 			for (auto dungeontilevec : currentroom->GetAllTiles()) {
@@ -1262,7 +1266,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 			}
 		}
 
-		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+		RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat);
 
 		for (auto enemy : enemyvector) {
 			if (enemy != nullptr) {
@@ -1272,7 +1276,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 			}
 		}
 		
-		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+		RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat);
 
 		for (int enemyindex = 0; enemyindex < enemyvector.size(); enemyindex++) {
 			if (enemyvector[enemyindex] != nullptr) {
@@ -1290,7 +1294,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 		}
 		*/
 
-		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+		RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat);
 	}
 	return false;
 }

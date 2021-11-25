@@ -86,11 +86,16 @@ int Player::MoveToDirection(std::string direction) {
             inventory_[4] = tempinventory[0];
             inventory_[5] = tempinventory[4];
         }
+        for (auto slot3 : inventory_) {
+            if (!slot3->IsEmpty()) {
+                slot3->GetItem()->ReduceCoolDown();
+            }
+        }
         auto itemintopslot = inventory_[0]->GetItem();
         int itemreturnval = 0;
         if (itemintopslot != nullptr) {
             if (itemintopslot->GetName() == "Potion of healing" && healthpoints_ < 4) {
-                itemreturnval = itemintopslot->Use();
+                itemreturnval = inventory_[0]->UseItem();
                 if (itemreturnval > 0) {
                     healthpoints_++;
                 }
@@ -98,14 +103,14 @@ int Player::MoveToDirection(std::string direction) {
             bool itemoncooldown = false;
             for (auto slot : inventory_) {
                 if (!slot->IsEmpty()) {
-                    if (slot->GetItem()->GetCoolDown() >= 0) {
+                    if (slot->GetItem()->GetCoolDown() > 0) {
                         itemoncooldown = true;
                         break;
                     }
                 }
             }
             if (itemintopslot->GetName() == "Potion of stamina" && itemoncooldown) {
-                itemreturnval = itemintopslot->Use();
+                itemreturnval = inventory_[0]->UseItem();
                 if (itemreturnval > 0) {
                     for (auto slot2 : inventory_) {
                         if (!slot2->IsEmpty()) {
@@ -121,17 +126,18 @@ int Player::MoveToDirection(std::string direction) {
             }
             if (itemintopslot->GetItemType() == MeleeWeaponItem) {
                 if (currenttile_->GetTileNeighbor("N")->HasCharacter() || currenttile_->GetTileNeighbor("E")->HasCharacter() || currenttile_->GetTileNeighbor("W")->HasCharacter() || currenttile_->GetTileNeighbor("S")->HasCharacter()) {
-                    itemreturnval = itemintopslot->Use();
-                }
-            }
-            for (auto slot3 : inventory_) {
-                if (!slot3->IsEmpty()) {
-                    slot3->GetItem()->ReduceCoolDown();
+                    itemreturnval = inventory_[0]->UseItem();
                 }
             }
         }
         if (currenttile_->GetTrapState() == Emerging) {
             TakeDamage(1);
+        }
+        if (currenttile_->GetItem() != nullptr) {
+            bool success = AddItemToSlot(currenttile_->GetItem());
+            if (success) {
+                currenttile_->PlaceItem(nullptr);
+            }
         }
         return itemreturnval;
     }

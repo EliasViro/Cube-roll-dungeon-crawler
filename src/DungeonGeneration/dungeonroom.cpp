@@ -207,7 +207,7 @@ std::vector<std::vector<DungeonTile*>> CreateTiles(std::vector<std::string> room
 //A room consists of 144 tiles on a 12 x 12 grid.
 
 DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, RoomType roomtype, DoorOrientation doororientation, Item* loot, bool isplayerstartingroom)
-    : indexinlevel_(indexinlevel), hasbeenexplored_(isplayerstartingroom), loot_(loot) {
+    : indexinlevel_(indexinlevel), hasbeenexplored_(isplayerstartingroom), lastroominlevel_(false), loot_(loot) {
         srand(time(NULL));
         std::vector<DungeonRoom*> neighbors_;
         std::fstream roomfile;
@@ -247,6 +247,14 @@ std::vector<std::vector<DungeonTile*>> DungeonRoom::GetAllTiles() const {
 
 bool DungeonRoom::IsExplored() const {
     return hasbeenexplored_;
+}
+
+bool DungeonRoom::IsLastRoomInLevel() const {
+    return lastroominlevel_;
+}
+
+void DungeonRoom::SetLastRoomInLevel() {
+    lastroominlevel_ = true;
 }
 
 void DungeonRoom::SpawnEnemies(std::vector<Character*> enemyvector) {

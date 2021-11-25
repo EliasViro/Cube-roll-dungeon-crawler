@@ -23,22 +23,18 @@
 #include "Items/shields.hpp"
 #include "Items/potions.hpp"
 
+#include "textures.cpp"
 
-
-
-
-// User-specific local paths
-//############################
-// Go into the directory Graphcis/fonts. 
-// Install the fff-forward-regular.ttf font on your local system.
-// Copy the full path of the .ttf in the installation directory and save it into the following variable.
-std::string fff_forward_path = "/home/atte/.local/share/fonts/Unknown Vendor/TrueType/FFF Forward/FFF_Forward_Regular.ttf";
-//############################
 
 // Global variables
 const int gameboard_orig_x = 65;
 const int gameboard_orig_y = 67;
 
+
+
+
+
+//################################################################################################################################################################################
 //A function that generates a vector of five enemies depending on the level the player is on.
 std::vector<Character*> GenerateRoomEnemies(int level) {
 	if (level == 1) {
@@ -259,296 +255,90 @@ std::vector<std::vector<Item*>> CreateLoot() {
 }
 
 
-// This function draws a new room in its initial state.
-void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*>> tile_matrix, bool islastroominlevel, std::vector<Character*> enemyvec, Character* player, int currentlevel, bool combatongoing) {
 
-	//FIRST, CLEAR WINDOW, THEN DRAW UI SPRITE
-	sf::Texture game_texture;
-    game_texture.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
-    sf::Sprite game_view(game_texture);
-	
-	window.clear();
-	window.draw(game_view);
+
+
+//################################################################################################################################################################################
+// This function draws a new room in its initial state.
+void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*>> tile_matrix, bool islastroominlevel, std::vector<Character*> enemyvec, Character* player, int currentlevel, bool combatongoing, Textures textures) {
 
 	// Create all sprites
-	sf::Texture door_closed_t;
-	door_closed_t.loadFromFile("../src/Graphics/TileSprites/DoorClosed.png"); //Closed door
-	sf::Sprite sprite_door_closed(door_closed_t);
-
-	sf::Texture floor_t;
-	floor_t.loadFromFile("../src/Graphics/TileSprites/Floor.png"); //Floor
-	sf::Sprite sprite_floor(floor_t);
-	
-	sf::Texture levelexitclosed_t;
-	levelexitclosed_t.loadFromFile("../src/Graphics/TileSprites/LevelExitClosed.png"); //Closed level exit
-	sf::Sprite sprite_levelexitclosed(levelexitclosed_t);
-
-	sf::Texture levelexitopen_t;
-	levelexitopen_t.loadFromFile("../src/Graphics/TileSprites/LevelExitOpen.png"); //Open level exit
-	sf::Sprite sprite_levelexitopen(levelexitopen_t);
-
-	sf::Texture pit_t;
-	pit_t.loadFromFile("../src/Graphics/TileSprites/Pit.png"); //Pit
-	sf::Sprite sprite_pit(pit_t);
-
-	sf::Texture trap1_t;
-	trap1_t.loadFromFile("../src/Graphics/TileSprites/Trap1.png"); //Trap in Dormant state
-	sf::Sprite sprite_trap1(trap1_t);
-
-	sf::Texture trap2_t;
-	trap2_t.loadFromFile("../src/Graphics/TileSprites/Trap2.png"); //Trap in Emerging state
-	sf::Sprite sprite_trap2(trap2_t);
-
-	sf::Texture trap3_t;
-	trap3_t.loadFromFile("../src/Graphics/TileSprites/Trap3.png"); //Trap in Spikes state
-	sf::Sprite sprite_trap3(trap3_t);
-
-	sf::Texture wall_t;
-	wall_t.loadFromFile("../src/Graphics/TileSprites/Wall.png"); //Wall
-	sf::Sprite sprite_wall(wall_t);
-
-	sf::Texture healthpotion_t;
-	healthpotion_t.loadFromFile("../src/Graphics/ItemSprites/HealthPotion.png"); //Potion of healing
-	sf::Sprite sprite_healthpotion(healthpotion_t);
-
-	sf::Texture staminapotion_t;
-	staminapotion_t.loadFromFile("../src/Graphics/ItemSprites/StaminaPotion.png"); //Potion of stamina
-	sf::Sprite sprite_staminapotion(staminapotion_t);
-
-	sf::Texture shortsword_t;
-	shortsword_t.loadFromFile("../src/Graphics/ItemSprites/ShortSword.png"); //Shortsword
-	sf::Sprite sprite_shortsword(shortsword_t);
-
-	sf::Texture armingsword_t;
-	armingsword_t.loadFromFile("../src/Graphics/ItemSprites/ArmingSword.png"); //Arming sword
-	sf::Sprite sprite_armingsword(armingsword_t);
-
-	sf::Texture longsword_t;
-	longsword_t.loadFromFile("../src/Graphics/ItemSprites/LongSword.png"); //Longsword
-	sf::Sprite sprite_longsword(longsword_t);
-
-	sf::Texture hatchet_t;
-	hatchet_t.loadFromFile("../src/Graphics/ItemSprites/Hatchet.png"); //Hatchet
-	sf::Sprite sprite_hatchet(hatchet_t);
-
-	sf::Texture battleaxe_t;
-	battleaxe_t.loadFromFile("../src/Graphics/ItemSprites/BattleAxe.png"); //Battleaxe
-	sf::Sprite sprite_battleaxe(battleaxe_t);
-
-	sf::Texture mace_t;
-	mace_t.loadFromFile("../src/Graphics/ItemSprites/Mace.png"); //Mace
-	sf::Sprite sprite_mace(mace_t);
-
-	sf::Texture warhammer_t;
-	warhammer_t.loadFromFile("../src/Graphics/ItemSprites/WarHammer.png"); //Warhammer
-	sf::Sprite sprite_warhammer(warhammer_t);
-
-	sf::Texture roundshield_t;
-	roundshield_t.loadFromFile("../src/Graphics/ItemSprites/RoundShield.png"); //Round shield
-	sf::Sprite sprite_roundshield(roundshield_t);
-
-	sf::Texture heatershield_t;
-	heatershield_t.loadFromFile("../src/Graphics/ItemSprites/HeaterShield.png"); //Heater shield
-	sf::Sprite sprite_heatershield(heatershield_t);
-
-	sf::Texture kiteshield_t;
-	kiteshield_t.loadFromFile("../src/Graphics/ItemSprites/KiteShield.png"); //Kite shield
-	sf::Sprite sprite_kiteshield(kiteshield_t);
-
-	sf::Texture towershield_t;
-	towershield_t.loadFromFile("../src/Graphics/ItemSprites/TowerShield.png"); //Tower shield
-	sf::Sprite sprite_towershield(towershield_t);
-
-	sf::Texture sling_t;
-	sling_t.loadFromFile("../src/Graphics/ItemSprites/Sling.png"); //Sling
-	sf::Sprite sprite_sling(sling_t);
-
-	sf::Texture bolas_t;
-	bolas_t.loadFromFile("../src/Graphics/ItemSprites/Bolas.png"); //Bolas
-	sf::Sprite sprite_bolas(bolas_t);
-
-	sf::Texture javelin_t;
-	javelin_t.loadFromFile("../src/Graphics/ItemSprites/Javelin.png"); //Javelin
-	sf::Sprite sprite_javelin(javelin_t);
-
-	sf::Texture aiaggressive_t;
-	aiaggressive_t.loadFromFile("../src/Graphics/CharacterSprites/AI_Aggressive.png"); //Aggressive AI
-	sf::Sprite sprite_aiaggressive(aiaggressive_t);
-
-	sf::Texture aicareful_t;
-	aicareful_t.loadFromFile("../src/Graphics/CharacterSprites/AI_Careful.png"); //Careful AI
-	sf::Sprite sprite_aicareful(aicareful_t);
-
-	sf::Texture aiboss_t;
-	aiboss_t.loadFromFile("../src/Graphics/CharacterSprites/AI_Boss.png"); //Boss AI
-	sf::Sprite sprite_aiboss(aiboss_t);
-
-	sf::Texture airandom_t;
-	airandom_t.loadFromFile("../src/Graphics/CharacterSprites/AI_Random.png"); //Random AI
-	sf::Sprite sprite_airandom(airandom_t);
-
-	sf::Texture aistunned_t;
-	aistunned_t.loadFromFile("../src/Graphics/CharacterSprites/AI_Stunned.png"); //Stunned character
-	sf::Sprite sprite_aistunned(aistunned_t);
-
-	sf::Texture defense1_t;
-	defense1_t.loadFromFile("../src/Graphics/CharacterSprites/Defense1.png"); //Defense 1
-	sf::Sprite sprite_defense1(defense1_t);
-
-	sf::Texture defense2_t;
-	defense2_t.loadFromFile("../src/Graphics/CharacterSprites/Defense2.png"); //Defense 2
-	sf::Sprite sprite_defense2(defense2_t);
-
-	sf::Texture defense3_t;
-	defense3_t.loadFromFile("../src/Graphics/CharacterSprites/Defense3.png"); //Defense 3
-	sf::Sprite sprite_defense3(defense3_t);
-
-	sf::Texture melee1_t;
-	melee1_t.loadFromFile("../src/Graphics/CharacterSprites/Melee1.png"); //Melee 1
-	sf::Sprite sprite_melee1(melee1_t);
-
-	sf::Texture melee2_t;
-	melee2_t.loadFromFile("../src/Graphics/CharacterSprites/Melee2.png"); //Melee 2
-	sf::Sprite sprite_melee2(melee2_t);
-
-	sf::Texture melee3_t;
-	melee3_t.loadFromFile("../src/Graphics/CharacterSprites/Melee3.png"); //Melee 3
-	sf::Sprite sprite_melee3(melee3_t);
-
-	sf::Texture ranged1_t;
-	ranged1_t.loadFromFile("../src/Graphics/CharacterSprites/Ranged1.png"); //Ranged 1
-	sf::Sprite sprite_ranged1(ranged1_t);
-
-	sf::Texture ranged2_t;
-	ranged2_t.loadFromFile("../src/Graphics/CharacterSprites/Ranged2.png"); //Ranged 2
-	sf::Sprite sprite_ranged2(ranged2_t);
-
-	sf::Texture ranged3_t;
-	ranged3_t.loadFromFile("../src/Graphics/CharacterSprites/Ranged3.png"); //Ranged 3
-	sf::Sprite sprite_ranged3(ranged3_t);
-
-	sf::Texture emptyaction_t;
-	emptyaction_t.loadFromFile("../src/Graphics/CharacterSprites/Empty.png"); //Empty action
-	sf::Sprite sprite_emptyaction(emptyaction_t);
-
-	sf::Texture enemybase_t;
-	enemybase_t.loadFromFile("../src/Graphics/CharacterSprites/Enemy.png"); //Enemy base tile
-	sf::Sprite sprite_enemybase(enemybase_t);
-
-	sf::Texture playerbase_t;
-	playerbase_t.loadFromFile("../src/Graphics/CharacterSprites/Player.png"); //Player base tile
-	sf::Sprite sprite_playerbase(playerbase_t);
-
-	sf::Texture depth1_t;
-	depth1_t.loadFromFile("../src/Graphics/GUI_Sprites/Depth1.png"); //Depth 1 indicator
-	sf::Sprite sprite_depth1(depth1_t);
-
-	sf::Texture depth2_t;
-	depth2_t.loadFromFile("../src/Graphics/GUI_Sprites/Depth2.png"); //Depth 2 indicator
-	sf::Sprite sprite_depth2(depth2_t);
-
-	sf::Texture depth3_t;
-	depth3_t.loadFromFile("../src/Graphics/GUI_Sprites/Depth3.png"); //Depth 3 indicator
-	sf::Sprite sprite_depth3(depth3_t);
-
-	sf::Texture depth4_t;
-	depth4_t.loadFromFile("../src/Graphics/GUI_Sprites/Depth4.png"); //Depth 4 indicator
-	sf::Sprite sprite_depth4(depth4_t);
-
-	sf::Texture depth5_t;
-	depth5_t.loadFromFile("../src/Graphics/GUI_Sprites/Depth5.png"); //Depth 5 indicator
-	sf::Sprite sprite_depth5(depth5_t);
-
-	sf::Texture depth6_t;
-	depth6_t.loadFromFile("../src/Graphics/GUI_Sprites/Depth6.png"); //Depth 6 indicator
-	sf::Sprite sprite_depth6(depth6_t);
-
-	sf::Texture health0_t;
-	health0_t.loadFromFile("../src/Graphics/GUI_Sprites/Health0.png"); //Health 0 indicator
-	sf::Sprite sprite_health0(health0_t);
-
-	sf::Texture health1_t;
-	health1_t.loadFromFile("../src/Graphics/GUI_Sprites/Health1.png"); //Health 1 indicator
-	sf::Sprite sprite_health1(health1_t);
-
-	sf::Texture health2_t;
-	health2_t.loadFromFile("../src/Graphics/GUI_Sprites/Health2.png"); //Health 2 indicator
-	sf::Sprite sprite_health2(health2_t);
-
-	sf::Texture health3_t;
-	health3_t.loadFromFile("../src/Graphics/GUI_Sprites/Health3.png"); //Health 3 indicator
-	sf::Sprite sprite_health3(health3_t);
-
-	sf::Texture health4_t;
-	health4_t.loadFromFile("../src/Graphics/GUI_Sprites/Health4.png"); //Health 4 indicator
-	sf::Sprite sprite_health4(health4_t);
-
-	sf::Texture nrzero_t;
-	nrzero_t.loadFromFile("../src/Graphics/GUI_Sprites/0.png"); //0
-	sf::Sprite sprite_nrzero(nrzero_t);
-
-	sf::Texture nrone_t;
-	nrone_t.loadFromFile("../src/Graphics/GUI_Sprites/1.png"); //1
-	sf::Sprite sprite_nrone(nrone_t);
-
-	sf::Texture nrtwo_t;
-	nrtwo_t.loadFromFile("../src/Graphics/GUI_Sprites/2.png"); //2
-	sf::Sprite sprite_nrtwo(nrtwo_t);
-
-	sf::Texture nrthree_t;
-	nrthree_t.loadFromFile("../src/Graphics/GUI_Sprites/3.png"); //3
-	sf::Sprite sprite_nrthree(nrthree_t);
-
-	sf::Texture nrfour_t;
-	nrfour_t.loadFromFile("../src/Graphics/GUI_Sprites/4.png"); //4
-	sf::Sprite sprite_nrfour(nrfour_t);
-
-	sf::Texture nrfive_t;
-	nrfive_t.loadFromFile("../src/Graphics/GUI_Sprites/5.png"); //5
-	sf::Sprite sprite_nrfive(nrfive_t);
-
-	sf::Texture nrsix_t;
-	nrsix_t.loadFromFile("../src/Graphics/GUI_Sprites/6.png"); //6
-	sf::Sprite sprite_nrsix(nrsix_t);
-
-	sf::Texture nrseven_t;
-	nrseven_t.loadFromFile("../src/Graphics/GUI_Sprites/7.png"); //7
-	sf::Sprite sprite_nrseven(nrseven_t);
-
-	sf::Texture nreight_t;
-	nreight_t.loadFromFile("../src/Graphics/GUI_Sprites/8.png"); //8
-	sf::Sprite sprite_nreight(nreight_t);
-
-	sf::Texture nrinf_t;
-	nrinf_t.loadFromFile("../src/Graphics/GUI_Sprites/Inf.png"); //Inf
-	sf::Sprite sprite_nrinf(nrinf_t);
-
-	sf::Texture att_t;
-	att_t.loadFromFile("../src/Graphics/GUI_Sprites/Att.png"); //Att
-	sf::Sprite sprite_att(att_t);
-
-	sf::Texture defse_t;
-	defse_t.loadFromFile("../src/Graphics/GUI_Sprites/Def.png"); //Def
-	sf::Sprite sprite_defse(defse_t);
-
-	sf::Texture coold_t;
-	coold_t.loadFromFile("../src/Graphics/GUI_Sprites/CD.png"); //CD
-	sf::Sprite sprite_coold(coold_t);
-
-	sf::Texture maxcoold_t;
-	maxcoold_t.loadFromFile("../src/Graphics/GUI_Sprites/TCD.png"); //TCD
-	sf::Sprite sprite_maxcoold(maxcoold_t);
-
-	sf::Texture dur_t;
-	dur_t.loadFromFile("../src/Graphics/GUI_Sprites/Dur.png"); //Dur
-	sf::Sprite sprite_dur(dur_t);
-
-	sf::Texture nonum_t;
-	nonum_t.loadFromFile("../src/Graphics/GUI_Sprites/NoNum.png"); //NoNum
-	sf::Sprite sprite_nonum(nonum_t);
+	sf::Sprite game_view(textures.game_view);
+	sf::Sprite sprite_door_closed(textures.door_closed);
+	sf::Sprite sprite_floor(textures.floor);
+	sf::Sprite sprite_levelexitclosed(textures.levelexitclosed);
+	sf::Sprite sprite_levelexitopen(textures.levelexitopen);
+	sf::Sprite sprite_pit(textures.pit);
+	sf::Sprite sprite_trap1(textures.trap1);
+	sf::Sprite sprite_trap2(textures.trap2);
+	sf::Sprite sprite_trap3(textures.trap3);
+	sf::Sprite sprite_wall(textures.wall);
+	sf::Sprite sprite_healthpotion(textures.healthpotion);
+	sf::Sprite sprite_staminapotion(textures.staminapotion);
+	sf::Sprite sprite_shortsword(textures.shortsword);
+	sf::Sprite sprite_armingsword(textures.armingsword);
+	sf::Sprite sprite_longsword(textures.longsword);
+	sf::Sprite sprite_hatchet(textures.hatchet);
+	sf::Sprite sprite_battleaxe(textures.battleaxe);
+	sf::Sprite sprite_mace(textures.mace);
+	sf::Sprite sprite_warhammer(textures.warhammer);
+	sf::Sprite sprite_roundshield(textures.roundshield);
+	sf::Sprite sprite_heatershield(textures.heatershield);
+	sf::Sprite sprite_kiteshield(textures.kiteshield);
+	sf::Sprite sprite_towershield(textures.towershield);
+	sf::Sprite sprite_sling(textures.sling);
+	sf::Sprite sprite_bolas(textures.bolas);
+	sf::Sprite sprite_javelin(textures.javelin);
+	sf::Sprite sprite_aiaggressive(textures.aiaggressive);
+	sf::Sprite sprite_aicareful(textures.aicareful);
+	sf::Sprite sprite_aiboss(textures.aiboss);
+	sf::Sprite sprite_airandom(textures.airandom);
+	sf::Sprite sprite_aistunned(textures.aistunned);
+	sf::Sprite sprite_defense1(textures.defense1);
+	sf::Sprite sprite_defense2(textures.defense2);
+	sf::Sprite sprite_defense3(textures.defense3);
+	sf::Sprite sprite_melee1(textures.melee1);
+	sf::Sprite sprite_melee2(textures.melee2);
+	sf::Sprite sprite_melee3(textures.melee3);
+	sf::Sprite sprite_ranged1(textures.ranged1);
+	sf::Sprite sprite_ranged2(textures.ranged2);
+	sf::Sprite sprite_ranged3(textures.ranged3);
+	sf::Sprite sprite_emptyaction(textures.emptyaction);
+	sf::Sprite sprite_enemybase(textures.enemybase);
+	sf::Sprite sprite_playerbase(textures.playerbase);
+	sf::Sprite sprite_depth1(textures.depth1);
+	sf::Sprite sprite_depth2(textures.depth2);
+	sf::Sprite sprite_depth3(textures.depth3);
+	sf::Sprite sprite_depth4(textures.depth4);
+	sf::Sprite sprite_depth5(textures.depth5);
+	sf::Sprite sprite_depth6(textures.depth6);
+	sf::Sprite sprite_health0(textures.health0);
+	sf::Sprite sprite_health1(textures.health1);
+	sf::Sprite sprite_health2(textures.health2);
+	sf::Sprite sprite_health3(textures.health3);
+	sf::Sprite sprite_health4(textures.health4);
+	sf::Sprite sprite_nrzero(textures.nrzero);
+	sf::Sprite sprite_nrone(textures.nrone);
+	sf::Sprite sprite_nrtwo(textures.nrtwo);
+	sf::Sprite sprite_nrthree(textures.nrthree);
+	sf::Sprite sprite_nrfour(textures.nrfour);
+	sf::Sprite sprite_nrfive(textures.nrfive);
+	sf::Sprite sprite_nrsix(textures.nrsix);
+	sf::Sprite sprite_nrseven(textures.nrseven);
+	sf::Sprite sprite_nreight(textures.nreight);
+	sf::Sprite sprite_nrinf(textures.nrinf);
+	sf::Sprite sprite_att(textures.att);
+	sf::Sprite sprite_defse(textures.defse);
+	sf::Sprite sprite_coold(textures.coold);
+	sf::Sprite sprite_maxcoold(textures.maxcoold);
+	sf::Sprite sprite_dur(textures.dur);
+	sf::Sprite sprite_nonum(textures.nonum);
 
 	int x_orig = 65;
 	int y_orig = 67;
+
+	window.clear();
+	window.draw(game_view);
 	
 	for (std::vector<DungeonTile*> i : tile_matrix) {
 		for (DungeonTile* tile : i) {
@@ -1039,10 +829,10 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 
 
 
-//#####################################################################################################
+//################################################################################################################################################################################
 //
 // info location x:188 y:263
-void CharacterInfo(sf::RenderWindow&) {
+/*void CharacterInfo(sf::RenderWindow&) {
 	sf::Texture hugeslimeinfo;
 	hugeslimeinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/HugeSlimeInfo.png");
 	sf::Sprite sprite_HugeSlimeInfo(hugeslimeinfo);
@@ -1055,15 +845,15 @@ void CharacterInfo(sf::RenderWindow&) {
 
 void ItemInfo() {
 
-}
+}*/
 
 
 
 
 
-//#####################################################################################################
+//################################################################################################################################################################################
 //This function holds a game loop for one room in a dungeon.
-bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* player, std::vector<std::vector<Item*>> lootvector) {
+bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* player, std::vector<std::vector<Item*>> lootvector, Textures textures) {
 	std::vector<std::vector<DungeonRoom*>> rooms = level.GetRooms();
 	DungeonRoom* currentroom = rooms[level.GetStartPos().first][level.GetStartPos().second];
     bool lootgiven = false;
@@ -1100,7 +890,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
             break;
         }
     }
-	RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+	RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat, textures);
     
 	// Define all game view buttons
 	sf::RectangleShape end_game_button(sf::Vector2f(115, 115));
@@ -1152,6 +942,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 		// Player input loop
 		int validmove = -1;
 		while (validmove < 0) {
+			
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 				while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
 
@@ -1191,9 +982,31 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 					std::cout << "west pressed" << std::endl;
 					validmove = player->MoveToDirection("W");				}
 			}
+
+			if (sf::Keyboard::isKeyPressed) {
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
+				while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) continue;
+				validmove = player->MoveToDirection("N");
+				}
+
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
+					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) continue;
+					validmove = player->MoveToDirection("W");
+				}
+
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
+					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) continue;
+					validmove = player->MoveToDirection("S");
+				}
+
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
+					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) continue;
+					validmove = player->MoveToDirection("E");
+				}
+			}
 		}
 
-		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat, textures);
 
 		if (player->GetCurrentTile()->GetTileType() == Exit && player->GetCurrentTile()->IsOpen()) {
 			return true;
@@ -1251,7 +1064,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 			}
 		}
 
-		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat, textures);
 		if (enemiesalive == 0) {
 			currentroom->OpenDoors();
 			combat = false;
@@ -1274,7 +1087,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 			}
 		}
 
-		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat, textures);
 
 		for (auto enemy : enemyvector) {
 			if (enemy != nullptr) {
@@ -1284,7 +1097,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 			}
 		}
 		
-		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat, textures);
 
 		for (int enemyindex = 0; enemyindex < enemyvector.size(); enemyindex++) {
 			if (enemyvector[enemyindex] != nullptr) {
@@ -1302,7 +1115,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 		}
 		*/
 
-		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat, textures);
 	}
 	return false;
 }
@@ -1311,9 +1124,9 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 
 
 
-//#############################################################################################################
+//################################################################################################################################################################################
 // This function loops through the six levels of one game instance.
-void LevelLoop(sf::RenderWindow& window) {
+void LevelLoop(sf::RenderWindow& window, Textures textures) {
     
     auto const levels = {1, 2, 3, 4, 5, 6};
     int sidelength;
@@ -1326,44 +1139,16 @@ void LevelLoop(sf::RenderWindow& window) {
         else sidelength = 4;
 
 		DungeonLevel level(sidelength);
-		bool keeprunning = Level(window, level, i, player, lootvector);
+		bool keeprunning = Level(window, level, i, player, lootvector, textures);
 		if (!keeprunning) break;
 	}
 }
 
 
-void testsignal(sf::RenderWindow& window) {
-	sf::RectangleShape test_button(sf::Vector2f(115, 115));
-    test_button.setPosition(1,1);
-
-	sf::ConvexShape quit_button;
-    quit_button.setPointCount(4);
-    quit_button.setPoint(0, sf::Vector2f(500, 261));
-    quit_button.setPoint(1, sf::Vector2f(782, 399));
-    quit_button.setPoint(2, sf::Vector2f(782, 743));
-    quit_button.setPoint(3, sf::Vector2f(500, 597));
-	
-	bool run = true;
-	while (run) {
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
-
-			sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-			if (test_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				std::cout << "test button pressed" << std::endl;
-			}
-			else if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				std::cout << "quit button pressed" << std::endl;
-				break;
-		}
-	}
-
-}
-return;
-}
 
 
-//#################################################################################################################
+
+//################################################################################################################################################################################
 // This is a main function that creates the renderwindow and holds the application loop
 int main() {
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Dungeon Crawler", sf::Style::Close);
@@ -1371,6 +1156,8 @@ int main() {
 	auto desktop = sf::VideoMode::getDesktopMode();
 	sf::Vector2i posvec(desktop.width/2 - window.getSize().x/2, desktop.height/2 - window.getSize().y/2);
 	window.setPosition(posvec);
+
+	Textures textures;
     
     // Start menu items
     sf::Texture menu_texture;
@@ -1398,12 +1185,6 @@ int main() {
     instructions_button.setPoint(2, sf::Vector2f(1085, 235));
     instructions_button.setPoint(3, sf::Vector2f(799, 375));
 
-	// Game view items
-	/*sf::Texture game_texture;
-    game_texture.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
-    sf::Sprite game_view(game_texture);*/
-
-
     /*
     sf::Music start_music;
     start_music.openFromFile("../src/Sounds/Music/Placeholder.ogg");
@@ -1420,34 +1201,6 @@ int main() {
 	};
 
 	AppState state = MainMenu;
-	
-
-
-
-	//##################
-	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-		if (test_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-			bool pressed = true;
-			while (pressed) {
-				if (pressed) continue;
-				else
-				{
-					std::cout << "haha" << std::endl;
-					pressed = true;
-					std::cout << pressed;
-				}
-				continue;
-			}
-			pressed = false;
-		}
-		        
-    }*/
-    
-	
-	//##################
-
-
 
 	// The main application loop
     while (window.isOpen())
@@ -1465,12 +1218,9 @@ int main() {
 				}
 				else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "Start button pressed" << std::endl;
-					//testsignal(window);
 					state = Game;
 					window.clear();
-					//window.draw(game_view);
-					//window.display();
-					LevelLoop(window);
+					LevelLoop(window, textures);
 					window.clear();
 					window.draw(main_menu);
 					window.display();
@@ -1480,44 +1230,6 @@ int main() {
 					std::cout << "Instructions button pressed" << std::endl;
 				}
 			}
-			
-			/*else if (state == Game) {
-				if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-					if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "game exit button pressed" << std::endl;
-						return false;
-					}
-					else if (button1.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "button1 pressed" << std::endl;
-					}
-					else if (button2.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "button2 pressed" << std::endl;
-					}
-					else if (button3.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "button3 pressed" << std::endl;
-					}
-					else if (button4.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "button4 pressed" << std::endl;
-					}
-					else if (button5.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "button5 pressed" << std::endl;
-					}
-					else if (north.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "north pressed" << std::endl;
-						
-					}
-					else if (east.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "east pressed" << std::endl;
-					}
-					else if (south.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "south pressed" << std::endl;
-					}
-					else if (west.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						std::cout << "west pressed" << std::endl;
-					}
-        		}
-    		}*/
 		}
 	}
 
@@ -1560,32 +1272,3 @@ enemies being in range of a weapon that can only target one enemy at a time. Gra
 REMEMBER TO CHECK INVENTORY SLOT ITEM RETURN VALUE FOR RANGED & MELEE WEAPONS
 IF THE ITEM IS A RANGED WEAPON, RETURN VALUE IS 10
 */
-
-
-
-
-
-// #################################### Old stuff ####################################################
-    /*
-    sf::RectangleShape quit_button(sf::Vector2f(300, 100));
-    quit_button.setOrigin(quit_button.getLocalBounds().width/2, quit_button.getLocalBounds().height/2);
-    quit_button.setPosition(800, 600);
-    quit_button.setFillColor(sf::Color::Magenta);
-    
-    sf::RectangleShape start_button(sf::Vector2f(360, 120));
-    start_button.setOrigin(start_button.getLocalBounds().width/2, start_button.getLocalBounds().height/2);
-    start_button.setPosition(800, 300);
-    start_button.setFillColor(sf::Color::Cyan);
-
-    sf::Font pixel_font;
-    pixel_font.loadFromFile(fff_forward_path);
-
-    sf::Text quit_text("Quit", pixel_font, 30);
-    quit_text.setOrigin(quit_text.getLocalBounds().width/2, quit_text.getLocalBounds().height/2 - 10);
-    quit_text.setPosition(quit_button.getPosition());
-
-    sf::Text start_text("Start game", pixel_font, 40);
-    start_text.setOrigin(start_text.getLocalBounds().width/2, start_text.getLocalBounds().height/2 - 10);
-    start_text.setPosition(start_button.getPosition());
-    */
-   // ####################################################################################################

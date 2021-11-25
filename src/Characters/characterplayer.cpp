@@ -1,5 +1,5 @@
 #include "characterplayer.hpp"
-
+#include <iostream>
 
 
 //The character that represents the player on the game board.
@@ -9,7 +9,7 @@
 
 Player::Player(DungeonTile* tile) 
     : Character(PlayerCharacter, 4, tile) {
-    inventory_ = {new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr)};
+    inventory_ = {new InventorySlot(new ShortSword()), new InventorySlot(new RoundShield()), new InventorySlot(new WarHammer()), new InventorySlot(new ArmingSword()), new InventorySlot(new HandAxe()), new InventorySlot(new HealthPotion())};
     if (tile != nullptr) {
         tile->SetCharacter();
     }
@@ -61,6 +61,7 @@ int Player::MoveToDirection(std::string direction) {
             inventory_[3] = tempinventory[3];
             inventory_[4] = tempinventory[5];
             inventory_[5] = tempinventory[1];
+            std::cout << "North movement" << std::endl;
         }
         else if (direction == "E") {
             inventory_[0] = tempinventory[2];
@@ -69,6 +70,7 @@ int Player::MoveToDirection(std::string direction) {
             inventory_[3] = tempinventory[5];
             inventory_[4] = tempinventory[4];
             inventory_[5] = tempinventory[3];
+            std::cout << "East movement" << std::endl;
         }
         else if (direction == "W") {
             inventory_[0] = tempinventory[3];
@@ -77,6 +79,7 @@ int Player::MoveToDirection(std::string direction) {
             inventory_[3] = tempinventory[0];
             inventory_[4] = tempinventory[1];
             inventory_[5] = tempinventory[2];
+            std::cout << "West movement" << std::endl;
         }
         else {
             inventory_[0] = tempinventory[1];
@@ -85,12 +88,19 @@ int Player::MoveToDirection(std::string direction) {
             inventory_[3] = tempinventory[3];
             inventory_[4] = tempinventory[0];
             inventory_[5] = tempinventory[4];
+            std::cout << "South movement" << std::endl;
+
+        }
+        for (auto slot3 : inventory_) {
+            if (!slot3->IsEmpty()) {
+                slot3->GetItem()->ReduceCoolDown();
+            }
         }
         auto itemintopslot = inventory_[0]->GetItem();
         int itemreturnval = 0;
         if (itemintopslot != nullptr) {
             if (itemintopslot->GetName() == "Potion of healing" && healthpoints_ < 4) {
-                itemreturnval = itemintopslot->Use();
+                itemreturnval = inventory_[0]->UseItem();
                 if (itemreturnval > 0) {
                     healthpoints_++;
                 }
@@ -98,14 +108,14 @@ int Player::MoveToDirection(std::string direction) {
             bool itemoncooldown = false;
             for (auto slot : inventory_) {
                 if (!slot->IsEmpty()) {
-                    if (slot->GetItem()->GetCoolDown() >= 0) {
+                    if (slot->GetItem()->GetCoolDown() > 0) {
                         itemoncooldown = true;
                         break;
                     }
                 }
             }
             if (itemintopslot->GetName() == "Potion of stamina" && itemoncooldown) {
-                itemreturnval = itemintopslot->Use();
+                itemreturnval = inventory_[0]->UseItem();
                 if (itemreturnval > 0) {
                     for (auto slot2 : inventory_) {
                         if (!slot2->IsEmpty()) {
@@ -121,17 +131,18 @@ int Player::MoveToDirection(std::string direction) {
             }
             if (itemintopslot->GetItemType() == MeleeWeaponItem) {
                 if (currenttile_->GetTileNeighbor("N")->HasCharacter() || currenttile_->GetTileNeighbor("E")->HasCharacter() || currenttile_->GetTileNeighbor("W")->HasCharacter() || currenttile_->GetTileNeighbor("S")->HasCharacter()) {
-                    itemreturnval = itemintopslot->Use();
-                }
-            }
-            for (auto slot3 : inventory_) {
-                if (!slot3->IsEmpty()) {
-                    slot3->GetItem()->ReduceCoolDown();
+                    itemreturnval = inventory_[0]->UseItem();
                 }
             }
         }
         if (currenttile_->GetTrapState() == Emerging) {
             TakeDamage(1);
+        }
+        if (currenttile_->GetItem() != nullptr) {
+            bool success = AddItemToSlot(currenttile_->GetItem());
+            if (success) {
+                currenttile_->PlaceItem(nullptr);
+            }
         }
         return itemreturnval;
     }

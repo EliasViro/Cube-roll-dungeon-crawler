@@ -1090,7 +1090,6 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
     }
 	RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
     
-	// FOO
 	// Define all game view buttons
 	sf::RectangleShape end_game_button(sf::Vector2f(115, 115));
     end_game_button.setPosition(1415, 712);
@@ -1182,12 +1181,11 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 			}
 		}
 
+		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+
 		if (player->GetCurrentTile()->GetTileType() == Exit && player->GetCurrentTile()->IsOpen()) {
-			RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
 			return true;
 		}
-
-		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
 
 		//After moving, check if the player is on a door tile. This will move the player to the next room in that direction.
 		if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][5] || player->GetCurrentTile() == currentroom->GetAllTiles()[0][6] ||
@@ -1274,6 +1272,24 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 			}
 		}
 		
+		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
+
+		for (int enemyindex = 0; enemyindex < enemyvector.size(); enemyindex++) {
+			if (enemyvector[enemyindex] != nullptr) {
+				if (enemyvector[enemyindex]->GetHealthPoints() <= 0) {
+					enemyvector[enemyindex] = nullptr;
+					enemiesalive--;
+				}
+			}
+		}
+
+		/*
+		if (player->GetHealthPoints() <= 0) {
+			//GAME OVER
+			return false;
+		}
+		*/
+
 		RenderScreen(window, currentroom->GetAllTiles(), false, enemyvector, player, depth, combat);
 	}
 	return false;

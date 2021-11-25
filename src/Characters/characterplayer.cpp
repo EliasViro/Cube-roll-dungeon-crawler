@@ -125,11 +125,14 @@ int Player::MoveToDirection(std::string direction) {
                 }
             }
             for (auto slot3 : inventory_) {
-                    if (!slot3->IsEmpty()) {
-                        slot3->GetItem()->ReduceCoolDown();
-                    }
+                if (!slot3->IsEmpty()) {
+                    slot3->GetItem()->ReduceCoolDown();
                 }
-        }        
+            }
+        }
+        if (currenttile_->GetTrapState() == Emerging) {
+            TakeDamage(1);
+        }
         return itemreturnval;
     }
     else {

@@ -946,7 +946,6 @@ bool Enemy::NextToCharacter(Character* targetcharacter) const {
 }
 
 void Enemy::TakeAction(Character* targetcharacter, int fillernumber) {
-    srand(time(NULL));
     fillernumber = 1;
     RemoveDefensePoints();
     if (isstunned_ == 0) {
@@ -990,6 +989,9 @@ void Enemy::TakeAction(Character* targetcharacter, int fillernumber) {
         }
         if (currenttile_->GetTrapState() == Spikes) {
             TakeDamage(1);
+        }
+        if (GetHealthPoints() <= 0) {
+            return;
         }
         if (indexinactionvector_ < actionvector_.size() - 1) {
             indexinactionvector_+= fillernumber;

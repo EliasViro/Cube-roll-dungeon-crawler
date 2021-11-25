@@ -942,7 +942,7 @@ bool Enemy::DistanceToCharacterLargerThanThree(Character* targetcharacter) const
 }
 
 bool Enemy::NextToCharacter(Character* targetcharacter) const {
-    return ((GetXCoordinate() == targetcharacter->GetXCoordinate() && (abs(GetYCoordinate() - targetcharacter->GetYCoordinate()) == 1)) || (GetYCoordinate() == targetcharacter->GetYCoordinate() && (abs(GetXCoordinate() - targetcharacter->GetXCoordinate()))));
+    return ((GetXCoordinate() == targetcharacter->GetXCoordinate() && (abs(GetYCoordinate() - targetcharacter->GetYCoordinate()) == 1)) || (GetYCoordinate() == targetcharacter->GetYCoordinate() && (abs(GetXCoordinate() - targetcharacter->GetXCoordinate()) == 1)));
 }
 
 void Enemy::TakeAction(Character* targetcharacter, int fillernumber) {

@@ -2,6 +2,10 @@
 
 
 #include "character.hpp"
+#include "meleeweapons.hpp"
+#include "rangedweapons.hpp"
+#include "potions.hpp"
+#include "shields.hpp"
 #include <vector>
 
 //The character that represents the player on the game board.

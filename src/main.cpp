@@ -1041,8 +1041,20 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 
 //#####################################################################################################
 //
-void CharacterInfo() {
-	
+// info location x:188 y:263
+void CharacterInfo(sf::RenderWindow&) {
+	sf::Texture hugeslimeinfo;
+	hugeslimeinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/HugeSlimeInfo.png");
+	sf::Sprite sprite_HugeSlimeInfo(hugeslimeinfo);
+
+	sf::Texture hugespiderinfo;
+	hugeslimeinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/HugeSlimeInfo.png");
+	sf::Sprite sprite_HugeSlimeInfo(hugeslimeinfo);
+}
+
+
+void ItemInfo() {
+
 }
 
 

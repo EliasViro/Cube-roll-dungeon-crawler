@@ -798,11 +798,11 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 			sf::Sprite topcdnumber;
 			if (!inventory[inventoryindex]->IsEmpty()) {
 				auto invitem = inventory[inventoryindex]->GetItem();
-				durability = sprite_dur;
 				topcooldown = sprite_maxcoold;
 				cooldown = sprite_coold;
 				attackdefense = sprite_nonum;
 				durnumber = sprite_nrinf;
+				durability = sprite_dur;
 				if (invitem->GetItemType() == ShieldItem) {
 					attackdefense = sprite_defse;
 					if (invitem->GetDefense() == 0) {
@@ -887,7 +887,6 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 
 				if (invitem->GetName() == "Potion of healing") {
 					item = sprite_healthpotion;
-					durability = sprite_dur;
 					topcooldown = sprite_nonum;
 					cooldown = sprite_nonum;
 					durnumber = sprite_nrone;
@@ -898,7 +897,6 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 				}
 				else if (invitem->GetName() == "Potion of stamina") {
 					item = sprite_staminapotion;
-					durability = sprite_dur;
 					topcooldown = sprite_nonum;
 					cooldown = sprite_nonum;
 					durnumber = sprite_nrone;
@@ -908,19 +906,15 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 				}
 				else if (invitem->GetName() == "Javelin") {
 					item = sprite_javelin;
-					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Bolas") {
 					item = sprite_bolas;
-					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Sling") {
 					item = sprite_sling;
-					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Round shield") {
 					item = sprite_roundshield;
-					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Heater shield") {
 					item = sprite_heatershield;
@@ -928,39 +922,30 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 				}
 				else if (invitem->GetName() == "Kite shield") {
 					item = sprite_kiteshield;
-					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Tower shield") {
 					item = sprite_towershield;
-					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Shortsword") {
 					item = sprite_shortsword;
-					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Arming sword") {
 					item = sprite_armingsword;
-					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Longsword") {
 					item = sprite_longsword;
-					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Hatchet") {
 					item = sprite_hatchet;
-					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Battleaxe") {
 					item = sprite_battleaxe;
-					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Mace") {
 					item = sprite_mace;
-					durability = sprite_nrinf;
 				}
 				else {
 					item = sprite_warhammer;
-					durability = sprite_nrinf;
 				}
 				
 				if (inventoryindex == 0) {
@@ -970,26 +955,75 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 					int x = x_orig + (player->GetXCoordinate())*64;
 					int y = y_orig + (player->GetYCoordinate())*64;
 					item2.setPosition(x, y);
+					attdefnumber.setPosition(1157, 263);
+					attackdefense.setPosition(1157,263);
+					topcooldown.setPosition(1285, 391);
+					topcdnumber.setPosition(1285, 391);
+					cooldown.setPosition(1157, 391);
+					cdnumber.setPosition(1157, 391);
+					durability.setPosition(1285, 263);
+					durnumber.setPosition(1285, 263);
 				}
 				else if (inventoryindex == 1) {
 					// N
-					item.setPosition(1216, 131);	
+					item.setPosition(1216, 131);
+					attdefnumber.setPosition(1157, 71);
+					attackdefense.setPosition(1157, 71);
+					topcooldown.setPosition(1285, 199);
+					topcdnumber.setPosition(1285, 199);
+					cooldown.setPosition(1157, 199);
+					cdnumber.setPosition(1157, 199);
+					durability.setPosition(1285, 71);
+					durnumber.setPosition(1285, 71);
 				}
 				else if (inventoryindex == 2) {
 					// E
 					item.setPosition(1408, 322);
+					attdefnumber.setPosition(1349, 263);
+					attackdefense.setPosition(1349,263);
+					topcooldown.setPosition(1477, 391);
+					topcdnumber.setPosition(1477, 391);
+					cooldown.setPosition(1349, 391);
+					cdnumber.setPosition(1349, 391);
+					durability.setPosition(1477, 263);
+					durnumber.setPosition(1477, 263);
 				}
 				else if (inventoryindex == 3) {
 					// W
 					item.setPosition(1024, 322);
+					attdefnumber.setPosition(965, 263);
+					attackdefense.setPosition(965,263);
+					topcooldown.setPosition(1093, 391);
+					topcdnumber.setPosition(1093, 391);
+					cooldown.setPosition(965, 391);
+					cdnumber.setPosition(965, 391);
+					durability.setPosition(1093, 263);
+					durnumber.setPosition(1093, 263);
 				}
 				else if (inventoryindex == 4) {
 					// S
 					item.setPosition(1216, 515);
+					item.setPosition(1216, 131);
+					attdefnumber.setPosition(1157, 455);
+					attackdefense.setPosition(1157, 455);
+					topcooldown.setPosition(1285, 583);
+					topcdnumber.setPosition(1285, 583);
+					cooldown.setPosition(1157, 583);
+					cdnumber.setPosition(1157, 583);
+					durability.setPosition(1285, 455);
+					durnumber.setPosition(1285, 455);
 				}
 				else {
 					// Bottom
 					item.setPosition(1216, 706);
+					attdefnumber.setPosition(1157, 647);
+					attackdefense.setPosition(1157, 647);
+					topcooldown.setPosition(1285, 775);
+					topcdnumber.setPosition(1285, 775);
+					cooldown.setPosition(1157, 775);
+					cdnumber.setPosition(1157, 775);
+					durability.setPosition(1285, 647);
+					durnumber.setPosition(1285, 647);
 				}
 				// which index --> position --> sprite
 			}

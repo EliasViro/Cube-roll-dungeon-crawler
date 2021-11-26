@@ -848,7 +848,6 @@ void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*
 //
 // info location x:188 y:263
 void InventoryItemInfo(sf::RenderWindow* window, Textures* textures, Character* player, int invslot) {
-	std::cout << "iventory slot " << invslot << " clicked" << std::endl;
 	std::vector<InventorySlot*> inventory = player->GetInventory();
 	Item* item = inventory[invslot]->GetItem();
 	
@@ -881,13 +880,11 @@ void InventoryItemInfo(sf::RenderWindow* window, Textures* textures, Character* 
 			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
 			break;
 		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+			while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;
+			break;
+		}
 	}
-
-}
-
-
-void ItemInfo() {
-
 }
 
 
@@ -896,16 +893,60 @@ void ItemInfo() {
 
 //################################################################################################################################################################################
 // Info button loop
-void InfoButtonMode(sf::RenderWindow* window, Textures* textures) {
+void InfoButtonMode(sf::RenderWindow* window, 
+					Textures* textures, 
+					Character* player, 
+					sf::RectangleShape* infobutton, 
+					sf::RectangleShape* inventory0, 
+					sf::RectangleShape* inventory1, 
+					sf::RectangleShape* inventory2, 
+					sf::RectangleShape* inventory3, 
+					sf::RectangleShape* inventory4, 
+					sf::RectangleShape* inventory5
+					) 
+{
 	sf::Sprite infobtnview(textures->infobtnview);
 	window->draw(infobtnview);
 	window->display();
-	bool show_view = true;
-	while (show_view) {
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-				while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
-				sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
 
+	while (true) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+			sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
+			sf::Sprite selectionrect(textures->selectionrectangle);
+			
+			if (infobutton->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				break;
+			}
+			else if (inventory0->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				InventoryItemInfo(window, textures, player, 0);
+				break;
+			}
+			else if (inventory1->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				InventoryItemInfo(window, textures, player, 1);
+				break;
+			}
+			else if (inventory2->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				InventoryItemInfo(window, textures, player, 2);
+				break;
+			}
+			else if (inventory3->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				InventoryItemInfo(window, textures, player, 3);
+				break;
+			}
+			else if (inventory4->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				InventoryItemInfo(window, textures, player, 4);
+				break;
+			}
+			else if (inventory5->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				InventoryItemInfo(window, textures, player, 5);
+				break;
+			}
+			else break;
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+			while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;
+			break;
 		}
 	}
 }
@@ -1032,55 +1073,8 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 					std::cout << "map button" << std::endl;
 				}
 				else if (infobutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "info button" << std::endl;
-					// info location x:188 y:263
-					//InfoButtonMode(window, textures);
-					sf::Sprite infobtnview(textures->infobtnview);
-					window->draw(infobtnview);
-					window->display();
-
-					while (true) {
-						if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-							while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
-							sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
-							sf::Sprite selectionrect(textures->selectionrectangle);
-							
-							if (infobutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
-								break;
-							}
-							else if (inventory0.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								InventoryItemInfo(window, textures, player, 0);
-								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
-								break;
-							}
-							else if (inventory1.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								InventoryItemInfo(window, textures, player, 1);
-								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
-								break;
-							}
-							else if (inventory2.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								InventoryItemInfo(window, textures, player, 2);
-								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
-								break;
-							}
-							else if (inventory3.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								InventoryItemInfo(window, textures, player, 3);
-								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
-								break;
-							}
-							else if (inventory4.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								InventoryItemInfo(window, textures, player, 4);
-								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
-								break;
-							}
-							else if (inventory5.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								InventoryItemInfo(window, textures, player, 5);
-								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
-								break;
-							}
-						}
-					}
+					InfoButtonMode(window, textures, player, &infobutton, &inventory0, &inventory1, &inventory2, &inventory3, &inventory4, &inventory5);
+					RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
 				}
 				else if (north.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					validmove = player->MoveToDirection("N");
@@ -1101,20 +1095,22 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) continue;
 				validmove = player->MoveToDirection("N");
 				}
-
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
 					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) continue;
 					validmove = player->MoveToDirection("W");
 				}
-
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
 					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) continue;
 					validmove = player->MoveToDirection("S");
 				}
-
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
 					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) continue;
 					validmove = player->MoveToDirection("E");
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F)) {
+					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F)) continue;
+					InfoButtonMode(window, textures, player, &infobutton, &inventory0, &inventory1, &inventory2, &inventory3, &inventory4, &inventory5);
+					RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
 				}
 			}
 		}

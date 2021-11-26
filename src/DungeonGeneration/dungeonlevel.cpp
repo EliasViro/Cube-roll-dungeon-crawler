@@ -136,47 +136,31 @@ std::vector<std::vector<DungeonRoom*>> GenerateRooms(int sidelength, std::pair<i
     }
     
     // Set the neighbors of each room
-    for (int row = 0; row < sidelength; row++) {
-        for (int col = 0; col < sidelength; col++) {
-            //Add North neighbor
-            if (row == 0) {
-                rooms[col][row]->AddNeighbor(nullptr);
-            }
-            else if (row == sidelength - 1) {
-                rooms[col][row]->AddNeighbor(rooms[col][row - 1]);
+    for (int a = 0; a < sidelength; a++) {
+        for (int b = 0; b < sidelength; b++) {
+            if (a - 1 >= 0) { //North neighbor
+                rooms[a][b]->AddNeighbor(rooms[a - 1][b]);
             }
             else {
-                rooms[col][row]->AddNeighbor(rooms[col][row - 1]);
+                rooms[a][b]->AddNeighbor(nullptr);
             }
-            //Add East neighbor
-            if (col == 0) {
-                rooms[col][row]->AddNeighbor(rooms[col + 1][row]);
-            }
-            else if (col == sidelength - 1) {
-                rooms[col][row]->AddNeighbor(nullptr);
+            if (b + 1 <= sidelength - 1) { //East neighbor
+                rooms[a][b]->AddNeighbor(rooms[a][b + 1]);
             }
             else {
-                rooms[col][row]->AddNeighbor(rooms[col + 1][row]);
+                rooms[a][b]->AddNeighbor(nullptr);
             }
-            //Add West neighbor
-            if (col == 0) {
-                rooms[col][row]->AddNeighbor(nullptr);
-            }
-            else if (col == sidelength - 1) {
-                rooms[col][row]->AddNeighbor(rooms[col - 1][row]);
+            if (b - 1 >= 0) { //West neighbor
+                rooms[a][b]->AddNeighbor(rooms[a][b - 1]);
             }
             else {
-                rooms[col][row]->AddNeighbor(rooms[col - 1][row]);
+                rooms[a][b]->AddNeighbor(nullptr);
             }
-            //Add South neighbor
-            if (row == 0) {
-                rooms[col][row]->AddNeighbor(rooms[col][row + 1]);
-            }
-            else if (row == sidelength - 1) {
-                rooms[col][row]->AddNeighbor(nullptr);
+            if (a + 1 <= sidelength - 1) { //South neighbor
+                rooms[a][b]->AddNeighbor(rooms[a + 1][b]);
             }
             else {
-                rooms[col][row]->AddNeighbor(rooms[col][row + 1]);
+                rooms[a][b]->AddNeighbor(nullptr);
             }
         }
     }

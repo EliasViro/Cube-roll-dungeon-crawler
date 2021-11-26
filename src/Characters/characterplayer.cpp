@@ -61,25 +61,22 @@ int Player::MoveToDirection(std::string direction) {
             inventory_[3] = tempinventory[3];
             inventory_[4] = tempinventory[5];
             inventory_[5] = tempinventory[1];
-            std::cout << "North movement" << std::endl;
         }
         else if (direction == "E") {
-            inventory_[0] = tempinventory[2];
+            inventory_[0] = tempinventory[3];
             inventory_[1] = tempinventory[1];
             inventory_[2] = tempinventory[0];
             inventory_[3] = tempinventory[5];
             inventory_[4] = tempinventory[4];
-            inventory_[5] = tempinventory[3];
-            std::cout << "East movement" << std::endl;
+            inventory_[5] = tempinventory[2];
         }
         else if (direction == "W") {
-            inventory_[0] = tempinventory[3];
-            inventory_[1] = tempinventory[4];
+            inventory_[0] = tempinventory[2];
+            inventory_[1] = tempinventory[1];
             inventory_[2] = tempinventory[5];
             inventory_[3] = tempinventory[0];
-            inventory_[4] = tempinventory[1];
-            inventory_[5] = tempinventory[2];
-            std::cout << "West movement" << std::endl;
+            inventory_[4] = tempinventory[4];
+            inventory_[5] = tempinventory[3];
         }
         else {
             inventory_[0] = tempinventory[1];
@@ -88,7 +85,6 @@ int Player::MoveToDirection(std::string direction) {
             inventory_[3] = tempinventory[3];
             inventory_[4] = tempinventory[0];
             inventory_[5] = tempinventory[4];
-            std::cout << "South movement" << std::endl;
 
         }
         for (auto slot3 : inventory_) {
@@ -154,7 +150,10 @@ int Player::MoveToDirection(std::string direction) {
 void Player::TakeDamage(int damage) {
     if (!inventory_[0]->IsEmpty()) {
         if (inventory_[0]->GetItem()->GetItemType() == ShieldItem) {
-            AddDefensePoints(inventory_[0]->UseItem());
+            int returnval = inventory_[0]->UseItem();
+            if (returnval > 0) {
+                AddDefensePoints(inventory_[0]->UseItem());
+            }
         }
     }
     healthpoints_ = healthpoints_ - (damage - defensepoints_);

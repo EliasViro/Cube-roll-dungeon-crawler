@@ -747,6 +747,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 					int x = x_orig + (player->GetXCoordinate())*64;
 					int y = y_orig + (player->GetYCoordinate())*64;
 					item2.setPosition(x, y);
+					window.draw(item2);
 					attdefnumber.setPosition(1157, 263);
 					attackdefense.setPosition(1157,263);
 					topcooldown.setPosition(1285, 391);
@@ -758,7 +759,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 				}
 				else if (inventoryindex == 1) {
 					// N
-					item.setPosition(1216, 131);
+					item.setPosition(1216, 130);
 					attdefnumber.setPosition(1157, 71);
 					attackdefense.setPosition(1157, 71);
 					topcooldown.setPosition(1285, 199);
@@ -794,8 +795,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 				}
 				else if (inventoryindex == 4) {
 					// S
-					item.setPosition(1216, 515);
-					item.setPosition(1216, 131);
+					item.setPosition(1216, 514);
 					attdefnumber.setPosition(1157, 455);
 					attackdefense.setPosition(1157, 455);
 					topcooldown.setPosition(1285, 583);
@@ -820,6 +820,14 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 				// which index --> position --> sprite
 			}
 			window.draw(item);
+			window.draw(attdefnumber);
+			window.draw(attackdefense);
+			window.draw(topcooldown);
+			window.draw(topcdnumber);
+			window.draw(cooldown);
+			window.draw(cdnumber);
+			window.draw(durability);
+			window.draw(durnumber);
 		}
 	}
 	
@@ -935,6 +943,9 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
     east.setPoint(1, sf::Vector2f(848, 484));
 	east.setPoint(2, sf::Vector2f(846, 414));
 
+	std::cout << "LEVEL X: " << level.GetStartPos().first << std::endl;
+	std::cout << "LEVEL Y: " << level.GetStartPos().second << std::endl;
+
 	// Game loop
 	bool run = true;
 	while (run) {
@@ -1005,6 +1016,20 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 					validmove = player->MoveToDirection("E");
 				}
 			}
+		}
+
+		std::cout << "PLAYER HP: " << player->GetHealthPoints() << std::endl;
+		if (currentroom->GetNeighbors()[0] == nullptr) {
+			std::cout << "NORTH NEIGBOR ERROR" << std::endl;
+		}
+		if (currentroom->GetNeighbors()[1] == nullptr) {
+			std::cout << "EAST NEIGBOR ERROR" << std::endl;
+		}
+		if (currentroom->GetNeighbors()[2] == nullptr) {
+			std::cout << "West NEIGBOR ERROR" << std::endl;
+		}
+		if (currentroom->GetNeighbors()[3] == nullptr) {
+			std::cout << "SOUTH NEIGBOR ERROR" << std::endl;
 		}
 
 		//After moving, check if the player is on a door tile. This will move the player to the next room in that direction.

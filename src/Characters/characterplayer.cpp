@@ -10,6 +10,7 @@
 Player::Player(DungeonTile* tile) 
     : Character(PlayerCharacter, 4, tile) {
     inventory_ = {new InventorySlot(new ShortSword()), new InventorySlot(new RoundShield()), new InventorySlot(new WarHammer()), new InventorySlot(new ArmingSword()), new InventorySlot(new HandAxe()), new InventorySlot(new HealthPotion())};
+    //inventory_ = {new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr)};
     if (tile != nullptr) {
         tile->SetCharacter();
     }
@@ -126,8 +127,10 @@ int Player::MoveToDirection(std::string direction) {
                 itemreturnval = 10;
             }
             if (itemintopslot->GetItemType() == MeleeWeaponItem) {
-                if (currenttile_->GetTileNeighbor("N")->HasCharacter() || currenttile_->GetTileNeighbor("E")->HasCharacter() || currenttile_->GetTileNeighbor("W")->HasCharacter() || currenttile_->GetTileNeighbor("S")->HasCharacter()) {
-                    itemreturnval = inventory_[0]->UseItem();
+                if (currenttile_->GetTileNeighbor("N") != nullptr && currenttile_->GetTileNeighbor("E") != nullptr && currenttile_->GetTileNeighbor("W") != nullptr && currenttile_->GetTileNeighbor("N") != nullptr) {
+                    if (currenttile_->GetTileNeighbor("N")->HasCharacter() || currenttile_->GetTileNeighbor("E")->HasCharacter() || currenttile_->GetTileNeighbor("W")->HasCharacter() || currenttile_->GetTileNeighbor("S")->HasCharacter()) {
+                        itemreturnval = inventory_[0]->UseItem();
+                    }
                 }
             }
         }

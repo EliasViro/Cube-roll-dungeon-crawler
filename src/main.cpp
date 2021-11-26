@@ -943,9 +943,6 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
     east.setPoint(1, sf::Vector2f(848, 484));
 	east.setPoint(2, sf::Vector2f(846, 414));
 
-	std::cout << "LEVEL X: " << level.GetStartPos().first << std::endl;
-	std::cout << "LEVEL Y: " << level.GetStartPos().second << std::endl;
-
 	// Game loop
 	bool run = true;
 	while (run) {
@@ -959,38 +956,28 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 
 				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 				if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "game exit button pressed" << std::endl;
 					return false;
 				}
 				else if (button1.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "button1 pressed" << std::endl;
 				}
 				else if (button2.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "button2 pressed" << std::endl;
 				}
 				else if (button3.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "button3 pressed" << std::endl;
 				}
 				else if (button4.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "button4 pressed" << std::endl;
 				}
 				else if (button5.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "button5 pressed" << std::endl;
 				}
 				else if (north.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "north pressed" << std::endl;
 					validmove = player->MoveToDirection("N");
 				}
 				else if (east.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "east pressed" << std::endl;
 					validmove = player->MoveToDirection("E");
 				}
 				else if (south.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "south pressed" << std::endl;
 					validmove = player->MoveToDirection("S");
 				}
 				else if (west.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "west pressed" << std::endl;
 					validmove = player->MoveToDirection("W");				
 				}
 			}
@@ -1018,55 +1005,45 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 			}
 		}
 
-		std::cout << "PLAYER HP: " << player->GetHealthPoints() << std::endl;
-		if (currentroom->GetNeighbors()[0] == nullptr) {
-			std::cout << "NORTH NEIGBOR ERROR" << std::endl;
-		}
-		if (currentroom->GetNeighbors()[1] == nullptr) {
-			std::cout << "EAST NEIGBOR ERROR" << std::endl;
-		}
-		if (currentroom->GetNeighbors()[2] == nullptr) {
-			std::cout << "West NEIGBOR ERROR" << std::endl;
-		}
-		if (currentroom->GetNeighbors()[3] == nullptr) {
-			std::cout << "SOUTH NEIGBOR ERROR" << std::endl;
-		}
-
 		//After moving, check if the player is on a door tile. This will move the player to the next room in that direction.
-		if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][5] || player->GetCurrentTile() == currentroom->GetAllTiles()[0][6] ||
-		player->GetCurrentTile() == currentroom->GetAllTiles()[11][5] || player->GetCurrentTile() == currentroom->GetAllTiles()[11][6] ||
-		player->GetCurrentTile() == currentroom->GetAllTiles()[5][11] || player->GetCurrentTile() == currentroom->GetAllTiles()[6][11] ||
-		player->GetCurrentTile() == currentroom->GetAllTiles()[5][0] || player->GetCurrentTile() == currentroom->GetAllTiles()[6][0]) {
-			if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][5]) {
-				player->MoveToTile(currentroom->GetNeighbors()[2]->GetAllTiles()[10][5]);
-				currentroom = currentroom->GetNeighbors()[2];
-			}
-			if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][6]) {
-				player->MoveToTile(currentroom->GetNeighbors()[2]->GetAllTiles()[10][6]);
-				currentroom = currentroom->GetNeighbors()[2];
-			}
-			if (player->GetCurrentTile() == currentroom->GetAllTiles()[11][5]) {
-				player->MoveToTile(currentroom->GetNeighbors()[1]->GetAllTiles()[1][5]);
-				currentroom = currentroom->GetNeighbors()[1];
-			}
-			if (player->GetCurrentTile() == currentroom->GetAllTiles()[11][6]) {
-				player->MoveToTile(currentroom->GetNeighbors()[1]->GetAllTiles()[1][6]);
-				currentroom = currentroom->GetNeighbors()[1];
-			}
-			if (player->GetCurrentTile() == currentroom->GetAllTiles()[5][11]) {
-				player->MoveToTile(currentroom->GetNeighbors()[3]->GetAllTiles()[5][1]);
-				currentroom = currentroom->GetNeighbors()[3];
-			}
-			if (player->GetCurrentTile() == currentroom->GetAllTiles()[6][11]) {
-				player->MoveToTile(currentroom->GetNeighbors()[3]->GetAllTiles()[6][1]);
-				currentroom = currentroom->GetNeighbors()[3];
-			}
+		
+		int playerx = player->GetXCoordinate();
+		int playery = player->GetYCoordinate();
+
+		if ((playerx == 0 && playery == 5) || (playerx == 0 && playery == 6) ||
+		(playerx == 11 && playery == 5) || (playerx == 11 && playery == 6) ||
+		(playerx == 5 && playery == 11) || (playerx == 6 && playery == 11) ||
+		(playerx == 5 && playery == 0) || (playerx == 6 && playery == 0)) {
 			if (player->GetCurrentTile() == currentroom->GetAllTiles()[5][0]) {
-				player->MoveToTile(currentroom->GetNeighbors()[0]->GetAllTiles()[5][10]);
-				currentroom = currentroom->GetNeighbors()[0];
+				player->MoveToTile(currentroom->GetNeighbors()[2]->GetAllTiles()[5][10]);
+				currentroom = currentroom->GetNeighbors()[2];
 			}
 			if (player->GetCurrentTile() == currentroom->GetAllTiles()[6][0]) {
-				player->MoveToTile(currentroom->GetNeighbors()[0]->GetAllTiles()[6][10]);
+				player->MoveToTile(currentroom->GetNeighbors()[2]->GetAllTiles()[6][10]);
+				currentroom = currentroom->GetNeighbors()[2];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[5][11]) {
+				player->MoveToTile(currentroom->GetNeighbors()[1]->GetAllTiles()[5][1]);
+				currentroom = currentroom->GetNeighbors()[1];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[6][11]) {
+				player->MoveToTile(currentroom->GetNeighbors()[1]->GetAllTiles()[6][1]);
+				currentroom = currentroom->GetNeighbors()[1];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[11][5]) {
+				player->MoveToTile(currentroom->GetNeighbors()[3]->GetAllTiles()[1][5]);
+				currentroom = currentroom->GetNeighbors()[3];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[11][6]) {
+				player->MoveToTile(currentroom->GetNeighbors()[3]->GetAllTiles()[1][6]);
+				currentroom = currentroom->GetNeighbors()[3];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][5]) {
+				player->MoveToTile(currentroom->GetNeighbors()[0]->GetAllTiles()[10][5]);
+				currentroom = currentroom->GetNeighbors()[0];
+			}
+			if (player->GetCurrentTile() == currentroom->GetAllTiles()[0][6]) {
+				player->MoveToTile(currentroom->GetNeighbors()[0]->GetAllTiles()[10][6]);
 				currentroom = currentroom->GetNeighbors()[0];
 			}
 		

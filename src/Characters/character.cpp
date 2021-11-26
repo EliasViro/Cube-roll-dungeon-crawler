@@ -1,7 +1,6 @@
 #include "character.hpp"
 
 
-
 //A class that represents one of the six slots in the player inventory. Holds an Item.
 
 InventorySlot::InventorySlot(Item* item) : item_(item) {}
@@ -38,7 +37,7 @@ void InventorySlot::DropItem() {
 int InventorySlot::UseItem() {
     int returned = 0;
     if (item_ != nullptr) {
-        int returned = item_->Use();
+        returned = item_->Use();
         if (returned != 0) {
             if (item_->GetDurability() == 0) {
                 item_ = nullptr;

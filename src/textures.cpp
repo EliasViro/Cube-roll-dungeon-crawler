@@ -3,9 +3,11 @@
 class Textures {
 public:
 	Textures() {
-		sf::Texture game_texture;
-    	game_texture.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
-		game_view = game_texture;
+		//sf::Texture game_texture;
+    	//game_texture.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
+		//game_view = game_texture;
+
+		game_view.loadFromFile("../src/Graphics/GUI_Sprites/UI_PIC.png");
 
 		sf::Texture door_closed_t;
 		door_closed_t.loadFromFile("../src/Graphics/TileSprites/DoorClosed.png");
@@ -282,6 +284,62 @@ public:
 		sf::Texture nonum_t;
 		nonum_t.loadFromFile("../src/Graphics/GUI_Sprites/NoNum.png");
 		nonum = nonum_t;
+
+		sf::Texture infobtnview_t;
+		infobtnview_t.loadFromFile("../src/Graphics/GUI_Sprites/infobtnview.png");
+		infobtnview = infobtnview_t;
+
+		sf::Texture diminvbutton_t;
+		diminvbutton_t.loadFromFile("../src/Graphics/GUI_Sprites/DimInvButton.png");
+		diminvbutton = diminvbutton_t;
+
+		sf::Texture hugeslimeinfo_t;
+		hugeslimeinfo_t.loadFromFile("../src/Graphics/CharacterInfoSprites/HugeSlimeInfo.png");
+		hugespiderinfo = hugeslimeinfo_t;
+
+		sf::Texture hugespiderinfo_t;
+		hugespiderinfo_t.loadFromFile("../src/Graphics/CharacterInfoSprites/HugeSpiderInfo.png");
+		hugespiderinfo = hugespiderinfo_t;
+
+		sf::Texture largeslimeinfo_t;
+		largeslimeinfo_t.loadFromFile("../src/Graphics/CharacterInfoSprites/LargeSlimeInfo.png");
+		largeslimeinfo = largeslimeinfo_t;
+
+		sf::Texture lichinfo_t;
+		lichinfo_t.loadFromFile("../src/Graphics/CharacterInfoSprites/LichInfo.png");
+		lichinfo = lichinfo_t;
+
+		sf::Texture selectionrectangle_t;
+		selectionrectangle_t.loadFromFile("../src/Graphics/CharacterInfoSprites/SelectionRectangle.png");
+		selectionrectangle = selectionrectangle_t;
+
+		sf::Texture skeletonarcherinfo_t;
+		skeletonarcherinfo_t.loadFromFile("../src/Graphics/CharacterInfoSprites/SkeletonArcherInfo.png");
+		skeletonarcherinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SkeletonArcherInfo.png");
+
+		skeletoninfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SkeletonInfo.png");
+		skeletonknightinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SkeletonKnightInfo.png");
+		skeletonmageinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SkeletonMageInfo.png");
+		skeletonwarriorinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SkeletonWarriorInfo.png");
+		slimeinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SlimeInfo.png");
+		spiderinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SpiderInfo.png");
+		spitterinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SpitterInfo.png");
+		armingswordinfo.loadFromFile("../src/Graphics/ItemInfoSprites/ArmingSwordInfo.png");
+		battleaxeinfo.loadFromFile("../src/Graphics/ItemInfoSprites/BattleAxeInfo.png");
+		bolasinfo.loadFromFile("../src/Graphics/ItemInfoSprites/BolasInfo.png");
+		hatchetinfo.loadFromFile("../src/Graphics/ItemInfoSprites/HatchetInfo.png");
+		healingpotioninfo.loadFromFile("../src/Graphics/ItemInfoSprites/HealingPotionInfo.png");
+		heatershieldinfo.loadFromFile("../src/Graphics/ItemInfoSprites/HeaterShieldInfo.png");
+		javelininfo.loadFromFile("../src/Graphics/ItemInfoSprites/JavelinInfo.png");
+		kiteshieldinfo.loadFromFile("../src/Graphics/ItemInfoSprites/KiteShieldInfo.png");
+		longswordinfo.loadFromFile("../src/Graphics/ItemInfoSprites/LongSwordInfo.png");
+		maceinfo.loadFromFile("../src/Graphics/ItemInfoSprites/MaceInfo.png");
+		roundshieldinfo.loadFromFile("../src/Graphics/ItemInfoSprites/RoundShieldInfo.png");
+		shortswordinfo.loadFromFile("../src/Graphics/ItemInfoSprites/ShortSwordInfo.png");
+		slinginfo.loadFromFile("../src/Graphics/ItemInfoSprites/SlingInfo.png");
+		staminapotioninfo.loadFromFile("../src/Graphics/ItemInfoSprites/StaminaPotionInfo.png");
+		towershieldinfo.loadFromFile("../src/Graphics/ItemInfoSprites/TowerShieldInfo.png");
+		warhammerinfo.loadFromFile("../src/Graphics/ItemInfoSprites/WarHammerInfo.png");
 	}
 
 	sf::Texture game_view;
@@ -354,4 +412,35 @@ public:
 	sf::Texture maxcoold;
 	sf::Texture dur;
 	sf::Texture nonum;
+	sf::Texture infobtnview;
+	sf::Texture diminvbutton;
+	sf::Texture hugeslimeinfo;
+	sf::Texture hugespiderinfo;
+	sf::Texture largeslimeinfo;
+	sf::Texture lichinfo;
+	sf::Texture selectionrectangle;
+	sf::Texture skeletonarcherinfo;
+	sf::Texture skeletoninfo;
+	sf::Texture skeletonknightinfo;
+	sf::Texture skeletonmageinfo;
+	sf::Texture skeletonwarriorinfo;
+	sf::Texture slimeinfo;
+	sf::Texture spiderinfo;
+	sf::Texture spitterinfo;
+	sf::Texture armingswordinfo;
+	sf::Texture battleaxeinfo;
+	sf::Texture bolasinfo;
+	sf::Texture hatchetinfo;
+	sf::Texture healingpotioninfo;
+	sf::Texture heatershieldinfo;
+	sf::Texture javelininfo;
+	sf::Texture kiteshieldinfo;
+	sf::Texture longswordinfo;
+	sf::Texture maceinfo;
+	sf::Texture roundshieldinfo;
+	sf::Texture shortswordinfo;
+	sf::Texture slinginfo;
+	sf::Texture staminapotioninfo;
+	sf::Texture towershieldinfo;
+	sf::Texture warhammerinfo;
 };

@@ -333,6 +333,7 @@ void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*
 	sf::Sprite sprite_maxcoold(textures->maxcoold);
 	sf::Sprite sprite_dur(textures->dur);
 	sf::Sprite sprite_nonum(textures->nonum);
+	sf::Sprite sprite_infobtnview(textures->infobtnview);
 
 	int x_orig = 65;
 	int y_orig = 67;
@@ -828,6 +829,12 @@ void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*
 			window->draw(cdnumber);
 			window->draw(durability);
 			window->draw(durnumber);
+
+			if (combatongoing) {
+				sf::Sprite sprite_diminvbutton(textures->diminvbutton);
+				sprite_diminvbutton.setPosition(960, 514);
+				window->draw(sprite_diminvbutton);
+			}
 		}
 	}
 	
@@ -854,6 +861,26 @@ void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*
 void ItemInfo() {
 
 }*/
+
+
+
+
+
+//################################################################################################################################################################################
+// Info button loop
+void InfoButtonMode(sf::RenderWindow* window, Textures* textures) {
+	sf::Sprite infobtnview(textures->infobtnview);
+	window->draw(infobtnview);
+	window->display();
+	bool show_view = true;
+	while (show_view) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+				while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+				sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
+
+		}
+	}
+}
 
 
 
@@ -913,6 +940,24 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 	sf::RectangleShape infobutton(sf::Vector2f(115, 115));
     infobutton.setPosition(966, 712);
 
+	sf::RectangleShape inventory0(sf::Vector2f(64, 64));
+	inventory0.setPosition(1217, 322);
+
+	sf::RectangleShape inventory1(sf::Vector2f(64, 64));
+	inventory1.setPosition(1217, 131);
+
+	sf::RectangleShape inventory2(sf::Vector2f(64, 64));
+	inventory2.setPosition(1407, 322);
+
+	sf::RectangleShape inventory3(sf::Vector2f(64, 64));
+	inventory3.setPosition(1024, 322);
+
+	sf::RectangleShape inventory4(sf::Vector2f(64, 64));
+	inventory4.setPosition(1217, 513);
+
+	sf::RectangleShape inventory5(sf::Vector2f(64, 64));
+	inventory5.setPosition(1217, 706);
+
 	sf::ConvexShape north;
     north.setPointCount(3);
     north.setPoint(0, sf::Vector2f(448, 13));
@@ -952,7 +997,7 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					return false;
 				}
-				else if (itembutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				else if (itembutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)) && !combat) {
 					std::cout << "item button" << std::endl;
 				}
 				else if (mapbutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
@@ -960,6 +1005,38 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 				else if (infobutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "info button" << std::endl;
+					//InfoButtonMode(window, textures);
+					sf::Sprite infobtnview(textures->infobtnview);
+					window->draw(infobtnview);
+					window->display();
+					while (true) {
+						if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+							while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+							sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
+							if (infobutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
+								break;
+							}
+							else if (inventory0.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+								
+							}
+							else if (inventory1.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+								
+							}
+							else if (inventory2.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+								
+							}
+							else if (inventory3.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+								
+							}
+							else if (inventory4.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+								
+							}
+							else if (inventory5.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+								
+							}
+						}
+					}
 				}
 				else if (north.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					validmove = player->MoveToDirection("N");

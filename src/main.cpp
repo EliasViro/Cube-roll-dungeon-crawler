@@ -904,20 +904,14 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 	sf::RectangleShape end_game_button(sf::Vector2f(115, 115));
     end_game_button.setPosition(1415, 712);
 
-	sf::RectangleShape button1(sf::Vector2f(115, 115));
-    button1.setPosition(966, 72);
+	sf::RectangleShape itembutton(sf::Vector2f(115, 115));
+    itembutton.setPosition(966, 519);
 
-	sf::RectangleShape button2(sf::Vector2f(115, 115));
-    button2.setPosition(1414, 72);
+	sf::RectangleShape mapbutton(sf::Vector2f(115, 115));
+    mapbutton.setPosition(1414, 519);
 
-	sf::RectangleShape button3(sf::Vector2f(115, 115));
-    button3.setPosition(966, 519);
-
-	sf::RectangleShape button4(sf::Vector2f(115, 115));
-    button4.setPosition(1414, 519);
-
-	sf::RectangleShape button5(sf::Vector2f(115, 115));
-    button5.setPosition(966, 712);
+	sf::RectangleShape infobutton(sf::Vector2f(115, 115));
+    infobutton.setPosition(966, 712);
 
 	sf::ConvexShape north;
     north.setPointCount(3);
@@ -958,15 +952,14 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					return false;
 				}
-				else if (button1.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				else if (itembutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "item button" << std::endl;
 				}
-				else if (button2.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				else if (mapbutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "map button" << std::endl;
 				}
-				else if (button3.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				}
-				else if (button4.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				}
-				else if (button5.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+				else if (infobutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					std::cout << "info button" << std::endl;
 				}
 				else if (north.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					validmove = player->MoveToDirection("N");

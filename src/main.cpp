@@ -847,20 +847,48 @@ void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*
 //################################################################################################################################################################################
 //
 // info location x:188 y:263
-/*void CharacterInfo(sf::RenderWindow&) {
-	sf::Texture hugeslimeinfo;
-	hugeslimeinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/HugeSlimeInfo.png");
-	sf::Sprite sprite_HugeSlimeInfo(hugeslimeinfo);
+void InventoryItemInfo(sf::RenderWindow* window, Textures* textures, Character* player, int invslot) {
+	std::cout << "iventory slot " << invslot << " clicked" << std::endl;
+	std::vector<InventorySlot*> inventory = player->GetInventory();
+	Item* item = inventory[invslot]->GetItem();
+	
+	std::cout << item->GetName() << std::endl;
 
-	sf::Texture hugespiderinfo;
-	hugeslimeinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/HugeSlimeInfo.png");
-	sf::Sprite sprite_HugeSlimeInfo(hugeslimeinfo);
+	sf::Sprite info;
+	if (item->GetName() == "Potion of healing")  info.setTexture(textures->healingpotioninfo);
+	else if (item->GetName() == "Potion of stamina") info.setTexture(textures->staminapotioninfo);
+	else if (item->GetName() == "Javelin") info.setTexture(textures->javelininfo);
+	else if (item->GetName() == "Bolas") info.setTexture(textures->bolasinfo);
+	else if (item->GetName() == "Sling") info.setTexture(textures->slinginfo);
+	else if (item->GetName() == "Round shield") info.setTexture(textures->roundshieldinfo);
+	else if (item->GetName() == "Heater shield") info.setTexture(textures->heatershieldinfo);
+	else if (item->GetName() == "Kite shield") info.setTexture(textures->kiteshieldinfo);
+	else if (item->GetName() == "Tower shield") info.setTexture(textures->towershieldinfo);
+	else if (item->GetName() == "Shortsword") info.setTexture(textures->shortswordinfo);
+	else if (item->GetName() == "Arming sword") info.setTexture(textures->armingswordinfo);
+	else if (item->GetName() == "Longsword") info.setTexture(textures->longswordinfo);
+	else if (item->GetName() == "Hatchet") info.setTexture(textures->hatchetinfo);
+	else if (item->GetName() == "Battleaxe") info.setTexture(textures->battleaxeinfo);
+	else if (item->GetName() == "Mace") info.setTexture(textures->maceinfo);
+	else if (item->GetName() == "Warhammer") info.setTexture(textures->warhammerinfo);
+	else std::cout << "Item not found" << std::endl;
+	info.setPosition(188, 263);
+	window->draw(info);
+	window->display();
+
+	while (true) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+			break;
+		}
+	}
+
 }
 
 
 void ItemInfo() {
 
-}*/
+}
 
 
 
@@ -1005,35 +1033,51 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 				else if (infobutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "info button" << std::endl;
+					// info location x:188 y:263
 					//InfoButtonMode(window, textures);
 					sf::Sprite infobtnview(textures->infobtnview);
 					window->draw(infobtnview);
 					window->display();
+
 					while (true) {
 						if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 							while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
 							sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
+							sf::Sprite selectionrect(textures->selectionrectangle);
+							
 							if (infobutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
 								break;
 							}
 							else if (inventory0.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								
+								InventoryItemInfo(window, textures, player, 0);
+								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
+								break;
 							}
 							else if (inventory1.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								
+								InventoryItemInfo(window, textures, player, 1);
+								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
+								break;
 							}
 							else if (inventory2.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								
+								InventoryItemInfo(window, textures, player, 2);
+								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
+								break;
 							}
 							else if (inventory3.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								
+								InventoryItemInfo(window, textures, player, 3);
+								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
+								break;
 							}
 							else if (inventory4.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								
+								InventoryItemInfo(window, textures, player, 4);
+								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
+								break;
 							}
 							else if (inventory5.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								
+								InventoryItemInfo(window, textures, player, 5);
+								RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
+								break;
 							}
 						}
 					}

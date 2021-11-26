@@ -88,7 +88,7 @@ public:
 		skeletonwarriorinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SkeletonWarriorInfo.png");
 		slimeinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SlimeInfo.png");
 		spiderinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SpiderInfo.png");
-		spitterinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SpitterInfo.png");
+		spitterinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SpitterSpiderInfo.png");
 		armingswordinfo.loadFromFile("../src/Graphics/ItemInfoSprites/ArmingSwordInfo.png");
 		battleaxeinfo.loadFromFile("../src/Graphics/ItemInfoSprites/BattleAxeInfo.png");
 		bolasinfo.loadFromFile("../src/Graphics/ItemInfoSprites/BolasInfo.png");

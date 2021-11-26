@@ -4,7 +4,7 @@
 //Item is a class that all item type classes will inherit.
 
 Item::Item(const std::string& name, const std::string& description, ItemType itemtype, unsigned int durability, unsigned int maxcooldown)
-    : name_(name), description_(description), itemtype_(itemtype), durability_(durability), maxcooldown_(maxcooldown), cooldown_(1), isactive_(false) {}
+    : name_(name), description_(description), itemtype_(itemtype), durability_(durability), maxcooldown_(maxcooldown), cooldown_(0), isactive_(true) {}
 
 const std::string& Item::GetName() const {
     return name_;
@@ -31,7 +31,7 @@ bool Item::IsActive() const {
 }
 
 void Item::ReduceCoolDown() {
-    if (IsActive()) {
+    if (IsActive() && cooldown_ > 0) {
         cooldown_--;
     }
 }

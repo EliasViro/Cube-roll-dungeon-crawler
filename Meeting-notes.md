@@ -209,3 +209,44 @@ Compilation errors have been fixed for now and the work on the main game loop is
 -Pathfinding fixes for enemies
 -Fixing bugs in DungeonLevel
 -Working on the main game loop and getting the game into a playable state
+
+
+
+# Meeting 26.11.2021 15::00
+
+**Participants**: 
+1. Elias
+2. Atte
+3. Binh
+4. Selin
+
+## Summary of works
+1. Elias: Created more textures for the game, debugged lots of errors and segfaults, implemented the core structure of the main game loop, playtested the game.
+
+2. Atte: Implemented game graphics printing functions and interactive buttons and other menus.
+
+3. Binh: Fixed bugs in the DungeonLevel class
+
+4. Selin: Implemented enemy pathfinding
+
+## Challenges
+
+-Lots of segmentation faults that weren't very obvious to track down
+-Tracking down bugs with item usage and cooldowns
+-Refactoring loading the sprites from disk and optimizing the process of creating them
+
+## Actions
+1. Elias: Debugging and testing some classes, implementing more textures, programming the main game loop
+2. Atte: Work on graphics printing functions and helping with debugging.
+3. Binh: Fixed bugs in the DungeonLevel class
+4. Selin: Implemented enemy pathfinding
+
+## Project status 
+The game is missing sound effects and music, and the main game loop doesn't have weapon item usage yet. Interactive inventory hasn't been done yet, but all other functionalities of the UI
+have been added.
+
+### TODOs
+-Adding sound effects
+-Fixing bugs
+-Playtesting
+-Implementing the weapon usage and interactive inventory.

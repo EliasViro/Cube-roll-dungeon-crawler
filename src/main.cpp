@@ -260,85 +260,85 @@ std::vector<std::vector<Item*>> CreateLoot() {
 
 //################################################################################################################################################################################
 // This function draws a new room in its initial state.
-void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*>> tile_matrix, bool islastroominlevel, std::vector<Character*> enemyvec, Character* player, int currentlevel, bool combatongoing, Textures textures) {
+void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*>> tile_matrix, bool islastroominlevel, std::vector<Character*> enemyvec, Character* player, int currentlevel, bool combatongoing, Textures* textures) {
 
 	// Create all sprites
-	sf::Sprite game_view(textures.game_view);
-	sf::Sprite sprite_door_closed(textures.door_closed);
-	sf::Sprite sprite_floor(textures.floor);
-	sf::Sprite sprite_levelexitclosed(textures.levelexitclosed);
-	sf::Sprite sprite_levelexitopen(textures.levelexitopen);
-	sf::Sprite sprite_pit(textures.pit);
-	sf::Sprite sprite_trap1(textures.trap1);
-	sf::Sprite sprite_trap2(textures.trap2);
-	sf::Sprite sprite_trap3(textures.trap3);
-	sf::Sprite sprite_wall(textures.wall);
-	sf::Sprite sprite_healthpotion(textures.healthpotion);
-	sf::Sprite sprite_staminapotion(textures.staminapotion);
-	sf::Sprite sprite_shortsword(textures.shortsword);
-	sf::Sprite sprite_armingsword(textures.armingsword);
-	sf::Sprite sprite_longsword(textures.longsword);
-	sf::Sprite sprite_hatchet(textures.hatchet);
-	sf::Sprite sprite_battleaxe(textures.battleaxe);
-	sf::Sprite sprite_mace(textures.mace);
-	sf::Sprite sprite_warhammer(textures.warhammer);
-	sf::Sprite sprite_roundshield(textures.roundshield);
-	sf::Sprite sprite_heatershield(textures.heatershield);
-	sf::Sprite sprite_kiteshield(textures.kiteshield);
-	sf::Sprite sprite_towershield(textures.towershield);
-	sf::Sprite sprite_sling(textures.sling);
-	sf::Sprite sprite_bolas(textures.bolas);
-	sf::Sprite sprite_javelin(textures.javelin);
-	sf::Sprite sprite_aiaggressive(textures.aiaggressive);
-	sf::Sprite sprite_aicareful(textures.aicareful);
-	sf::Sprite sprite_aiboss(textures.aiboss);
-	sf::Sprite sprite_airandom(textures.airandom);
-	sf::Sprite sprite_aistunned(textures.aistunned);
-	sf::Sprite sprite_defense1(textures.defense1);
-	sf::Sprite sprite_defense2(textures.defense2);
-	sf::Sprite sprite_defense3(textures.defense3);
-	sf::Sprite sprite_melee1(textures.melee1);
-	sf::Sprite sprite_melee2(textures.melee2);
-	sf::Sprite sprite_melee3(textures.melee3);
-	sf::Sprite sprite_ranged1(textures.ranged1);
-	sf::Sprite sprite_ranged2(textures.ranged2);
-	sf::Sprite sprite_ranged3(textures.ranged3);
-	sf::Sprite sprite_emptyaction(textures.emptyaction);
-	sf::Sprite sprite_enemybase(textures.enemybase);
-	sf::Sprite sprite_playerbase(textures.playerbase);
-	sf::Sprite sprite_depth1(textures.depth1);
-	sf::Sprite sprite_depth2(textures.depth2);
-	sf::Sprite sprite_depth3(textures.depth3);
-	sf::Sprite sprite_depth4(textures.depth4);
-	sf::Sprite sprite_depth5(textures.depth5);
-	sf::Sprite sprite_depth6(textures.depth6);
-	sf::Sprite sprite_health0(textures.health0);
-	sf::Sprite sprite_health1(textures.health1);
-	sf::Sprite sprite_health2(textures.health2);
-	sf::Sprite sprite_health3(textures.health3);
-	sf::Sprite sprite_health4(textures.health4);
-	sf::Sprite sprite_nrzero(textures.nrzero);
-	sf::Sprite sprite_nrone(textures.nrone);
-	sf::Sprite sprite_nrtwo(textures.nrtwo);
-	sf::Sprite sprite_nrthree(textures.nrthree);
-	sf::Sprite sprite_nrfour(textures.nrfour);
-	sf::Sprite sprite_nrfive(textures.nrfive);
-	sf::Sprite sprite_nrsix(textures.nrsix);
-	sf::Sprite sprite_nrseven(textures.nrseven);
-	sf::Sprite sprite_nreight(textures.nreight);
-	sf::Sprite sprite_nrinf(textures.nrinf);
-	sf::Sprite sprite_att(textures.att);
-	sf::Sprite sprite_defse(textures.defse);
-	sf::Sprite sprite_coold(textures.coold);
-	sf::Sprite sprite_maxcoold(textures.maxcoold);
-	sf::Sprite sprite_dur(textures.dur);
-	sf::Sprite sprite_nonum(textures.nonum);
+	sf::Sprite game_view(textures->game_view);
+	sf::Sprite sprite_door_closed(textures->door_closed);
+	sf::Sprite sprite_floor(textures->floor);
+	sf::Sprite sprite_levelexitclosed(textures->levelexitclosed);
+	sf::Sprite sprite_levelexitopen(textures->levelexitopen);
+	sf::Sprite sprite_pit(textures->pit);
+	sf::Sprite sprite_trap1(textures->trap1);
+	sf::Sprite sprite_trap2(textures->trap2);
+	sf::Sprite sprite_trap3(textures->trap3);
+	sf::Sprite sprite_wall(textures->wall);
+	sf::Sprite sprite_healthpotion(textures->healthpotion);
+	sf::Sprite sprite_staminapotion(textures->staminapotion);
+	sf::Sprite sprite_shortsword(textures->shortsword);
+	sf::Sprite sprite_armingsword(textures->armingsword);
+	sf::Sprite sprite_longsword(textures->longsword);
+	sf::Sprite sprite_hatchet(textures->hatchet);
+	sf::Sprite sprite_battleaxe(textures->battleaxe);
+	sf::Sprite sprite_mace(textures->mace);
+	sf::Sprite sprite_warhammer(textures->warhammer);
+	sf::Sprite sprite_roundshield(textures->roundshield);
+	sf::Sprite sprite_heatershield(textures->heatershield);
+	sf::Sprite sprite_kiteshield(textures->kiteshield);
+	sf::Sprite sprite_towershield(textures->towershield);
+	sf::Sprite sprite_sling(textures->sling);
+	sf::Sprite sprite_bolas(textures->bolas);
+	sf::Sprite sprite_javelin(textures->javelin);
+	sf::Sprite sprite_aiaggressive(textures->aiaggressive);
+	sf::Sprite sprite_aicareful(textures->aicareful);
+	sf::Sprite sprite_aiboss(textures->aiboss);
+	sf::Sprite sprite_airandom(textures->airandom);
+	sf::Sprite sprite_aistunned(textures->aistunned);
+	sf::Sprite sprite_defense1(textures->defense1);
+	sf::Sprite sprite_defense2(textures->defense2);
+	sf::Sprite sprite_defense3(textures->defense3);
+	sf::Sprite sprite_melee1(textures->melee1);
+	sf::Sprite sprite_melee2(textures->melee2);
+	sf::Sprite sprite_melee3(textures->melee3);
+	sf::Sprite sprite_ranged1(textures->ranged1);
+	sf::Sprite sprite_ranged2(textures->ranged2);
+	sf::Sprite sprite_ranged3(textures->ranged3);
+	sf::Sprite sprite_emptyaction(textures->emptyaction);
+	sf::Sprite sprite_enemybase(textures->enemybase);
+	sf::Sprite sprite_playerbase(textures->playerbase);
+	sf::Sprite sprite_depth1(textures->depth1);
+	sf::Sprite sprite_depth2(textures->depth2);
+	sf::Sprite sprite_depth3(textures->depth3);
+	sf::Sprite sprite_depth4(textures->depth4);
+	sf::Sprite sprite_depth5(textures->depth5);
+	sf::Sprite sprite_depth6(textures->depth6);
+	sf::Sprite sprite_health0(textures->health0);
+	sf::Sprite sprite_health1(textures->health1);
+	sf::Sprite sprite_health2(textures->health2);
+	sf::Sprite sprite_health3(textures->health3);
+	sf::Sprite sprite_health4(textures->health4);
+	sf::Sprite sprite_nrzero(textures->nrzero);
+	sf::Sprite sprite_nrone(textures->nrone);
+	sf::Sprite sprite_nrtwo(textures->nrtwo);
+	sf::Sprite sprite_nrthree(textures->nrthree);
+	sf::Sprite sprite_nrfour(textures->nrfour);
+	sf::Sprite sprite_nrfive(textures->nrfive);
+	sf::Sprite sprite_nrsix(textures->nrsix);
+	sf::Sprite sprite_nrseven(textures->nrseven);
+	sf::Sprite sprite_nreight(textures->nreight);
+	sf::Sprite sprite_nrinf(textures->nrinf);
+	sf::Sprite sprite_att(textures->att);
+	sf::Sprite sprite_defse(textures->defse);
+	sf::Sprite sprite_coold(textures->coold);
+	sf::Sprite sprite_maxcoold(textures->maxcoold);
+	sf::Sprite sprite_dur(textures->dur);
+	sf::Sprite sprite_nonum(textures->nonum);
 
 	int x_orig = 65;
 	int y_orig = 67;
 
-	window.clear();
-	window.draw(game_view);
+	window->clear();
+	window->draw(game_view);
 	
 	for (std::vector<DungeonTile*> i : tile_matrix) {
 		for (DungeonTile* tile : i) {
@@ -390,7 +390,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 				}
 			}
 			sprite.setPosition(static_cast<float>(x), static_cast<float>(y));
-			window.draw(sprite);
+			window->draw(sprite);
 
 			if (tile->GetItem() != nullptr) {
 				auto item = tile->GetItem();
@@ -443,7 +443,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 					itemsprite = sprite_warhammer;	
 				}
 				itemsprite.setPosition(static_cast<float>(x), static_cast<float>(y));
-				window.draw(itemsprite);
+				window->draw(itemsprite);
 			}
 		}
 	}
@@ -523,7 +523,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 
 			for (auto sprite : {enemysprite, weaponsprite, statussprite}) {
 				sprite.setPosition(static_cast<float>(x), static_cast<float>(y));
-				window.draw(sprite);
+				window->draw(sprite);
 			}
 		}
 	}
@@ -552,7 +552,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 			healthsprite = sprite_health4;
 		}
 		healthsprite.setPosition(972, 78);
-		window.draw(healthsprite);
+		window->draw(healthsprite);
 
 		if (currentlevel == 1) {
 			lvlsprite = sprite_depth1;
@@ -573,10 +573,10 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 			lvlsprite = sprite_depth6;
 		}
 		lvlsprite.setPosition(1421, 78);
-		window.draw(lvlsprite);
+		window->draw(lvlsprite);
 
 		sprite_playerbase.setPosition(x, y);
-		window.draw(sprite_playerbase);
+		window->draw(sprite_playerbase);
 		
 		for (int inventoryindex = 0; inventoryindex < 6; inventoryindex++) {
 			sf::Sprite item;
@@ -747,7 +747,7 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 					int x = x_orig + (player->GetXCoordinate())*64;
 					int y = y_orig + (player->GetYCoordinate())*64;
 					item2.setPosition(x, y);
-					window.draw(item2);
+					window->draw(item2);
 					attdefnumber.setPosition(1157, 263);
 					attackdefense.setPosition(1157,263);
 					topcooldown.setPosition(1285, 391);
@@ -819,19 +819,19 @@ void RenderScreen(sf::RenderWindow& window, std::vector<std::vector<DungeonTile*
 				}
 				// which index --> position --> sprite
 			}
-			window.draw(item);
-			window.draw(attdefnumber);
-			window.draw(attackdefense);
-			window.draw(topcooldown);
-			window.draw(topcdnumber);
-			window.draw(cooldown);
-			window.draw(cdnumber);
-			window.draw(durability);
-			window.draw(durnumber);
+			window->draw(item);
+			window->draw(attdefnumber);
+			window->draw(attackdefense);
+			window->draw(topcooldown);
+			window->draw(topcdnumber);
+			window->draw(cooldown);
+			window->draw(cdnumber);
+			window->draw(durability);
+			window->draw(durnumber);
 		}
 	}
 	
-	window.display();
+	window->display();
 }
 
 
@@ -861,7 +861,7 @@ void ItemInfo() {
 
 //################################################################################################################################################################################
 //This function holds a game loop for one room in a dungeon.
-bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* player, std::vector<std::vector<Item*>> lootvector, Textures textures) {
+bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* player, std::vector<std::vector<Item*>> lootvector, Textures* textures) {
 	std::vector<std::vector<DungeonRoom*>> rooms = level.GetRooms();
 	DungeonRoom* currentroom = rooms[level.GetStartPos().first][level.GetStartPos().second];
     bool lootgiven = false;
@@ -954,7 +954,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 				while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
 
-				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
 				if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					return false;
 				}
@@ -1132,7 +1132,7 @@ bool Level(sf::RenderWindow& window, DungeonLevel level, int depth, Character* p
 
 //################################################################################################################################################################################
 // This function loops through the six levels of one game instance.
-void LevelLoop(sf::RenderWindow& window, Textures textures) {
+void LevelLoop(sf::RenderWindow* window, Textures* textures) {
     
     auto const levels = {1, 2, 3, 4, 5, 6};
     int sidelength;
@@ -1158,13 +1158,15 @@ void LevelLoop(sf::RenderWindow& window, Textures textures) {
 // This is a main function that creates the renderwindow and holds the application loop
 int main() {
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Dungeon Crawler", sf::Style::Close);
+	sf::RenderWindow* w;
+	w = &window;
 
 	auto desktop = sf::VideoMode::getDesktopMode();
 	sf::Vector2i posvec(desktop.width/2 - window.getSize().x/2, desktop.height/2 - window.getSize().y/2);
 	window.setPosition(posvec);
 
-	Textures textures;
-    
+	Textures* textures = new Textures;
+
     // Start menu items
     sf::Texture menu_texture;
     menu_texture.loadFromFile("../src/Graphics/GUI_Sprites/MainMenu.png");
@@ -1226,7 +1228,7 @@ int main() {
 					std::cout << "Start button pressed" << std::endl;
 					state = Game;
 					window.clear();
-					LevelLoop(window, textures);
+					LevelLoop(w, textures);
 					window.clear();
 					window.draw(main_menu);
 					window.display();

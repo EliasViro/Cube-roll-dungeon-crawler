@@ -850,7 +850,7 @@ void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*
 void InventoryItemInfo(sf::RenderWindow* window, Textures* textures, Character* player, int invslot) {
 	std::vector<InventorySlot*> inventory = player->GetInventory();
 	Item* item = inventory[invslot]->GetItem();
-	
+
 	std::cout << item->GetName() << std::endl;
 
 	sf::Sprite info;
@@ -892,15 +892,6 @@ void InventoryItemInfo(sf::RenderWindow* window, Textures* textures, Character* 
 
 
 //################################################################################################################################################################################
-//
-void EnemyInfo() {
-
-}
-
-
-
-
-//################################################################################################################################################################################
 // Info button loop
 void InfoButtonMode(sf::RenderWindow* window, 
 					Textures* textures, 
@@ -923,7 +914,6 @@ void InfoButtonMode(sf::RenderWindow* window,
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
 			sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
-			sf::Sprite selectionrect(textures->selectionrectangle);
 			
 			if (infobutton->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 				break;
@@ -953,14 +943,47 @@ void InfoButtonMode(sf::RenderWindow* window,
 				break;
 			}
 			for (auto enemy : *enemyvector) {
-				int x = gameboard_orig_x + (enemy->GetXCoordinate())*64;
-				int y = gameboard_orig_y + (enemy->GetYCoordinate())*64;
-				sf::RectangleShape rect(sf::Vector2f(64, 64));
-				rect.setPosition(x, y);
-				if (rect.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					enemy->GetCharacterType();
+				if (enemy != nullptr) {
+					int x = gameboard_orig_x + (enemy->GetXCoordinate())*64;
+					int y = gameboard_orig_y + (enemy->GetYCoordinate())*64;
+					sf::RectangleShape rect(sf::Vector2f(64, 64));
+					rect.setPosition(x, y);
+					if (rect.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						sf::Sprite info;
+						if (dynamic_cast<Slime*>(enemy) != nullptr) info.setTexture(textures->slimeinfo);
+						else if (dynamic_cast<LargeSlime*>(enemy) != nullptr) info.setTexture(textures->largeslimeinfo);
+						else if (dynamic_cast<HugeSlime*>(enemy) != nullptr) info.setTexture(textures->hugeslimeinfo);
+						else if (dynamic_cast<SmallSpider*>(enemy) != nullptr) {
+							std::cout << "SPIDER VS SMALL SPIDER? MISSING TEXTURE?" << std::endl;
+							info.setTexture(textures->spiderinfo);
+						}
+						else if (dynamic_cast<Spider*>(enemy) != nullptr) info.setTexture(textures->spiderinfo);
+						else if (dynamic_cast<BigSpider*>(enemy) != nullptr) info.setTexture(textures->hugespiderinfo);
+						else if (dynamic_cast<SpitterSpider*>(enemy) != nullptr) info.setTexture(textures->spitterinfo);
+						else if (dynamic_cast<Skeleton*>(enemy) != nullptr) info.setTexture(textures-> skeletoninfo);
+						else if (dynamic_cast<SkeletonWarrior*>(enemy) != nullptr) info.setTexture(textures->skeletonwarriorinfo);
+						else if (dynamic_cast<SkeletonKnight*>(enemy) != nullptr) info.setTexture(textures->skeletonknightinfo);
+						else if (dynamic_cast<SkeletonArcher*>(enemy) != nullptr) info.setTexture(textures->skeletonarcherinfo);
+						else if (dynamic_cast<SkeletonMage*>(enemy) != nullptr) info.setTexture(textures->skeletonmageinfo);
+						else if (dynamic_cast<Lich*>(enemy) != nullptr) info.setTexture(textures->lichinfo);
+						info.setPosition(188, 263);
+						window->draw(info);
+						window->display();
+
+						while (true) {
+							if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+								while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+								break;
+							}
+							else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+								while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;
+								break;
+							}
+						}
+					}
 				}
 			}
+			break;
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
 			while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;

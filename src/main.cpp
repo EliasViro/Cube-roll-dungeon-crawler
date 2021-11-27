@@ -849,7 +849,6 @@ void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*
 // info location x:188 y:263
 void InventoryItemInfo(sf::RenderWindow* window, Textures* textures, Character* player, int invslot, Item* item) {
 	if (invslot == -1 && item == nullptr) return;
-
 	else if (invslot != -1) {
 		std::vector<InventorySlot*> inventory = player->GetInventory();
 		item = inventory[invslot]->GetItem();
@@ -920,89 +919,71 @@ void InfoButtonMode(sf::RenderWindow* window,
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
 			sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
-			
-			
-
-			//################################
 			if (mousePos.x < (gameboard_orig_x + 12*64) && mousePos.x > (gameboard_orig_x) && mousePos.y > gameboard_orig_y && mousePos.y < (900 - gameboard_orig_y)) {
+				for (auto enemy : *enemyvector) {
+					if (enemy != nullptr) {
+						int x = gameboard_orig_x + (enemy->GetXCoordinate())*64;
+						int y = gameboard_orig_y + (enemy->GetYCoordinate())*64;
+						sf::RectangleShape rect(sf::Vector2f(64, 64));
+						rect.setPosition(x, y);
+						if (rect.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+							sf::Sprite info;
+							if (dynamic_cast<Slime*>(enemy) != nullptr) info.setTexture(textures->slimeinfo);
+							else if (dynamic_cast<LargeSlime*>(enemy) != nullptr) info.setTexture(textures->largeslimeinfo);
+							else if (dynamic_cast<HugeSlime*>(enemy) != nullptr) info.setTexture(textures->hugeslimeinfo);
+							else if (dynamic_cast<SmallSpider*>(enemy) != nullptr) info.setTexture(textures->smallspiderinfo);
+							else if (dynamic_cast<Spider*>(enemy) != nullptr) info.setTexture(textures->spiderinfo);
+							else if (dynamic_cast<BigSpider*>(enemy) != nullptr) info.setTexture(textures->hugespiderinfo);
+							else if (dynamic_cast<SpitterSpider*>(enemy) != nullptr) info.setTexture(textures->spitterinfo);
+							else if (dynamic_cast<Skeleton*>(enemy) != nullptr) info.setTexture(textures-> skeletoninfo);
+							else if (dynamic_cast<SkeletonWarrior*>(enemy) != nullptr) info.setTexture(textures->skeletonwarriorinfo);
+							else if (dynamic_cast<SkeletonKnight*>(enemy) != nullptr) info.setTexture(textures->skeletonknightinfo);
+							else if (dynamic_cast<SkeletonArcher*>(enemy) != nullptr) info.setTexture(textures->skeletonarcherinfo);
+							else if (dynamic_cast<SkeletonMage*>(enemy) != nullptr) info.setTexture(textures->skeletonmageinfo);
+							else if (dynamic_cast<Lich*>(enemy) != nullptr) info.setTexture(textures->lichinfo);
+							info.setPosition(188, 263);
+							window->draw(info);
+							sf::Sprite selectionrect(textures->selectionrectangle);
+							if (enemy->GetCurrentActionIndex() == 0) {
+								selectionrect.setPosition(196, 271);
+							}
+							if (enemy->GetCurrentActionIndex() == 1) {
+								selectionrect.setPosition(268, 271);
+							}
+							if (enemy->GetCurrentActionIndex() == 2) {
+								selectionrect.setPosition(340, 271);
+							}
+							if (enemy->GetCurrentActionIndex() == 3) {
+								selectionrect.setPosition(412, 271);
+							}
+							window->draw(selectionrect);
+							
+							window->display();
+
+							while (true) {
+								if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+									while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+									break;
+								}
+								else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+									while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;
+									break;
+								}
+							}
+						}
+					}
+				}		
 				int j_clicked = (int)(mousePos.y - gameboard_orig_y) / 64;
 				int i_clicked = (int)(mousePos.x - gameboard_orig_x) / 64;
-
-				std::cout << "x: " << j_clicked << "y: " << i_clicked << std::endl;
-
 				auto tile = currentroom->GetDungeonTile(j_clicked, i_clicked);
 				auto item = tile->GetItem();
-
 				if (item == nullptr) std::cout << "nullptr" << std::endl;
-
 				if (item != nullptr) {
 					std::cout << item->GetName() << std::endl;
 					InventoryItemInfo(window, textures, player, -1, item);
 					break;
 				}
-
-				else {
-					for (auto enemy : *enemyvector) {
-						if (enemy != nullptr) {
-							int x = gameboard_orig_x + (enemy->GetXCoordinate())*64;
-							int y = gameboard_orig_y + (enemy->GetYCoordinate())*64;
-							sf::RectangleShape rect(sf::Vector2f(64, 64));
-							rect.setPosition(x, y);
-							if (rect.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-								sf::Sprite info;
-								if (dynamic_cast<Slime*>(enemy) != nullptr) info.setTexture(textures->slimeinfo);
-								else if (dynamic_cast<LargeSlime*>(enemy) != nullptr) info.setTexture(textures->largeslimeinfo);
-								else if (dynamic_cast<HugeSlime*>(enemy) != nullptr) info.setTexture(textures->hugeslimeinfo);
-								else if (dynamic_cast<SmallSpider*>(enemy) != nullptr) info.setTexture(textures->smallspiderinfo);
-								else if (dynamic_cast<Spider*>(enemy) != nullptr) info.setTexture(textures->spiderinfo);
-								else if (dynamic_cast<BigSpider*>(enemy) != nullptr) info.setTexture(textures->hugespiderinfo);
-								else if (dynamic_cast<SpitterSpider*>(enemy) != nullptr) info.setTexture(textures->spitterinfo);
-								else if (dynamic_cast<Skeleton*>(enemy) != nullptr) info.setTexture(textures-> skeletoninfo);
-								else if (dynamic_cast<SkeletonWarrior*>(enemy) != nullptr) info.setTexture(textures->skeletonwarriorinfo);
-								else if (dynamic_cast<SkeletonKnight*>(enemy) != nullptr) info.setTexture(textures->skeletonknightinfo);
-								else if (dynamic_cast<SkeletonArcher*>(enemy) != nullptr) info.setTexture(textures->skeletonarcherinfo);
-								else if (dynamic_cast<SkeletonMage*>(enemy) != nullptr) info.setTexture(textures->skeletonmageinfo);
-								else if (dynamic_cast<Lich*>(enemy) != nullptr) info.setTexture(textures->lichinfo);
-								info.setPosition(188, 263);
-								window->draw(info);
-								sf::Sprite selectionrect(textures->selectionrectangle);
-								if (enemy->GetCurrentActionIndex() == 0) {
-									selectionrect.setPosition(196, 271);
-								}
-								if (enemy->GetCurrentActionIndex() == 1) {
-									selectionrect.setPosition(268, 271);
-								}
-								if (enemy->GetCurrentActionIndex() == 2) {
-									selectionrect.setPosition(340, 271);
-								}
-								if (enemy->GetCurrentActionIndex() == 3) {
-									selectionrect.setPosition(412, 271);
-								}
-								window->draw(selectionrect);
-								
-								window->display();
-
-								while (true) {
-									if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-										while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
-										break;
-									}
-									else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
-										while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;
-										break;
-									}
-								}
-							}
-						}
-					}		
-					break;
-				}
 				break;
-
-				/*if (currentroom->GetAllTiles()[(int)(mousePos.y - gameboard_orig_y) / 64][(int)(mousePos.x - gameboard_orig_x) / 64]->GetItem() != nullptr) {
-					InventoryItemInfo(window, textures, player, 0, currentroom->GetAllTiles()[(int)(mousePos.x - gameboard_orig_x) / 64][(int)(mousePos.y - gameboard_orig_y) / 64]->GetItem());
-					break;
-				}*/
 			}
 			else {
 				if (infobutton->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
@@ -1034,9 +1015,6 @@ void InfoButtonMode(sf::RenderWindow* window,
 				}
 				break;
 			}
-
-
-			
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
 			while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;

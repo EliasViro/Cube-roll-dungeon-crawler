@@ -155,7 +155,7 @@ void Player::TakeDamage(int damage) {
         if (inventory_[0]->GetItem()->GetItemType() == ShieldItem) {
             int returnval = inventory_[0]->UseItem();
             if (returnval > 0) {
-                AddDefensePoints(inventory_[0]->UseItem());
+                AddDefensePoints(returnval);
             }
         }
     }

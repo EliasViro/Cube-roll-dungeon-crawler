@@ -87,7 +87,8 @@ public:
 		skeletonmageinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SkeletonMageInfo.png");
 		skeletonwarriorinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SkeletonWarriorInfo.png");
 		slimeinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SlimeInfo.png");
-		spiderinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SpiderInfo.png");
+		spiderinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/LargeSpiderInfo.png");
+		smallspiderinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SmallSpiderInfo.png");
 		spitterinfo.loadFromFile("../src/Graphics/CharacterInfoSprites/SpitterSpiderInfo.png");
 		armingswordinfo.loadFromFile("../src/Graphics/ItemInfoSprites/ArmingSwordInfo.png");
 		battleaxeinfo.loadFromFile("../src/Graphics/ItemInfoSprites/BattleAxeInfo.png");
@@ -191,6 +192,7 @@ public:
 	sf::Texture skeletonmageinfo;
 	sf::Texture skeletonwarriorinfo;
 	sf::Texture slimeinfo;
+	sf::Texture smallspiderinfo;
 	sf::Texture spiderinfo;
 	sf::Texture spitterinfo;
 	sf::Texture armingswordinfo;

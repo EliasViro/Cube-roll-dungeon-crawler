@@ -953,10 +953,7 @@ void InfoButtonMode(sf::RenderWindow* window,
 						if (dynamic_cast<Slime*>(enemy) != nullptr) info.setTexture(textures->slimeinfo);
 						else if (dynamic_cast<LargeSlime*>(enemy) != nullptr) info.setTexture(textures->largeslimeinfo);
 						else if (dynamic_cast<HugeSlime*>(enemy) != nullptr) info.setTexture(textures->hugeslimeinfo);
-						else if (dynamic_cast<SmallSpider*>(enemy) != nullptr) {
-							std::cout << "SPIDER VS SMALL SPIDER? MISSING TEXTURE?" << std::endl;
-							info.setTexture(textures->spiderinfo);
-						}
+						else if (dynamic_cast<SmallSpider*>(enemy) != nullptr) info.setTexture(textures->smallspiderinfo);
 						else if (dynamic_cast<Spider*>(enemy) != nullptr) info.setTexture(textures->spiderinfo);
 						else if (dynamic_cast<BigSpider*>(enemy) != nullptr) info.setTexture(textures->hugespiderinfo);
 						else if (dynamic_cast<SpitterSpider*>(enemy) != nullptr) info.setTexture(textures->spitterinfo);
@@ -968,6 +965,21 @@ void InfoButtonMode(sf::RenderWindow* window,
 						else if (dynamic_cast<Lich*>(enemy) != nullptr) info.setTexture(textures->lichinfo);
 						info.setPosition(188, 263);
 						window->draw(info);
+						sf::Sprite selectionrect(textures->selectionrectangle);
+						if (enemy->GetCurrentActionIndex() == 0) {
+							selectionrect.setPosition(196, 271);
+						}
+						if (enemy->GetCurrentActionIndex() == 1) {
+							selectionrect.setPosition(268, 271);
+						}
+						if (enemy->GetCurrentActionIndex() == 2) {
+							selectionrect.setPosition(340, 271);
+						}
+						if (enemy->GetCurrentActionIndex() == 3) {
+							selectionrect.setPosition(412, 271);
+						}
+						window->draw(selectionrect);
+						
 						window->display();
 
 						while (true) {

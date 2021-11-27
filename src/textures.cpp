@@ -107,8 +107,12 @@ public:
 		towershieldinfo.loadFromFile("../src/Graphics/ItemInfoSprites/TowerShieldInfo.png");
 		warhammerinfo.loadFromFile("../src/Graphics/ItemInfoSprites/WarHammerInfo.png");
 		instructions.loadFromFile("../src/Graphics/GUI_Sprites/Instructions.png");
+		gameover.loadFromFile("../src/Graphics/GUI_Sprites/GameOver.png");
+		gamewon.loadFromFile("../src/Graphics/GUI_Sprites/GameWon.png");
 	}
 
+	sf::Texture gameover;
+	sf::Texture gamewon;
 	sf::Texture game_view;
 	sf::Texture door_closed;
 	sf::Texture floor;

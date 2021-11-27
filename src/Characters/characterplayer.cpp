@@ -9,7 +9,7 @@
 
 Player::Player(DungeonTile* tile) 
     : Character(PlayerCharacter, 4, tile) {
-    inventory_ = {new InventorySlot(new ShortSword()), new InventorySlot(new RoundShield()), new InventorySlot(new RoundShield), new InventorySlot(new ShortSword), new InventorySlot(new Bolas), new InventorySlot(new Sling)};
+    inventory_ = {new InventorySlot(new ShortSword()), new InventorySlot(new RoundShield()), new InventorySlot(new RoundShield), new InventorySlot(new ShortSword), new InventorySlot(new StaminaPotion), new InventorySlot(nullptr)};
     //inventory_ = {new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr)};
     if (tile != nullptr) {
         tile->SetCharacter();

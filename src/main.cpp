@@ -1167,7 +1167,6 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 			}
 		}
-		std::cout << "VALIDMOVE:" << validmove << std::endl;
 
 		//After moving, check if the player is on a door tile. This will move the player to the next room in that direction.
 		

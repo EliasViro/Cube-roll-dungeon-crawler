@@ -44,15 +44,15 @@ int Shield::GetDefense() const {
 
 
 //Cooldown 3, Defense 1.
-RoundShield::RoundShield() : Shield("Round shield", "A small round wooden shield. Not very sturdy, but at least it is light.", 999, 3, 1) {}
+RoundShield::RoundShield() : Shield("Round shield", "A small round wooden shield. Not very sturdy, but at least it is light.", 999, 4, 1) {}
 
 
 //Cooldown 5, Defense 2.
-HeaterShield::HeaterShield() : Shield("Heater shield", "A medium sized wooden shield.", 999, 5, 2) {}
+HeaterShield::HeaterShield() : Shield("Heater shield", "A medium sized wooden shield.", 999, 6, 2) {}
 
 
 //Cooldown 4, Defense 2.
-KiteShield::KiteShield() : Shield("Kite shield", "A large wooden shield shaped like an upside down droplet.", 999, 4, 2) {}
+KiteShield::KiteShield() : Shield("Kite shield", "A large wooden shield shaped like an upside down droplet.", 999, 5, 2) {}
 
 
 //Cooldown 7, Defense 3.

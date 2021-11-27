@@ -1346,8 +1346,18 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 		if (player->GetHealthPoints() <= 0) {
 			//GAME OVER
 			return false;
+			
 		}
+
+		if (player->GetCurrentTile()->GetTileNeighbor()[0] != nullptr && player->GetCurrentTile()->GetTileNeighbor()[1] != nullptr&& player->GetCurrentTile()->GetTileNeighbor()[2] != nullptr && player->GetCurrentTile()->GetTileNeighbor()[3] != nullptr) {
+			if (!(player->GetCurrentTile()->GetTileNeighbor()[0]->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor()[2]->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor()[3]->IsPassable())) {
+				//GAME OVER
+				return false;
+			}
+		}
+		
 		*/
+
 
 		RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
 	}

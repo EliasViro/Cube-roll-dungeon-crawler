@@ -105,6 +105,7 @@ public:
 		staminapotioninfo.loadFromFile("../src/Graphics/ItemInfoSprites/StaminaPotionInfo.png");
 		towershieldinfo.loadFromFile("../src/Graphics/ItemInfoSprites/TowerShieldInfo.png");
 		warhammerinfo.loadFromFile("../src/Graphics/ItemInfoSprites/WarHammerInfo.png");
+		instructions.loadFromFile("../src/Graphics/GUI_Sprites/Instructions.png");
 	}
 
 	sf::Texture game_view;
@@ -208,4 +209,5 @@ public:
 	sf::Texture staminapotioninfo;
 	sf::Texture towershieldinfo;
 	sf::Texture warhammerinfo;
+	sf::Texture instructions;
 };

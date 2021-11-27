@@ -1356,7 +1356,8 @@ int main() {
 
 	enum AppState {
 		MainMenu,
-		Game
+		Game,
+		Instructions
 	};
 
 	AppState state = MainMenu;
@@ -1376,7 +1377,6 @@ int main() {
 					window.close();
 				}
 				else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "Start button pressed" << std::endl;
 					state = Game;
 					window.clear();
 					LevelLoop(w, textures);
@@ -1387,11 +1387,47 @@ int main() {
 				}
 				else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "Instructions button pressed" << std::endl;
+					state = Instructions;
+					sf::Sprite instructions(textures->instructions);
+					window.clear();
+					window.draw(instructions);
+					window.display();
+					while (true) {
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+							while (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) continue;
+							break;
+						}
+					}
+					window.clear();
+					window.draw(main_menu);
+					window.display();
+					state = MainMenu;
 				}
 			}
+
+			/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) 
+				&& instructions_button.getGlobalBounds().contains(static_cast<float>(sf::Mouse::getPosition().x), static_cast<float>(sf::Mouse::getPosition().y))) {
+				while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+
+				std::cout << "Instructions button pressed" << std::endl;
+				
+				sf::Sprite instructions(textures->instructions);
+				window.clear();
+				window.draw(instructions);
+				window.display();
+				while (true) {
+					std::cout << "a" << std::endl;
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+						while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;
+						break;
+					}
+				}
+				window.clear();
+				window.draw(main_menu);
+				window.display();
+			}*/	
 		}
 	}
-
     return 0;
 }
 

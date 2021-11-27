@@ -890,7 +890,7 @@ void InventoryItemInfo(sf::RenderWindow* window, Textures* textures, Character* 
 
 
 
-
+// Foo
 //################################################################################################################################################################################
 // Info button loop
 void InfoButtonMode(sf::RenderWindow* window, 
@@ -1416,25 +1416,19 @@ void LevelLoop(sf::RenderWindow* window, Textures* textures) {
 
 
 //################################################################################################################################################################################
-void InstructionsView(sf::RenderWindow* window, Textures* textures) {
-	std::cout << "2" << std::endl;
-	sf::Sprite instructions(textures->instructions);
-	std::cout << "3" << std::endl;
+// Render the instructions and credits screen.
+void ShowInstructions(sf::RenderWindow* window, Textures* textures) {
+	sf::Sprite insructionsview(textures->instructions);
 	window->clear();
-	std::cout << "4" << std::endl;
-	window->draw(instructions);
-	std::cout << "5" << std::endl;
+	window->draw(insructionsview);
 	window->display();
-	std::cout << "6" << std::endl;
+
 	while (true) {
-		if (sf::Keyboard::isKeyPressed) {
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-			while (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) continue;
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
 			break;
-			}
 		}
 	}
-	std::cout << "7" << std::endl;
 }
 
 
@@ -1509,12 +1503,12 @@ int main() {
 
 			if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left && state == MainMenu) {
 				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				
 				if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					window.close();
 				}
 				else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					state = Game;
-					window.clear();
 					LevelLoop(w, textures);
 					window.clear();
 					window.draw(main_menu);
@@ -1522,16 +1516,15 @@ int main() {
 					state = MainMenu;
 				}
 				else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "Instructions button pressed" << std::endl;
 					state = Instructions;
-					std::cout << "1" << std::endl;
-					InstructionsView(w, textures);
-					std::cout << "8" << std::endl;
+					ShowInstructions(w, textures);
 					window.clear();
 					window.draw(main_menu);
 					window.display();
-					state = MainMenu;
 				}
+			}
+			else if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left && state == Instructions) {
+				state = MainMenu;
 			}
 		}
 	}

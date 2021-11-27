@@ -1306,6 +1306,32 @@ void LevelLoop(sf::RenderWindow* window, Textures* textures) {
 
 
 //################################################################################################################################################################################
+void InstructionsView(sf::RenderWindow* window, Textures* textures) {
+	std::cout << "2" << std::endl;
+	sf::Sprite instructions(textures->instructions);
+	std::cout << "3" << std::endl;
+	window->clear();
+	std::cout << "4" << std::endl;
+	window->draw(instructions);
+	std::cout << "5" << std::endl;
+	window->display();
+	std::cout << "6" << std::endl;
+	while (true) {
+		if (sf::Keyboard::isKeyPressed) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+			while (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) continue;
+			break;
+			}
+		}
+	}
+	std::cout << "7" << std::endl;
+}
+
+
+
+
+
+//################################################################################################################################################################################
 // This is a main function that creates the renderwindow and holds the application loop
 int main() {
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Dungeon Crawler", sf::Style::Close);
@@ -1388,44 +1414,15 @@ int main() {
 				else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "Instructions button pressed" << std::endl;
 					state = Instructions;
-					sf::Sprite instructions(textures->instructions);
-					window.clear();
-					window.draw(instructions);
-					window.display();
-					while (true) {
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-							while (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) continue;
-							break;
-						}
-					}
+					std::cout << "1" << std::endl;
+					InstructionsView(w, textures);
+					std::cout << "8" << std::endl;
 					window.clear();
 					window.draw(main_menu);
 					window.display();
 					state = MainMenu;
 				}
 			}
-
-			/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) 
-				&& instructions_button.getGlobalBounds().contains(static_cast<float>(sf::Mouse::getPosition().x), static_cast<float>(sf::Mouse::getPosition().y))) {
-				while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
-
-				std::cout << "Instructions button pressed" << std::endl;
-				
-				sf::Sprite instructions(textures->instructions);
-				window.clear();
-				window.draw(instructions);
-				window.display();
-				while (true) {
-					std::cout << "a" << std::endl;
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
-						while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;
-						break;
-					}
-				}
-				window.clear();
-				window.draw(main_menu);
-				window.display();
-			}*/	
 		}
 	}
     return 0;

@@ -9,7 +9,7 @@
 
 Player::Player(DungeonTile* tile) 
     : Character(PlayerCharacter, 4, tile) {
-    inventory_ = {new InventorySlot(new ShortSword()), new InventorySlot(new RoundShield()), new InventorySlot(new WarHammer()), new InventorySlot(new ArmingSword()), new InventorySlot(new HandAxe()), new InventorySlot(new HealthPotion())};
+    inventory_ = {new InventorySlot(new ShortSword()), new InventorySlot(new RoundShield()), new InventorySlot(new RoundShield), new InventorySlot(new ShortSword), new InventorySlot(new Bolas), new InventorySlot(new Sling)};
     //inventory_ = {new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr)};
     if (tile != nullptr) {
         tile->SetCharacter();
@@ -127,11 +127,7 @@ int Player::MoveToDirection(std::string direction) {
                 itemreturnval = 10;
             }
             if (itemintopslot->GetItemType() == MeleeWeaponItem) {
-                if (currenttile_->GetTileNeighbor("N") != nullptr && currenttile_->GetTileNeighbor("E") != nullptr && currenttile_->GetTileNeighbor("W") != nullptr && currenttile_->GetTileNeighbor("S") != nullptr) {
-                    if (currenttile_->GetTileNeighbor("N")->HasCharacter() || currenttile_->GetTileNeighbor("E")->HasCharacter() || currenttile_->GetTileNeighbor("W")->HasCharacter() || currenttile_->GetTileNeighbor("S")->HasCharacter()) {
-                        itemreturnval = inventory_[0]->UseItem();
-                    }
-                }
+                itemreturnval = 11;
             }
         }
         if (currenttile_->GetTrapState() == Emerging) {
@@ -148,6 +144,10 @@ int Player::MoveToDirection(std::string direction) {
     else {
         return -1;
     }
+}
+
+bool Player::NextToCharacter(Character* targetcharacter) const {
+    return ((GetXCoordinate() == targetcharacter->GetXCoordinate() && (abs(GetYCoordinate() - targetcharacter->GetYCoordinate()) == 1)) || (GetYCoordinate() == targetcharacter->GetYCoordinate() && (abs(GetXCoordinate() - targetcharacter->GetXCoordinate()) == 1)));
 }
 
 void Player::TakeDamage(int damage) {

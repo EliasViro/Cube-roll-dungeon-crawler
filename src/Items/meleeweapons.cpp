@@ -19,9 +19,14 @@ bool MeleeWeapon::CanBeUsed() const {
 }
 
 int MeleeWeapon::Use() {
-    cooldown_ = maxcooldown_;
-    durability_--;
-    return damage_;
+    if (CanBeUsed()) {
+        cooldown_ = maxcooldown_;
+        durability_--;
+        return damage_;
+    }
+    else {
+        return 0;
+    }
 }
 
 int MeleeWeapon::GetDamage() const {

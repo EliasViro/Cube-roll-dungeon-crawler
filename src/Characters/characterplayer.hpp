@@ -29,6 +29,10 @@ class Player : public Character {
 
     int MoveToDirection(std::string direction); //Moves the player to the given direction. Returns non-negative value if moving was successful.
 
+    bool DistanceToCharacterLargerThanThree(Character* targetcharacter) const { return true; }
+
+    bool NextToCharacter(Character* targetcharacter) const; //Checks if the target character is next to the character.
+
     void TakeDamage(int damage); //Deals damage to the player.
 
     void TakeAction(Character* targetcharacter, int damage); //Hits the target character with a weapon if there is one in the top inventory slot.

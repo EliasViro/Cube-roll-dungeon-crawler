@@ -1167,6 +1167,7 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 			}
 		}
+		std::cout << "VALIDMOVE:" << validmove << std::endl;
 
 		//After moving, check if the player is on a door tile. This will move the player to the next room in that direction.
 		
@@ -1227,6 +1228,71 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				lastroominlevelset = true;
 			}
 			continue;
+		}
+
+		int damage = 0;
+		if (validmove == 10) {
+			for (auto enemy1 : enemyvector) {
+				damage = 0;
+				if (enemy1 != nullptr) {
+					if (!enemy1->DistanceToCharacterLargerThanThree(player)) {
+						damage = player->GetInventory()[0]->UseItem();
+						if (player->GetInventory()[0]->GetItem()->IsStunning()) {
+							enemy1->Stun(2);
+							for (auto enemy2 : enemyvector) {
+								if (enemy2 != nullptr && enemy2 != enemy1) {
+									if (enemy1->NextToCharacter(enemy2)) {
+										enemy2->Stun(2);
+									}
+								}
+							}
+						}
+						if (player->GetInventory()[0]->GetItem()->IsThrown()) {
+							enemy1->GetCurrentTile()->PlaceItem(player->GetInventory()[0]->GetItem());
+							player->GetInventory()[0]->DropItem();
+						}
+						enemy1->TakeDamage(damage);
+						break;
+					}
+				}
+			}
+		}
+
+		if (validmove == 11) {
+			if (player->GetCurrentTile()->GetTileNeighbor("N") != nullptr && player->GetCurrentTile()->GetTileNeighbor("E") != nullptr && player->GetCurrentTile()->GetTileNeighbor("W") != nullptr && player->GetCurrentTile()->GetTileNeighbor("S") != nullptr) {
+				if (player->GetCurrentTile()->GetTileNeighbor("N")->HasCharacter() || player->GetCurrentTile()->GetTileNeighbor("E")->HasCharacter() || player->GetCurrentTile()->GetTileNeighbor("W")->HasCharacter() || player->GetCurrentTile()->GetTileNeighbor("S")->HasCharacter()) {
+					damage = player->GetInventory()[0]->UseItem();
+					if (player->GetInventory()[0]->GetItem()->TargetSeveralEnemies()) {
+						for (auto enemy3 : enemyvector) {
+							if (enemy3 != nullptr) {
+								if (enemy3->NextToCharacter(player)) {
+									enemy3->TakeDamage(damage);
+								}
+							}
+						}
+					}
+					else {
+						for (auto enemy4 : enemyvector) {
+							if (enemy4 != nullptr) {
+								if (enemy4->NextToCharacter(player)) {
+									if (player->GetInventory()[0]->GetItem()->IsStunning()) {
+										enemy4->Stun(2);
+										for (auto enemy5 : enemyvector) {
+											if (enemy5 != nullptr && enemy5 != enemy4) {
+												if (enemy4->NextToCharacter(enemy5)) {
+													enemy5->Stun(2);
+												}
+											}
+										}
+									}
+									enemy4->TakeDamage(damage);
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 		RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);

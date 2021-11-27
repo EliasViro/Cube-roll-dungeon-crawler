@@ -79,6 +79,10 @@ class Character {
 
     void RemoveDefensePoints(); //Sets the defense points to zero.
 
+    virtual bool DistanceToCharacterLargerThanThree(Character* targetcharacter) const { return true; } //Returns false if the distance is three or less.
+
+    virtual bool NextToCharacter(Character* targetcharacter) const {return false;}; //Checks if the target character is next to the character.
+
     virtual void TakeDamage(int damage) {}; //Reduces healthpoints by the amount of damage minus defense points.
 
     virtual void TakeAction(Character* targetcharacter, int fillernumber) {}; //Makes the character take an action. For Players the fillernumber is dealt as damage to targetcharacter.
@@ -90,7 +94,7 @@ class Character {
 
     bool IsStunned() const; //Returns true if the character is stunned.
 
-    virtual int MoveToDirection(std::string direction) {return -1;}; //Attempts to move the character on the neighboring tile in the given direction. 
+    virtual int MoveToDirection(std::string direction) { return -1; }; //Attempts to move the character on the neighboring tile in the given direction. 
     //Returns -1 if did not succeed, otherwise positive.
 
     void MoveToTile(DungeonTile* tile); //Moves the character onto the given tile.
@@ -101,7 +105,7 @@ class Character {
 
     virtual int GetCurrentActionIndex() const { return 0; };
 
-    virtual std::vector<InventorySlot*> GetInventory() const {return {nullptr};}; //Returns the player inventory.
+    virtual std::vector<InventorySlot*> GetInventory() const { return {nullptr}; }; //Returns the player inventory.
 
     protected:
     CharacterType charactertype_; //The type of the character.

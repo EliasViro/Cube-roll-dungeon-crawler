@@ -24,9 +24,14 @@ bool RangedWeapon::CanBeUsed() const {
 }
 
 int RangedWeapon::Use() {
-    cooldown_ = maxcooldown_;
-    durability_--;
-    return damage_;
+    if (CanBeUsed()) {
+        cooldown_ = maxcooldown_;
+        durability_--;
+        return damage_;
+    }
+    else {
+        return 0;
+    }
 }
 
 int RangedWeapon::GetDamage() const {

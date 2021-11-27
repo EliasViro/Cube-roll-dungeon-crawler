@@ -1246,9 +1246,32 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 								}
 							}
 						}
-						if (player->GetInventory()[0]->GetItem()->IsThrown()) {
-							enemy1->GetCurrentTile()->PlaceItem(player->GetInventory()[0]->GetItem());
-							player->GetInventory()[0]->DropItem();
+						if (player->GetInventory()[0]->GetItem()->IsThrown() && damage > 0) {
+							if (enemy1->GetCurrentTile()->GetItem() == nullptr) {
+								enemy1->GetCurrentTile()->PlaceItem(player->GetInventory()[0]->GetItem());
+								player->GetInventory()[0]->DropItem();
+							}
+							else {
+								if (enemy1->GetCurrentTile()->GetTileNeighbor("N")->GetItem() == nullptr && enemy1->GetCurrentTile()->GetTileNeighbor("N")->GetTileType() != Wall && enemy1->GetCurrentTile()->GetTileNeighbor("N")->GetTileType() != Pit && enemy1->GetCurrentTile()->GetTileNeighbor("N")->GetTileType() != Door) {
+									enemy1->GetCurrentTile()->GetTileNeighbor("N")->PlaceItem(player->GetInventory()[0]->GetItem());
+									player->GetInventory()[0]->DropItem();
+								}
+								else if (enemy1->GetCurrentTile()->GetTileNeighbor("E")->GetItem() == nullptr && enemy1->GetCurrentTile()->GetTileNeighbor("E")->GetTileType() != Wall && enemy1->GetCurrentTile()->GetTileNeighbor("E")->GetTileType() != Pit && enemy1->GetCurrentTile()->GetTileNeighbor("E")->GetTileType() != Door) {
+									enemy1->GetCurrentTile()->GetTileNeighbor("E")->PlaceItem(player->GetInventory()[0]->GetItem());
+									player->GetInventory()[0]->DropItem();
+								}
+								else if (enemy1->GetCurrentTile()->GetTileNeighbor("W")->GetItem() == nullptr && enemy1->GetCurrentTile()->GetTileNeighbor("W")->GetTileType() != Wall && enemy1->GetCurrentTile()->GetTileNeighbor("W")->GetTileType() != Pit && enemy1->GetCurrentTile()->GetTileNeighbor("W")->GetTileType() != Door) {
+									enemy1->GetCurrentTile()->GetTileNeighbor("W")->PlaceItem(player->GetInventory()[0]->GetItem());
+									player->GetInventory()[0]->DropItem();
+								}
+								else if (enemy1->GetCurrentTile()->GetTileNeighbor("S")->GetItem() == nullptr && enemy1->GetCurrentTile()->GetTileNeighbor("S")->GetTileType() != Wall && enemy1->GetCurrentTile()->GetTileNeighbor("S")->GetTileType() != Pit && enemy1->GetCurrentTile()->GetTileNeighbor("S")->GetTileType() != Door) {
+									enemy1->GetCurrentTile()->GetTileNeighbor("S")->PlaceItem(player->GetInventory()[0]->GetItem());
+									player->GetInventory()[0]->DropItem();
+								}
+							}
+						}
+						if (damage >= 12) {
+							damage = 0;
 						}
 						enemy1->TakeDamage(damage);
 						break;
@@ -1296,7 +1319,7 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 
 		RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
 
-		if (player->GetCurrentTile()->GetTileType() == Exit && player->GetCurrentTile()->IsOpen()) {
+		if (player->GetCurrentTile()->GetTileType() == Exit && player->GetCurrentTile()->IsOpen() && currentroom->IsLastRoomInLevel()) {
 			return true;
 		}
 

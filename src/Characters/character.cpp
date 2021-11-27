@@ -117,6 +117,9 @@ bool Character::IsStunned() const {
 }
 
 void Character::MoveToTile(DungeonTile* tile) {
+    if (currenttile_ != nullptr) {
+        currenttile_->RemoveCharacter();
+    }
     currenttile_ = tile;
     currenttile_->SetCharacter();
 }

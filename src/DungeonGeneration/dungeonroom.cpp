@@ -295,7 +295,7 @@ void DungeonRoom::SpawnLoot() {
     if (loot_ != nullptr) {
         for (auto j : alltiles_) {
             for (auto i : j) {
-                if (i->GetTileType() == Loot) {
+                if (i->GetTileType() == Loot && i->GetItem() == nullptr) {
                     i->PlaceItem(loot_);
                     loot_ = nullptr;
                 }

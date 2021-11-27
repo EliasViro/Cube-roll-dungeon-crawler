@@ -27,7 +27,12 @@ int RangedWeapon::Use() {
     if (CanBeUsed()) {
         cooldown_ = maxcooldown_;
         durability_--;
-        return damage_;
+        if (name_ != "Bolas") {
+            return damage_;
+        }
+        else {
+            return 12;
+        }
     }
     else {
         return 0;

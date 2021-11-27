@@ -27,8 +27,8 @@
 
 
 // Global variables
-const int gameboard_orig_x = 65;
-const int gameboard_orig_y = 67;
+const int gameboard_orig_x = 64;
+const int gameboard_orig_y = 66;
 
 
 
@@ -335,8 +335,8 @@ void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*
 	sf::Sprite sprite_nonum(textures->nonum);
 	sf::Sprite sprite_infobtnview(textures->infobtnview);
 
-	int x_orig = 65;
-	int y_orig = 67;
+	int x_orig = 64;
+	int y_orig = 66;
 
 	window->clear();
 	window->draw(game_view);

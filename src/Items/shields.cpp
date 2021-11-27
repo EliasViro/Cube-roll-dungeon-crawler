@@ -28,9 +28,14 @@ bool Shield::CanBeUsed() const {
 }
 
 int Shield::Use() {
-    cooldown_ = maxcooldown_;
-    durability_--;
-    return defense_;
+    if (CanBeUsed()) {
+        cooldown_ = maxcooldown_;
+        durability_--;
+        return defense_;
+    }
+    else {
+        return 0;
+    }
 }
 
 int Shield::GetDefense() const {

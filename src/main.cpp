@@ -873,7 +873,6 @@ void InventoryItemInfo(sf::RenderWindow* window, Textures* textures, Character* 
 		else if (item->GetName() == "Battleaxe") info.setTexture(textures->battleaxeinfo);
 		else if (item->GetName() == "Mace") info.setTexture(textures->maceinfo);
 		else if (item->GetName() == "Warhammer") info.setTexture(textures->warhammerinfo);
-		else std::cout << "Item not found" << std::endl;
 		info.setPosition(188, 263);
 		window->draw(info);
 		window->display();
@@ -977,9 +976,7 @@ void InfoButtonMode(sf::RenderWindow* window,
 				int i_clicked = (int)(mousePos.x - gameboard_orig_x) / 64;
 				auto tile = currentroom->GetDungeonTile(j_clicked, i_clicked);
 				auto item = tile->GetItem();
-				if (item == nullptr) std::cout << "nullptr" << std::endl;
 				if (item != nullptr) {
-					std::cout << item->GetName() << std::endl;
 					InventoryItemInfo(window, textures, player, -1, item);
 					break;
 				}
@@ -1029,7 +1026,10 @@ void InfoButtonMode(sf::RenderWindow* window,
 
 //################################################################################################################################################################################
 void PrintLevelMap(sf::RenderWindow* window, Character* player, DungeonLevel* level, DungeonRoom* currentroom, Textures* textures) {
-    
+    sf::Sprite mapbtnview(textures->mapbtnview);
+	window->draw(mapbtnview);
+	window->display();
+
     for (auto roomvec : level->GetRooms()) {
         for (auto room : roomvec) {
             int printinglocation_y = gameboard_orig_y + 192 + (room->GetIndexInLevel().first * 128);
@@ -1315,7 +1315,6 @@ void InventoryButtonAct(sf::RenderWindow* window,
 			}
 		}
 	}
-	std::cout << "item to another slot" << std::endl;
 	slot1->Clear();
 	slot2->Clear();
 	slot1->SwapAdd(item2);
@@ -1435,7 +1434,6 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 					return false;
 				}
 				else if (inventorybutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)) && !combat) {
-					std::cout << "inventory button" << std::endl;
 					InventoryButtonAct(window, player, currentroom, &inventorybutton, &inventory0, &inventory1, &inventory2, &inventory3, &inventory4, &inventory5, textures);
 					RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
 				}
@@ -1808,11 +1806,11 @@ int main() {
     instructions_button.setPoint(2, sf::Vector2f(1085, 235));
     instructions_button.setPoint(3, sf::Vector2f(799, 375));
 
-    /*
+    
     sf::Music start_music;
     start_music.openFromFile("../src/Sounds/Music/Placeholder.ogg");
 	start_music.play();
-    */
+    
 
    	window.clear();
 	window.draw(main_menu);

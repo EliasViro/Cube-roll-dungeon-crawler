@@ -52,6 +52,17 @@ class InventorySlot {
 
     void DropItem(); //Drops the item in the inventory slot.
 
+
+    //###############################
+    //###############################
+    // Edited by Donald Duck    //###
+    void Clear();               //###
+                                //###
+    void SwapAdd(Item*);        //###
+    //###############################
+    //###############################
+
+
     int UseItem(); //Attempts to use the item held in the inventory slot and returns a value from the item that signifies what it did.
     //Deletes the item from the slot if its durability reaches zero.
 

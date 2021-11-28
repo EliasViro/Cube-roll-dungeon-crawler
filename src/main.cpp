@@ -1198,8 +1198,13 @@ void InventoryButtonAct(sf::RenderWindow* window,
 						sf::RectangleShape* inventory2, 
 						sf::RectangleShape* inventory3, 
 						sf::RectangleShape* inventory4, 
-						sf::RectangleShape* inventory5) 
+						sf::RectangleShape* inventory5,
+						Textures* textures) 
 {
+	sf::Sprite invbtnview(textures->invbtnview);
+	window->draw(invbtnview);
+	window->display();
+
 	std::vector<InventorySlot*> inventory = player->GetInventory();
 	sf::RectangleShape gameboard(sf::Vector2f(768, 768));
 	gameboard.setPosition(gameboard_orig_x, gameboard_orig_y);
@@ -1215,7 +1220,7 @@ void InventoryButtonAct(sf::RenderWindow* window,
 			
 			sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
 			if (inventory0->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				if (inventory[0] == nullptr) continue;
+				if (inventory[0] == nullptr) return;
 				else {
 					slot1 = inventory[0];
 					item1 = inventory[0]->GetItem();
@@ -1223,7 +1228,7 @@ void InventoryButtonAct(sf::RenderWindow* window,
 				}
 			}
 			else if (inventory1->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				if (inventory[1] == nullptr) continue;
+				if (inventory[1] == nullptr) return;
 				else {
 					slot1 = inventory[1];
 					item1 = inventory[1]->GetItem();
@@ -1231,7 +1236,7 @@ void InventoryButtonAct(sf::RenderWindow* window,
 				}
 			}
 			else if (inventory2->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				if (inventory[2] == nullptr) continue;
+				if (inventory[2] == nullptr) return;
 				else {
 					slot1 = inventory[2];
 					item1 = inventory[2]->GetItem();
@@ -1239,7 +1244,7 @@ void InventoryButtonAct(sf::RenderWindow* window,
 				}
 			}
 			else if (inventory3->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				if (inventory[3] == nullptr) continue;
+				if (inventory[3] == nullptr) return;
 				else {
 					slot1 = inventory[3];
 					item1 = inventory[3]->GetItem();
@@ -1247,7 +1252,7 @@ void InventoryButtonAct(sf::RenderWindow* window,
 				}
 			}
 			else if (inventory4->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				if (inventory[4] == nullptr) continue;
+				if (inventory[4] == nullptr) return;
 				else {
 					slot1 = inventory[4];
 					item1 = inventory[4]->GetItem();
@@ -1255,7 +1260,7 @@ void InventoryButtonAct(sf::RenderWindow* window,
 				}
 			}
 			else if (inventory5->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				if (inventory[5] == nullptr) continue;
+				if (inventory[5] == nullptr) return;
 				else {
 					slot1 = inventory[5];
 					item1 = inventory[5]->GetItem();
@@ -1431,7 +1436,7 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 				else if (inventorybutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)) && !combat) {
 					std::cout << "inventory button" << std::endl;
-					InventoryButtonAct(window, player, currentroom, &inventorybutton, &inventory0, &inventory1, &inventory2, &inventory3, &inventory4, &inventory5);
+					InventoryButtonAct(window, player, currentroom, &inventorybutton, &inventory0, &inventory1, &inventory2, &inventory3, &inventory4, &inventory5, textures);
 					RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
 				}
 				else if (mapbutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {

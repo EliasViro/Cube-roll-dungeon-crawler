@@ -130,8 +130,10 @@ public:
 		playerlocation.loadFromFile("../src/Graphics/MapSprites/PlayerLocation.png");
 		combatlocation.loadFromFile("../src/Graphics/MapSprites/CombatLocation.png");
 		invbtnview.loadFromFile("../src/Graphics/GUI_Sprites/invbtnview.png");
+		credits.loadFromFile("../src/Graphics/GUI_Sprites/Credits.png");
 	}
 
+	sf::Texture credits;
 	sf::Texture invbtnview;
 	sf::Texture combatlocation;
 	sf::Texture _1doorroomnorth;

@@ -847,44 +847,48 @@ void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*
 //################################################################################################################################################################################
 //
 // info location x:188 y:263
-void InventoryItemInfo(sf::RenderWindow* window, Textures* textures, Character* player, int invslot) {
-	std::vector<InventorySlot*> inventory = player->GetInventory();
-	Item* item = inventory[invslot]->GetItem();
-
-	std::cout << item->GetName() << std::endl;
-
-	sf::Sprite info;
-	if (item->GetName() == "Potion of healing")  info.setTexture(textures->healingpotioninfo);
-	else if (item->GetName() == "Potion of stamina") info.setTexture(textures->staminapotioninfo);
-	else if (item->GetName() == "Javelin") info.setTexture(textures->javelininfo);
-	else if (item->GetName() == "Bolas") info.setTexture(textures->bolasinfo);
-	else if (item->GetName() == "Sling") info.setTexture(textures->slinginfo);
-	else if (item->GetName() == "Round shield") info.setTexture(textures->roundshieldinfo);
-	else if (item->GetName() == "Heater shield") info.setTexture(textures->heatershieldinfo);
-	else if (item->GetName() == "Kite shield") info.setTexture(textures->kiteshieldinfo);
-	else if (item->GetName() == "Tower shield") info.setTexture(textures->towershieldinfo);
-	else if (item->GetName() == "Shortsword") info.setTexture(textures->shortswordinfo);
-	else if (item->GetName() == "Arming sword") info.setTexture(textures->armingswordinfo);
-	else if (item->GetName() == "Longsword") info.setTexture(textures->longswordinfo);
-	else if (item->GetName() == "Hatchet") info.setTexture(textures->hatchetinfo);
-	else if (item->GetName() == "Battleaxe") info.setTexture(textures->battleaxeinfo);
-	else if (item->GetName() == "Mace") info.setTexture(textures->maceinfo);
-	else if (item->GetName() == "Warhammer") info.setTexture(textures->warhammerinfo);
-	else std::cout << "Item not found" << std::endl;
-	info.setPosition(188, 263);
-	window->draw(info);
-	window->display();
-
-	while (true) {
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
-			break;
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
-			while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;
-			break;
-		}
+void InventoryItemInfo(sf::RenderWindow* window, Textures* textures, Character* player, int invslot, Item* item) {
+	if (invslot == -1 && item == nullptr) return;
+	else if (invslot != -1) {
+		std::vector<InventorySlot*> inventory = player->GetInventory();
+		item = inventory[invslot]->GetItem();
 	}
+	
+	if (item == nullptr) return;
+	else {
+		sf::Sprite info;
+		if (item->GetName() == "Potion of healing")  info.setTexture(textures->healingpotioninfo);
+		else if (item->GetName() == "Potion of stamina") info.setTexture(textures->staminapotioninfo);
+		else if (item->GetName() == "Javelin") info.setTexture(textures->javelininfo);
+		else if (item->GetName() == "Bolas") info.setTexture(textures->bolasinfo);
+		else if (item->GetName() == "Sling") info.setTexture(textures->slinginfo);
+		else if (item->GetName() == "Round shield") info.setTexture(textures->roundshieldinfo);
+		else if (item->GetName() == "Heater shield") info.setTexture(textures->heatershieldinfo);
+		else if (item->GetName() == "Kite shield") info.setTexture(textures->kiteshieldinfo);
+		else if (item->GetName() == "Tower shield") info.setTexture(textures->towershieldinfo);
+		else if (item->GetName() == "Shortsword") info.setTexture(textures->shortswordinfo);
+		else if (item->GetName() == "Arming sword") info.setTexture(textures->armingswordinfo);
+		else if (item->GetName() == "Longsword") info.setTexture(textures->longswordinfo);
+		else if (item->GetName() == "Hatchet") info.setTexture(textures->hatchetinfo);
+		else if (item->GetName() == "Battleaxe") info.setTexture(textures->battleaxeinfo);
+		else if (item->GetName() == "Mace") info.setTexture(textures->maceinfo);
+		else if (item->GetName() == "Warhammer") info.setTexture(textures->warhammerinfo);
+		else std::cout << "Item not found" << std::endl;
+		info.setPosition(188, 263);
+		window->draw(info);
+		window->display();
+
+		while (true) {
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+				while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+				break;
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+				while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;
+				break;
+			}
+		}
+	}	
 }
 
 
@@ -903,7 +907,8 @@ void InfoButtonMode(sf::RenderWindow* window,
 					sf::RectangleShape* inventory3, 
 					sf::RectangleShape* inventory4, 
 					sf::RectangleShape* inventory5,
-					std::vector<Character*>* enemyvector
+					std::vector<Character*>* enemyvector,
+					DungeonRoom* currentroom
 					) 
 {
 	sf::Sprite infobtnview(textures->infobtnview);
@@ -914,88 +919,102 @@ void InfoButtonMode(sf::RenderWindow* window,
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
 			sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
-			
-			if (infobutton->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				break;
-			}
-			else if (inventory0->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				InventoryItemInfo(window, textures, player, 0);
-				break;
-			}
-			else if (inventory1->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				InventoryItemInfo(window, textures, player, 1);
-				break;
-			}
-			else if (inventory2->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				InventoryItemInfo(window, textures, player, 2);
-				break;
-			}
-			else if (inventory3->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				InventoryItemInfo(window, textures, player, 3);
-				break;
-			}
-			else if (inventory4->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				InventoryItemInfo(window, textures, player, 4);
-				break;
-			}
-			else if (inventory5->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-				InventoryItemInfo(window, textures, player, 5);
-				break;
-			}
-			for (auto enemy : *enemyvector) {
-				if (enemy != nullptr) {
-					int x = gameboard_orig_x + (enemy->GetXCoordinate())*64;
-					int y = gameboard_orig_y + (enemy->GetYCoordinate())*64;
-					sf::RectangleShape rect(sf::Vector2f(64, 64));
-					rect.setPosition(x, y);
-					if (rect.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-						sf::Sprite info;
-						if (dynamic_cast<Slime*>(enemy) != nullptr) info.setTexture(textures->slimeinfo);
-						else if (dynamic_cast<LargeSlime*>(enemy) != nullptr) info.setTexture(textures->largeslimeinfo);
-						else if (dynamic_cast<HugeSlime*>(enemy) != nullptr) info.setTexture(textures->hugeslimeinfo);
-						else if (dynamic_cast<SmallSpider*>(enemy) != nullptr) info.setTexture(textures->smallspiderinfo);
-						else if (dynamic_cast<Spider*>(enemy) != nullptr) info.setTexture(textures->spiderinfo);
-						else if (dynamic_cast<BigSpider*>(enemy) != nullptr) info.setTexture(textures->hugespiderinfo);
-						else if (dynamic_cast<SpitterSpider*>(enemy) != nullptr) info.setTexture(textures->spitterinfo);
-						else if (dynamic_cast<Skeleton*>(enemy) != nullptr) info.setTexture(textures-> skeletoninfo);
-						else if (dynamic_cast<SkeletonWarrior*>(enemy) != nullptr) info.setTexture(textures->skeletonwarriorinfo);
-						else if (dynamic_cast<SkeletonKnight*>(enemy) != nullptr) info.setTexture(textures->skeletonknightinfo);
-						else if (dynamic_cast<SkeletonArcher*>(enemy) != nullptr) info.setTexture(textures->skeletonarcherinfo);
-						else if (dynamic_cast<SkeletonMage*>(enemy) != nullptr) info.setTexture(textures->skeletonmageinfo);
-						else if (dynamic_cast<Lich*>(enemy) != nullptr) info.setTexture(textures->lichinfo);
-						info.setPosition(188, 263);
-						window->draw(info);
-						sf::Sprite selectionrect(textures->selectionrectangle);
-						if (enemy->GetCurrentActionIndex() == 0) {
-							selectionrect.setPosition(196, 271);
-						}
-						if (enemy->GetCurrentActionIndex() == 1) {
-							selectionrect.setPosition(268, 271);
-						}
-						if (enemy->GetCurrentActionIndex() == 2) {
-							selectionrect.setPosition(340, 271);
-						}
-						if (enemy->GetCurrentActionIndex() == 3) {
-							selectionrect.setPosition(412, 271);
-						}
-						window->draw(selectionrect);
-						
-						window->display();
-
-						while (true) {
-							if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-								while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
-								break;
+			if (mousePos.x < (gameboard_orig_x + 12*64) && mousePos.x > (gameboard_orig_x) && mousePos.y > gameboard_orig_y && mousePos.y < (900 - gameboard_orig_y)) {
+				for (auto enemy : *enemyvector) {
+					if (enemy != nullptr) {
+						int x = gameboard_orig_x + (enemy->GetXCoordinate())*64;
+						int y = gameboard_orig_y + (enemy->GetYCoordinate())*64;
+						sf::RectangleShape rect(sf::Vector2f(64, 64));
+						rect.setPosition(x, y);
+						if (rect.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+							sf::Sprite info;
+							if (dynamic_cast<Slime*>(enemy) != nullptr) info.setTexture(textures->slimeinfo);
+							else if (dynamic_cast<LargeSlime*>(enemy) != nullptr) info.setTexture(textures->largeslimeinfo);
+							else if (dynamic_cast<HugeSlime*>(enemy) != nullptr) info.setTexture(textures->hugeslimeinfo);
+							else if (dynamic_cast<SmallSpider*>(enemy) != nullptr) info.setTexture(textures->smallspiderinfo);
+							else if (dynamic_cast<Spider*>(enemy) != nullptr) info.setTexture(textures->spiderinfo);
+							else if (dynamic_cast<BigSpider*>(enemy) != nullptr) info.setTexture(textures->hugespiderinfo);
+							else if (dynamic_cast<SpitterSpider*>(enemy) != nullptr) info.setTexture(textures->spitterinfo);
+							else if (dynamic_cast<Skeleton*>(enemy) != nullptr) info.setTexture(textures-> skeletoninfo);
+							else if (dynamic_cast<SkeletonWarrior*>(enemy) != nullptr) info.setTexture(textures->skeletonwarriorinfo);
+							else if (dynamic_cast<SkeletonKnight*>(enemy) != nullptr) info.setTexture(textures->skeletonknightinfo);
+							else if (dynamic_cast<SkeletonArcher*>(enemy) != nullptr) info.setTexture(textures->skeletonarcherinfo);
+							else if (dynamic_cast<SkeletonMage*>(enemy) != nullptr) info.setTexture(textures->skeletonmageinfo);
+							else if (dynamic_cast<Lich*>(enemy) != nullptr) info.setTexture(textures->lichinfo);
+							info.setPosition(188, 263);
+							window->draw(info);
+							sf::Sprite selectionrect(textures->selectionrectangle);
+							if (enemy->GetCurrentActionIndex() == 0) {
+								selectionrect.setPosition(196, 271);
 							}
-							else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
-								while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;
-								break;
+							if (enemy->GetCurrentActionIndex() == 1) {
+								selectionrect.setPosition(268, 271);
+							}
+							if (enemy->GetCurrentActionIndex() == 2) {
+								selectionrect.setPosition(340, 271);
+							}
+							if (enemy->GetCurrentActionIndex() == 3) {
+								selectionrect.setPosition(412, 271);
+							}
+							window->draw(selectionrect);
+							
+							window->display();
+
+							while (true) {
+								if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+									while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+									break;
+								}
+								else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+									while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;
+									break;
+								}
 							}
 						}
 					}
+				}		
+				int j_clicked = (int)(mousePos.y - gameboard_orig_y) / 64;
+				int i_clicked = (int)(mousePos.x - gameboard_orig_x) / 64;
+				auto tile = currentroom->GetDungeonTile(j_clicked, i_clicked);
+				auto item = tile->GetItem();
+				if (item == nullptr) std::cout << "nullptr" << std::endl;
+				if (item != nullptr) {
+					std::cout << item->GetName() << std::endl;
+					InventoryItemInfo(window, textures, player, -1, item);
+					break;
 				}
+				break;
 			}
-			break;
+			else {
+				if (infobutton->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					break;
+				}
+				else if (inventory0->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					InventoryItemInfo(window, textures, player, 0, nullptr);
+					break;
+				}
+				else if (inventory1->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					InventoryItemInfo(window, textures, player, 1, nullptr);
+					break;
+				}
+				else if (inventory2->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					InventoryItemInfo(window, textures, player, 2, nullptr);
+					break;
+				}
+				else if (inventory3->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					InventoryItemInfo(window, textures, player, 3, nullptr);
+					break;
+				}
+				else if (inventory4->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					InventoryItemInfo(window, textures, player, 4, nullptr);
+					break;
+				}
+				else if (inventory5->getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+					InventoryItemInfo(window, textures, player, 5, nullptr);
+					break;
+				}
+				break;
+			}
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
 			while (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) continue;
@@ -1121,12 +1140,13 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 				else if (itembutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)) && !combat) {
 					std::cout << "item button" << std::endl;
+					//foo
 				}
 				else if (mapbutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "map button" << std::endl;
 				}
 				else if (infobutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					InfoButtonMode(window, textures, player, &infobutton, &inventory0, &inventory1, &inventory2, &inventory3, &inventory4, &inventory5, &enemyvector);
+					InfoButtonMode(window, textures, player, &infobutton, &inventory0, &inventory1, &inventory2, &inventory3, &inventory4, &inventory5, &enemyvector, currentroom);
 					RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
 				}
 				else if (north.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
@@ -1162,7 +1182,7 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F)) {
 					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F)) continue;
-					InfoButtonMode(window, textures, player, &infobutton, &inventory0, &inventory1, &inventory2, &inventory3, &inventory4, &inventory5, &enemyvector);
+					InfoButtonMode(window, textures, player, &infobutton, &inventory0, &inventory1, &inventory2, &inventory3, &inventory4, &inventory5, &enemyvector, currentroom);
 					RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
 				}
 			}
@@ -1416,25 +1436,19 @@ void LevelLoop(sf::RenderWindow* window, Textures* textures) {
 
 
 //################################################################################################################################################################################
-void InstructionsView(sf::RenderWindow* window, Textures* textures) {
-	std::cout << "2" << std::endl;
-	sf::Sprite instructions(textures->instructions);
-	std::cout << "3" << std::endl;
+// Render the instructions and credits screen.
+void ShowInstructions(sf::RenderWindow* window, Textures* textures) {
+	sf::Sprite insructionsview(textures->instructions);
 	window->clear();
-	std::cout << "4" << std::endl;
-	window->draw(instructions);
-	std::cout << "5" << std::endl;
+	window->draw(insructionsview);
 	window->display();
-	std::cout << "6" << std::endl;
+
 	while (true) {
-		if (sf::Keyboard::isKeyPressed) {
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-			while (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) continue;
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
 			break;
-			}
 		}
 	}
-	std::cout << "7" << std::endl;
 }
 
 
@@ -1509,12 +1523,12 @@ int main() {
 
 			if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left && state == MainMenu) {
 				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				
 				if (quit_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					window.close();
 				}
 				else if (start_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					state = Game;
-					window.clear();
 					LevelLoop(w, textures);
 					window.clear();
 					window.draw(main_menu);
@@ -1522,16 +1536,15 @@ int main() {
 					state = MainMenu;
 				}
 				else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-					std::cout << "Instructions button pressed" << std::endl;
 					state = Instructions;
-					std::cout << "1" << std::endl;
-					InstructionsView(w, textures);
-					std::cout << "8" << std::endl;
+					ShowInstructions(w, textures);
 					window.clear();
 					window.draw(main_menu);
 					window.display();
-					state = MainMenu;
 				}
+			}
+			else if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left && state == Instructions) {
+				state = MainMenu;
 			}
 		}
 	}

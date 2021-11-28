@@ -129,8 +129,10 @@ public:
 		lootlocation.loadFromFile("../src/Graphics/MapSprites/LootLocation.png");
 		playerlocation.loadFromFile("../src/Graphics/MapSprites/PlayerLocation.png");
 		combatlocation.loadFromFile("../src/Graphics/MapSprites/CombatLocation.png");
+		invbtnview.loadFromFile("../src/Graphics/GUI_Sprites/invbtnview.png");
 	}
 
+	sf::Texture invbtnview;
 	sf::Texture combatlocation;
 	sf::Texture _1doorroomnorth;
 	sf::Texture _1doorroomeast;

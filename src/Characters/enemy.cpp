@@ -1042,7 +1042,11 @@ void Enemy::TakeAction(Character* targetcharacter, int fillernumber) {
 }
 
 void Enemy::TakeDamage(int damage) {
-    healthpoints_ = healthpoints_ - (damage - defensepoints_);
+    int takendamage = damage - defensepoints_;
+    if (takendamage < 0) {
+        takendamage = 0;
+    }
+    healthpoints_ = healthpoints_ - (takendamage);
     if (healthpoints_ <= 0) {
         currenttile_->RemoveCharacter();
     }

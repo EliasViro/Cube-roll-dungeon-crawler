@@ -159,7 +159,11 @@ void Player::TakeDamage(int damage) {
             }
         }
     }
-    healthpoints_ = healthpoints_ - (damage - defensepoints_);
+    int takendamage = damage - defensepoints_;
+    if (takendamage < 0) {
+        takendamage = 0;
+    }
+    healthpoints_ = healthpoints_ - (takendamage);
 }
 
 void Player::TakeAction(Character* targetcharacter, int damage) {

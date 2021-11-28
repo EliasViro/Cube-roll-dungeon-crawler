@@ -1629,7 +1629,7 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 						for (auto enemy4 : enemyvector) {
 							if (enemy4 != nullptr) {
 								if (enemy4->NextToCharacter(player)) {
-									if (player->GetInventory()[0]->GetItem()->IsStunning()) {
+									if (player->GetInventory()[0]->GetItem()->IsStunning() && player->GetInventory()[0]->GetItem()->GetCoolDown() <= 0) {
 										enemy4->Stun(2);
 										for (auto enemy5 : enemyvector) {
 											if (enemy5 != nullptr && enemy5 != enemy4) {

@@ -1028,12 +1028,21 @@ void Enemy::TakeAction(Character* targetcharacter, int fillernumber) {
         }
         if (actionvector_[indexinactionvector_] == Ranged_1 && !DistanceToCharacterLargerThanThree(targetcharacter)) {
             targetcharacter->TakeDamage(1);
+            if (targetcharacter->GetDefensePoints() > 0) {
+                Stun(1);
+            }
         }
         if (actionvector_[indexinactionvector_] == Ranged_2 && !DistanceToCharacterLargerThanThree(targetcharacter)) {
             targetcharacter->TakeDamage(2);
+            if (targetcharacter->GetDefensePoints() > 0) {
+                Stun(1);
+            }
         }
         if (actionvector_[indexinactionvector_] == Ranged_3 && !DistanceToCharacterLargerThanThree(targetcharacter)) {
             targetcharacter->TakeDamage(3);
+            if (targetcharacter->GetDefensePoints() > 0) {
+                Stun(1);
+            }
         }
     }
     else {

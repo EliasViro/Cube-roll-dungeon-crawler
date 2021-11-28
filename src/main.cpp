@@ -1805,10 +1805,12 @@ int main() {
     instructions_button.setPoint(2, sf::Vector2f(1085, 235));
     instructions_button.setPoint(3, sf::Vector2f(799, 375));
 
-    
-    sf::Music start_music;
-    start_music.openFromFile("../src/Sounds/Music/Placeholder.ogg");
-	start_music.play();
+	// Sound test
+    sf::SoundBuffer buffer;
+	buffer.loadFromFile("../src/Sounds/Music/GameMusic.ogg");
+	sf::Sound sound;
+	sound.setBuffer(buffer);
+	sound.play();
     
 
    	window.clear();

@@ -128,9 +128,10 @@ public:
 		unexploredlocation.loadFromFile("../src/Graphics/MapSprites/UnexploredLocation.png");
 		lootlocation.loadFromFile("../src/Graphics/MapSprites/LootLocation.png");
 		playerlocation.loadFromFile("../src/Graphics/MapSprites/PlayerLocation.png");
+		combatlocation.loadFromFile("../src/Graphics/MapSprites/CombatLocation.png");
 	}
 
-
+	sf::Texture combatlocation;
 	sf::Texture _1doorroomnorth;
 	sf::Texture _1doorroomeast;
 	sf::Texture _1doorroomwest;

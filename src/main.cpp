@@ -1023,66 +1023,124 @@ void InfoButtonMode(sf::RenderWindow* window,
 	}
 }
 
-void PrintLevelMap(Character* player, DungeonLevel* level, DungeonRoom* currentroom, Textures* textures) {
+void PrintLevelMap(sf::RenderWindow* window, Character* player, DungeonLevel* level, DungeonRoom* currentroom, Textures* textures) {
     
     for (auto roomvec : level->GetRooms()) {
         for (auto room : roomvec) {
-            int printinglocation_x = gameboard_orig_x + 192 + (room->GetIndexInLevel().first * 128);
-            int printinglocation_y = gameboard_orig_y + 192 + (room->GetIndexInLevel().second * 128);
+            int printinglocation_y = gameboard_orig_y + 192 + (room->GetIndexInLevel().first * 128);
+            int printinglocation_x = gameboard_orig_x + 192 + (room->GetIndexInLevel().second * 128);
             if (!room->IsExplored()) {
                 //Print unexplored room
+				sf::Sprite sprite(textures->unexploredlocation);
+				sprite.setPosition(printinglocation_x, printinglocation_y);
+				window->draw(sprite);
+
+				if (room->GetIndexInLevel() == currentroom->GetIndexInLevel()) {
+					//Print player character
+					sf::Sprite combatlocation(textures->combatlocation);
+					combatlocation.setPosition(printinglocation_x, printinglocation_y);
+					window->draw(combatlocation);
+					sf::Sprite sprite(textures->playerlocation);
+					sprite.setPosition(printinglocation_x, printinglocation_y);
+					window->draw(sprite);
+				}
             }
             else {
                 if (room->GetRoomType() == _1DoorRoom) {
                     if (room->GetDoorOrientation() == North) {
                         //Print north facing 1DoorRoom
+						sf::Sprite sprite(textures->_1doorroomnorth);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                     else if (room->GetDoorOrientation() == East) {
                         //Print east facing 1DoorRoom
+						sf::Sprite sprite(textures->_1doorroomeast);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                     else if (room->GetDoorOrientation() == West) {
                         //Print west facing 1DoorRoom
+						sf::Sprite sprite(textures->_1doorroomwest);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                     else {
                         //Print south facing 1DoorRoom
+						sf::Sprite sprite(textures->_1doorroomsouth);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                 }
                 else if (room->GetRoomType() == _3DoorRoom) {
                     if (room->GetDoorOrientation() == North) {
                         //Print north facing 3DoorRoom
+						sf::Sprite sprite(textures->_3doorroomnorth);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                     else if (room->GetDoorOrientation() == East) {
                         //Print east facing 3DoorRoom
+						sf::Sprite sprite(textures->unexploredlocation);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                     else if (room->GetDoorOrientation() == West) {
                         //Print west facing 3DoorRoom
+						sf::Sprite sprite(textures->_3doorroomwest);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                     else {
                         //Print south facing 3DoorRoom
+						sf::Sprite sprite(textures->_3doorroomsouth);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                 }
                 else if (room->GetRoomType() == _2DoorRoomCorner || room->GetRoomType() == _2DoorRoomOpposite) {
                     if (room->GetDoorOrientation() == Horizontal) {
                         //Print a horizontal 2DoorRoomOpposite
+						sf::Sprite sprite(textures->_2doorroomhorizontal);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                     else if (room->GetDoorOrientation() == Vertical) {
                         //Print a vertical 2DoorRoomOpposite
+						sf::Sprite sprite(textures->_2doorroomvertical);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                     else if (room->GetDoorOrientation() == NorthWest) {
                         //Print NW 2DoorRoomCorner
+						sf::Sprite sprite(textures->_2doorroomnw);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                     else if (room->GetDoorOrientation() == SouthWest) {
                         //Print SW 2DoorRoomCorner
+						sf::Sprite sprite(textures->_2doorroomsw);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                     else if (room->GetDoorOrientation() == NorthEast) {
                         //Print NE 2DoorRoomCorner
+						sf::Sprite sprite(textures->_2doorroomne);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                     else if (room->GetDoorOrientation() == SouthEast) {
                         //Print SE 2DoorRoomCorner
+						sf::Sprite sprite(textures->_2doorroomse);
+						sprite.setPosition(printinglocation_x, printinglocation_y);
+						window->draw(sprite);
                     }
                 }
                 else {
                     //Print four door room
+					sf::Sprite sprite(textures->_4doorroom);
+					sprite.setPosition(printinglocation_x, printinglocation_y);
+					window->draw(sprite);
                 }
                 bool hasitem = false;
                 for (auto tilevec : room->GetAllTiles()) {
@@ -1096,16 +1154,29 @@ void PrintLevelMap(Character* player, DungeonLevel* level, DungeonRoom* currentr
                         break;
                     }
                 }
-
-                if (room->GetIndexInLevel() == currentroom->GetIndexInLevel()) {
+				if (room->GetIndexInLevel() == currentroom->GetIndexInLevel()) {
                     //Print player character
+					sf::Sprite sprite(textures->playerlocation);
+					sprite.setPosition(printinglocation_x, printinglocation_y);
+					window->draw(sprite);
                 }
                 else if (hasitem) {
                     //Print loot sack
+					sf::Sprite sprite(textures->lootlocation);
+					sprite.setPosition(printinglocation_x, printinglocation_y);
+					window->draw(sprite);
                 }
             }
         }
     }
+	window->display();
+
+	while (true) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+			break;
+		}
+	}
 }
 
 
@@ -1227,6 +1298,8 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 				else if (mapbutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					std::cout << "map button" << std::endl;
+					PrintLevelMap(window, player, &level, currentroom, textures);
+					RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
 				}
 				else if (infobutton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					InfoButtonMode(window, textures, player, &infobutton, &inventory0, &inventory1, &inventory2, &inventory3, &inventory4, &inventory5, &enemyvector, currentroom);
@@ -1248,8 +1321,8 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 
 			if (sf::Keyboard::isKeyPressed) {
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-				while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) continue;
-				validmove = player->MoveToDirection("N");
+					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) continue;
+					validmove = player->MoveToDirection("N");
 				}
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
 					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) continue;
@@ -1261,6 +1334,22 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
 					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) continue;
+					validmove = player->MoveToDirection("E");
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
+					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) continue;
+					validmove = player->MoveToDirection("N");
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
+					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) continue;
+					validmove = player->MoveToDirection("W");
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
+					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) continue;
+					validmove = player->MoveToDirection("S");
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
+					while (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) continue;
 					validmove = player->MoveToDirection("E");
 				}
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F)) {

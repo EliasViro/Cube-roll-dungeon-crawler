@@ -1023,7 +1023,90 @@ void InfoButtonMode(sf::RenderWindow* window,
 	}
 }
 
+void PrintLevelMap(Character* player, DungeonLevel* level, DungeonRoom* currentroom, Textures* textures) {
+    
+    for (auto roomvec : level->GetRooms()) {
+        for (auto room : roomvec) {
+            int printinglocation_x = gameboard_orig_x + 192 + (room->GetIndexInLevel().first * 128);
+            int printinglocation_y = gameboard_orig_y + 192 + (room->GetIndexInLevel().second * 128);
+            if (!room->IsExplored()) {
+                //Print unexplored room
+            }
+            else {
+                if (room->GetRoomType() == _1DoorRoom) {
+                    if (room->GetDoorOrientation() == North) {
+                        //Print north facing 1DoorRoom
+                    }
+                    else if (room->GetDoorOrientation() == East) {
+                        //Print east facing 1DoorRoom
+                    }
+                    else if (room->GetDoorOrientation() == West) {
+                        //Print west facing 1DoorRoom
+                    }
+                    else {
+                        //Print south facing 1DoorRoom
+                    }
+                }
+                else if (room->GetRoomType() == _3DoorRoom) {
+                    if (room->GetDoorOrientation() == North) {
+                        //Print north facing 3DoorRoom
+                    }
+                    else if (room->GetDoorOrientation() == East) {
+                        //Print east facing 3DoorRoom
+                    }
+                    else if (room->GetDoorOrientation() == West) {
+                        //Print west facing 3DoorRoom
+                    }
+                    else {
+                        //Print south facing 3DoorRoom
+                    }
+                }
+                else if (room->GetRoomType() == _2DoorRoomCorner || room->GetRoomType() == _2DoorRoomOpposite) {
+                    if (room->GetDoorOrientation() == Horizontal) {
+                        //Print a horizontal 2DoorRoomOpposite
+                    }
+                    else if (room->GetDoorOrientation() == Vertical) {
+                        //Print a vertical 2DoorRoomOpposite
+                    }
+                    else if (room->GetDoorOrientation() == NorthWest) {
+                        //Print NW 2DoorRoomCorner
+                    }
+                    else if (room->GetDoorOrientation() == SouthWest) {
+                        //Print SW 2DoorRoomCorner
+                    }
+                    else if (room->GetDoorOrientation() == NorthEast) {
+                        //Print NE 2DoorRoomCorner
+                    }
+                    else if (room->GetDoorOrientation() == SouthEast) {
+                        //Print SE 2DoorRoomCorner
+                    }
+                }
+                else {
+                    //Print four door room
+                }
+                bool hasitem = false;
+                for (auto tilevec : room->GetAllTiles()) {
+                    for (auto tile : tilevec) {
+                        if (tile->GetItem() != nullptr) {
+                            hasitem = true;
+                            break;
+                        }
+                    }
+                    if (hasitem) {
+                        break;
+                    }
+                }
 
+                if (room->GetIndexInLevel() == currentroom->GetIndexInLevel()) {
+                    //Print player character
+                }
+                else if (hasitem) {
+                    //Print loot sack
+                }
+            }
+        }
+    }
+}
 
 
 
@@ -1261,7 +1344,7 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 							for (auto enemy2 : enemyvector) {
 								if (enemy2 != nullptr && enemy2 != enemy1) {
 									if (enemy1->NextToCharacter(enemy2)) {
-										enemy2->Stun(2);
+										enemy2->Stun(3);
 									}
 								}
 							}
@@ -1322,7 +1405,7 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 										for (auto enemy5 : enemyvector) {
 											if (enemy5 != nullptr && enemy5 != enemy4) {
 												if (enemy4->NextToCharacter(enemy5)) {
-													enemy5->Stun(2);
+													enemy5->Stun(3);
 												}
 											}
 										}

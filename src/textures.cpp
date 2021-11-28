@@ -109,8 +109,47 @@ public:
 		instructions.loadFromFile("../src/Graphics/GUI_Sprites/Instructions.png");
 		gameover.loadFromFile("../src/Graphics/GUI_Sprites/GameOver.png");
 		gamewon.loadFromFile("../src/Graphics/GUI_Sprites/GameWon.png");
+		mapbtnview.loadFromFile("../src/Graphics/GUI_Sprites/mapbtnview.png");
+		_1doorroomnorth.loadFromFile("../src/Graphics/MapSprites/1DoorRoomNorth");
+		_1doorroomeast.loadFromFile("../src/Graphics/MapSprites/1DoorRoomEast");
+		_1doorroomwest.loadFromFile("../src/Graphics/MapSprites/1DoorRoomWest");
+		_1doorroomsouth.loadFromFile("../src/Graphics/MapSprites/1DoorRoomSouth");
+		_2doorroomvertical.loadFromFile("../src/Graphics/MapSprites/2DoorRoomVertical");
+		_2doorroomhorizontal.loadFromFile("../src/Graphics/MapSprites/2DoorRoomHorizontal");
+		_2doorroomne.loadFromFile("../src/Graphics/MapSprites/2DoorRoomNE");
+		_2doorroomnw.loadFromFile("../src/Graphics/MapSprites/2DoorRoomNW");
+		_2doorroomse.loadFromFile("../src/Graphics/MapSprites/2DoorRoomSE");
+		_2doorroomsw.loadFromFile("../src/Graphics/MapSprites/2DoorRoomSW");
+		_3doorroomnorth.loadFromFile("../src/Graphics/MapSprites/3DoorRoomNorth");
+		_3doorroomeast.loadFromFile("../src/Graphics/MapSprites/3DoorRoomEast");
+		_3doorroomwest.loadFromFile("../src/Graphics/MapSprites/3DoorRoomWest");
+		_3doorroomsouth.loadFromFile("../src/Graphics/MapSprites/3DoorRoomSouth");
+		_4doorroom.loadFromFile("../src/Graphics/MapSprites/4DoorRoom");
+		unexploredlocation.loadFromFile("../src/Graphics/MapSprites/UnexploredLocation");
+		lootlocation.loadFromFile("../src/Graphics/MapSprites/LootLocation");
+		playerlocation.loadFromFile("../src/Graphics/MapSprites/PlayerLocation");
 	}
 
+
+	sf::Texture _1doorroomnorth;
+	sf::Texture _1doorroomeast;
+	sf::Texture _1doorroomwest;
+	sf::Texture _1doorroomsouth;
+	sf::Texture _2doorroomvertical;
+	sf::Texture _2doorroomhorizontal;
+	sf::Texture _2doorroomne;
+	sf::Texture _2doorroomnw;
+	sf::Texture _2doorroomse;
+	sf::Texture _2doorroomsw;
+	sf::Texture _3doorroomnorth;
+	sf::Texture _3doorroomeast;
+	sf::Texture _3doorroomwest;
+	sf::Texture _3doorroomsouth;
+	sf::Texture unexploredlocation;
+	sf::Texture lootlocation;
+	sf::Texture playerlocation;
+	sf::Texture _4doorroom;
+	sf::Texture mapbtnview;
 	sf::Texture gameover;
 	sf::Texture gamewon;
 	sf::Texture game_view;

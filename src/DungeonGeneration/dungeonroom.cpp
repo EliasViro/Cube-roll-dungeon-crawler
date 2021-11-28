@@ -15,22 +15,22 @@ std::string RandomizeFileName(RoomType roomtype) {
     unsigned int randomnumber = 0;
     if (roomtype == _1DoorRoom) {
         filename = "1DoorRooms/";
-        randomnumber = rand() % 3 + 1; //Random number between 1 and the amount of rooms in 1DoorRooms storage folder
+        randomnumber = rand() % 13 + 1; //Random number between 1 and the amount of rooms in 1DoorRooms storage folder
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else if (roomtype == _2DoorRoomCorner) {
         filename = "2DoorRoomsCorner/";
-        randomnumber = rand() % 3 + 1; //Random number between 1 and the amount of rooms in 2DoorRoomsCorner storage folder
+        randomnumber = rand() % 13 + 1; //Random number between 1 and the amount of rooms in 2DoorRoomsCorner storage folder
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else if (roomtype == _2DoorRoomOpposite) {
         filename = "2DoorRoomsOpposite/";
-        randomnumber = rand() % 3 + 1; //Random number between 1 and the amount of rooms in 2DoorRoomsOpposite storage folder
+        randomnumber = rand() % 13 + 1; //Random number between 1 and the amount of rooms in 2DoorRoomsOpposite storage folder
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else if (roomtype == _3DoorRoom) {
         filename = "3DoorRooms/";
-        randomnumber = rand() % 3 + 1; //Random number between 1 and the amount of rooms in 3DoorRooms storage folder
+        randomnumber = rand() % 7 + 1; //Random number between 1 and the amount of rooms in 3DoorRooms storage folder
         filename += std::to_string(randomnumber); //Attach the random number to the file name
     }
     else {

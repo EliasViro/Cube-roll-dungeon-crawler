@@ -65,11 +65,17 @@ class DungeonRoom {
     void OpenDoors(); //Opens the doors of the room when all enemies have been defeated.
     
     std::vector<DungeonRoom*> GetNeighbors() const; // return the room neighbors
+
+    DoorOrientation GetDoorOrientation() const; //Returns the door orientation of the room.
+
+    RoomType GetRoomType() const; //Returns the room type of the room.
     
     void AddNeighbor(DungeonRoom *room);
 
     private:
     std::pair<int, int> indexinlevel_; //The index of the room in the list of Rooms on a level.
+    RoomType roomtype_; //The type of the room.
+    DoorOrientation doororientation_; //The door orientation of the room.
     bool hasbeenexplored_; //True if the room has already been explored.
     bool lastroominlevel_; //True if the room is the last one the player enters.
     Item* loot_; //A pointer to the loot item.

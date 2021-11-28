@@ -1734,8 +1734,7 @@ void LevelLoop(sf::RenderWindow* window, Textures* textures) {
     
     for (int i : levels) {
         if (i == 1) sidelength = 2;
-        else if (1 < i < 6) sidelength = 3;
-        else sidelength = 4;
+        else sidelength = 3;
 
 		DungeonLevel level(sidelength);
 		bool keeprunning = Level(window, level, i, player, lootvector, textures);

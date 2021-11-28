@@ -110,24 +110,24 @@ public:
 		gameover.loadFromFile("../src/Graphics/GUI_Sprites/GameOver.png");
 		gamewon.loadFromFile("../src/Graphics/GUI_Sprites/GameWon.png");
 		mapbtnview.loadFromFile("../src/Graphics/GUI_Sprites/mapbtnview.png");
-		_1doorroomnorth.loadFromFile("../src/Graphics/MapSprites/1DoorRoomNorth");
-		_1doorroomeast.loadFromFile("../src/Graphics/MapSprites/1DoorRoomEast");
-		_1doorroomwest.loadFromFile("../src/Graphics/MapSprites/1DoorRoomWest");
-		_1doorroomsouth.loadFromFile("../src/Graphics/MapSprites/1DoorRoomSouth");
-		_2doorroomvertical.loadFromFile("../src/Graphics/MapSprites/2DoorRoomVertical");
-		_2doorroomhorizontal.loadFromFile("../src/Graphics/MapSprites/2DoorRoomHorizontal");
-		_2doorroomne.loadFromFile("../src/Graphics/MapSprites/2DoorRoomNE");
-		_2doorroomnw.loadFromFile("../src/Graphics/MapSprites/2DoorRoomNW");
-		_2doorroomse.loadFromFile("../src/Graphics/MapSprites/2DoorRoomSE");
-		_2doorroomsw.loadFromFile("../src/Graphics/MapSprites/2DoorRoomSW");
-		_3doorroomnorth.loadFromFile("../src/Graphics/MapSprites/3DoorRoomNorth");
-		_3doorroomeast.loadFromFile("../src/Graphics/MapSprites/3DoorRoomEast");
-		_3doorroomwest.loadFromFile("../src/Graphics/MapSprites/3DoorRoomWest");
-		_3doorroomsouth.loadFromFile("../src/Graphics/MapSprites/3DoorRoomSouth");
-		_4doorroom.loadFromFile("../src/Graphics/MapSprites/4DoorRoom");
-		unexploredlocation.loadFromFile("../src/Graphics/MapSprites/UnexploredLocation");
-		lootlocation.loadFromFile("../src/Graphics/MapSprites/LootLocation");
-		playerlocation.loadFromFile("../src/Graphics/MapSprites/PlayerLocation");
+		_1doorroomnorth.loadFromFile("../src/Graphics/MapSprites/1DoorRoomNorth.png");
+		_1doorroomeast.loadFromFile("../src/Graphics/MapSprites/1DoorRoomEast.png");
+		_1doorroomwest.loadFromFile("../src/Graphics/MapSprites/1DoorRoomWest.png");
+		_1doorroomsouth.loadFromFile("../src/Graphics/MapSprites/1DoorRoomSouth.png");
+		_2doorroomvertical.loadFromFile("../src/Graphics/MapSprites/2DoorRoomOppositeVertical.png");
+		_2doorroomhorizontal.loadFromFile("../src/Graphics/MapSprites/2DoorRoomOppositeHorizontal.png");
+		_2doorroomne.loadFromFile("../src/Graphics/MapSprites/2DoorRoomNE.png");
+		_2doorroomnw.loadFromFile("../src/Graphics/MapSprites/2DoorRoomNW.png");
+		_2doorroomse.loadFromFile("../src/Graphics/MapSprites/2DoorRoomSE.png");
+		_2doorroomsw.loadFromFile("../src/Graphics/MapSprites/2DoorRoomSW.png");
+		_3doorroomnorth.loadFromFile("../src/Graphics/MapSprites/3DoorRoomNorth.png");
+		_3doorroomeast.loadFromFile("../src/Graphics/MapSprites/3DoorRoomEast.png");
+		_3doorroomwest.loadFromFile("../src/Graphics/MapSprites/3DoorRoomWest.png");
+		_3doorroomsouth.loadFromFile("../src/Graphics/MapSprites/3DoorRoomSouth.png");
+		_4doorroom.loadFromFile("../src/Graphics/MapSprites/4DoorRoom.png");
+		unexploredlocation.loadFromFile("../src/Graphics/MapSprites/UnexploredLocation.png");
+		lootlocation.loadFromFile("../src/Graphics/MapSprites/LootLocation.png");
+		playerlocation.loadFromFile("../src/Graphics/MapSprites/PlayerLocation.png");
 	}
 
 

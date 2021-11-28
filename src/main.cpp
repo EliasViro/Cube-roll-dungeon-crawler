@@ -1029,7 +1029,10 @@ void InfoButtonMode(sf::RenderWindow* window,
 
 //################################################################################################################################################################################
 void PrintLevelMap(sf::RenderWindow* window, Character* player, DungeonLevel* level, DungeonRoom* currentroom, Textures* textures) {
-    
+    sf::Sprite mapbtnview(textures->mapbtnview);
+	window->draw(mapbtnview);
+	window->display();
+
     for (auto roomvec : level->GetRooms()) {
         for (auto room : roomvec) {
             int printinglocation_y = gameboard_orig_y + 192 + (room->GetIndexInLevel().first * 128);
@@ -1808,11 +1811,11 @@ int main() {
     instructions_button.setPoint(2, sf::Vector2f(1085, 235));
     instructions_button.setPoint(3, sf::Vector2f(799, 375));
 
-    /*
+    
     sf::Music start_music;
     start_music.openFromFile("../src/Sounds/Music/Placeholder.ogg");
 	start_music.play();
-    */
+    
 
    	window.clear();
 	window.draw(main_menu);

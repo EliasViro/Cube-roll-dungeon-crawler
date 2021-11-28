@@ -1311,10 +1311,10 @@ void InventoryButtonAct(sf::RenderWindow* window,
 		}
 	}
 	std::cout << "item to another slot" << std::endl;
-	slot1->DropItem();
-	slot1->AddItem(item2);
-	slot2->DropItem();
-	slot2->AddItem(item1);
+	slot1->Clear();
+	slot2->Clear();
+	slot1->SwapAdd(item2);
+	slot2->SwapAdd(item1);
 }
 
 

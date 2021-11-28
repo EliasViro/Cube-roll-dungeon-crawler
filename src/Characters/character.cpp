@@ -34,6 +34,21 @@ void InventorySlot::DropItem() {
     item_ = nullptr;
 }
 
+
+//###############################################
+//###############################################
+// Edited by Donald Duck                    //###
+void InventorySlot::Clear() {               //###
+    item_ = nullptr;                        //###
+}                                           //###
+                                            //###
+void InventorySlot::SwapAdd(Item* item) {   //###
+    item_ = item;                           //###
+}                                           //###
+//###############################################
+//###############################################
+
+
 int InventorySlot::UseItem() {
     int returned = 0;
     if (item_ != nullptr) {

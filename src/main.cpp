@@ -163,7 +163,7 @@ std::vector<std::vector<Item*>> CreateLoot() {
 	level2lootvector.push_back(new HealthPotion());
 	level2lootvector.push_back(new StaminaPotion());
 
-	//Level 3 loot: A ranged weapon, a shield and a melee weapon
+	//Level 3 loot: A ranged weapon, a shield and a melee weapon, and a health potion
 	randomnumber = rand() % 3 + 1;
 	std::vector<Item*> level3lootvector;
 	if (randomnumber == 1) {
@@ -187,6 +187,7 @@ std::vector<std::vector<Item*>> CreateLoot() {
 	else {
 		level3lootvector.push_back(new Mace());
 	}
+	level3lootvector.push_back(new HealthPotion());
 	
 	//Level 4 loot: A potion, a melee weapon, a potion and a shield
 	std::vector<Item*> level4lootvector;
@@ -204,7 +205,7 @@ std::vector<std::vector<Item*>> CreateLoot() {
 	level4lootvector.push_back(new HealthPotion());
 	level4lootvector.push_back(new KiteShield());
 
-	//Level 5 loot: A ranged weapon, a potion, a shield and a melee weapon
+	//Level 5 loot: A ranged weapon, two potions, a shield and a melee weapon
 	randomnumber = rand() % 3 + 1;
 	std::vector<Item*> level5lootvector;
 	if (randomnumber == 1) {
@@ -228,12 +229,14 @@ std::vector<std::vector<Item*>> CreateLoot() {
 	else {
 		level5lootvector.push_back(new WarHammer());
 	}
+	level5lootvector.push_back(new HealthPotion());
 	
-	//Level 6 loot: A potion, a shield, a melee weapon and a potion.
+	//Level 6 loot: Two potions, a shield, a melee weapon and a potion.
 	std::vector<Item*> level6lootvector;
 	level5lootvector.push_back(new StaminaPotion());
 	level5lootvector.push_back(new KiteShield());
 	randomnumber = rand() % 3 + 1;
+	level6lootvector.push_back(new HealthPotion());
 	if (randomnumber == 1) {
 		level6lootvector.push_back(new BattleAxe());
 	}
@@ -1574,7 +1577,7 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				if (enemy1 != nullptr) {
 					if (!enemy1->DistanceToCharacterLargerThanThree(player)) {
 						damage = player->GetInventory()[0]->UseItem();
-						if (player->GetInventory()[0]->GetItem()->IsStunning()) {
+						if (player->GetInventory()[0]->GetItem()->IsStunning() && player->GetInventory()[0]->GetItem()->GetCoolDown() == player->GetInventory()[0]->GetItem()->GetMaxCoolDown()) {
 							enemy1->Stun(2);
 							for (auto enemy2 : enemyvector) {
 								if (enemy2 != nullptr && enemy2 != enemy1) {
@@ -1635,7 +1638,7 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 						for (auto enemy4 : enemyvector) {
 							if (enemy4 != nullptr) {
 								if (enemy4->NextToCharacter(player)) {
-									if (player->GetInventory()[0]->GetItem()->IsStunning() && player->GetInventory()[0]->GetItem()->GetCoolDown() <= 0) {
+									if (player->GetInventory()[0]->GetItem()->IsStunning() && player->GetInventory()[0]->GetItem()->GetCoolDown() == player->GetInventory()[0]->GetItem()->GetMaxCoolDown()) {
 										enemy4->Stun(2);
 										for (auto enemy5 : enemyvector) {
 											if (enemy5 != nullptr && enemy5 != enemy4) {

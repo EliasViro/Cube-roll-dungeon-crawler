@@ -9,7 +9,7 @@
 
 Player::Player(DungeonTile* tile) 
     : Character(PlayerCharacter, 4, tile) {
-    inventory_ = {new InventorySlot(new Javelin), new InventorySlot(new Javelin), new InventorySlot(new Javelin), new InventorySlot(new Javelin), new InventorySlot(new Javelin), new InventorySlot(new Javelin)};
+    inventory_ = {new InventorySlot(new RoundShield), new InventorySlot(new HeaterShield), new InventorySlot(new ShortSword), new InventorySlot(nullptr), new InventorySlot(new ShortSword), new InventorySlot(new StaminaPotion)};
     //inventory_ = {new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr)};
     if (tile != nullptr) {
         tile->SetCharacter();
@@ -99,7 +99,9 @@ int Player::MoveToDirection(std::string direction) {
             if (itemintopslot->GetName() == "Potion of healing" && healthpoints_ < 4) {
                 itemreturnval = inventory_[0]->UseItem();
                 if (itemreturnval > 0) {
-                    healthpoints_++;
+                    while (healthpoints_ < 4) {
+                        healthpoints_++;
+                    }
                 }
             }
             bool itemoncooldown = false;

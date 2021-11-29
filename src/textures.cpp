@@ -131,8 +131,19 @@ public:
 		combatlocation.loadFromFile("../src/Graphics/MapSprites/CombatLocation.png");
 		invbtnview.loadFromFile("../src/Graphics/GUI_Sprites/invbtnview.png");
 		credits.loadFromFile("../src/Graphics/GUI_Sprites/Credits.png");
+		action0.loadFromFile("../src/Graphics/CharacterInfoSprites/Action0.png");
+		action1.loadFromFile("../src/Graphics/CharacterInfoSprites/Action1.png");
+		action2.loadFromFile("../src/Graphics/CharacterInfoSprites/Action2.png");
+		action3.loadFromFile("../src/Graphics/CharacterInfoSprites/Action3.png");
+		action4.loadFromFile("../src/Graphics/CharacterInfoSprites/Action4.png");
 	}
 
+
+	sf::Texture action4;
+	sf::Texture action3;
+	sf::Texture action2;
+	sf::Texture action1;
+	sf::Texture action0;
 	sf::Texture credits;
 	sf::Texture invbtnview;
 	sf::Texture combatlocation;

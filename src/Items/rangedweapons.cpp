@@ -27,12 +27,7 @@ int RangedWeapon::Use() {
     if (CanBeUsed()) {
         cooldown_ = maxcooldown_;
         durability_--;
-        if (name_ != "Bolas") {
-            return damage_;
-        }
-        else {
-            return 12;
-        }
+        return damage_;
     }
     else {
         return 0;
@@ -57,11 +52,11 @@ bool RangedWeapon::IsThrown() const {
 
 
 //Cooldown 7, Damage 2. Thrown.
-Javelin::Javelin() : RangedWeapon("Javelin", "A hefty throwing spear with a sharp tip.", 999, 7, 2, 3, false, true) {}
+Javelin::Javelin() : RangedWeapon("Javelin", "A hefty throwing spear with a sharp tip.", 999, 5, 2, 3, false, true) {}
 
 
 //Cooldown 7, Damage 0. Thrown. Stunning.
-Bolas::Bolas() : RangedWeapon("Bolas", "A throwing weapon consisting of weights attached to each other with rope. It stuns the target it is thrown at and any enemies next to it.", 999, 7, 0, 3, true, true) {}
+Bolas::Bolas() : RangedWeapon("Bolas", "A throwing weapon consisting of weights attached to each other with rope. It stuns the target it is thrown at and any enemies next to it.", 999, 5, 1, 3, true, true) {}
 
 
 //Cooldown 8, Damage 1.

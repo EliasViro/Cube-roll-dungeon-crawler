@@ -51,19 +51,19 @@ bool MeleeWeapon::TargetSeveralEnemies() const {
 ShortSword::ShortSword() : MeleeWeapon("Shortsword", "A short and sturdy sword with a comfortable grip.", 999, 4, 1, 1, false, false) {}
 
 //Cooldown 5, Damage 1. Hits several enemies.
-ArmingSword::ArmingSword() : MeleeWeapon("Arming sword", "A medium sized single-handed sword that can cut down multiple enemies with a single swing.", 999, 6, 1, 1, false, true) {}
+ArmingSword::ArmingSword() : MeleeWeapon("Arming sword", "A medium sized single-handed sword that can cut down multiple enemies with a single swing.", 999, 5, 1, 1, false, true) {}
 
 //Cooldown 6, Damage 2. Hits several enemies.
-LongSword::LongSword() : MeleeWeapon("Longsword", "A large two-handed sword that can cut down multiple enemies with a single wide swing.", 999, 7, 2, 1, false, true) {}
+LongSword::LongSword() : MeleeWeapon("Longsword", "A large two-handed sword that can cut down multiple enemies with a single wide swing.", 999, 6, 2, 1, false, true) {}
 
 //Cooldown 5, Damage 2.
-HandAxe::HandAxe() : MeleeWeapon("Hatchet", "A simple one-handed axe. Quite hefty.", 999, 6, 2, 1, false, false) {}
+HandAxe::HandAxe() : MeleeWeapon("Hatchet", "A simple one-handed axe. Quite hefty.", 999, 5, 2, 1, false, false) {}
 
 //Cooldown 6, Damage 3.
 BattleAxe::BattleAxe() : MeleeWeapon("Battleaxe", "A large axe with a massive head and a long handle. Cuts through almost anything.", 999, 6, 3, 1, false, false) {}
 
 //Cooldown 5, Damage 1. Stuns targets.
-Mace::Mace() : MeleeWeapon("Mace", "A simple mace with a metallic weight at the end of a wooden handle. Stuns the struck enemy and enemies next to it.", 999, 6, 1, 1, true, false) {}
+Mace::Mace() : MeleeWeapon("Mace", "A simple mace with a metallic weight at the end of a wooden handle. Stuns the struck enemy and enemies next to it.", 999, 5, 1, 1, true, false) {}
 
 //Cooldown 6, Damage 2. Stuns targets.
-WarHammer::WarHammer() : MeleeWeapon("Warhammer", "A hammer specifically designed for cracking skulls on the battlefield. Stuns the struck enemy and enemies next to it.", 999, 7, 2, 1, true, false) {}
+WarHammer::WarHammer() : MeleeWeapon("Warhammer", "A hammer specifically designed for cracking skulls on the battlefield. Stuns the struck enemy and enemies next to it.", 999, 6, 2, 1, true, false) {}

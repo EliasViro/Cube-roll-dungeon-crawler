@@ -8,9 +8,9 @@
 //of the player cube.
 
 Player::Player(DungeonTile* tile) 
-    : Character(PlayerCharacter, 4, tile) {
-    inventory_ = {new InventorySlot(new RoundShield), new InventorySlot(new HeaterShield), new InventorySlot(new ShortSword), new InventorySlot(nullptr), new InventorySlot(new ShortSword), new InventorySlot(new StaminaPotion)};
-    //inventory_ = {new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr), new InventorySlot(nullptr)};
+    : Character(PlayerCharacter, 5, tile) {
+    //inventory_ = {new InventorySlot(new RoundShield), new InventorySlot(new RoundShield), new InventorySlot(new ShortSword), new InventorySlot(nullptr), new InventorySlot(new ShortSword), new InventorySlot(new StaminaPotion)};
+    inventory_ = {new InventorySlot(new Sling), new InventorySlot(new Sling), new InventorySlot(new Sling), new InventorySlot(new Sling), new InventorySlot(new Sling), new InventorySlot(new Sling)};
     if (tile != nullptr) {
         tile->SetCharacter();
     }
@@ -96,10 +96,10 @@ int Player::MoveToDirection(std::string direction) {
         auto itemintopslot = inventory_[0]->GetItem();
         int itemreturnval = 0;
         if (itemintopslot != nullptr) {
-            if (itemintopslot->GetName() == "Potion of healing" && healthpoints_ < 4) {
+            if (itemintopslot->GetName() == "Potion of healing" && healthpoints_ < 5) {
                 itemreturnval = inventory_[0]->UseItem();
                 if (itemreturnval > 0) {
-                    while (healthpoints_ < 4) {
+                    while (healthpoints_ < 5) {
                         healthpoints_++;
                     }
                 }

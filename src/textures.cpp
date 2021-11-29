@@ -57,6 +57,7 @@ public:
 		health2.loadFromFile("../src/Graphics/GUI_Sprites/Health2.png");
 		health3.loadFromFile("../src/Graphics/GUI_Sprites/Health3.png");
 		health4.loadFromFile("../src/Graphics/GUI_Sprites/Health4.png");
+		health5.loadFromFile("../src/Graphics/GUI_Sprites/Health5.png");
 		nrzero.loadFromFile("../src/Graphics/GUI_Sprites/0.png");
 		nrone.loadFromFile("../src/Graphics/GUI_Sprites/1.png");
 		nrtwo.loadFromFile("../src/Graphics/GUI_Sprites/2.png");
@@ -222,6 +223,7 @@ public:
 	sf::Texture health2;
 	sf::Texture health3;
 	sf::Texture health4;
+	sf::Texture health5;
 	sf::Texture nrzero;
 	sf::Texture nrone;
 	sf::Texture nrtwo;

@@ -145,11 +145,21 @@ std::vector<Character*> GenerateRoomEnemies(int level) {
 std::vector<std::vector<Item*>> CreateLoot() {
 	std::vector<std::vector<Item*>> lootvector;
 
-	//Level 1 loot: A shield and a potion
-	std::vector<Item*> level1lootvector = {new RoundShield(), new HealthPotion()};
-
-	//Level 2 loot: A melee weapon and two potions
+	//Level 1 loot: A heater shield, a melee weapon and a potion
+	std::vector<Item*> level1lootvector = {new HeaterShield(), new HealthPotion()};
 	int randomnumber = rand() % 3 + 1;
+	if (randomnumber == 1) {
+		level1lootvector.push_back(new HandAxe());
+	}
+	else if (randomnumber == 2) {
+		level1lootvector.push_back(new ArmingSword());
+	}
+	else {
+		level1lootvector.push_back(new Mace());
+	}
+
+	//Level 2 loot: A melee & ranged weapon, a heater shield and a health&stamina potion
+	randomnumber = rand() % 3 + 1;
 	std::vector<Item*> level2lootvector;
 	if (randomnumber == 1) {
 		level2lootvector.push_back(new HandAxe());
@@ -162,21 +172,23 @@ std::vector<std::vector<Item*>> CreateLoot() {
 	}
 	level2lootvector.push_back(new HealthPotion());
 	level2lootvector.push_back(new StaminaPotion());
-
-	//Level 3 loot: A ranged weapon, a shield and a melee weapon, and a health potion
+	level2lootvector.push_back(new HeaterShield());
 	randomnumber = rand() % 3 + 1;
-	std::vector<Item*> level3lootvector;
 	if (randomnumber == 1) {
-		level3lootvector.push_back(new Javelin());
+		level2lootvector.push_back(new Javelin());
 	}
 	else if (randomnumber == 2) {
-		level3lootvector.push_back(new Bolas());
+		level2lootvector.push_back(new Bolas());
 	}
 	else {
-		level3lootvector.push_back(new Sling());
+		level2lootvector.push_back(new Sling());
 	}
+
+	//Level 3 loot: A kite shield and a melee weapon, and a health potion
 	randomnumber = rand() % 3 + 1;
-	level3lootvector.push_back(new HeaterShield());
+	std::vector<Item*> level3lootvector;
+	randomnumber = rand() % 3 + 1;
+	level3lootvector.push_back(new KiteShield());
 	randomnumber = rand() % 3 + 1;
 	if (randomnumber == 1) {
 		level3lootvector.push_back(new HandAxe());
@@ -189,23 +201,32 @@ std::vector<std::vector<Item*>> CreateLoot() {
 	}
 	level3lootvector.push_back(new HealthPotion());
 	
-	//Level 4 loot: A potion, a melee weapon, a potion and a shield
+	//Level 4 loot: A strong melee & ranged weapon, a health potion and a kite shield
 	std::vector<Item*> level4lootvector;
-	level4lootvector.push_back(new StaminaPotion());
 	randomnumber = rand() % 3 + 1;
 	if (randomnumber == 1) {
-		level4lootvector.push_back(new HandAxe());
+		level4lootvector.push_back(new BattleAxe());
 	}
 	else if (randomnumber == 2) {
-		level4lootvector.push_back(new ArmingSword());
+		level4lootvector.push_back(new LongSword());
 	}
 	else {
-		level4lootvector.push_back(new Mace());
+		level4lootvector.push_back(new WarHammer());
 	}
 	level4lootvector.push_back(new HealthPotion());
 	level4lootvector.push_back(new KiteShield());
+	randomnumber = rand() % 3 + 1;
+	if (randomnumber == 1) {
+		level4lootvector.push_back(new Javelin());
+	}
+	else if (randomnumber == 2) {
+		level4lootvector.push_back(new Bolas());
+	}
+	else {
+		level4lootvector.push_back(new Sling());
+	}
 
-	//Level 5 loot: A ranged weapon, two potions, a shield and a melee weapon
+	//Level 5 loot: A ranged weapon, two health potions, a tower & kite shield and a strong melee weapon
 	randomnumber = rand() % 3 + 1;
 	std::vector<Item*> level5lootvector;
 	if (randomnumber == 1) {
@@ -231,10 +252,11 @@ std::vector<std::vector<Item*>> CreateLoot() {
 	}
 	level5lootvector.push_back(new HealthPotion());
 	
-	//Level 6 loot: Two potions, a shield, a melee weapon and a potion.
+	//Level 6 loot: Two health potions, two tower shields, and a strong melee weapon.
 	std::vector<Item*> level6lootvector;
-	level5lootvector.push_back(new StaminaPotion());
-	level5lootvector.push_back(new KiteShield());
+	level5lootvector.push_back(new HealthPotion());
+	level5lootvector.push_back(new TowerShield());
+	level5lootvector.push_back(new TowerShield());
 	randomnumber = rand() % 3 + 1;
 	level6lootvector.push_back(new HealthPotion());
 	if (randomnumber == 1) {
@@ -246,7 +268,6 @@ std::vector<std::vector<Item*>> CreateLoot() {
 	else {
 		level6lootvector.push_back(new WarHammer());
 	}
-	level6lootvector.push_back(new HealthPotion());
 
 	lootvector.push_back(level1lootvector);
 	lootvector.push_back(level2lootvector);
@@ -320,6 +341,7 @@ void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*
 	sf::Sprite sprite_health2(textures->health2);
 	sf::Sprite sprite_health3(textures->health3);
 	sf::Sprite sprite_health4(textures->health4);
+	sf::Sprite sprite_health5(textures->health5);
 	sf::Sprite sprite_nrzero(textures->nrzero);
 	sf::Sprite sprite_nrone(textures->nrone);
 	sf::Sprite sprite_nrtwo(textures->nrtwo);
@@ -552,8 +574,11 @@ void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*
 		else if (playerhp == 3) {
 			healthsprite = sprite_health3;
 		}
-		else {
+		else if (playerhp == 4) {
 			healthsprite = sprite_health4;
+		}
+		else {
+			healthsprite = sprite_health5;
 		}
 		healthsprite.setPosition(972, 78);
 		window->draw(healthsprite);
@@ -1345,7 +1370,7 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 	bool lastroominlevelset = false;
     int randomnumberx = rand() % (level.GetSideLength()); //Random number for loot placement
     int randomnumbery = rand() % (level.GetSideLength()); //Random number for loot placement
-    for (auto loot : lootvector[depth]) { //Give random rooms loot.
+    for (auto loot : lootvector[depth - 1]) { //Give random rooms loot.
         while (!lootgiven) {
             randomnumberx = rand() % (level.GetSideLength());
             randomnumbery = rand() % (level.GetSideLength());
@@ -1439,7 +1464,12 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 		// Player input loop
 		int validmove = -1;
 		while (validmove < 0) {
-			
+			if (player->GetCurrentTile()->GetTileNeighbor("N") != nullptr && player->GetCurrentTile()->GetTileNeighbor("E") != nullptr&& player->GetCurrentTile()->GetTileNeighbor("W") != nullptr && player->GetCurrentTile()->GetTileNeighbor("S") != nullptr) {
+				if (!(player->GetCurrentTile()->GetTileNeighbor("N")->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor("E")->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor("W")->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor("S")->IsPassable())) {
+					validmove = 0;
+					continue;
+				}
+			}
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 				while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
 
@@ -1717,11 +1747,10 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 			}
 		}
 
-		
-		if (player->GetHealthPoints() <= 0) {
-			//GAME OVER
-			sf::Sprite gameover(textures->gameover);
-			window->draw(gameover);
+		if (!combat && depth == 6 && currentroom->IsLastRoomInLevel()) {
+			//GAME WON
+			sf::Sprite gamewon(textures->gamewon);
+			window->draw(gamewon);
 			window->display();
 			
 			while (true) {
@@ -1735,46 +1764,6 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 			}
 			return false;
-		}
-
-		if (player->GetCurrentTile()->GetTileNeighbor("N") != nullptr && player->GetCurrentTile()->GetTileNeighbor("E") != nullptr&& player->GetCurrentTile()->GetTileNeighbor("W") != nullptr && player->GetCurrentTile()->GetTileNeighbor("S") != nullptr) {
-			if (!(player->GetCurrentTile()->GetTileNeighbor("N")->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor("E")->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor("W")->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor("S")->IsPassable())) {
-				//GAME OVER
-				sf::Sprite gameover(textures->gameover);
-				window->draw(gameover);
-				window->display();
-				
-				while (true) {
-					if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-						while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
-						
-						sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
-						if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-							return false;
-						}
-					}
-				}
-				return false;
-			}
-		}
-
-		if (!combat && depth == 6 && currentroom->IsLastRoomInLevel()) {
-			//GAME WON
-			sf::Sprite gamewon(textures->gamewon);
-				window->draw(gamewon);
-				window->display();
-				
-				while (true) {
-					if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-						while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
-						
-						sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
-						if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-							return false;
-						}
-					}
-				}
-				return false;
 		}
 		
 		RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);

@@ -58,7 +58,10 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                             }
                         }
                         else {
-                            MoveToDirection("E");
+                            attemptsuccessful = MoveToDirection("E");
+                            if (attemptsuccessful < 0) {
+                                MoveToDirection("S");
+                            }
                         }
                     }
                     else {
@@ -74,7 +77,10 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                             }
                         }
                         else {
-                            MoveToDirection("E");
+                            attemptsuccessful = MoveToDirection("E");
+                            if (attemptsuccessful < 0) {
+                                MoveToDirection("N");
+                            }
                         }
                     }
                 }
@@ -117,7 +123,10 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                             }
                         }
                         else {
-                            MoveToDirection("W");
+                            attemptsuccessful = MoveToDirection("W");
+                            if (attemptsuccessful < 0) {
+                                MoveToDirection("S");
+                            }
                         }
                     }
                     else {
@@ -133,7 +142,10 @@ void Enemy::MoveTowards(Character* targetcharacter) {
                             }
                         }
                         else {
-                            MoveToDirection("W");
+                           attemptsuccessful = MoveToDirection("W");
+                            if (attemptsuccessful < 0) {
+                                MoveToDirection("N");
+                            }
                         }
                     }
                 }

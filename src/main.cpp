@@ -1697,23 +1697,40 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 			}
 		}
 
-		/*
+		
 		if (player->GetHealthPoints() <= 0) {
 			//GAME OVER
+			sf::Sprite gameover(textures->gameover);
+			gameover.setPosition(400, 225);
+			window->draw(gameover);
+			window->display();
+			while (true) {
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+					while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+					break;
+				}
+			}
 			return false;
 			
 		}
 
-		if (player->GetCurrentTile()->GetTileNeighbor()[0] != nullptr && player->GetCurrentTile()->GetTileNeighbor()[1] != nullptr&& player->GetCurrentTile()->GetTileNeighbor()[2] != nullptr && player->GetCurrentTile()->GetTileNeighbor()[3] != nullptr) {
-			if (!(player->GetCurrentTile()->GetTileNeighbor()[0]->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor()[2]->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor()[3]->IsPassable())) {
+		if (player->GetCurrentTile()->GetTileNeighbor("N") != nullptr && player->GetCurrentTile()->GetTileNeighbor("E") != nullptr&& player->GetCurrentTile()->GetTileNeighbor("W") != nullptr && player->GetCurrentTile()->GetTileNeighbor("S") != nullptr) {
+			if (!(player->GetCurrentTile()->GetTileNeighbor("N")->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor("E")->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor("W")->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor("S")->IsPassable())) {
 				//GAME OVER
+				sf::Sprite gameover(textures->gameover);
+				gameover.setPosition(400, 225);
+				window->draw(gameover);
+				window->display();
+				while (true) {
+					if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+						while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+						break;
+					}
+				}
 				return false;
 			}
 		}
 		
-		*/
-
-
 		RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);
 	}
 	return false;
@@ -1738,7 +1755,7 @@ void LevelLoop(sf::RenderWindow* window, Textures* textures) {
 
 		DungeonLevel level(sidelength);
 		bool keeprunning = Level(window, level, i, player, lootvector, textures);
-		if (!keeprunning) break;
+		if (!keeprunning) return;
 	}
 }
 
@@ -1749,14 +1766,24 @@ void LevelLoop(sf::RenderWindow* window, Textures* textures) {
 //################################################################################################################################################################################
 // Render the instructions and credits screen.
 void ShowInstructions(sf::RenderWindow* window, Textures* textures) {
-	sf::Sprite insructionsview(textures->instructions);
-	window->clear();
-	window->draw(insructionsview);
+	sf::Sprite insructions(textures->instructions);
+	sf::Sprite credits(textures->credits);
+	window->draw(insructions);
 	window->display();
 
 	while (true) {
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+			
+			window->draw(credits);
+			window->display();
+
+			while (true) {
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+					while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+					break;
+				}
+			}
 			break;
 		}
 	}
@@ -1806,11 +1833,11 @@ int main() {
     instructions_button.setPoint(3, sf::Vector2f(799, 375));
 
 	// Sound test
-    sf::SoundBuffer buffer;
+    /*sf::SoundBuffer buffer;
 	buffer.loadFromFile("../src/Sounds/Music/GameMusic.ogg");
 	sf::Sound sound;
 	sound.setBuffer(buffer);
-	sound.play();
+	sound.play();*/
     
 
    	window.clear();
@@ -1822,6 +1849,8 @@ int main() {
 		Game,
 		Instructions
 	};
+
+	int i = 0;
 
 	AppState state = MainMenu;
 
@@ -1846,7 +1875,6 @@ int main() {
 					window.clear();
 					window.draw(main_menu);
 					window.display();
-					state = MainMenu;
 				}
 				else if (instructions_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
 					state = Instructions;
@@ -1857,6 +1885,13 @@ int main() {
 				}
 			}
 			else if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left && state == Instructions) {
+				if (i < 1) i++;
+				else {
+					state = MainMenu;
+					i = 0;
+				}
+			}
+			else if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left && state == Game) {
 				state = MainMenu;
 			}
 		}

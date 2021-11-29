@@ -1715,20 +1715,23 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 			}
 			return false;
-			
 		}
 
 		if (player->GetCurrentTile()->GetTileNeighbor("N") != nullptr && player->GetCurrentTile()->GetTileNeighbor("E") != nullptr&& player->GetCurrentTile()->GetTileNeighbor("W") != nullptr && player->GetCurrentTile()->GetTileNeighbor("S") != nullptr) {
 			if (!(player->GetCurrentTile()->GetTileNeighbor("N")->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor("E")->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor("W")->IsPassable()) && !(player->GetCurrentTile()->GetTileNeighbor("S")->IsPassable())) {
 				//GAME OVER
 				sf::Sprite gameover(textures->gameover);
-				gameover.setPosition(400, 225);
 				window->draw(gameover);
 				window->display();
+				
 				while (true) {
 					if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 						while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
-						break;
+						
+						sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
+						if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+							return false;
+						}
 					}
 				}
 				return false;

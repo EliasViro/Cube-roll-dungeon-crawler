@@ -922,8 +922,18 @@ void InfoButtonMode(sf::RenderWindow* window,
 			while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
 			sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
 			if (mousePos.x < (gameboard_orig_x + 12*64) && mousePos.x > (gameboard_orig_x) && mousePos.y > gameboard_orig_y && mousePos.y < (900 - gameboard_orig_y)) {
+				int actionpriority = 0;
 				for (auto enemy : *enemyvector) {
 					if (enemy != nullptr) {
+						
+						sf::Sprite actionpriosprite;
+						if (actionpriority == 0) actionpriosprite.setTexture(textures->action0);
+						else if (actionpriority == 1) actionpriosprite.setTexture(textures->action1);
+						else if (actionpriority == 2) actionpriosprite.setTexture(textures->action2);
+						else if (actionpriority == 3) actionpriosprite.setTexture(textures->action3);
+						else if (actionpriority == 4) actionpriosprite.setTexture(textures->action4);
+						actionpriosprite.setPosition(680, 359);
+
 						int x = gameboard_orig_x + (enemy->GetXCoordinate())*64;
 						int y = gameboard_orig_y + (enemy->GetYCoordinate())*64;
 						sf::RectangleShape rect(sf::Vector2f(64, 64));
@@ -959,7 +969,7 @@ void InfoButtonMode(sf::RenderWindow* window,
 								selectionrect.setPosition(412, 271);
 							}
 							window->draw(selectionrect);
-							
+							window->draw(actionpriosprite);
 							window->display();
 
 							while (true) {
@@ -973,6 +983,7 @@ void InfoButtonMode(sf::RenderWindow* window,
 								}
 							}
 						}
+						actionpriority++;
 					}
 				}		
 				int j_clicked = (int)(mousePos.y - gameboard_orig_y) / 64;

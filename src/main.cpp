@@ -1701,13 +1701,17 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 		if (player->GetHealthPoints() <= 0) {
 			//GAME OVER
 			sf::Sprite gameover(textures->gameover);
-			gameover.setPosition(400, 225);
 			window->draw(gameover);
 			window->display();
+			
 			while (true) {
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 					while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
-					break;
+					
+					sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
+					if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						return false;
+					}
 				}
 			}
 			return false;

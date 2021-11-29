@@ -389,4 +389,18 @@ enemies being in range of a weapon that can only target one enemy at a time. Gra
 
 REMEMBER TO CHECK INVENTORY SLOT ITEM RETURN VALUE FOR RANGED & MELEE WEAPONS
 IF THE ITEM IS A RANGED WEAPON, RETURN VALUE IS 10
+
+if (depth == 6 && currentroom->IsLastRoomInLevel()) {
+    enemyvector[0] = new SkeletonWarrior();
+    enemyvector[1] = new SkeletonKnight();
+    enemyvector[2] = new Lich();
+    enemyvector[3] = new SkeletonKnight();
+    enemyvector[4] = new SkeletonWarrior();
+
+    //BOSS
+}
+
+if (!combat && depth == 6 && currentroom->IsLastRoomInLevel()) {
+    //GAME WON
+}
 */

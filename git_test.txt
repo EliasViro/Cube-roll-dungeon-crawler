@@ -17,3 +17,7 @@ Elias: Test2
 NOTE FOR EVERYONE: 
 If you are using VSC + WSL, do NOT set a passphrase for SSH key.
 Otherwise git operations won't work through the VSC interface.
+
+##########################################################
+
+Atte: Testailua moi

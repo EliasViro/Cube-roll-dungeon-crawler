@@ -1546,6 +1546,12 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				exploredroomscounter++;
 				enemyvector.clear();
 				enemyvector = GenerateRoomEnemies(depth);
+
+				if (depth == 6 && currentroom->IsLastRoomInLevel()) {
+					enemyvector = {new SkeletonWarrior(nullptr), new SkeletonKnight(nullptr), new Lich(nullptr), new SkeletonKnight(nullptr), new SkeletonWarrior(nullptr)};
+					//BOSS
+				}
+
 				currentroom->SpawnEnemies(enemyvector); //Enemies may be spawned and doors close if there are enemies present.
 				for (auto enemyinvec : enemyvector) {
 					if (enemyinvec != nullptr) {
@@ -1736,6 +1742,25 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 				return false;
 			}
+		}
+
+		if (!combat && depth == 6 && currentroom->IsLastRoomInLevel()) {
+			//GAME WON
+			sf::Sprite gamewon(textures->gamewon);
+				window->draw(gamewon);
+				window->display();
+				
+				while (true) {
+					if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+						while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+						
+						sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
+						if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+							return false;
+						}
+					}
+				}
+				return false;
 		}
 		
 		RenderScreen(window, currentroom->GetAllTiles(), currentroom->IsLastRoomInLevel(), enemyvector, player, depth, combat, textures);

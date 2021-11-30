@@ -208,7 +208,6 @@ std::vector<std::vector<DungeonTile*>> CreateTiles(std::vector<std::string> room
 
 DungeonRoom::DungeonRoom(std::pair<int,int> indexinlevel, RoomType roomtype, DoorOrientation doororientation, Item* loot, bool isplayerstartingroom)
     : indexinlevel_(indexinlevel), roomtype_(roomtype), doororientation_(doororientation), hasbeenexplored_(isplayerstartingroom), lastroominlevel_(false), loot_(loot) {
-        srand(time(NULL));
         std::vector<DungeonRoom*> neighbors_;
         std::fstream roomfile;
         std::string filename = "../src/DungeonGeneration/RoomStorage/";

@@ -475,7 +475,7 @@ void Enemy::MoveTowards(Character* targetcharacter) {
 }
 
 void Enemy::MoveAwayFrom(Character* targetcharacter) {
-    //Attempts to move the character away from the given direction,
+    //Attempts to move the character away from the given character
     int ydiff = GetYCoordinate() - targetcharacter->GetYCoordinate();
     int xdiff = GetXCoordinate() - targetcharacter->GetXCoordinate();
     //xdiff > 0 => go E
@@ -539,6 +539,12 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                     attemptsuccessful = MoveToDirection("W");
                     if (attemptsuccessful < 0) {
                         if (ydiff > 0) {
+                            attemptsuccessful = MoveToDirection("S");
+                            if (attemptsuccessful < 0) {
+                                MoveToDirection("N");
+                            }
+                        }
+                        else {
                             attemptsuccessful = MoveToDirection("N");
                             if (attemptsuccessful < 0) {
                                 MoveToDirection("S");
@@ -556,6 +562,12 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                             attemptsuccessful = MoveToDirection("S");
                             if (attemptsuccessful < 0) {
                                 MoveToDirection("N");
+                            }
+                        }
+                        else {
+                            attemptsuccessful = MoveToDirection("N");
+                            if (attemptsuccessful < 0) {
+                                MoveToDirection("S");
                             }
                         }
                     }
@@ -610,29 +622,17 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                 }
             }
         }
-        else {
+        else { //ydiff = 0
             if (xdiff > 0) {
                 rndm = rand() % 2;
                 if (rndm == 1) {
                     attemptsuccessful = MoveToDirection("S");
                     if (attemptsuccessful < 0) {
-                        rndm = (rand() % 2);
-                        if (rndm == 1) {
-                            attemptsuccessful = MoveToDirection("N");
+                        attemptsuccessful = MoveToDirection("N");
+                        if (attemptsuccessful < 0) {
+                            attemptsuccessful = MoveToDirection("E");
                             if (attemptsuccessful < 0) {
-                                attemptsuccessful = MoveToDirection("E");
-                                if (attemptsuccessful < 0) {
-                                    MoveToDirection("W");
-                                }
-                            }
-                        }
-                        else {
-                            attemptsuccessful = MoveToDirection("N");
-                            if (attemptsuccessful < 0) {
-                                attemptsuccessful = MoveToDirection("S");
-                                if (attemptsuccessful < 0) {
-                                    MoveToDirection("W");
-                                }
+                                MoveToDirection("W");
                             }
                         }
                     }
@@ -640,23 +640,11 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                 else {
                     attemptsuccessful = MoveToDirection("N");
                     if (attemptsuccessful < 0) {
-                        rndm = (rand() % 2);
-                        if (rndm == 1) {
+                        attemptsuccessful = MoveToDirection("S");
+                        if (attemptsuccessful < 0) {
                             attemptsuccessful = MoveToDirection("E");
                             if (attemptsuccessful < 0) {
-                                attemptsuccessful = MoveToDirection("W");
-                                if (attemptsuccessful < 0) {
-                                    MoveToDirection("S");
-                                }
-                            }
-                        }
-                        else {
-                            attemptsuccessful = MoveToDirection("W");
-                            if (attemptsuccessful < 0) {
-                                attemptsuccessful = MoveToDirection("E");
-                                if (attemptsuccessful < 0) {
-                                    MoveToDirection("S");
-                                }
+                                MoveToDirection("W");
                             }
                         }
                     }
@@ -667,47 +655,23 @@ void Enemy::MoveAwayFrom(Character* targetcharacter) {
                 if (rndm == 0) {
                     attemptsuccessful = MoveToDirection("S");
                     if (attemptsuccessful < 0) {
-                        rndm = (rand() % 2);
-                        if (rndm == 1) {
-                            attemptsuccessful = MoveToDirection("N");
+                        attemptsuccessful = MoveToDirection("N");
+                        if (attemptsuccessful < 0) {
+                            attemptsuccessful = MoveToDirection("W");
                             if (attemptsuccessful < 0) {
-                                attemptsuccessful = MoveToDirection("E");
-                                if (attemptsuccessful < 0) {
-                                    MoveToDirection("W");
-                                }
-                            }
-                        }
-                        else {
-                            attemptsuccessful = MoveToDirection("N");
-                            if (attemptsuccessful < 0) {
-                                attemptsuccessful = MoveToDirection("S");
-                                if (attemptsuccessful < 0) {
-                                    MoveToDirection("W");
-                                }
+                                MoveToDirection("E");
                             }
                         }
                     }
                 }
-                else {
+                else { 
                     attemptsuccessful = MoveToDirection("N");
                     if (attemptsuccessful < 0) {
-                        rndm = (rand() % 2);
-                        if (rndm == 1) {
-                            attemptsuccessful = MoveToDirection("E");
-                            if (attemptsuccessful < 0) {
-                                attemptsuccessful = MoveToDirection("W");
-                                if (attemptsuccessful < 0) {
-                                    MoveToDirection("S");
-                                }
-                            }
-                        }
-                        else {
+                        attemptsuccessful = MoveToDirection("S");
+                        if (attemptsuccessful < 0) {
                             attemptsuccessful = MoveToDirection("W");
                             if (attemptsuccessful < 0) {
-                                attemptsuccessful = MoveToDirection("E");
-                                if (attemptsuccessful < 0) {
-                                    MoveToDirection("S");
-                                }
+                                MoveToDirection("E");
                             }
                         }
                     }
@@ -960,7 +924,7 @@ bool Enemy::NextToCharacter(Character* targetcharacter) const {
 void Enemy::TakeAction(Character* targetcharacter, int fillernumber) {
     fillernumber = 1;
     RemoveDefensePoints();
-    if (isstunned_ == 0) {
+    if (isstunned_ == 0 && (currenttile_->GetTileNeighbor("N")->IsPassable() || currenttile_->GetTileNeighbor("E")->IsPassable() || currenttile_->GetTileNeighbor("W")->IsPassable() || currenttile_->GetTileNeighbor("S")->IsPassable())) {
         if (enemyai_ == Random) {
             int randomnumber = rand() % 4 + 1;
             int movedsuccessfully = -1;
@@ -1108,7 +1072,7 @@ Skeleton::Skeleton(DungeonTile* tile) : Enemy("Skeleton", "The rotting skeleton 
 
 SkeletonWarrior::SkeletonWarrior(DungeonTile* tile) : Enemy("Skeleton warrior", "The rotting skeleton of some poor warrior reanimated by dark magic. It is wielding a warhammer and a shield.", tile, Aggressive, {Melee_2, Defend_2}) {}
 
-SkeletonKnight::SkeletonKnight(DungeonTile* tile) : Enemy("Skeleton knight", "The rotting skeleton of some poor knight reanimated by dark magic. It is wearing a full suit of armor and wields a sword.", tile, Aggressive, {Melee_1, Defend_3, Defend_3}) {}
+SkeletonKnight::SkeletonKnight(DungeonTile* tile) : Enemy("Skeleton knight", "The rotting skeleton of some poor knight reanimated by dark magic. It is wearing a full suit of armor and wields a sword.", tile, Aggressive, {Melee_1, Defend_2, Defend_2}) {}
 
 SkeletonArcher::SkeletonArcher(DungeonTile* tile) : Enemy("Skeleton archer", "The rotting skeleton of some poor adventurer reanimated by dark magic. It is wielding a bow and has a quiver full of arrows.", tile, Careful, {Ranged_2, Empty, Empty, Empty}) {}
 

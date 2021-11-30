@@ -254,9 +254,9 @@ std::vector<std::vector<Item*>> CreateLoot() {
 	
 	//Level 6 loot: Two health potions, two tower shields, and a strong melee weapon.
 	std::vector<Item*> level6lootvector;
-	level5lootvector.push_back(new HealthPotion());
-	level5lootvector.push_back(new TowerShield());
-	level5lootvector.push_back(new TowerShield());
+	level6lootvector.push_back(new HealthPotion());
+	level6lootvector.push_back(new TowerShield());
+	level6lootvector.push_back(new TowerShield());
 	randomnumber = rand() % 3 + 1;
 	level6lootvector.push_back(new HealthPotion());
 	if (randomnumber == 1) {
@@ -739,7 +739,6 @@ void RenderScreen(sf::RenderWindow* window, std::vector<std::vector<DungeonTile*
 				}
 				else if (invitem->GetName() == "Heater shield") {
 					item = sprite_heatershield;
-					durability = sprite_nrinf;
 				}
 				else if (invitem->GetName() == "Kite shield") {
 					item = sprite_kiteshield;
@@ -1590,6 +1589,10 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				exploredroomscounter++;
 				enemyvector.clear();
 				enemyvector = GenerateRoomEnemies(depth);
+				if (exploredroomscounter == levelroomcount && !lastroominlevelset) {
+					currentroom->SetLastRoomInLevel();
+					lastroominlevelset = true;
+				}
 
 				if (depth == 6 && currentroom->IsLastRoomInLevel()) {
 					enemyvector = {new SkeletonWarrior(nullptr), new SkeletonKnight(nullptr), new Lich(nullptr), new SkeletonKnight(nullptr), new SkeletonWarrior(nullptr)};
@@ -1603,10 +1606,6 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 						enemiesalive++;
 					}
 				}
-			}
-			if (exploredroomscounter == levelroomcount && !lastroominlevelset) {
-				currentroom->SetLastRoomInLevel();
-				lastroominlevelset = true;
 			}
 			continue;
 		}
@@ -1746,6 +1745,24 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 				}
 			}
 		}
+		if (player->GetHealthPoints() <= 0) {
+			//GAME OVER
+			sf::Sprite gameover(textures->gameover);
+			window->draw(gameover);
+			window->display();
+			
+			while (true) {
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+					while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) continue;
+					
+					sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
+					if (end_game_button.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+						return false;
+					}
+				}
+			}
+			return false;
+		}
 
 		if (!combat && depth == 6 && currentroom->IsLastRoomInLevel()) {
 			//GAME WON
@@ -1778,7 +1795,7 @@ bool Level(sf::RenderWindow* window, DungeonLevel level, int depth, Character* p
 //################################################################################################################################################################################
 // This function loops through the six levels of one game instance.
 void LevelLoop(sf::RenderWindow* window, Textures* textures) {
-    
+	srand(time(NULL));
     auto const levels = {1, 2, 3, 4, 5, 6};
     int sidelength;
     std::vector<std::vector<Item*>> lootvector = CreateLoot();

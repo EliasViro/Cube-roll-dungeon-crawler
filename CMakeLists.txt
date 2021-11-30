@@ -1,5 +1,12 @@
 cmake_minimum_required (VERSION 3.8)
+
 project ("DungeonCrawler")
+
+set(CMAKE_BUILD_TYPE Release)
+
+#set(SFML_STATIC_LIBRARIES TRUE)
+set(SFML_DIR "./libs/SFML-2.5.1_build")
+find_package(SFML 2.5.1 COMPONENTS audio graphics window system REQUIRED)
 
 file(GLOB SOURCES 
     "src/*.cpp"
@@ -24,10 +31,11 @@ set(HEADER_FILES src/Characters src/DungeonGeneration src/Items src/Graphics)
 add_executable(DungeonCrawler ${SOURCES} ${HEADER_FILES})
 #########################################################################################################
 
-set(CMAKE_BUILD_TYPE Debug)
 
-find_package(OpenGL COMPONENTS OpenGL REQUIRED)
-set(OpenGL_GL_PREFERENCE GLVND)
-find_package(SFML 2.5 COMPONENTS audio graphics window system REQUIRED)
-target_link_libraries(DungeonCrawler sfml-audio sfml-graphics sfml-window sfml-system OpenGL)
+
+#find_package(OpenGL COMPONENTS OpenGL REQUIRED)
+#set(OpenGL_GL_PREFERENCE GLVND)
+#target_link_libraries(DungeonCrawler sfml-audio sfml-graphics sfml-window sfml-system OpenGL)
+
+target_link_libraries(DungeonCrawler sfml-audio sfml-graphics sfml-window sfml-system)
 target_include_directories(DungeonCrawler PUBLIC ${HEADER_FILES})

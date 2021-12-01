@@ -5,7 +5,7 @@ project ("DungeonCrawler")
 set(CMAKE_BUILD_TYPE Release)
 
 set(SFML_DIR "./libs/SFML-2.5.1_build")
-#set(SFML_STATIC_LIBRARIES TRUE)
+set(SFML_STATIC_LIBRARIES TRUE)
 find_package(SFML 2.5.1 COMPONENTS graphics window system audio REQUIRED)
 
 file(GLOB SOURCES 

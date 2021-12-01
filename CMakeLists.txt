@@ -4,9 +4,9 @@ project ("DungeonCrawler")
 
 set(CMAKE_BUILD_TYPE Release)
 
-#set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR "./libs/SFML-2.5.1_build")
-find_package(SFML 2.5.1 COMPONENTS audio graphics window system REQUIRED)
+#set(SFML_STATIC_LIBRARIES TRUE)
+find_package(SFML 2.5.1 COMPONENTS graphics window system audio REQUIRED)
 
 file(GLOB SOURCES 
     "src/*.cpp"
@@ -15,7 +15,7 @@ file(GLOB SOURCES
     "src/Items/*.cpp"
 )
 
-set(HEADER_FILES src/Characters src/DungeonGeneration src/Items src/Graphics)
+set(HEADER_FILES src/Characters src/DungeonGeneration src/Items src/Graphics libs/SFML-2.5.1/include/SFML)
 
 # test_instructions.txt
 # Use the line 'add_executable' below to configure CMake for your test setting.
@@ -37,5 +37,5 @@ add_executable(DungeonCrawler ${SOURCES} ${HEADER_FILES})
 #set(OpenGL_GL_PREFERENCE GLVND)
 #target_link_libraries(DungeonCrawler sfml-audio sfml-graphics sfml-window sfml-system OpenGL)
 
-target_link_libraries(DungeonCrawler sfml-audio sfml-graphics sfml-window sfml-system)
+target_link_libraries(DungeonCrawler sfml-graphics sfml-window sfml-system sfml-audio)
 target_include_directories(DungeonCrawler PUBLIC ${HEADER_FILES})

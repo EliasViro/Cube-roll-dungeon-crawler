@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = ../SFML-2.5.1
+CMAKE_SOURCE_DIR = /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = .
+CMAKE_BINARY_DIR = /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -94,7 +94,7 @@ install/fast: preinstall/fast
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\" \"bin\" \"devel\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\" \"devel\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -126,14 +126,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start ./CMakeFiles ./SFML-2.5.1_build/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start ./SFML-2.5.1_build/CMakeFiles 0
+	cd /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static && $(CMAKE_COMMAND) -E cmake_progress_start /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static/CMakeFiles /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static/src/SFML/CMakeFiles/progress.marks
+	cd /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,83 +143,18 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-#=============================================================================
-# Target rules for targets named sfml-system
-
-# Build rule for target.
-sfml-system: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sfml-system
-.PHONY : sfml-system
-
-# fast build rule for target.
-sfml-system/fast:
-	$(MAKE) -f src/SFML/System/CMakeFiles/sfml-system.dir/build.make src/SFML/System/CMakeFiles/sfml-system.dir/build
-.PHONY : sfml-system/fast
-
-#=============================================================================
-# Target rules for targets named sfml-window
-
-# Build rule for target.
-sfml-window: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sfml-window
-.PHONY : sfml-window
-
-# fast build rule for target.
-sfml-window/fast:
-	$(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/build
-.PHONY : sfml-window/fast
-
-#=============================================================================
-# Target rules for targets named sfml-network
-
-# Build rule for target.
-sfml-network: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sfml-network
-.PHONY : sfml-network
-
-# fast build rule for target.
-sfml-network/fast:
-	$(MAKE) -f src/SFML/Network/CMakeFiles/sfml-network.dir/build.make src/SFML/Network/CMakeFiles/sfml-network.dir/build
-.PHONY : sfml-network/fast
-
-#=============================================================================
-# Target rules for targets named sfml-graphics
-
-# Build rule for target.
-sfml-graphics: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sfml-graphics
-.PHONY : sfml-graphics
-
-# fast build rule for target.
-sfml-graphics/fast:
-	$(MAKE) -f src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/build.make src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/build
-.PHONY : sfml-graphics/fast
-
-#=============================================================================
-# Target rules for targets named sfml-audio
-
-# Build rule for target.
-sfml-audio: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sfml-audio
-.PHONY : sfml-audio
-
-# fast build rule for target.
-sfml-audio/fast:
-	$(MAKE) -f src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make src/SFML/Audio/CMakeFiles/sfml-audio.dir/build
-.PHONY : sfml-audio/fast
 
 # Help Target
 help:
@@ -233,11 +168,6 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... sfml-system"
-	@echo "... sfml-window"
-	@echo "... sfml-network"
-	@echo "... sfml-graphics"
-	@echo "... sfml-audio"
 .PHONY : help
 
 
@@ -249,6 +179,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

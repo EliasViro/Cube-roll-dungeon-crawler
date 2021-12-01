@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = ../SFML-2.5.1
+CMAKE_SOURCE_DIR = /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = .
+CMAKE_BINARY_DIR = /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -94,7 +94,7 @@ install/fast: preinstall/fast
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\" \"bin\" \"devel\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\" \"devel\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -126,9 +126,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start ./CMakeFiles ./SFML-2.5.1_build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static/CMakeFiles /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start ./SFML-2.5.1_build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/atte/cpp_projects/DungeonCrawler/libs/SFML-2.5.1_build_static/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
